@@ -17,7 +17,9 @@
       </div>
       <div class="user-info_rating">
         <h3>Rating:</h3>
-        <h4>{{ rating }}</h4>
+        <ul>
+          <li v-for="rate in rating / 2" :key="rate"><font-awesome-icon style="color: #F0DB4F; font-size: 18px;" :icon="['fas', 'star']" /></li>
+        </ul>
       </div>
       <div class="user-info_skills">
         <h3>Skills:</h3>
@@ -57,6 +59,8 @@
 </template>
 
 <script>
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
 export default {
   name: "Main",
   props: {},
@@ -67,11 +71,14 @@ export default {
       skills: this.$store.state.user.skills,
     };
   },
+  components: {
+    FontAwesomeIcon
+  },
   computed: {
     skillsFormatted() {
       return this.skills.map((skill) => skill).join(", ");
     },
-  },
+  }
 };
 </script>
 
@@ -80,9 +87,10 @@ export default {
   display: grid;
   grid-template-rows: 1fr 2fr;
   grid-template-columns: 1fr 4fr;
-  column-gap: 2rem;
-  margin-top: 4rem;
-  margin: 2rem 7.5rem 0 7.5rem;
+  column-gap: 8rem;
+  max-width: 1280px;
+  margin: 2rem 7.5rem 0rem 7.5rem;
+
   .user-profile {
     text-align: center;
     img {
@@ -111,7 +119,7 @@ export default {
 
   .user-info {
     height: 250px;
-    margin-top: 3rem;
+    margin-top: 1rem;
     display: grid;
     grid-template-columns: minmax(200px, 300px);
     gap: 1rem;
@@ -129,6 +137,16 @@ export default {
       border: none;
       margin-top: 1.5rem;
       cursor: pointer;
+    }
+
+    &_rating {
+      ul {
+        padding: 0;
+      }
+      ul li {
+        list-style-type: none;
+        display: inline;
+      }
     }
 
     .user-bio {
@@ -160,6 +178,12 @@ export default {
         column-gap: 2rem;
       }
     }
+  }
+}
+@media (min-width: 1700px)  {
+  .main {
+    justify-content: center;
+    margin: 0 auto;
   }
 }
 </style>

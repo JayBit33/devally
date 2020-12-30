@@ -1,16 +1,22 @@
 <template>
   <div id="main-component">
     <div class="header">
-      <img alt="Vue logo" src="./assets/logo.png" id="img_logo" />
       <nav>
+        <router-link to="/" class="logo link">DevAlly</router-link>
         <ul>
-          <li>Home</li>
-          <li>Browse Projects</li>
-          <li>Search Devs</li>
+          <li><router-link to="/works" class="link">how it works</router-link><span>/</span></li>
+          <li><router-link to="/devs" class="link">find developers</router-link><span>/</span></li>
+          <li><router-link to="/projects" class="link">browse projects</router-link><span>/</span></li>
+          <li><router-link to="/about" class="link">about</router-link></li>
         </ul>
       </nav>
+      <button class="logon" >Sign In</button>
     </div>
-    <Main />
+
+    <div class="page-content">
+      <router-view />
+    </div>
+
     <div class="footer">
       <p>&copy; DevAlly 2021</p>
     </div>
@@ -18,12 +24,11 @@
 </template>
 
 <script>
-import Main from "./components/Main.vue";
 
 export default {
   name: "App",
   components: {
-    Main,
+
   },
 };
 </script>
@@ -33,49 +38,74 @@ body,
 html {
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
 #main-component {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  margin: 1rem 0 0 0;
 }
+
+.link { text-decoration: none; color: black; }
 
 .header {
   width: 100%;
-  padding: 1rem;
-  margin: 0 2rem;
+  margin: 2rem 0rem 5rem 2rem;
   color: black;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  align-items:baseline;
+  justify-content:space-between;
+
+  .logo {
+    font: bold 1.5rem 'Montserrat';
+    margin-top: 0;
+    margin-right: 2rem;
+  }
   nav {
     overflow: hidden;
-    padding-right: 4rem;
+    display: flex;
     ul {
       list-style-type: none;
-      margin: 0;
+      margin-top: .425rem;
       padding: 0;
       li {
         display: inline;
-        float: right;
-        text-decoration: none;
-        padding: 1rem 2rem;
+        .link {
+          display: inline;
+          text-decoration: none;
+          padding: 1rem 1.5rem;
+          font: 400 1rem 'Montserrat';
+          color: #514E4E;
+          span {
+            padding-left: 1.5rem;
+          }
+        }
       }
     }
   }
+  .logon {
+    background-color: #294738;
+    color: white;
+    padding: .25rem 1rem;
+    font-family: inherit;
+    font-size: 1rem;
+    margin-right: 4rem;
+  }
 }
 
-#img_logo {
-  width: 3.75rem;
+.page-content {
+  margin-left: 7rem;
 }
 
 .footer {
-  background-color: #39c99d;
+  background-color: #3f5e75;
   color: white;
+  position: absolute;
+  left: 0;
+  width: 100%;
   text-align: center;
-  padding: 3rem 0 1.5rem 0;
-  margin-top: 2rem;
+  padding-top: 11rem;
+  margin-top: 3rem;
 }
 </style>
