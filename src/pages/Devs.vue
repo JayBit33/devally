@@ -11,8 +11,10 @@
 import ProfileBio from '../components/profile-bio';
 export default {
   name: "Devs",
-  props: {},
   data() {
+    return {
+
+    }
   },
   components: {
     ProfileBio

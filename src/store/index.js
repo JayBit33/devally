@@ -6,13 +6,13 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
     state: {
         user: {
-            guid: 0,
+            guid: 33,
             accountCreated: 'May 20 2021 7:32:23am',
             firstName: 'Jay',
             lastName: 'Boseman',
             email: 'bosemanrocks@gmail.com',
             password: 'HHLKHLEION2002NS102746179',
-            profileImage: 'images/user_profile.jpg',
+            profileImage: 'user_profile.jpg',
             accountType: ['ENTREPRENEUR', 'DEVELOPER'],
             skills: ['Java', 'Spring Boot', 'REST API\'s', 'Mobile App Development'],
             rating: 10,
@@ -35,4 +35,4 @@ const store = new Vuex.Store({
     }
 })
 
-export default store; 
+export default store;

@@ -3,9 +3,15 @@
     <div class="user-profile">
       <img :src="require('@/assets/' + $store.state.user.profileImage)" />
       <h4>{{ $store.getters.fullName }}</h4>
-      <router-link to="/dev/1" class="btn">Learn More</router-link>
+      <!-- <button class="btn">Collaborate</button>
+      <button class="btn">Message</button> -->
     </div>
     <div class="user-info">
+      <div class="user-info_heading">
+        <h2>User Information</h2>
+        <button>Edit</button>
+      </div>
+      <div></div>
       <div class="user-info_accounttype">
         <h3>Account Type:</h3>
         <h4>{{ $store.state.user.accountType.join(", ") }}</h4>
@@ -25,24 +31,50 @@
         <h4>{{ skillsFormatted }}</h4>
       </div>
       <div class="user-bio">
-        <h3>Bio</h3>
+        <div class="user-bio_heading" >
+          <h3>Bio</h3>
+          <button>Edit</button>
+        </div>
         <p>
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatibus
           in cum blanditiis ratione ad praesentium nobis voluptates nemo maxime
           beatae, corporis ullam officia dolor consectetur modi eius cumque?
           Rem, earum? Lorem ipsum dolor sit amet, consectetur adipisicing elit.
           Ipsa rerum aliquam iusto consectetur unde et quos delectus laboriosam
-          voluptatibus odio eum deserunt.
+          voluptatibus odio eum deserunt ab, accusamus a. Quasi deleniti neque
+          mollitia quia! Lorem, ipsum dolor sit amet consectetur adipisicing
+          elit. Quae asperiores, eius fugiat explicabo, a reiciendis quibusdam
+          voluptates ipsum laudantium minima nemo sapiente dicta nostrum nisi
+          eum dolore consequuntur debitis ipsa.
         </p>
+      </div>
+
+      <div class="user-portfolio">
+        <div class="user-portfolio_heading">
+          <h3>Portfolio</h3>
+          <button>Edit</button>
+        </div>
+        <div class="user-portfolio_images">
+          <img src="images/user_profile.jpg" />
+          <img src="images/user_profile.jpg" />
+          <img src="images/user_profile.jpg" />
+          <img src="images/user_profile.jpg" />
+          <img src="images/user_profile.jpg" />
+          <img src="images/user_profile.jpg" />
+          <img src="images/user_profile.jpg" />
+          <img src="images/user_profile.jpg" />
+        </div>
       </div>
     </div>
   </div>
 </template>
+
 <script>
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 export default {
-  name: "ProfileBio",
+  name: "UserProfile",
+  props: ['id'],
   data() {
     return {
       accountType: this.$store.state.user.accountType,
@@ -57,19 +89,22 @@ export default {
     skillsFormatted() {
       return this.skills.map((skill) => skill).join(", ");
     },
-  },
+  }
 };
 </script>
 
 <style lang="scss" scoped>
+@import "../scss/variables";
+
 .main {
   display: grid;
-  grid-template-rows: 1fr;
+  grid-template-rows: 1fr 3fr;
   grid-template-columns: 1fr 4fr;
   column-gap: 8rem;
   max-width: 1280px;
+  // height: 1300px;
   margin: 2rem 7.5rem 0rem 7.5rem;
-  padding: 2rem;
+  overflow: hidden;
 
   .user-profile {
     text-align: center;
@@ -86,13 +121,13 @@ export default {
       margin-top: 1rem;
     }
     .btn {
-      background-color: green;
+      background-color: $button-primary;
       color: white;
       font-size: 1.125rem;
       padding: 0.5rem 2rem;
+      margin-top: 1rem;
       border-radius: 0.5rem;
       border: none;
-      text-decoration: none;
       cursor: pointer;
     }
   }
@@ -101,7 +136,7 @@ export default {
     height: 250px;
     margin-top: 1rem;
     display: grid;
-    grid-template-columns: minmax(200px, 300px);
+    grid-template-columns: minmax(300px, 300px);
     gap: 1rem;
 
     h3 {
@@ -109,7 +144,7 @@ export default {
       text-transform: uppercase;
     }
     .btn {
-      background-color: green;
+      background-color: $button-primary;
       color: white;
       font-size: 1.125rem;
       padding: 0.25rem 1rem;
@@ -117,6 +152,16 @@ export default {
       border: none;
       margin-top: 1.5rem;
       cursor: pointer;
+    }
+
+    &_heading {
+      margin-bottom: 1rem;
+      h2, button {
+        display: inline;
+      }
+      h2 {
+        margin-right: 2rem;
+      }
     }
 
     &_rating {
@@ -131,9 +176,18 @@ export default {
 
     .user-bio {
       grid-column: 1 / 3;
+      margin-top: 3rem;
       p {
         font-size: 1.25rem;
         line-height: 2rem;
+      }
+      &_heading {
+        h3, button {
+          display: inline;
+        }
+        h3 {
+          margin-right: 2rem;
+        }
       }
     }
 
@@ -144,10 +198,18 @@ export default {
         text-decoration: underline;
         text-underline-offset: 0.25rem;
         text-transform: none;
-        margin-bottom: 2rem;
       }
       img {
         width: 200px;
+      }
+      &_heading {
+        margin-bottom: 2rem;
+        h3, button {
+          display: inline;
+        }
+        h3 {
+          margin-right: 2rem;
+        }
       }
       &_images {
         display: grid;
@@ -157,6 +219,19 @@ export default {
         column-gap: 2rem;
       }
     }
+  }
+
+  button {
+    background-color: $button-primary;
+    color: white;
+    text-transform: uppercase;
+    font-weight: 700;
+    border: none;
+    outline: none;
+    padding: .5rem;
+    position: relative;
+    bottom: .125rem;
+    cursor: pointer;
   }
 }
 @media (min-width: 1700px)  {

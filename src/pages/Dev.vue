@@ -1,10 +1,11 @@
 <template>
   <div class="main">
     <div class="user-profile">
-      <img :src="$store.state.user.profileImage" />
+      <img :src="require('@/assets/' + $store.state.user.profileImage)" />
       <h4>{{ $store.getters.fullName }}</h4>
       <button class="btn">Collaborate</button>
       <button class="btn">Message</button>
+      <h2>{{ id }}</h2>
     </div>
     <div class="user-info">
       <div class="user-info_accounttype">
@@ -44,14 +45,14 @@
       <div class="user-portfolio">
         <h3>Portfolio</h3>
         <div class="user-portfolio_images">
-          <img src="images/user_profile.jpg" />
-          <img src="images/user_profile.jpg" />
-          <img src="images/user_profile.jpg" />
-          <img src="images/user_profile.jpg" />
-          <img src="images/user_profile.jpg" />
-          <img src="images/user_profile.jpg" />
-          <img src="images/user_profile.jpg" />
-          <img src="images/user_profile.jpg" />
+          <img :src="require('@/assets/user_profile.jpg')" />
+          <img :src="require('@/assets/user_profile.jpg')" />
+          <img :src="require('@/assets/user_profile.jpg')" />
+          <img :src="require('@/assets/user_profile.jpg')" />
+          <img :src="require('@/assets/user_profile.jpg')" />
+          <img :src="require('@/assets/user_profile.jpg')" />
+          <img :src="require('@/assets/user_profile.jpg')" />
+          <img :src="require('@/assets/user_profile.jpg')" />
         </div>
       </div>
     </div>
@@ -62,13 +63,13 @@
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 export default {
-  name: "Main",
-  props: {},
+  name: "Dev",
   data() {
     return {
       accountType: this.$store.state.user.accountType,
       rating: this.$store.state.user.rating || 0,
       skills: this.$store.state.user.skills,
+      id: this.$route.params.id
     };
   },
   components: {

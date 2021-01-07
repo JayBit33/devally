@@ -4,6 +4,11 @@
 
 <script>
 export default {
-
+  name: 'Projects',
+  data() {
+    return {
+      something: null,
+    }
+  }
 }
 </script>

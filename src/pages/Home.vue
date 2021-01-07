@@ -6,7 +6,7 @@
         <h1> Make Your Tech Idea A Reality</h1>
         <h4>great community of developers willing to join a team</h4>
         <h4>for pay or ownership</h4>
-        <button class="btn">GET STARTED</button>
+        <button class="btn"><router-link to="/devs" class="link">GET STARTED</router-link></button>
       </div>
       <div class="col-2">
         <img src="images/3593965.jpg" />
@@ -22,6 +22,7 @@
           <img src="images/4071498.jpg" />
         </div>
         <div>
+          <h3 style="text-align:center; font-size: 1.75rem;">All Starts Here</h3>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus eveniet itaque earum recusandae quaerat voluptas neque sed nihil odit.
             Officiis animi officia incidunt pariatur suscipit ea esse, hic quia deleniti?</p>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus eveniet itaque earum recusandae quaerat voluptas neque sed nihil odit.
@@ -31,11 +32,12 @@
             <button>Create Project</button>
             </div>
         <div class="build-text">
+          <h3 style="text-align:center; font-size: 1.75rem;">Find Passionate People</h3>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus eveniet itaque earum recusandae quaerat voluptas neque sed nihil odit.
             Officiis animi officia incidunt pariatur suscipit ea esse, hic quia deleniti?</p>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus eveniet itaque earum recusandae quaerat voluptas neque sed nihil odit.
             Officiis animi officia incidunt pariatur suscipit ea esse, hic quia deleniti?</p>
-            <button>Search Devs</button>
+            <router-link to="/devs" class="link"><button>Search Devs</button></router-link>
         </div>
         <div class="getting-started_steps_build">
           <h4>#2</h4>
@@ -49,6 +51,7 @@
           <img src="images/4309857.jpg" />
         </div>
         <div class="life-text">
+          <h3 style="text-align:center; font-size: 1.75rem;">Make it A Reality</h3>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus eveniet itaque earum recusandae quaerat voluptas neque sed nihil odit.
             Officiis animi officia incidunt pariatur suscipit ea esse, hic quia deleniti?
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus eveniet itaque earum recusandae quaerat voluptas neque sed nihil odit.
@@ -93,11 +96,13 @@ export default {
       }
       button {
         background-color: #294738;
-        color: white;
         padding: 1rem 4rem .75rem 4rem;
         font-size: 1.25rem;
         border: none;
         margin-top: 2rem;
+        .link {
+          color: white;
+        }
       }
     }
     .col-2 {
@@ -125,17 +130,20 @@ export default {
       h4 { font: bold 2.75rem 'Segoe UI'; color: black;  margin-bottom: 0; margin-right: 1.5rem; }
       h2 { text-align: left; }
       img { width: 400px; }
-      button {
-        display: block;
-        background-color: #6B8BA4;
-        color: white;
-        font: 1.25rem 'Montserrat';
-        text-transform: uppercase;
-        margin-top: 2rem;
-        padding: 1rem 2rem;
-        border: none;
-        margin: 2rem auto;
-        cursor: pointer;
+      .link {
+          color: white;
+        button {
+          display: block;
+          background-color: #6B8BA4;
+          color: white;
+          font: 1.25rem 'Montserrat';
+          text-transform: uppercase;
+          margin-top: 2rem;
+          padding: 1rem 2rem;
+          border: none;
+          margin: 2rem auto;
+          cursor: pointer;
+        }
       }
 
       &_create, &_build, &_life {
@@ -157,6 +165,19 @@ export default {
         margin-bottom: 5rem;
       }
     }
+  }
+  // remove after inserting <router-link> for all buttons
+  button {
+    display: block;
+    background-color: #6B8BA4;
+    color: white;
+    font: 1.25rem 'Montserrat';
+    text-transform: uppercase;
+    margin-top: 2rem;
+    padding: 1rem 2rem;
+    border: none;
+    margin: 2rem auto;
+    cursor: pointer;
   }
 }
 

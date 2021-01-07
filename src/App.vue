@@ -10,8 +10,10 @@
           <li><router-link to="/about" class="link">about</router-link></li>
         </ul>
       </nav>
-      <button class="logon" >Sign In</button>
+      <button v-if="!signedIn" class="logon" >Sign In</button>
+      <button v-else ><font-awesome-icon  class="user-icon" :icon="['fas','user']" @click="onOptionsClick" /></button>
     </div>
+    <user-options-dropdown v-if="optionsViewable" @optionSelected="closeOptions" />
 
     <div class="page-content">
       <router-view />
@@ -24,22 +26,47 @@
 </template>
 
 <script>
+import UserOptionsDropdown from './components/user-options-dropdown';
 
 export default {
   name: "App",
-  components: {
-
+  data() {
+    return {
+      signedIn: true,
+      optionsViewable: false
+    }
   },
+  components: {
+    UserOptionsDropdown
+  },
+  methods: {
+    onOptionsClick() {
+      if (!this.optionsViewable) this.optionsViewable = true;
+      else this.optionsViewable = false;
+    },
+    closeOptions() {
+      this.optionsViewable = false;
+    }
+  }
 };
 </script>
 
 <style lang="scss">
+@import "scss/variables";
+
 body,
 html {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
 }
+
+// *:focus {
+//   text-decoration: underline;
+//   border: none;
+//   outline: none;
+// }
+
 #main-component {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -54,7 +81,7 @@ html {
   margin: 2rem 0rem 5rem 2rem;
   color: black;
   display: flex;
-  align-items:baseline;
+  align-items: flex-start;
   justify-content:space-between;
 
   .logo {
@@ -65,6 +92,7 @@ html {
   nav {
     overflow: hidden;
     display: flex;
+
     ul {
       list-style-type: none;
       margin-top: .425rem;
@@ -88,14 +116,28 @@ html {
     background-color: #294738;
     color: white;
     padding: .25rem 1rem;
+    text-transform: uppercase;
     font-family: inherit;
     font-size: 1rem;
     margin-right: 4rem;
+    border: none;
+  }
+  button {
+    margin-right: 7.5rem;
+    border: none;
+    outline: none;
+    background-color: white;
+    .user-icon {
+      color: $button-primary;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
   }
 }
 
 .page-content {
   margin-left: 7rem;
+  margin-right: 7rem;
 }
 
 .footer {

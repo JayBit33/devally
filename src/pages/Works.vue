@@ -22,7 +22,7 @@
             Officiis animi officia incidunt pariatur suscipit ea esse, hic quia deleniti?</p>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus eveniet itaque earum recusandae quaerat voluptas neque sed nihil odit.
             Officiis animi officia incidunt pariatur suscipit ea esse, hic quia deleniti?</p>
-            <button>Search Devs</button>
+            <router-link to="/devs" class="link"><button>Search Devs</button></router-link>
         </div>
         <div class="getting-started_steps_build">
           <h4>#2</h4>
@@ -112,6 +112,9 @@ export default {
       h4 { font: bold 2.75rem 'Segoe UI'; color: black;  margin-bottom: 0; margin-right: 1.5rem; }
       h2 { text-align: left; }
       img { width: 400px; }
+      .link {
+          color: white;
+      }
       button {
         display: block;
         background-color: #6B8BA4;
@@ -122,6 +125,7 @@ export default {
         padding: 1rem 2rem;
         border: none;
         margin: 2rem auto;
+        cursor: pointer;
       }
 
       &_create, &_build, &_life {
