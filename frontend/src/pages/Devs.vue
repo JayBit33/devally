@@ -1,0 +1,39 @@
+<!-- (c) Waveybits Inc. <2021> -->
+<!-- ALL RIGHTS RESERVED -->
+<template>
+  <div class="main">
+      <profile-bio class="profile"></profile-bio>
+      <profile-bio class="profile"></profile-bio>
+      <profile-bio class="profile"></profile-bio>
+      <profile-bio class="profile"></profile-bio>
+  </div>
+</template>
+
+<script>
+import ProfileBio from '../components/profile-bio/';
+export default {
+  name: "Devs",
+  data() {
+    return {
+
+    }
+  },
+  components: {
+    ProfileBio
+  },
+  methods: {
+
+  }
+
+};
+</script>
+
+<style lang="scss" scoped>
+  .main {
+    overflow: hidden;
+  }
+  .profile {
+    margin-top: 4rem;
+  }
+
+</style>
