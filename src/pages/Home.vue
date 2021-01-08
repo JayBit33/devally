@@ -1,3 +1,5 @@
+<!-- (c) Waveybits Inc. <2021> -->
+<!-- ALL RIGHTS RESERVED -->
 <template>
   <div class="main">
     <div class="home-banner">
@@ -66,11 +68,13 @@
 <script>
 export default {
   name: "Home",
-  props: {},
+  props: []
 }
 </script>
 
 <style lang="scss" scoped>
+@import '../scss/variables';
+
 .main {
   max-width: 1780px;
   margin: 0rem 7.5rem 0rem 7.5rem;
@@ -84,29 +88,30 @@ export default {
     margin-bottom: 3rem;
     border-bottom: 1px solid #F2F2F2;
     .col-1 {
+      margin-left: 4.5rem;
       h1 {
         font: 500 2rem 'Montserrat';
-        color: #294738;
+        color: $primary;
         line-height: 1.5rem;
-
       }
       h4 {
         font: 1rem 'Montserrat';
         line-height: .5rem;
       }
       button {
-        background-color: #294738;
+        background-color: $button-primary;
         padding: 1rem 4rem .75rem 4rem;
         font-size: 1.25rem;
         border: none;
-        margin-top: 2rem;
+        float: left;
+        margin-top: 0rem;
         .link {
           color: white;
         }
       }
     }
     .col-2 {
-      margin-right: 4rem;
+      margin-right: 2rem;
       img {
         width: 40vw;
       }
@@ -122,7 +127,7 @@ export default {
     &_steps {
       display: grid;
       grid-template-rows: 1fr 1fr 1fr;
-      grid-template-columns: 4fr 4fr;
+      grid-template-columns: 8fr 4fr;
       gap: 2rem 4rem;
       align-items: end;
       margin: 0 auto;

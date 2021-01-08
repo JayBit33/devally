@@ -1,14 +1,18 @@
+<!-- (c) Waveybits Inc. <2021> -->
+<!-- ALL RIGHTS RESERVED -->
 <template>
   <div class="user-options-dropdown">
     <ul>
-      <li @click="$emit('optionSelected')"><router-link to="/profile" class="link" >Account Profile</router-link></li>
-      <li @click="$emit('optionSelected')"><router-link to="/profile" class="link" >Projects</router-link></li>
-      <li @click="$emit('optionSelected')"><router-link to="/" class="link" >Sign Out</router-link></li>
+      <li @click="$emit('optionSelected')"><font-awesome-icon class="icon accountIcon" :icon="['fas','user']" /><router-link to="/profile" class="link" >Account</router-link></li>
+      <li @click="$emit('optionSelected')"><router-link to="/projects" class="link" ><font-awesome-icon class="icon" :icon="['fas','bookmark']" />Projects</router-link></li>
+      <li @click="$emit('optionSelected')"><font-awesome-icon class="icon signoutIcon" :icon="['fas','sign-out-alt']" /><router-link to="/" class="link" >Sign Out</router-link></li>
     </ul>
   </div>
 </template>
 
 <script>
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
 export default {
   name: 'UserOptionsDropdown',
   data() {
@@ -16,6 +20,9 @@ export default {
 
     }
   },
+  components: {
+    FontAwesomeIcon
+  }
 }
 </script>
 
@@ -27,10 +34,9 @@ export default {
       list-style-type: none;
       padding: 0;
       width: 10rem;
-      background-color: $secondary;
-      color: white;
+      background-color: $secondary-darker;
       position: absolute;
-      right: 1.4%;
+      right: 1.5rem;
       top: 3.75rem;
       &:before {
         display: block;
@@ -38,19 +44,36 @@ export default {
         transform: rotate(-45deg);
         width: 20px;
         height: 20px;
-        background-color: $secondary;
+        background-color: $secondary-darker;
         margin: 0 auto;
         position: relative;
         bottom: .5rem;
       }
       li {
-        text-align: center;
         text-decoration: none;
-        padding: 1rem 0;
+        padding: .5rem 0;
         border-top: .125rem solid white;
+
+        &:hover {
+          background-color: $secondary;
+        }
+        .icon {
+          font-size: 1.25rem;
+          color: white;
+          padding-right: 1.5rem;
+          margin-left: .5rem;
+          position: relative;
+          top: .2rem;
+        }
         .link {
           font: 400 1rem 'Montserrat';
           color: white;
+        }
+        .accountIcon {
+          margin-right: -.125rem;
+        }
+        .signoutIcon {
+          margin-right: -.25rem;
         }
       }
     }

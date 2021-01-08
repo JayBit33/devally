@@ -1,3 +1,5 @@
+<!-- (c) Waveybits Inc. <2021> -->
+<!-- ALL RIGHTS RESERVED -->
 <template>
   <div id="main-component">
     <div class="header">
@@ -128,7 +130,7 @@ html {
     outline: none;
     background-color: white;
     .user-icon {
-      color: $button-primary;
+      color: $primary;
       font-size: 1.5rem;
       cursor: pointer;
     }
@@ -138,6 +140,7 @@ html {
 .page-content {
   margin-left: 7rem;
   margin-right: 7rem;
+  max-width: 1960px;
 }
 
 .footer {
@@ -149,5 +152,6 @@ html {
   text-align: center;
   padding-top: 11rem;
   margin-top: 3rem;
+  margin-bottom: 0;
 }
 </style>

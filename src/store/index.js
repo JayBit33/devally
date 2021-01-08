@@ -1,3 +1,5 @@
+// (c) Waveybits Inc. <2021>
+// ALL RIGHTS RESERVED
 import Vue from 'vue';
 import Vuex from 'vuex';
 

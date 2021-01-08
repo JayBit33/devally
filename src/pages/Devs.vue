@@ -1,6 +1,8 @@
+<!-- (c) Waveybits Inc. <2021> -->
+<!-- ALL RIGHTS RESERVED -->
 <template>
   <div class="main">
-      <profile-bio class="profile" ></profile-bio>
+      <profile-bio class="profile"></profile-bio>
       <profile-bio class="profile"></profile-bio>
       <profile-bio class="profile"></profile-bio>
       <profile-bio class="profile"></profile-bio>
@@ -8,7 +10,7 @@
 </template>
 
 <script>
-import ProfileBio from '../components/profile-bio';
+import ProfileBio from '../components/profile-bio/';
 export default {
   name: "Devs",
   data() {
