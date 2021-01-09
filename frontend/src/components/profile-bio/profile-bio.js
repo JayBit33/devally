@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 export default {
   name: "ProfileBio",
+  props: ['user'],
   data() {
     return {
       accountType: this.$store.state.user.accountType,
@@ -17,7 +18,7 @@ export default {
   },
   computed: {
     skillsFormatted() {
-      return this.skills.map((skill) => skill).join(", ");
+      return this.user.skills.map((skill) => skill).join(", ");
     },
   },
 };

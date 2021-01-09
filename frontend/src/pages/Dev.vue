@@ -1,27 +1,26 @@
 <!-- (c) Waveybits Inc. <2021> -->
 <!-- ALL RIGHTS RESERVED -->
 <template>
-  <div class="main">
+  <div class="dev">
     <div class="user-profile">
       <img :src="require('@/assets/' + $store.state.user.profileImage)" />
-      <h4>{{ $store.getters.fullName }}</h4>
+      <h4>{{ fullName }}</h4>
       <button class="btn">Collaborate</button>
       <button class="btn">Message</button>
-      <h2>{{ id }}</h2>
     </div>
     <div class="user-info">
       <div class="user-info_accounttype">
         <h3>Account Type:</h3>
-        <h4>{{ $store.state.user.accountType.join(", ") }}</h4>
+        <h4>{{ accountType.join(", ") }}</h4>
       </div>
       <div class="user-info_hiringoptions">
         <h3>Hiring Options:</h3>
-        <h4>{{ $store.state.user.availableHireOptions.join(", ") }}</h4>
+        <h4>{{ hiringOptions.join(", ") }}</h4>
       </div>
       <div class="user-info_rating">
         <h3>Rating:</h3>
         <ul>
-          <li v-for="rate in rating / 2" :key="rate"><font-awesome-icon style="color: #F0DB4F; font-size: 18px;" :icon="['fas', 'star']" /></li>
+          <li v-for="rate in rating" :key="rate"><font-awesome-icon style="color: #F0DB4F; font-size: 18px;" :icon="['fas', 'star']" /></li>
         </ul>
       </div>
       <div class="user-info_skills">
@@ -63,36 +62,50 @@
 
 <script>
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-
+import { mapGetters } from 'vuex';
 export default {
   name: "Dev",
   data() {
     return {
-      accountType: this.$store.state.user.accountType,
-      rating: this.$store.state.user.rating || 0,
-      skills: this.$store.state.user.skills,
+      user: {},
+      accountType: [],
+      hiringOptions: [],
+      rating: 0,
+      skills: [],
       id: this.$route.params.id
     };
   },
   components: {
     FontAwesomeIcon
   },
+  async created() {
+    const user = await this.getUsers.find(u => u.id === this.id);
+    this.user = user;
+    this.accountType = user.accountType;
+    this.hiringOptions = user.hiringOptions;
+    this.rating = user.rating;
+    this.skills = user.skills;
+  },
   computed: {
+    ...mapGetters(['getUsers']),
+    fullName() {
+      return `${this.user.firstname} ${this.user.lastname}`;
+    },
     skillsFormatted() {
-      return this.skills.map((skill) => skill).join(", ");
+      return this.skills.join(", ");
     },
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.main {
+.dev {
   display: grid;
   grid-template-rows: 1fr 2fr;
   grid-template-columns: 1fr 4fr;
   column-gap: 8rem;
   max-width: 1280px;
-  margin: 2rem 7.5rem 0rem 7.5rem;
+  margin: 0 auto;
 
   .user-profile {
     text-align: center;

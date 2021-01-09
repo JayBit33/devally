@@ -68,7 +68,9 @@
 <script>
 export default {
   name: "Home",
-  props: []
+  props: [],
+  created() {
+  }
 }
 </script>
 

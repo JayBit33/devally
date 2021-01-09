@@ -34,6 +34,7 @@ export default {
   name: "App",
   data() {
     return {
+      background: false,
       signedIn: true,
       optionsViewable: false
     }
@@ -42,6 +43,9 @@ export default {
     UserOptionsDropdown
   },
   methods: {
+    backgroundOn(isOn) {
+      this.background = isOn;
+    },
     onOptionsClick() {
       if (!this.optionsViewable) this.optionsViewable = true;
       else this.optionsViewable = false;
@@ -80,7 +84,7 @@ html {
 
 .header {
   width: 100%;
-  margin: 2rem 0rem 5rem 2rem;
+  margin: 2rem 0rem 4rem 2rem;
   color: black;
   display: flex;
   align-items: flex-start;
@@ -138,8 +142,8 @@ html {
 }
 
 .page-content {
-  margin-left: 7rem;
-  margin-right: 7rem;
+  // margin-left: 7rem;
+  // margin-right: 7rem;
   max-width: 1960px;
 }
 

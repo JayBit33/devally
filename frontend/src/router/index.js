@@ -26,7 +26,7 @@ const router = new VueRouter({
     { path: '/create-account',  name: 'CreateAccount', component: CreateAccount },
   ],
   scrollBehavior() {
-    window.scrollTo({ x: 0, y: 0, behavior: 'auto'})
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto'})
   }
 })
 

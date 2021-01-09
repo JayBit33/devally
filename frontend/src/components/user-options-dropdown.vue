@@ -3,7 +3,7 @@
 <template>
   <div class="user-options-dropdown">
     <ul>
-      <li @click="$emit('optionSelected')"><font-awesome-icon class="icon accountIcon" :icon="['fas','user']" /><router-link to="/profile" class="link" >Account</router-link></li>
+      <li @click="$emit('optionSelected')"><font-awesome-icon class="icon accountIcon" :icon="['fas','user']" /><router-link :to="{ name: 'Profile', params: { id: userId }}" class="link" >Account</router-link></li>
       <li @click="$emit('optionSelected')"><router-link to="/projects" class="link" ><font-awesome-icon class="icon" :icon="['fas','bookmark']" />Projects</router-link></li>
       <li @click="$emit('optionSelected')"><font-awesome-icon class="icon signoutIcon" :icon="['fas','sign-out-alt']" /><router-link to="/" class="link" >Sign Out</router-link></li>
     </ul>
@@ -12,16 +12,23 @@
 
 <script>
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'UserOptionsDropdown',
   data() {
     return {
-
+      userId: 0,
     }
+  },
+  created() {
+    this.userId = this.getCurrentUserId;
   },
   components: {
     FontAwesomeIcon
+  },
+  computed: {
+    ...mapGetters(['getCurrentUserId'])
   }
 }
 </script>
