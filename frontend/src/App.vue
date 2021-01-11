@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import UserOptionsDropdown from './components/user-options-dropdown';
+import UserOptionsDropdown from './components/user-options-dropdown/';
 
 export default {
   name: "App",
@@ -84,7 +84,7 @@ html {
 
 .header {
   width: 100%;
-  margin: 2rem 0rem 4rem 2rem;
+  margin: 2rem 0rem 2rem 2rem;
   color: black;
   display: flex;
   align-items: flex-start;
@@ -142,9 +142,13 @@ html {
 }
 
 .page-content {
+  background-image: url('./assets/devs_bg.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: 1;
   // margin-left: 7rem;
   // margin-right: 7rem;
-  max-width: 1960px;
+  // max-width: 1960px;
 }
 
 .footer {
@@ -155,7 +159,7 @@ html {
   width: 100%;
   text-align: center;
   padding-top: 11rem;
-  margin-top: 3rem;
+  margin-top: 0;
   margin-bottom: 0;
 }
 </style>

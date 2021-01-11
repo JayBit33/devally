@@ -3,7 +3,7 @@
 <template>
   <div class="profile-bio">
     <div class="user-profile">
-      <img :src="require('@/assets/' + $store.state.user.profileImage)" />
+      <img :src="require('@/assets/' + user.profileImage)" />
       <h4>{{ user.username }}</h4>
       <router-link :to="{ name: 'Dev', params: { id: user.id }}" class="btn">Learn More</router-link>
     </div>

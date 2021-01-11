@@ -2,14 +2,14 @@
 // ALL RIGHTS RESERVED
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../pages/Home'
-import Devs from '../pages/Devs'
-import Dev from '../pages/Dev'
-import UserProfile from '../pages/UserProfile'
-import Projects from '../pages/Projects'
-import Works from '../pages/Works'
-import About from '../pages/About'
-import CreateAccount from '../pages/CreateAccount'
+import Home from '../views/Home'
+import Devs from '../views/Devs'
+import Dev from '../views/Dev'
+import UserProfile from '../views/UserProfile'
+import Projects from '../views/Projects'
+import Works from '../views/Works'
+import About from '../views/About'
+import CreateAccount from '../views/CreateAccount'
 
 Vue.use(VueRouter)
 

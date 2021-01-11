@@ -8,9 +8,7 @@ export default {
   props: ['user'],
   data() {
     return {
-      accountType: this.$store.state.user.accountType,
-      rating: this.$store.state.user.rating || 0,
-      skills: this.$store.state.user.skills,
+
     };
   },
   components: {
