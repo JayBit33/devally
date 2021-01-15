@@ -1,0 +1,51 @@
+// (c) Waveybits Inc. <2021>
+// ALL RIGHTS RESERVED
+@import '../../scss/variables.scss';
+
+.filter-search {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-left: 22rem;
+  margin-top: 3rem;
+
+  &_filter {
+    font-size: 1.5rem;
+    color: $primary;
+    background-color: white;
+    // border: 2px solid #ddd8d8;
+    border: none;
+    padding: .5rem 1rem;
+    padding-top: .75rem;
+  }
+
+  &_search {
+    margin-left: 2rem;
+    &-icon {
+      font-size: 1.25rem;
+      position: relative;
+      top: .025rem;
+      left: 2.5rem;
+      color: $light-grey;
+    }
+    &-input {
+      width: 700px;
+      padding: .5rem;
+      padding-top: .75rem;
+      padding-left: 3.5rem;
+      font-family: 'Arial';
+      font-size: 1.25rem;
+      background-color: #f0f5fa;
+      color: $light-grey;
+      border: 2px solid #ddd8d8;
+      border-radius: .5rem;
+    }
+  }
+
+  &_filterOptions {
+      display: flex;
+      flex-basis: 100%;
+      margin-top: 2.5rem;
+
+  }
+}

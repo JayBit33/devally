@@ -1,0 +1,62 @@
+// (c) Waveybits Inc. <2021>
+// ALL RIGHTS RESERVED
+@import '../../scss/variables.scss';
+
+.dropdown {
+  position: relative;
+  font-family: Arial;
+  padding: 1rem;
+  width: 200px;
+  font-family: 'Arial';
+  font-size: 1.25rem;
+  color: $light-grey;
+  background-color: white;
+  border: 2px solid #ddd8d8;
+  margin: 0 1rem;
+
+  /* Style the arrow inside the select element: */
+  &:after {
+    position: absolute;
+    content: "";
+    top: 14px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-color: rgb(54, 52, 52) transparent transparent transparent;
+  }
+
+  select {
+    font-family: 'Arial';
+    font-size: 1rem;
+    color: #635d5d;
+    border: none;
+    position: absolute;
+    width: 200px;
+    line-height: 2rem;
+    appearance: none;
+    background-color: transparent;
+    pointer-events: none;
+    top: 2px;
+  }
+
+  &_options {
+    position: relative;;
+    left: 1rem;
+    background-color: white;
+    border: 2px solid rgb(223, 218, 218);
+    width: 232px;
+    ul {
+      width: 232px;
+      margin: 0;
+      padding-left: 0;
+      li {
+        list-style-type: none;
+        font-family: 'Arial';
+        font-size: 1rem;
+        padding: 1rem 1rem;
+        border-bottom: 1px solid #635d5d;
+      }
+    }
+  }
+}
