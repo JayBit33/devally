@@ -72,29 +72,28 @@ export default {
       hiringOptions: [],
       rating: 0,
       skills: [],
-      id: this.$route.params.id
+      id: this.$route.params.id,
     };
   },
   components: {
     FontAwesomeIcon
   },
-  async created() {
-    const user = await this.getUsers.find(u => u.id === this.id);
-    this.user = user;
-    this.accountType = user.accountType;
-    this.hiringOptions = user.hiringOptions;
-    this.rating = user.rating;
-    this.skills = user.skills;
-  },
   computed: {
-    ...mapGetters(['getUsers']),
+    ...mapGetters(['getUsers', 'getUser']),
     fullName() {
       return `${this.user.firstname} ${this.user.lastname}`;
     },
     skillsFormatted() {
       return this.skills.join(", ");
     },
-  }
+  },
+  async created() {
+    this.user = this.getUser(this.$route.params.id);
+    this.accountType = this.user.accountType;
+    this.hiringOptions = this.user.hiringOptions;
+    this.rating = this.user.rating;
+    this.skills = this.user.skills;
+  },
 };
 </script>
 

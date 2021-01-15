@@ -16,12 +16,12 @@ Vue.use(VueRouter)
 const router = new VueRouter({
   mode: 'history',
   routes: [
-    { path: '/', name: 'Home', component: Home },
-    { path: '/devs', name: 'Devs', component: Devs },
-    { path: '/dev/:id?', name: 'Dev', component: Dev },
-    { path: '/projects', name: 'Projects', component: Projects },
-    { path: '/profile/:id?', name: 'Profile', component: UserProfile },
-    { path: '/works',  name: 'Works', component: Works },
+    { path: '/', name: 'Home', component: Home, meta: { breadcrumb: []} },
+    { path: '/devs', name: 'Devs', component: Devs, meta: { breadcrumb: [ { name: 'home', to: '/' }, { name: 'developers', to: '/devs' }]} },
+    { path: '/dev/:id?', name: 'Dev', component: Dev, meta: { breadcrumb: [ { name: 'home', to: '/' }, { name: 'developers', to: '/devs' }, { name: 'developer', to: '/dev' }]} },
+    { path: '/projects', name: 'Projects', component: Projects, meta: { breadcrumb: []} },
+    { path: '/profile/:id?', name: 'Profile', component: UserProfile, meta: { breadcrumb: [] } },
+    { path: '/works',  name: 'Works', component: Works, meta: { breadcrumb: []} },
     { path: '/about',  name: 'About', component: About },
     { path: '/create-account',  name: 'CreateAccount', component: CreateAccount },
   ],

@@ -18,6 +18,7 @@
     <user-options-dropdown v-if="optionsViewable" @optionSelected="closeOptions" />
 
     <div class="page-content">
+      <breadcrumbs />
       <router-view />
     </div>
 
@@ -29,6 +30,7 @@
 
 <script>
 import UserOptionsDropdown from './components/user-options-dropdown/';
+import Breadcrumbs from './components/breadcrumbs/';
 
 export default {
   name: "App",
@@ -36,10 +38,11 @@ export default {
     return {
       background: false,
       signedIn: true,
-      optionsViewable: false
+      optionsViewable: false,
     }
   },
   components: {
+    Breadcrumbs,
     UserOptionsDropdown
   },
   methods: {
