@@ -6,21 +6,21 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  margin-left: 22rem;
-  margin-top: 3rem;
+  position: absolute;
+  top: 7.5rem;
+  right: 24rem;
 
   &_filter {
     font-size: 1.5rem;
     color: $primary;
     background-color: white;
-    // border: 2px solid #ddd8d8;
     border: none;
     padding: .5rem 1rem;
     padding-top: .75rem;
   }
 
   &_search {
-    margin-left: 2rem;
+    margin-left: 1rem;
     &-icon {
       font-size: 1.25rem;
       position: relative;
@@ -29,7 +29,7 @@
       color: $light-grey;
     }
     &-input {
-      width: 700px;
+      width: 500px;
       padding: .5rem;
       padding-top: .75rem;
       padding-left: 3.5rem;
@@ -45,7 +45,66 @@
   &_filterOptions {
       display: flex;
       flex-basis: 100%;
-      margin-top: 2.5rem;
+      align-items: center;
+      margin-top: 1rem;
+      position: inherit;
+      top: 5rem;
+      right: -4rem;
+      margin: 0 auto;
+      // background-color: #cfdeee;
+      // border: 1px solid rgb(211, 208, 208);
+      // box-shadow: -3px 2px 1rem 2px rgba(rgb(211, 206, 206), .5);
+      padding: 1rem 5rem;
+      max-width: max-content;
+      max-height: 2.25rem;
+      z-index: 1;
 
+      // &:before {
+      //   content: ' ';
+      //   width: 0;
+      //   height: 0;
+      //   border: 18px solid transparent;
+      //   border-color: transparent transparent #cfdeee transparent;
+      //   position: relative;
+      //   bottom: 3.25rem;
+      //   right: -37.75rem;
+      // }
+
+      h5 {
+        width: max-content;
+      }
+      button {
+        background-color: darken($secondary, 20%);
+        color: white;
+        border: none;
+        outline: none;
+        font-size: 1rem;
+        font-weight: bold;
+        margin-left: 1rem;
+        padding: .75rem 1rem;
+        width: 9rem;
+        max-height: 2.5rem;
+      }
+
+      .reset-btn {
+        width: 5rem;
+      }
+
+      .filters {
+        margin: 0 2rem;
+        width: max-content;
+      }
+      .payment-type_filter {
+        width: 9rem;
+      }
+      .rating-filter {
+        width: 6rem;
+      }
+      .skills-filter {
+        width: 25rem;
+      }
+      #apply-filters {
+        cursor: pointer;
+      }
   }
 }

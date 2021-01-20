@@ -2,9 +2,19 @@
 <!-- ALL RIGHTS RESERVED -->
 <template>
   <div class="main" :style="{'background-image': 'url(' + require('@/assets/devs_bg.png') + ')'}">
-    <filter-search class="filter" />
-    <div v-for="user in users" :key="user.id" >
-      <profile-bio :user="user" class="profile"></profile-bio>
+    <filter-search class="filter" @applyFilters="updateUsersShown" @reset="updateDisplayedUsers(1)" />
+    <div class="dev-profiles"  v-loading.fullscreen.lock="isLoading" >
+      <profile-bio v-for="user in usersShown" :key="user.id" :user="user" class="profile" ></profile-bio>
+      <el-pagination
+          v-if="!isLoading"
+          id="pagination"
+          background
+          layout="prev, pager, next"
+          :pageSize="pageSize"
+          :total="users ? users.length : 0"
+          @current-change="updateDisplayedUsers"
+        >
+        </el-pagination>
     </div>
   </div>
 </template>
@@ -13,11 +23,17 @@
 import ProfileBio from '../components/profile-bio/';
 import FilterSearch from '../components/filter-search/';
 import { mapActions, mapGetters } from 'vuex';
+
 export default {
   name: "Devs",
   data() {
     return {
-      users: null
+      isLoading: true,
+      pageSize: 5,
+      currentPageIdx: 1,
+      startIdx: 0,
+      endIdx: 5,
+      filters: null
     }
   },
   components: {
@@ -25,15 +41,50 @@ export default {
     ProfileBio
   },
   computed: {
-    ...mapGetters(['getUsers']),
+    ...mapGetters(['getDevUsers']),
+    users() {
+      if (!this.filters) {
+        return this.getDevUsers;
+      } else {
+        return this.getDevUsers.filter(user =>
+          user.hiringOptions.some(option => this.filters.hiringOption.includes(option)) &&
+          user.skills.some(skill => this.filters.skills.includes(skill))  &&
+          Number(user.rating) >= Number(this.filters.rating.split('')[2]));
+      }
+    },
+    usersShown() {
+      return this.users ? this.users.slice(this.startIdx, this.endIdx) : [];
+    }
   },
   created() {
-    this.fetchUsers()
-    this.users = this.getUsers;
+    this.fetchDevUsers()
   },
   methods: {
-    ...mapActions(['fetchUsers'])
+    ...mapActions(['fetchDevUsers']),
+    updateDisplayedUsers(page) {
+      if (page === 1) {
+        this.startIdx = 0;
+        this.currentPageIdx = 1
+      } else {
+        this.startIdx = (page * this.pageSize) - this.pageSize;
+        this.currentPageIdx = page
+      }
+      this.endIdx = this.pageSize * page;
+      window.scrollTo(0,0);
+    },
+    updateUsersShown(filters) {
+      this.filters = filters;
+      if (this.filters.hiringOption === null) { this.filters.hiringOption = ['Hourly','Shares','Project Fee'] }
+      if (!filters.skills.length) { this.filters.skills = ['Frontend','Backend','UX/UI']; }
+      if (this.filters.rating === null) { this.filters.rating = '>=1'; }
+      this.updateDisplayedUsers(1); // send pagination back to page 1 on filter
+    },
   },
+  watch: {
+    users() {
+      if (this.users && this.users.length > 0) this.isLoading = false;
+    }
+  }
 };
 </script>
 
@@ -46,17 +97,19 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: center;
-  /* Create the parallax scrolling effect */
-  background-attachment: fixed;
-  // background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    // background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
-  .filter {
+  .dev-profiles {
+    margin: 4rem  auto;
   }
-  .profile {
-    margin-top: 3rem;
-    margin-bottom: 2rem;
+  #pagination {
+    float: right;
+    margin-right: 2rem;
   }
+
 
 </style>

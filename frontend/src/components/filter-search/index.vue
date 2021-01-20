@@ -9,10 +9,39 @@
     </div>
     <br>
     <div v-if="isFilterVisible" class="filter-search_filterOptions" >
-      <dropdown optionTitle="Account Type" :items="['Entrepreneur','Professional']" />
-      <dropdown optionTitle="Payment Type" :items="['Entrepreneur','Professional']" />
-      <dropdown optionTitle="Skills" :items="['Entrepreneur','Professional']" />
-      <dropdown optionTitle="Rating" :items="['Entrepreneur','Professional']" />
+      <!-- <dropdown optionTitle="Account Type" :items="['Entrepreneur','Professional']" />
+      <dropdown optionTitle="Payment Type" :items="['Shares','Project Fee', 'Hourly']" />
+      <dropdown optionTitle="Skills" :items="['Java','Sprint Boot']" />
+      <dropdown optionTitle="Rating" :items="['> 3','> 4']" /> -->
+      <h5>Payment Type</h5>
+      <el-select v-model="hiringOption" placeholder="Hiring Option" class="filters payment-type_filter">
+        <el-option
+          v-for="item in ['Shares','Project Fee', 'Hourly']"
+          :key="item"
+          :label="item"
+          :value="item">
+        </el-option>
+      </el-select>
+      <h5>Skills Needed</h5>
+      <el-select v-model="skills" multiple placeholder="Skills" class="filters skills-filter">
+        <el-option
+          v-for="item in ['Frontend','Backend', 'UX/UI','Devops', 'Project Manager']"
+          :key="item"
+          :label="item"
+          :value="item">
+        </el-option>
+      </el-select>
+      <h5>Rating</h5>
+      <el-select v-model="rating" placeholder="Rating" class="filters rating-filter">
+        <el-option
+          v-for="item in ['>=1','>=2', '>=3','>=4','>=5']"
+          :key="item"
+          :label="item"
+          :value="item">
+        </el-option>
+      </el-select>
+      <button type="submit" id="apply-filters" @click.stop="applyFilters">Apply Filters</button>
+      <el-button class="reset-btn" @click="resetFilters">Reset</el-button>
     </div>
  </div>
 </template>

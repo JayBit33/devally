@@ -11,16 +11,16 @@
     <div class="user-info">
       <div class="user-info_accounttype">
         <h3>Account Type:</h3>
-        <h4>{{ accountType.join(", ") }}</h4>
+        <h4>{{ user.accountType.join(", ") }}</h4>
       </div>
       <div class="user-info_hiringoptions">
         <h3>Hiring Options:</h3>
-        <h4>{{ hiringOptions.join(", ") }}</h4>
+        <h4>{{ user.hiringOptions.join(", ") }}</h4>
       </div>
       <div class="user-info_rating">
         <h3>Rating:</h3>
         <ul>
-          <li v-for="rate in rating" :key="rate"><font-awesome-icon style="color: #F0DB4F; font-size: 18px;" :icon="['fas', 'star']" /></li>
+          <li v-for="rate in user.rating" :key="rate"><font-awesome-icon style="color: #F0DB4F; font-size: 18px;" :icon="['fas', 'star']" /></li>
         </ul>
       </div>
       <div class="user-info_skills">
@@ -62,16 +62,12 @@
 
 <script>
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { mapGetters } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 export default {
   name: "Dev",
   data() {
     return {
       user: {},
-      accountType: [],
-      hiringOptions: [],
-      rating: 0,
-      skills: [],
       id: this.$route.params.id,
     };
   },
@@ -79,21 +75,23 @@ export default {
     FontAwesomeIcon
   },
   computed: {
-    ...mapGetters(['getUsers', 'getUser']),
+    ...mapGetters(['getDevUsers', 'getDevUser']),
     fullName() {
       return `${this.user.firstname} ${this.user.lastname}`;
     },
     skillsFormatted() {
-      return this.skills.join(", ");
+      return this.user.skills.join(", ");
     },
+    // user() {
+    //   return this.getUser(this.$route.params.id);
+    // }
   },
   async created() {
-    this.user = this.getUser(this.$route.params.id);
-    this.accountType = this.user.accountType;
-    this.hiringOptions = this.user.hiringOptions;
-    this.rating = this.user.rating;
-    this.skills = this.user.skills;
+    await this.fetchDevUsers().then(() => this.user = this.getDevUser(this.$route.params.id));
   },
+  methods: {
+    ...mapActions(['fetchDevUsers'])
+  }
 };
 </script>
 

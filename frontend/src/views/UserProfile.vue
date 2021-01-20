@@ -3,7 +3,7 @@
 <template>
   <div class="profile">
     <div class="user-profile">
-      <img :src="require('@/assets/' + profileImage)" />
+      <img :src="require('@/assets/' + user.profileImage)" />
       <h4>{{ fullName }}</h4>
       <!-- <button class="btn">Collaborate</button>
       <button class="btn">Message</button> -->
@@ -16,16 +16,16 @@
       <div></div>
       <div class="user-info_accounttype">
         <h3>Account Type:</h3>
-        <h4>{{ accountType.join(", ") }}</h4>
+        <h4>{{ user.accountType.join(", ") }}</h4>
       </div>
       <div class="user-info_hiringoptions">
         <h3>Hiring Options:</h3>
-        <h4>{{ hiringOptions.join(", ") }}</h4>
+        <h4>{{ user.hiringOptions.join(", ") }}</h4>
       </div>
       <div class="user-info_rating">
         <h3>Rating:</h3>
         <ul>
-          <li v-for="rate in rating" :key="rate"><font-awesome-icon style="color: #F0DB4F; font-size: 18px;" :icon="['fas', 'star']" /></li>
+          <li v-for="rate in user.rating" :key="rate"><font-awesome-icon style="color: #F0DB4F; font-size: 18px;" :icon="['fas', 'star']" /></li>
         </ul>
       </div>
       <div class="user-info_skills">
@@ -79,36 +79,23 @@ export default {
   name: "UserProfile",
   data() {
     return {
-      user: {},
-      accountType: [],
-      hiringOptions: [],
-      profileImage: null,
-      rating: 0,
-      skills: [],
-      id: this.$route.params.id
+
     };
   },
   components: {
     FontAwesomeIcon
   },
-  async created() {
-    console.log('id!!!!!!!!', this.$route.params.id);
-    const user = await this.getUsers.find(u => u.id === this.id);
-    this.user = user;
-    this.accountType = user.accountType;
-    this.hiringOptions = user.hiringOptions;
-    this.profileImage = user.profileImage;
-    this.rating = user.rating;
-    this.skills = user.skills;
+  computed: {
+  ...mapGetters(['getUser']),
+  fullName() {
+    return `${this.user.firstname} ${this.user.lastname}`;
   },
-    computed: {
-    ...mapGetters(['getUsers']),
-    fullName() {
-      return `${this.user.firstname} ${this.user.lastname}`;
-    },
-    skillsFormatted() {
-      return this.skills.join(", ");
-    },
+  skillsFormatted() {
+    return this.user.skills.join(", ");
+  },
+  user() {
+    return this.getUser(this.$route.params.id);
+  }
   }
 };
 </script>

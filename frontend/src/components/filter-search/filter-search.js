@@ -8,7 +8,10 @@ export default {
   data() {
     return {
       isFilterVisible: false,
-      placeholderText: 'Search professionals by username'
+      placeholderText: 'Search professionals by username',
+      hiringOption: null,
+      rating: null,
+      skills: null,
     }
   },
   components: {
@@ -16,6 +19,16 @@ export default {
     FontAwesomeIcon
   },
   methods: {
+    applyFilters() {
+      this.$emit('applyFilters', { hiringOption: this.hiringOption, rating: this.rating, skills: this.skills})
+    },
+    resetFilters() {
+      this.hiringOption = null;
+      this.skills = [];
+      this.rating =  null;
+      this.$emit('applyFilters', { hiringOption: this.hiringOption, rating: this.rating, skills: this.skills})
+      this.$emit('reset');
+    },
     toggleFilterOptions() {
       this.isFilterVisible = !this.isFilterVisible;
     },
