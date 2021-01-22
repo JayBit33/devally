@@ -8,7 +8,7 @@
       <!-- <button class="btn">Collaborate</button>
       <button class="btn">Message</button> -->
     </div>
-    <div class="user-info">
+    <div class="user-info" >
       <div class="user-info_heading">
         <h2>User Information</h2>
         <button>Edit</button>
@@ -73,29 +73,36 @@
 
 <script>
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { mapGetters } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
   name: "UserProfile",
   data() {
     return {
-
+      user: {},
+      id: this.$route.params.id,
     };
   },
   components: {
     FontAwesomeIcon
   },
   computed: {
-  ...mapGetters(['getUser']),
-  fullName() {
-    return `${this.user.firstname} ${this.user.lastname}`;
+    ...mapGetters(['getDevUser']),
+    fullName() {
+      return `${this.user.firstname} ${this.user.lastname}`;
+    },
+    skillsFormatted() {
+      return this.user.skills.join(", ");
+    }
   },
-  skillsFormatted() {
-    return this.user.skills.join(", ");
+  async created() {
+    await this.fetchDevUsers().then(() => {
+      this.user = this.getDevUser(this.$route.params.id);
+      this.isLoading = false;
+    });
   },
-  user() {
-    return this.getUser(this.$route.params.id);
-  }
+  methods: {
+    ...mapActions(['fetchDevUsers'])
   }
 };
 </script>

@@ -9,7 +9,7 @@ app.use(express.json());
 const accounts = [
   { id: 2200, username: 'jeb', firstname: 'Jeb', lastname: 'Eichs', accountType: ['entrepreneur','developer'], skills: ['SPAs', 'Frontend', 'Websites', 'Graphic Design'], hiringOptions: ['Shares'], rating: 5, profileImage: 'profile3.jpg'},
   { id: 2190, username: 'jen38950', firstname: 'Jen', lastname: 'Smith', accountType: ['developer'], skills: ['SPAs', 'Backend', 'Websites', 'Graphic Design'], hiringOptions: ['Hourly','Shares'], rating: 3, profileImage: 'profile5.jpg'},
-  { id: 2380, username: 'beny89', firstname: 'Ben', lastname: 'Antoitte', accountType: ['entrepreneur'], skills: ['Java', 'Spring Boot', 'Backend Developer'], hiringOptions: ['Hourly','Shares'], rating: 4, profileImage: 'profile2.jpg'},
+  { id: 2380, username: 'beny89', firstname: 'Ben', lastname: 'Antoitte', accountType: ['developer'], skills: ['Java', 'Spring Boot', 'Backend'], hiringOptions: ['Hourly','Shares'], rating: 4, profileImage: 'profile2.jpg'},
   { id: 2170, username: 'appmaker', firstname: 'Ben', lastname: 'Hill', accountType: ['developer'], skills: ['UX/UI', 'Graphic Design'], hiringOptions: ['Hourly','Shares'], rating: 4, profileImage: 'profile4.jpg'},
   { id: 2171, username: 'cindyloo', firstname: 'Cindy', lastname: 'Summer', accountType: ['developer'], skills: ['UX/UI', 'Graphic Design'], hiringOptions: ['Hourly','Shares', 'Project Fee'], rating: 1, profileImage: 'user_profile.jpg'},
   { id: 2172, username: 'androidDev', firstname: 'Cindy', lastname: 'Summer', accountType: ['developer'], skills: ['UX/UI', 'Graphic Design'], hiringOptions: ['Hourly','Shares'], rating: 5, profileImage: 'profile6.jpg'},
@@ -31,7 +31,7 @@ app.get('/dev-accounts', (req,res) => {
   console.log('dev-accounts called');
   setTimeout(() => {
     res.send(accounts.filter(a => a.accountType.includes('developer')));
-  }, 2000);
+  }, 0);
 })
 
 app.listen(port, () => console.log('server listening...'));

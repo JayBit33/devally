@@ -74,6 +74,7 @@ export default {
     },
     updateUsersShown(filters) {
       this.filters = filters;
+      // Make sure to add all possible values for hiringOptin, skills & rating when they are null
       if (this.filters.hiringOption === null) { this.filters.hiringOption = ['Hourly','Shares','Project Fee'] }
       if (!filters.skills.length) { this.filters.skills = ['Frontend','Backend','UX/UI']; }
       if (this.filters.rating === null) { this.filters.rating = '>=1'; }

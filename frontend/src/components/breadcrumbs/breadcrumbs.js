@@ -9,7 +9,7 @@ export default {
   },
   computed: {
     breadcrumbList() {
-      return this.$route.meta.breadcrumb.map(b => ({ name: b.name, to: b.to })) || [];
+      return this.$route.meta.breadcrumb?.length ? this.$route.meta.breadcrumb.map(b => ({ name: b.name, to: b.to })) || [] : [];
     }
   },
   // watch: {

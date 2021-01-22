@@ -9,6 +9,7 @@ import UserProfile from '../views/UserProfile'
 import Projects from '../views/Projects'
 import Works from '../views/Works'
 import About from '../views/About'
+import SignIn from '../views/SignIn'
 import CreateAccount from '../views/CreateAccount'
 
 Vue.use(VueRouter)
@@ -22,8 +23,9 @@ const router = new VueRouter({
     { path: '/projects', name: 'Projects', component: Projects, meta: { breadcrumb: []} },
     { path: '/profile/:id?', name: 'Profile', component: UserProfile, meta: { breadcrumb: [] } },
     { path: '/works',  name: 'Works', component: Works, meta: { breadcrumb: []} },
-    { path: '/about',  name: 'About', component: About },
-    { path: '/create-account',  name: 'CreateAccount', component: CreateAccount },
+    { path: '/about',  name: 'About', component: About, meta: { breadcrumb: []} },
+    { path: '/signin',  name: 'SignIn', component: SignIn, meta: { breadcrumb: [] }},
+    { path: '/create-account',  name: 'CreateAccount', component: CreateAccount, meta: { breadcrumb: []} },
   ],
   scrollBehavior() {
     window.scrollTo({ top: 0, left: 0, behavior: 'auto'})
