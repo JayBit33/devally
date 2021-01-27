@@ -3,7 +3,7 @@
 <template>
   <div class="dev" :style="{'background-image': 'url(' + require('@/assets/devs_bg.png') + ')'}">
     <div class="user-profile">
-      <img :src="require('../assets/' + user.profileImage)" />
+      <img :src="require('../assets/' + user.profile_image)" />
       <h4>{{ fullName }}</h4>
       <button class="btn">Collaborate</button>
       <button class="btn">Message</button>
@@ -11,11 +11,11 @@
     <div class="user-info">
       <div class="user-info_accounttype">
         <h3>Account Type:</h3>
-        <h4>{{ user.accountType.join(", ") }}</h4>
+        <h4>{{ user.account_types.join(", ") }}</h4>
       </div>
       <div class="user-info_hiringoptions">
         <h3>Hiring Options:</h3>
-        <h4>{{ user.hiringOptions.join(", ") }}</h4>
+        <h4>{{ user.hiring_options.join(", ") }}</h4>
       </div>
       <div class="user-info_rating">
         <h3>Rating:</h3>

@@ -16,7 +16,7 @@
       <h5>Payment Type</h5>
       <el-select v-model="hiringOption" placeholder="Hiring Option" class="filters payment-type_filter">
         <el-option
-          v-for="item in ['Shares','Project Fee', 'Hourly']"
+          v-for="item in ['Shares','Flat Rate']"
           :key="item"
           :label="item"
           :value="item">

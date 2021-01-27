@@ -47,7 +47,7 @@ export default {
         return this.getDevUsers;
       } else {
         return this.getDevUsers.filter(user =>
-          user.hiringOptions.some(option => this.filters.hiringOption.includes(option)) &&
+          user.hiring_options.some(option => this.filters.hiringOption.includes(option)) &&
           user.skills.some(skill => this.filters.skills.includes(skill))  &&
           Number(user.rating) >= Number(this.filters.rating.split('')[2]));
       }
@@ -75,7 +75,7 @@ export default {
     updateUsersShown(filters) {
       this.filters = filters;
       // Make sure to add all possible values for hiringOptin, skills & rating when they are null
-      if (this.filters.hiringOption === null) { this.filters.hiringOption = ['Hourly','Shares','Project Fee'] }
+      if (this.filters.hiringOption === null) { this.filters.hiringOption = ['Shares','Flat Rate'] }
       if (!filters.skills.length) { this.filters.skills = ['Frontend','Backend','UX/UI']; }
       if (this.filters.rating === null) { this.filters.rating = '>=1'; }
       this.updateDisplayedUsers(1); // send pagination back to page 1 on filter

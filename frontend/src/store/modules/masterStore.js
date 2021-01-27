@@ -7,7 +7,7 @@ Vue.use(Vuex)
 
     const state = {
         devUsers: null,
-        loggedInUserId: 2190
+        loggedInUserId: 2
     };
 
     const getters = {
@@ -26,7 +26,7 @@ Vue.use(Vuex)
     const actions = {
         fetchDevUsers({commit}) {
             return new Promise((resolve, reject) => {
-                axios.get('http://localhost:3000/dev-accounts').then(res => {
+                axios.get('http://localhost:3000/api/v1/users/dev-accounts').then(res => {
                     console.log('fetchDevUsers', res.data)
                     commit("updateDevUsers", res.data);
                     resolve(res.data);

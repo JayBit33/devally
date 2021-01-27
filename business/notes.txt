@@ -1,0 +1,12 @@
+
+use real life use cases to determine domains for domain driven design 
+write user stories
+
+Potential Features
+
+advertise your project to find team members. includes (email blast to users with roles your seeking, shows up as featured projects)
+scrum board on project page
+list repository
+walk customer through SDLM steps. How to manage and run a team
+Article section on how to develop site,saas, ecom etc.
+

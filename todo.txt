@@ -1,0 +1,34 @@
+GOALS
+  Once you sign in it should look like a software/web app experience!
+
+FEATURES
+  X breadcrumbs
+  X filter - devs
+  search - devs
+  X pagination
+  X click outside for dropdown and modals
+  Chat
+    direct messaging
+    group messaging
+
+PAGES
+  create account page - devs
+  create account page - entrepreneurs
+  sign in page
+  profile page - entrepreneurs
+  user profile page - entrepreneurs
+  project page
+  about page
+
+BACKEND
+  design data domains (db)
+  continue building node API
+  
+
+LOOK INTO!
+X  breadcrumbs disapear on page refresh.
+X  dev user not showing up on refresh
+
+QUESTIONS?
+  X should I use bootstrap?
+  typescript/vue3?
