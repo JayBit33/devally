@@ -1,0 +1,50 @@
+/* icon font path, required */
+$--font-path: '~element-ui/lib/theme-chalk/fonts';
+@import "~element-ui/packages/theme-chalk/src/index";
+@import './variables.scss';
+
+.el-step__title  {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+.el-step__head.is-wait {
+  color: #C0C4CC !important;
+}
+// step status processing styles
+.el-step__title.is-process  {
+  color: $secondary;
+}
+.el-step__icon-inner {
+  color: $secondary;
+  border-color: $secondary;
+}
+.el-step__head.is-process {
+  border-color: $secondary;
+}
+
+// step status on success styles
+.el-step__title.is-success {
+  color: $secondary;
+}
+.el-step__head.is-success {
+  border-color: $secondary;
+}
+.el-step__icon-inner.is-status {
+   color: $secondary;
+   border-color: $secondary;
+}
+.el-step__line {
+  color: $secondary;
+}
+
+
+// alert toasts
+.el-alert__title {
+  font-size: 1.25rem;
+}
+.el-alert__closebtn {
+  font-size: 2rem;
+}
+
+// create-account form3 for developers
+.el-textarea, .el-textarea__inner { height: 10rem; resize: none;}
