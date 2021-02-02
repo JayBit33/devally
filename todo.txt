@@ -14,7 +14,7 @@ FEATURES
 PAGES
   create account page - devs
   create account page - entrepreneurs
-  sign in page
+  X sign in page
   profile page - entrepreneurs
   user profile page - entrepreneurs
   project page
@@ -23,12 +23,15 @@ PAGES
 BACKEND
   design data domains (db)
   continue building node API
-  
+  X Users API
+  X Auth API
+  Projects API
+
 
 LOOK INTO!
 X  breadcrumbs disapear on page refresh.
 X  dev user not showing up on refresh
 
 QUESTIONS?
-  X should I use bootstrap?
+  X should I use bootstrap? Using Element
   typescript/vue3?

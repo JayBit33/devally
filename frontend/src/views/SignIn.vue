@@ -2,99 +2,80 @@
 <!-- ALL RIGHTS RESERVED -->
 <template>
   <div class="signin">
+    <el-alert
+      v-if="loginErrorMsg"
+      class="signin_error-msg"
+      :title="loginErrorMsg"
+      type="error"
+      center
+      effect="dark"
+      @close="alertClosed">
+    </el-alert>
     <font-awesome-icon :icon="['fas','user-circle']" class="user_icon"/>
     <form @submit.prevent class="signin_form">
       <font-awesome-icon :icon="['fas','user']" class="login_icons"/>
-      <input type="email" placeholder="Login"/>
+      <input type="email" v-model="signInForm.email" placeholder="Login" required/>
       <font-awesome-icon :icon="['fas','lock']" class="login_icons"/>
-      <input type="password" placeholder="Password" />
+      <input type="password" v-model="signInForm.password" placeholder="Password" required/>
       <p>Forgot password?</p>
       <button type="submit" @click="submitForm">Sign In</button>
     </form>
+    <p id="or">OR</p>
+    <router-link to="/create-account" class="link"><h5>Create Account</h5></router-link>
   </div>
 </template>
 
 <script>
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { mapActions } from 'vuex';
 
 export default {
   name: 'Signin',
   data() {
-      var validatePass = (rule, value, callback) => {
-      if (value === '') {
-        callback(new Error('Please input the password'));
-      } else {
-        if (this.signInForm.checkPass !== '') {
-          this.$refs.signInForm.validateField('checkPass');
-        }
-        callback();
-      }
-    };
-    var validatePass2 = (rule, value, callback) => {
-      if (value === '') {
-        callback(new Error('Please input the password again'));
-      } else if (value !== this.signInForm.pass) {
-        callback(new Error('Two inputs don\'t match!'));
-      } else {
-        callback();
-      }
-    };
     return {
+      loginErrorMsg: '',
       signInForm: {
-          pass: '',
-          checkPass: '',
+          password: '',
           email: ''
       },
-      rules: {
-        email: [
-          { trigger: 'blur' }
-        ],
-        pass: [
-          { required: true, type: 'password', validator: validatePass, trigger: 'blur' }
-        ],
-        checkPass: [
-          { required: true, type: 'password', validator: validatePass2, trigger: 'blur' }
-        ],
-      },
-      dynamicValidateForm: {
-        domains: [{
-          key: 1,
-          value: ''
-        }],
-        email: ''
-      }
-
     }
   },
   components: {
     FontAwesomeIcon
   },
+  computed: {
+  },
   methods: {
-    submitForm(formName) {
-      this.$refs[formName].validate((valid) => {
-        if (valid) {
-          alert('submit!');
+    ...mapActions(['login']),
+    alertClosed() {
+      console.log('closed alert')
+      this.loginErrorMsg = '';
+    },
+    submitForm() {
+      const validFormData = this.validateEmail(this.signInForm.email) && this.validatePassword(this.signInForm.password)
+        if (validFormData) {
+          this.login({email: this.signInForm.email, password: this.signInForm.password }).then(res => {
+            this.loginErrorMsg = res.message != 'login successful' ? res.message : '';
+            this.$router.push({ name: 'Profile', params: { id: res.id }})
+          }).catch(err => console.log('login error 400. See FE', err))
         } else {
           console.log('error submit!!');
           return false;
         }
-      });
     },
-    resetForm(formName) {
-      this.$refs[formName].resetFields();
+    validateEmail(email) {
+      // TODO
+      return email.trim().length > 0;
     },
-    removeDomain(item) {
-      var index = this.dynamicValidateForm.domains.indexOf(item);
-      if (index !== -1) {
-        this.dynamicValidateForm.domains.splice(index, 1);
+    validatePassword(password) {
+      if (password === '') {
+        new Error('Please input the password');
+      } else if (password.length < 6) {
+        new Error('Password length must be 6 characters or more');
+      } else {
+          return true
       }
     },
-    addDomain() {
-      this.dynamicValidateForm.domains.push({
-        key: Date.now(),
-        value: ''
-      });
-    }
   }
 }
 </script>
@@ -103,12 +84,20 @@ export default {
 @import '../scss/variables.scss';
   .signin {
     margin: 0 auto;
-    height: 810px;
+    height: 1080px;
     background-image: url('../assets/devs_bg.png');
     background-attachment: fixed;
     // background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+
+    &_error-msg {
+      position: absolute;
+      width: 70%;
+      margin: 0 auto;
+      transform: translateX(22%);
+      padding: 1rem;
+    }
     .user_icon {
       font-size: 5rem;
       display: block;
@@ -161,15 +150,16 @@ export default {
       }
 
       p {
-        font-size: .75rem;
+        font-size: .825rem;
         font-family: 'Arial';
-        color: $light-grey;
+        color:black;
         position: relative;
-        left: 21rem;
+        left: 20rem;
       }
 
       button {
-        padding: 1rem;
+        font-size: 1.5rem;
+        padding: .75rem;
         margin-top: 3rem;
         color: white;
         background-color: $button-secondary;
@@ -186,9 +176,13 @@ export default {
         }
       }
     }
-
+    #or, .link {
+      text-align: center;
+    }
+    .link h5 {
+      font-family: 'Montserrat';
+      font-size: 1.25rem;
+    }
   }
-  .el-form-item__content, .el-form-item__content::before {
 
-  }
 </style>

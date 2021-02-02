@@ -1,7 +1,7 @@
 <!-- (c) Waveybits Inc. <2021> -->
 <!-- ALL RIGHTS RESERVED -->
 <template>
-  <div class="profile">
+  <div class="profile" v-loading.fullscreen.lock="isLoading">
     <div class="user-profile">
       <img :src="require('@/assets/' + user.profile_image)" />
       <h4>{{ fullName }}</h4>
@@ -81,6 +81,7 @@ export default {
     return {
       user: {},
       id: this.$route.params.id,
+      isLoading: true,
     };
   },
   components: {

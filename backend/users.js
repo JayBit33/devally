@@ -1,6 +1,7 @@
 module.exports = [
   {
     username: 'jeb',
+    email: 'jeb352@gmail.com',
     password: 'password',
     firstname: 'Jeb',
     lastname: 'Eichs',
@@ -12,6 +13,7 @@ module.exports = [
   },
   {
     username: 'jen38950',
+    email: 'jen@gmail.com',
     password: 'password',
     firstname: 'Jen',
     lastname: 'Smith',
@@ -23,6 +25,7 @@ module.exports = [
   },
   {
     username: 'beny89',
+    email: 'beny89@gmail.com',
     password: 'password',
     firstname: 'Ben',
     lastname: 'Antoitte',
@@ -34,6 +37,7 @@ module.exports = [
   },
   {
     username: 'appmaker',
+    email: 'appmaker@gmail.com',
     password: 'password',
     firstname: 'Ben',
     lastname: 'Hill',
@@ -45,6 +49,7 @@ module.exports = [
   },
   {
     username: 'cindyloo',
+    email: 'cindyloo@gmail.com',
     password: 'password',
     firstname: 'Cindy',
     lastname: 'Summer',
@@ -56,6 +61,7 @@ module.exports = [
   },
   {
     username: 'androidDev',
+    email: 'androiddev@gmail.com',
     password: 'password',
     firstname: 'Cindy',
     lastname: 'Summer',
@@ -67,6 +73,7 @@ module.exports = [
   },
   {
     username: 'ios-dev',
+    email: 'iosdev@gmail.com',
     password: 'password',
     firstname: 'Cindy',
     lastname: 'Summer',
@@ -78,6 +85,7 @@ module.exports = [
   },
   {
     username: 'bestapps',
+    email: 'bestapps@gmail.com',
     password: 'password',
     firstname: 'Cindy',
     lastname: 'Summer',
@@ -89,6 +97,7 @@ module.exports = [
   },
   {
     username: 'game-maker',
+    email: 'gamemaker@gmail.com',
     password: 'password',
     firstname: 'Cindy',
     lastname: 'Summer',
@@ -100,6 +109,7 @@ module.exports = [
   },
   {
     username: 'yoohoo',
+    email: 'yoohoo@gmail.com',
     password: 'password',
     firstname: 'Cindy',
     lastname: 'Summer',
@@ -111,6 +121,7 @@ module.exports = [
   },
   {
     username: 'googleplaydev',
+    email: 'googleplaydev@gmail.com',
     password: 'password',
     firstname: 'Cindy',
     lastname: 'Summer',
@@ -122,6 +133,7 @@ module.exports = [
   },
   {
     username: 'gamer3521',
+    email: 'gamer3521@gmail.com',
     password: 'password',
     firstname: 'Cindy',
     lastname: 'Summer',
@@ -133,6 +145,7 @@ module.exports = [
   },
   {
     username: 'user1',
+    email: 'user1@gmail.com',
     password: 'password',
     firstname: 'Cindy',
     lastname: 'Summer',
@@ -144,6 +157,7 @@ module.exports = [
   },
   {
     username: 'jeffvan',
+    email: 'vanysoccer@gmail.com',
     password: 'password',
     firstname: 'Cindy',
     lastname: 'Summer',
@@ -155,6 +169,7 @@ module.exports = [
   },
   {
     username: 'joshb',
+    email: 'bakerboss@gmail.com',
     password: 'password',
     firstname: 'Cindy',
     lastname: 'Summer',
@@ -166,6 +181,7 @@ module.exports = [
   },
   {
     username: 'waveygravy',
+    email: 'waveygravy@gmail.com',
     password: 'password',
     firstname: 'Cindy',
     lastname: 'Summer',
@@ -177,6 +193,7 @@ module.exports = [
   },
   {
     username: 'bitcoinman',
+    email: 'bitcoinman@gmail.com',
     password: 'password',
     firstname: 'Cindy',
     lastname: 'Summer',
@@ -188,6 +205,7 @@ module.exports = [
   },
   {
     username: 'webull',
+    email: 'webullstocks@gmail.com',
     password: 'password',
     firstname: 'Cindy',
     lastname: 'Summer',
@@ -199,6 +217,7 @@ module.exports = [
   },
   {
     username: 'scoobydoo',
+    email: 'scoobydoo@gmail.com',
     password: 'password',
     firstname: 'Cindy',
     lastname: 'Summer',

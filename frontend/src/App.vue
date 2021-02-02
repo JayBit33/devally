@@ -12,8 +12,8 @@
           <li><router-link to="/about" class="link">about</router-link></li>
         </ul>
       </nav>
-      <button v-if="!signedIn" class="logon" >Sign In</button>
-      <button v-else ><font-awesome-icon  class="user-icon" :icon="['fas','user']" @click="onOptionsClick" /></button>
+      <button v-if="!signedIn"><router-link to="/signin" class="signin">Sign In</router-link></button>
+      <button v-else ><font-awesome-icon class="user-icon" :icon="['fas','user']" @click="onOptionsClick" /></button>
     </div>
     <user-options-dropdown v-if="optionsViewable" @optionSelected="closeOptions" />
 
@@ -31,13 +31,13 @@
 <script>
 import UserOptionsDropdown from './components/user-options-dropdown/';
 import Breadcrumbs from './components/breadcrumbs/';
+import { mapGetters, mapMutations } from 'vuex';
 
 export default {
   name: "App",
   data() {
     return {
       background: false,
-      signedIn: true,
       optionsViewable: false,
     }
   },
@@ -45,7 +45,14 @@ export default {
     Breadcrumbs,
     UserOptionsDropdown
   },
+  computed: {
+    ...mapGetters(['isLoggedIn']),
+    signedIn() {
+      return this.isLoggedIn;
+    }
+  },
   methods: {
+    ...mapMutations(['updateIsLoggedIn']),
     backgroundOn(isOn) {
       this.background = isOn;
     },
@@ -53,7 +60,11 @@ export default {
       if (!this.optionsViewable) this.optionsViewable = true;
       else this.optionsViewable = false;
     },
-    closeOptions() {
+    closeOptions(opt) {
+      if (opt === 'signout') {
+        this.updateIsLoggedIn(false);
+        this.$router.push({ name: 'Home' })
+      }
       this.optionsViewable = false;
     }
   }
@@ -69,12 +80,6 @@ html {
   padding: 0;
   overflow-x: hidden;
 }
-
-// *:focus {
-//   text-decoration: underline;
-//   border: none;
-//   outline: none;
-// }
 
 #main-component {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -121,16 +126,13 @@ html {
       }
     }
   }
-  .logon {
-    background-color: #294738;
-    color: white;
-    padding: .25rem 1rem;
-    text-transform: uppercase;
-    font-family: inherit;
-    font-size: 1rem;
-    margin-right: 4rem;
-    border: none;
+  .signin {
+  text-decoration: unset;
+  font-family: 'Montserrat';
+  font-size: 1rem;
+  color: $button-secondary;
   }
+
   button {
     margin-right: 7.5rem;
     border: none;

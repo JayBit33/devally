@@ -9,8 +9,11 @@ const port = 3000;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(cookieParser);
-app.use(cors());
+app.use(cookieParser('mycatsarealwayssilly')); // process.env.COOKIE_SECRET set secret as env var
+app.use(cors({
+  credentials: true,
+  origin: 'http://localhost:8081'
+}));
 app.use(express.json());
 
 app.use('/auth', auth);
