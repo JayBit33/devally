@@ -1,27 +1,8 @@
-<!-- (c) Waveybits Inc. <2021> -->
-<!-- ALL RIGHTS RESERVED -->
-<template>
-  <div class="main" :style="{'background-image': 'url(' + require('@/assets/devs_bg.png') + ')'}">
-    <filter-search class="filter" @applyFilters="updateUsersShown" @reset="updateDisplayedUsers(1)" />
-    <div class="dev-profiles"  v-loading.fullscreen.lock="isLoading" >
-      <profile-bio v-for="user in usersShown" :key="user.id" :user="user" class="profile" ></profile-bio>
-      <el-pagination
-          v-if="!isLoading"
-          id="pagination"
-          background
-          layout="prev, pager, next"
-          :pageSize="pageSize"
-          :total="users ? users.length : 0"
-          @current-change="updateDisplayedUsers"
-        >
-        </el-pagination>
-    </div>
-  </div>
-</template>
+// (c) Waveybits Inc. <2021>
+// ALL RIGHTS RESERVED
 
-<script>
-import ProfileBio from '../components/profile-bio/';
-import FilterSearch from '../components/filter-search/';
+import ProfileBio from '../../components/profile-bio';
+import FilterSearch from '../../components/filter-search';
 import { mapActions, mapGetters } from 'vuex';
 
 export default {
@@ -87,30 +68,3 @@ export default {
     }
   }
 };
-</script>
-
-<style lang="scss" scoped>
-@import '../scss/variables.scss';
-
-  .main {
-    overflow: hidden;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    // background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-  .dev-profiles {
-    margin: 4rem  auto;
-  }
-  #pagination {
-    float: right;
-    margin-right: 2rem;
-  }
-
-
-</style>

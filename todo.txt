@@ -1,6 +1,9 @@
 GOALS
   Once you sign in it should look like a software/web app experience!
 
+TODO
+  notify user that their message has been sent
+
 FEATURES
   X breadcrumbs
   X filter - devs
@@ -12,7 +15,7 @@ FEATURES
     group messaging
 
 PAGES
-  create account page - devs
+  X create account page - devs
   create account page - entrepreneurs
   X sign in page
   profile page - entrepreneurs
@@ -25,6 +28,7 @@ BACKEND
   continue building node API
   X Users API
   X Auth API
+  Chat API
   Projects API
 
 
