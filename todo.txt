@@ -35,3 +35,5 @@ X  dev user not showing up on refresh
 QUESTIONS?
   X should I use bootstrap? Using Element
   typescript/vue3?
+
+postgres Xeroxparc33

@@ -55,7 +55,7 @@ router.post('/login', (req, res, next) => {
                 secure: req.app.get('env') != 'development',
                 signed: true
               });
-              res.status(200).json({ result, message: 'login successful', id: user.id})
+              res.status(200).json({ result, message: 'login successful', user: user})
             }
             else res.json({ message: 'Incorrect password'})
           }))

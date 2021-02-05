@@ -31,3 +31,10 @@ exports.down = function(knex) {
 // run migrations command: knex migrate:latest
 // create seed for table command: knex seed:make 01_tablename
 // run seed command: knex seed:run
+
+
+// comet
+// app id: 291794cd22b09dc
+// auth key: 3cf97087bd40473f374fc4daed47f0ebe3137403
+// region: us
+// rest api key: 7550adcf70e27f56b88bf5e46295aabf32f49403

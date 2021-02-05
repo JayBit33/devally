@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser('mycatsarealwayssilly')); // process.env.COOKIE_SECRET set secret as env var
 app.use(cors({
   credentials: true,
-  origin: 'http://localhost:8081'
+  origin: 'http://localhost:8080'
 }));
 app.use(express.json());
 

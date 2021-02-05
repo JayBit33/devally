@@ -6,7 +6,7 @@
       <img :src="require('../assets/' + user.profile_image)" />
       <h4>{{ fullName }}</h4>
       <button class="btn">Collaborate</button>
-      <button class="btn">Message</button>
+      <button class="btn" @click="messageUser">Message</button>
     </div>
     <div class="user-info">
       <div class="user-info_accounttype">
@@ -61,6 +61,8 @@
 </template>
 
 <script>
+// import COMETCHAT_CONSTANTS from '@/chat/constants.js';
+import { CometChat } from "@cometchat-pro/chat";
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { mapActions, mapGetters } from 'vuex';
 export default {
@@ -75,22 +77,53 @@ export default {
     FontAwesomeIcon
   },
   computed: {
-    ...mapGetters(['getDevUsers', 'getDevUser']),
+    ...mapGetters(['getDevUsers', 'getDevUser','getLoggedInUser']),
     fullName() {
       return `${this.user.firstname} ${this.user.lastname}`;
     },
     skillsFormatted() {
       return this.user.skills.join(", ");
     },
-    // user() {
-    //   return this.getUser(this.$route.params.id);
-    // }
+    username() {
+      return this.getLoggedInUser.username;
+    }
   },
   async created() {
     await this.fetchDevUsers().then(() => this.user = this.getDevUser(this.$route.params.id));
   },
   methods: {
-    ...mapActions(['fetchDevUsers'])
+    ...mapActions(['fetchDevUsers']),
+    messageUser() {
+      // let apiKey = "7550adcf70e27f56b88bf5e46295aabf32f49403";
+      // var uid = this.username;
+      // var name = this.getLoggedInUser.firstname;
+      // var user = new CometChat.User(uid);
+      // user.setName(name);
+
+      // CometChat.createUser(user, apiKey).then(
+      //     user => {
+      //         console.log("user created", user);
+      //     },error => {
+      //         console.log("error", error);
+      //     }
+      // )
+      var receiverID = this.user.username;
+      var messageText = "Hello World!";
+      var receiverType = CometChat.RECEIVER_TYPE.USER;
+
+      var textMessage = new CometChat.TextMessage(receiverID, messageText, receiverType);
+
+      CometChat.sendMessage(textMessage).then(
+        message => {
+          console.log("Message sent successfully:", message);
+          // Do something with message
+        },
+        error => {
+          console.log("Message sending failed with error:", error);
+          // Handle any error
+        }
+      );
+    }
   }
 };
 </script>
@@ -131,6 +164,11 @@ export default {
       border-radius: 0.5rem;
       border: none;
       cursor: pointer;
+
+      &:hover {
+        border: none;
+        background-color:$button-primary_focus;
+      }
     }
   }
 

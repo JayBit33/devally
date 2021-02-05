@@ -6,6 +6,7 @@ $secondary: #6B8BA4;
 $secondary-darker: darken(#6B8BA4, 20%);
 
 $button-primary:  #3d7559;
+$button-primary_focus: lighten(#3d7559, 10%);
 $button-secondary: #2C3E50;
 
 $light-grey: rgb(139, 134, 134);
@@ -13,3 +14,6 @@ $light-grey: rgb(139, 134, 134);
 // $secondary-darker:#6B8BA4;
 $focus: rgb(168, 210, 245);
 $form_border: #cecaca;
+
+$message_bg: rgb(242, 239, 250);
+$border: rgba(228, 227, 227, 0.808);

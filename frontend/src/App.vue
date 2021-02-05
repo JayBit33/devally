@@ -13,7 +13,7 @@
         </ul>
       </nav>
       <button v-if="!signedIn"><router-link to="/signin" class="signin">Sign In</router-link></button>
-      <button v-else ><font-awesome-icon class="user-icon" :icon="['fas','user']" @click="onOptionsClick" /></button>
+      <button v-else ><span id="username">{{ username }}</span><font-awesome-icon class="user-icon" :icon="['fas','user']" @click="onOptionsClick" /></button>
     </div>
     <user-options-dropdown v-if="optionsViewable" @optionSelected="closeOptions" />
 
@@ -39,6 +39,7 @@ export default {
     return {
       background: false,
       optionsViewable: false,
+      loggedInUser: null
     }
   },
   components: {
@@ -46,9 +47,12 @@ export default {
     UserOptionsDropdown
   },
   computed: {
-    ...mapGetters(['isLoggedIn']),
+    ...mapGetters(['getLoggedInUser','isLoggedIn']),
     signedIn() {
       return this.isLoggedIn;
+    },
+    username() {
+      return this.getLoggedInUser.username;
     }
   },
   methods: {
@@ -143,6 +147,12 @@ html {
       font-size: 1.5rem;
       cursor: pointer;
     }
+  }
+
+  #username {
+    font-size: .875rem;
+    font-weight: 700;
+    margin-right: 1rem;
   }
 }
 

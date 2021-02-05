@@ -1,0 +1,36 @@
+user created 1 time only.
+ current created users
+  - uid: teamjem, name: Jem
+
+// TEST users
+  SUPERHERO1, SUPERHERO2, SUPERHERO3, SUPERHERO4 and SUPERHERO5
+
+// CODE FOR CREATING USER
+let apiKey = "7550adcf70e27f56b88bf5e46295aabf32f49403";
+var uid = this.username;
+var name = this.getLoggedInUser.firstname;
+var user = new CometChat.User(uid);
+user.setName(name);
+
+CometChat.createUser(user, apiKey).then(
+    user => {
+        console.log("user created", user);
+    },error => {
+        console.log("error", error);
+    }
+)
+
+
+// LOGIN USER WHEN THEY LOGIN TO APP
+// CODE FOR LOGGING IN USER
+var UID = "SUPERHERO1";
+var apiKey = "API_KEY";
+
+CometChat.login(UID, apiKey).then(
+  user => {
+    console.log("Login Successful:", { user });
+  },
+  error => {
+    console.log("Login failed with exception:", { error });
+  }
+);

@@ -68,11 +68,40 @@
         </div>
       </div>
     </div>
+    <el-drawer
+      title="Messages"
+      :append-to-body="true"
+      :visible.sync="drawerOpen"
+      :direction="drawerDirection"
+      size="20%"
+    >
+      <div class="messages">
+        <ul>
+          <li v-for="(message,idx) in messages" :key="idx" class="message">
+            <div class="message-header">
+              <el-avatar :size="60" src="https://empty" @error="errorHandler" >
+                <img :src="require('@/assets/' + getProfileImage(message.entities.sender.entity.uid))" />
+              </el-avatar>
+              <div>
+                <h4 class="username">Waveybits</h4>
+                <h5 v-if="message.entities.sender.entity.status === 'available'" class="senderActive">online</h5>
+              </div>
+              <h3 class="date-sent">{{getMessageDate(message.sentAt)}}</h3>
+            </div>
+              <p>{{message.text}}</p>
+          </li>
+        </ul>
+      </div>
+    </el-drawer>
+    <message-notifier :numberOfMessages="messages.length" :haveMessages="messages.length > 0" @openMessageBox="openMessageDrawer"></message-notifier>
   </div>
 </template>
 
 <script>
+import MessageNotifier from '@/components/message-notifier';
+import { CometChat } from "@cometchat-pro/chat";
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import dayjs from 'dayjs';
 import { mapActions, mapGetters } from 'vuex';
 
 export default {
@@ -80,15 +109,19 @@ export default {
   data() {
     return {
       user: {},
+      drawerOpen: false,
+      drawerDirection: 'rtl',
       id: this.$route.params.id,
       isLoading: true,
+      messages: []
     };
   },
   components: {
-    FontAwesomeIcon
+    FontAwesomeIcon,
+    MessageNotifier
   },
   computed: {
-    ...mapGetters(['getDevUser']),
+    ...mapGetters(['getDevUser', 'getDevUserByUsername']),
     fullName() {
       return `${this.user.firstname} ${this.user.lastname}`;
     },
@@ -101,10 +134,69 @@ export default {
       this.user = this.getDevUser(this.$route.params.id);
       this.isLoading = false;
     });
+
+    var listenerID = this.user.username;
+
+    CometChat.addMessageListener(
+      listenerID,
+      new CometChat.MessageListener({
+        onTextMessageReceived: message => {
+          console.log("Message received successfully:", {message});
+          // Handle text message
+          const alreadyExists = this.messages.filter(msg => msg.resource === message.data.resource);
+          console.log(alreadyExists)
+          if (!alreadyExists.length) {
+            this.messages.push({...message.data, sentAt: message.sentAt, receiverType: message.receiverType});
+          }
+        }
+      })
+    );
   },
   methods: {
-    ...mapActions(['fetchDevUsers'])
-  }
+    ...mapActions(['fetchDevUsers']),
+    openMessageDrawer() {
+      this.drawerOpen = true;
+    },
+    open1(message) {
+        // const h = this.$createElement;
+
+        this.$notify({
+          title: 'Message',
+          dangerouslyUseHTMLString: true,
+          duration: 0,
+          message: `
+                    <div class="message-header">
+                      <el-avatar :size="60" src="https://empty" @error="errorHandler" >
+                        <img :src="${require('@/assets/' + this.getProfileImage(message.entities.sender.entity.uid))}" />
+                      </el-avatar>
+                      <div>
+                        <h4 class="username">Waveybits</h4>
+                        <h5 v-if="${message.entities.sender.entity.status} === 'available'" class="senderActive">online</h5>
+                      </div>
+                      <h3 class="date-sent">${this.getMessageDate(message.sentAt)}</h3>
+                    </div>
+                    <p>${message.text}</p>`
+        });
+      },
+    getMessageDate(epoch) {
+      const date = new Date(epoch * 1000);
+      return dayjs(date).format('MM/DD h:m')
+    },
+    getProfileImage(sendersUsername) {
+      if (this.messages) {
+        console.log(sendersUsername);
+        console.log(this.getDevUserByUsername(sendersUsername).profile_image);
+        return this.getDevUserByUsername(sendersUsername).profile_image;
+      }
+    },
+     handleClose(done) {
+      this.$confirm('Are you sure you want to close this?')
+        .then(() => {
+          done();
+        })
+        .catch(() => {});
+    }
+  },
 };
 </script>
 
@@ -249,6 +341,48 @@ export default {
     cursor: pointer;
   }
 }
+
+.messages {
+  margin: 0;
+  padding: 0;
+  display: inline;
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    .message {
+      padding: 1rem;
+      background: $message_bg;
+      color: black;
+      border-bottom: 1px solid $border;
+
+      &-header {
+        display: flex;
+
+        .username {
+          padding-left: 1rem;
+        }
+
+        .date-sent {
+          padding-left: 5rem;
+        }
+
+        .senderActive {
+          color: green;
+          position: relative;
+          bottom: 1.25rem;
+          left: 1rem;
+        }
+      }
+
+      p {
+        margin-top: 0;
+        padding-left: 2rem;
+      }
+    }
+  }
+}
+
 @media (min-width: 1700px)  {
   .main {
     justify-content: center;

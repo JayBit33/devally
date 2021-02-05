@@ -56,7 +56,7 @@ export default {
         if (validFormData) {
           this.login({email: this.signInForm.email, password: this.signInForm.password }).then(res => {
             this.loginErrorMsg = res.message != 'login successful' ? res.message : '';
-            this.$router.push({ name: 'Profile', params: { id: res.id }})
+            this.$router.push({ name: 'Profile', params: { id: res.user.id }})
           }).catch(err => console.log('login error 400. See FE', err))
         } else {
           console.log('error submit!!');
