@@ -1,0 +1,53 @@
+@import '../../scss/variables.scss';
+
+.message-box {
+  position: fixed;
+  z-index: 10;
+  left: 4rem;
+  bottom: 2rem;
+  width: 18rem;
+  height: 18rem;
+  background: rgb(229, 240, 238);
+  padding: 1rem;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  &_textarea {
+    height: 12rem;
+    resize: none;
+    padding: .25rem;
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &_sendMsgBtn {
+    background-color: $button-primary;
+    color: white;
+    border: none;
+    font-size: 1.25rem;
+    padding: 1rem;
+    margin-top: 1rem;
+
+    &:hover {
+      border: none;
+      background-color:$button-primary_hover;
+    }
+
+    &:focus {
+      border: none;
+      outline: none;
+    }
+  }
+
+  &_closeBtn {
+    font-size: 1rem;
+    color:$primary;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: .5rem;
+  }
+}

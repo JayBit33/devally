@@ -48,9 +48,9 @@ export default {
           // Handle text message
           const alreadyExists = this.messages.filter(msg => msg.resource === message.data.resource);
           console.log(alreadyExists)
-          if (!alreadyExists.length) {
+          // if (!alreadyExists.length) {
             this.messages.push({...message.data, sentAt: message.sentAt, receiverType: message.receiverType});
-          }
+          //}
         }
       })
     );

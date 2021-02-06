@@ -41,3 +41,19 @@ QUESTIONS?
   typescript/vue3?
 
 postgres Xeroxparc33
+
+
+cometchat create user
+      // let apiKey = "7550adcf70e27f56b88bf5e46295aabf32f49403";
+      // var uid = this.username;
+      // var name = this.getLoggedInUser.firstname;
+      // var user = new CometChat.User(uid);
+      // user.setName(name);
+
+      // CometChat.createUser(user, apiKey).then(
+      //     user => {
+      //         console.log("user created", user);
+      //     },error => {
+      //         console.log("error", error);
+      //     }
+      // )

@@ -152,7 +152,7 @@
     margin: 0;
     .message {
       padding: 1rem;
-      background: $message_bg;
+      background: white;
       color: black;
       border-bottom: 1px solid $border;
 
@@ -164,7 +164,7 @@
         }
 
         .date-sent {
-          padding-left: 5rem;
+          padding-left: 10.25rem;
         }
 
         .senderActive {
