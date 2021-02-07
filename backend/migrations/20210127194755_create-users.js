@@ -7,12 +7,8 @@ exports.up = function(knex) {
     table.string('password');
     table.string('firstname');
     table.string('lastname');
-    table.json('account_types'); // must use JSON.stringify(arraydata) when setting value
-    table.json('skills').nullable(); // must use JSON.stringify(arraydata) when setting value
-    table.json('hiring_options').nullable(); // must use JSON.stringify(arraydata) when setting value
-    table.integer('rating');
+    table.bigInteger('user_type_id').unsigned().index().references('id').inTable('user_types');
     table.timestamp('user_since').defaultTo(knex.fn.now());
-    table.string('profile_image');
   })
 };
 

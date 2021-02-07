@@ -1,4 +1,4 @@
-const users = require('../users');
+const users = require('./seed_data/users');
 
 exports.seed = function(knex) {
   // Deletes ALL existing entries

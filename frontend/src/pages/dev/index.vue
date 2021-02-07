@@ -6,7 +6,7 @@
       <img :src="require('../../assets/' + user.profile_image)" />
       <h4>{{ fullName }}</h4>
       <button class="btn">Collaborate</button>
-      <button class="btn" @click="toggleMessageBox">Message</button>
+      <button class="btn" @click="openMessageBox">Message</button>
     </div>
     <div class="user-info">
       <div class="user-info_accounttype">
@@ -57,7 +57,7 @@
         </div>
       </div>
     </div>
-    <message-box v-if="messageBoxOpen" @messageSent="messageUser"></message-box>
+    <message-box v-if="messageBoxOpen" @messageSent="messageUser" @close="toggleMessageBox"></message-box>
   </div>
 </template>
 

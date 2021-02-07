@@ -79,11 +79,12 @@
         <ul>
           <li v-for="(message,idx) in messages" :key="idx" class="message">
             <div class="message-header">
-              <el-avatar :size="60" src="https://empty" @error="errorHandler" >
+              <el-avatar :size="60" class="avatar" src="https://empty" @error="errorHandler" >
                 <img :src="require('@/assets/' + getProfileImage(message.entities.sender.entity.uid))" />
               </el-avatar>
-              <div>
+              <div class="user-date">
                 <h4 class="username">Waveybits</h4>
+                <!-- TODO this needs updated and pulled from user db to determine wether the user is online or logged off -->
                 <h5 v-if="message.entities.sender.entity.status === 'available'" class="senderActive">online</h5>
               </div>
               <h3 class="date-sent">{{getMessageDate(message.sentAt)}}</h3>

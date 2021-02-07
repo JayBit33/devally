@@ -55,6 +55,14 @@ export default {
       );
         this.toggleMessageBox();
     },
+    openMessageBox() {
+      this.toggleMessageBox();
+      if (this.messageBoxOpen) {
+        setTimeout(() => {
+          document.querySelector('.message-box_textarea').focus();
+        }, 1000);
+      }
+    },
     toggleMessageBox() {
       this.messageBoxOpen = !this.messageBoxOpen;
     }
