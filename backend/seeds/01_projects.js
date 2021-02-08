@@ -1,13 +1,13 @@
 // (c) Waveybits Inc. <2021>
 // ALL RIGHTS RESERVED
 
-import visionaries from './seed_data/visionaries';
+import projects from './seed_data/projects';
 
 exports.seed = function(knex) {
   // Deletes ALL existing entries
-  return knex('visionaries').del()
+  return knex('table_name').del()
     .then(function () {
       // Inserts seed entries
-      return knex('table_name').insert(visionaries);
+      return knex('table_name').insert(projects);
     });
 };

@@ -1,3 +1,5 @@
+// (c) Waveybits Inc. <2021>
+// ALL RIGHTS RESERVED
 
 exports.up = function(knex) {
   return knex.schema.createTable('users', (table) => {
@@ -7,7 +9,8 @@ exports.up = function(knex) {
     table.string('password');
     table.string('firstname');
     table.string('lastname');
-    table.bigInteger('user_type_id').unsigned().index().references('id').inTable('user_types');
+    table.bigInteger('user_type_id').unsigned().index().references('id').inTable('user_types'); // foreign key links user_type by id
+    table.bigInteger('project_id').unsigned().index().references('id').inTable('projects'); // foreign key links project by id
     table.timestamp('user_since').defaultTo(knex.fn.now());
   })
 };

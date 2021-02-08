@@ -1,3 +1,5 @@
+// (c) Waveybits Inc. <2021>
+// ALL RIGHTS RESERVED
 
 exports.up = function(knex) {
   return knex.schema.createTable('user_types', (table) => {

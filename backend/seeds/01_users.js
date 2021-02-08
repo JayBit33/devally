@@ -1,3 +1,6 @@
+// (c) Waveybits Inc. <2021>
+// ALL RIGHTS RESERVED
+
 const users = require('./seed_data/users');
 
 exports.seed = function(knex) {

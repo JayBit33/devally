@@ -1,12 +1,12 @@
+// (c) Waveybits Inc. <2021>
+// ALL RIGHTS RESERVED
 
 exports.up = function(knex) {
   knex.schema.createTable('visionaries', table => {
     table.increments('id').primary();
-    // ???????
-
-    // table.json('hiring_options').nullable(); // must use JSON.stringify(arraydata) when setting value
-    // table.integer('rating');
-    // table.string('profile_image');
+    table.json('categories'); // must use JSON.stringify(arraydata) when setting value
+    table.string('bio');
+    table.bigInteger('user_id').unsigned().index().references('id').inTable('users'); // foreign key links user by id
   })
 };
 

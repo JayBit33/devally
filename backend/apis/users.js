@@ -1,7 +1,7 @@
+// (c) Waveybits Inc. <2021>
+// ALL RIGHTS RESERVED
 const express = require('express');
-
 const router = express.Router();
-
 const queries = require('../db/user-queries');
 
 router.get('/', (req, res) => {

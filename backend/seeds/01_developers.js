@@ -1,3 +1,6 @@
+// (c) Waveybits Inc. <2021>
+// ALL RIGHTS RESERVED
+
 import developers from './seed_data/developers';
 
 exports.seed = function(knex) {

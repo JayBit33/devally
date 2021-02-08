@@ -1,3 +1,6 @@
+// (c) Waveybits Inc. <2021>
+// ALL RIGHTS RESERVED
+
 import userTypes from './seed_data/userTypes';
 
 exports.seed = function(knex) {

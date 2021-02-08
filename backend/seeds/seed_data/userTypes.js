@@ -1,3 +1,6 @@
+// (c) Waveybits Inc. <2021>
+// ALL RIGHTS RESERVED
+
 module.exports = [
   {
     id: 1,
@@ -9,7 +12,7 @@ module.exports = [
   },
   {
     id: 3,
-    type: 'dual'
+    type: 'dual-account'
   }
 
 ]

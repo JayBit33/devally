@@ -1,3 +1,6 @@
+// (c) Waveybits Inc. <2021>
+// ALL RIGHTS RESERVED
+
 const environment = process.env.NODE_ENV || 'development';
 const config = require('../knexfile');
 const environmentConfig = config[environment];

@@ -1,3 +1,6 @@
+// (c) Waveybits Inc. <2021>
+// ALL RIGHTS RESERVED
+
 const bcrypt = require('bcrypt');
 const password = 'password';
 const hash = bcrypt.hashSync(password, 10);
