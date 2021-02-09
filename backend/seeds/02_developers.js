@@ -1,13 +1,13 @@
 // (c) Waveybits Inc. <2021>
 // ALL RIGHTS RESERVED
 
-import userTypes from './seed_data/userTypes';
+const developers = require('./seed_data/developers');
 
 exports.seed = function(knex) {
   // Deletes ALL existing entries
-  return knex('user_types').del()
+  return knex('developers').del()
     .then(function () {
       // Inserts seed entries
-      return knex('user_types').insert(userTypes);
+      return knex('developers').insert(developers);
     });
 };

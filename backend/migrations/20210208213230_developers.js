@@ -9,10 +9,10 @@ exports.up = function(knex) {
     table.integer('rating');
     table.string('bio');
     table.string('profile_image');
-    table.bigInteger('user_id').unsigned().index().references('id').inTable('users'); // foreign key links user by id
+    table.bigInteger('user_id').unsigned().references('id').inTable('users').onDelete('CASCADE'); // foreign key links user by id
   })
 };
 
 exports.down = function(knex) {
-  knex.schema.dropTables('developers');
+  knex.schema.dropTable('developers');
 };

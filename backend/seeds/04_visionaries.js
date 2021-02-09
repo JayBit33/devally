@@ -1,13 +1,13 @@
 // (c) Waveybits Inc. <2021>
 // ALL RIGHTS RESERVED
 
-import developers from './seed_data/developers';
+const visionaries = require('./seed_data/visionaries');
 
 exports.seed = function(knex) {
   // Deletes ALL existing entries
-  return knex('developers').del()
+  return knex('visionaries').del()
     .then(function () {
       // Inserts seed entries
-      return knex('developers').insert(developers);
+      return knex('visionaries').insert(visionaries);
     });
 };
