@@ -9,34 +9,37 @@ module.exports = [
   {
     username: 'jeb',
     email: 'jeb352@gmail.com',
-    password: password,
+    password: hash,
     firstname: 'Jeb',
     lastname: 'Eichs',
+    rating: 4,
     user_type_id: 3,
     profile_image: 'profile19.jpg'
   },
   {
     username: 'jen38950',
     email: 'jen@gmail.com',
-    password: password,
+    password: hash,
     firstname: 'Jen',
     lastname: 'Smith',
+    rating: 3,
     user_type_id: 1,
     profile_image: 'profile15.jpg'
   },
   {
     username: 'beny89',
     email: 'beny89@gmail.com',
-    password: password,
+    password: hash,
     firstname: 'Ben',
     lastname: 'Antoitte',
+    rating: 5,
     user_type_id: 3,
     profile_image: 'profile14.jpg'
   },
   {
     username: 'appmaker',
     email: 'appmaker@gmail.com',
-    password: password,
+    password: hash,
     firstname: 'Ben',
     lastname: 'Hill',
     user_type_id: 1,
@@ -45,43 +48,47 @@ module.exports = [
   {
     username: 'waveybits',
     email: 'waveybits@gmail.com',
-    password: password,
+    password: hash,
     firstname: 'Wavey',
     lastname: 'Boseman',
+    rating: 4,
     user_type_id: 3,
     profile_image: 'profile12.jpg'
   },
   {
     username: 'bossman',
     email: 'boss@devally.com',
-    password: password,
+    password: hash,
     firstname: 'Boss',
     lastname: 'Man',
+    rating: 5,
     user_type_id: 3,
     profile_image: 'profile6.jpg'
   },
   {
     username: 'cinyloo',
     email: 'cindyloo@gmail.com',
-    password: password,
+    password: hash,
     firstname: 'Cindy',
     lastname: 'Loo',
+    rating: 5,
     user_type_id: 1,
     profile_image: 'profile10.jpg'
   },
   {
     username: 'androidDev',
     email: 'androiddev@gmail.com',
-    password: password,
+    password: hash,
     firstname: 'Clint',
     lastname: 'Summer',
+    rating: 4,
     user_type_id: 1,
     profile_image: 'profile9.jpg'
   },
   {
     username: 'yoohoo',
     email: 'yoohoo@gmail.com',
-    password: password,
+    password: hash,
     firstname: 'Yoo',
     lastname: 'Hoo',
     user_type_id: 1,
@@ -90,16 +97,17 @@ module.exports = [
   {
     username: 'gamer3521',
     email: 'gamer3521@gmail.com',
-    password: password,
+    password: hash,
     firstname: 'Jeff',
     lastname: 'Bloom',
+    rating: 3,
     user_type_id: 1,
     profile_image: 'profile7.jpg'
   },
   {
     username: 'iosDev',
     email: 'iosDev@gmail.com',
-    password: password,
+    password: hash,
     firstname: 'Anderson',
     lastname: 'Silva',
     user_type_id: 1,
@@ -108,16 +116,17 @@ module.exports = [
   {
     username: 'JoshB',
     email: 'JoshB@gmail.com',
-    password: password,
+    password: hash,
     firstname: 'Josh',
     lastname: 'Baker',
+    rating: 4,
     user_type_id: 1,
     profile_image: 'profile2.jpg',
   },
   {
     username: 'Gamebread',
     email: 'Gamebread@gmail.com',
-    password: password,
+    password: hash,
     firstname: 'Jorge',
     lastname: 'Masvidal',
     user_type_id: 1,
@@ -126,7 +135,7 @@ module.exports = [
   {
     username: 'bullet',
     email: 'bullet@gmail.com',
-    password: password,
+    password: hash,
     firstname: 'Valentina',
     lastname: 'Shevchenko',
     user_type_id: 1,
@@ -136,7 +145,7 @@ module.exports = [
   {
     username: 'The_Lioness',
     email: 'thelioness@gmail.com',
-    password: password,
+    password: hash,
     firstname: 'Amanda',
     lastname: 'Nunes',
     user_type_id: 1,
@@ -145,7 +154,7 @@ module.exports = [
   {
     username: 'Vision',
     email: 'vision@gmail.com',
-    password: password,
+    password: hash,
     firstname: 'Vision',
     lastname: 'Marvel',
     user_type_id: 2,
@@ -154,7 +163,7 @@ module.exports = [
   {
     username: 'WandaM',
     email: 'wandam@gmail.com',
-    password: password,
+    password: hash,
     firstname: 'Wanda',
     lastname: 'Rhomboso',
     user_type_id: 2,
@@ -163,7 +172,7 @@ module.exports = [
   {
     username: 'IronMan',
     email: 'ironman@gmail.com',
-    password: password,
+    password: hash,
     firstname: 'Tony',
     lastname: 'Stark',
     user_type_id: 2,
@@ -172,7 +181,7 @@ module.exports = [
   {
     username: 'Captain America',
     email: 'captainamerica@gmail.com',
-    password: password,
+    password: hash,
     firstname: 'Cap',
     lastname: 'Rogers',
     user_type_id: 2,
@@ -181,7 +190,7 @@ module.exports = [
   {
     username: 'HulkDev',
     email: 'hulkdev@gmail.com',
-    password: password,
+    password: hash,
     firstname: 'Bruce',
     lastname: 'Banner',
     user_type_id: 2,
@@ -190,7 +199,7 @@ module.exports = [
   {
     username: 'BlackWidow',
     email: 'blackwidow@gmail.com',
-    password: password,
+    password: hash,
     firstname: 'Natasha',
     lastname: 'Romanov',
     user_type_id: 2,
@@ -199,7 +208,7 @@ module.exports = [
   {
     username: 'Thor',
     email: 'thor@gmail.com',
-    password: password,
+    password: hash,
     firstname: 'Thor',
     lastname: 'Romanov',
     user_type_id: 2,
@@ -208,7 +217,7 @@ module.exports = [
   {
     username: 'Rhonda32',
     email: 'rhonda32@gmail.com',
-    password: password,
+    password: hash,
     firstname: 'Rhonda',
     lastname: 'Rousey',
     user_type_id: 2,
@@ -217,9 +226,10 @@ module.exports = [
   {
     username: 'LastOne',
     email: 'lastone@gmail.com',
-    password: password,
+    password: hash,
     firstname: 'Steve',
     lastname: 'Jobs',
+    rating: 4,
     user_type_id: 2,
     profile_image: 'profile14.jpg',
   },

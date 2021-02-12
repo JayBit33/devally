@@ -5,7 +5,27 @@ const knex = require('./knex');
 
 module.exports = {
   getAllUsers() {
-    return knex('users');
+    // return knex('users');
+    knex('users').where('user_type_id', 1).orWhere('user_type_id', 3)
+    .select(
+      'users.id',
+      'users.username',
+      'users.email',
+      'users.password',
+      'users.firstname',
+      'users.lastname',
+      'users.profile_image',
+      'users.user_since',
+      'developers.roles',
+      'developers.categories',
+      'developers.hiring_options',
+      'developers.rating',
+      'developers.bio',
+      'developers.profile_image',
+      'developers.rating',
+    )
+    .from('users')
+    .innerJoin('developers', 'users.id', 'developers.user_id')
   },
   getAllByParam(param) {
     const query = knex('users');
@@ -24,7 +44,9 @@ module.exports = {
     return knex('users').where('id', id).first();
   },
   getDevUsers() {
-    return knex('users').whereRaw("users.account_types ->> 0 = 'developer' or users.account_types ->> 1 = 'developer'");
+    return knex('users')
+            .join('developers', 'users.id', '=', 'developers.user_id')
+            .select('*')
   },
   getCustomers() {
     return knex('users').whereRaw("users.account_types ->> 0 = 'entrepreneur' or users.account_types ->> 1 = 'entrepreneur'");

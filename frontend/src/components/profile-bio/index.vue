@@ -9,8 +9,8 @@
     </div>
     <div class="user-info">
       <div class="user-info_accounttype">
-        <h3>Account Type:</h3>
-        <h4>{{ user.account_types.join(", ") }}</h4>
+        <h3>Roles:</h3>
+        <h4>{{ user.roles.join(", ") }}</h4>
       </div>
       <div class="user-info_hiringoptions">
         <h3>Hiring Options:</h3>
@@ -23,17 +23,12 @@
         </ul>
       </div>
       <div class="user-info_skills">
-        <h3>Skills:</h3>
+        <h3>Categories:</h3>
         <h4>{{ skillsFormatted }}</h4>
       </div>
       <div class="user-bio">
         <h3>Bio</h3>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatibus
-          in cum blanditiis ratione ad praesentium nobis voluptates nemo maxime
-          beatae, corporis ullam officia dolor consectetur modi eius cumque?
-          Rem, earum?
-        </p>
+        <p>{{ user.bio }}</p>
       </div>
     </div>
   </div>

@@ -15,8 +15,8 @@
       </div>
       <div></div>
       <div class="user-info_accounttype">
-        <h3>Account Type:</h3>
-        <h4>{{ user.account_types.join(", ") }}</h4>
+        <h3>Roles:</h3>
+        <h4>{{ user.roles.join(", ") }}</h4>
       </div>
       <div class="user-info_hiringoptions">
         <h3>Hiring Options:</h3>
@@ -29,26 +29,15 @@
         </ul>
       </div>
       <div class="user-info_skills">
-        <h3>Skills:</h3>
-        <h4>{{ skillsFormatted }}</h4>
+        <h3>Categories:</h3>
+        <h4>{{ categoriesFormatted }}</h4>
       </div>
       <div class="user-bio">
         <div class="user-bio_heading" >
           <h3>Bio</h3>
           <button>Edit</button>
         </div>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatibus
-          in cum blanditiis ratione ad praesentium nobis voluptates nemo maxime
-          beatae, corporis ullam officia dolor consectetur modi eius cumque?
-          Rem, earum? Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-          Ipsa rerum aliquam iusto consectetur unde et quos delectus laboriosam
-          voluptatibus odio eum deserunt ab, accusamus a. Quasi deleniti neque
-          mollitia quia! Lorem, ipsum dolor sit amet consectetur adipisicing
-          elit. Quae asperiores, eius fugiat explicabo, a reiciendis quibusdam
-          voluptates ipsum laudantium minima nemo sapiente dicta nostrum nisi
-          eum dolore consequuntur debitis ipsa.
-        </p>
+        <p>{{ user.bio }}</p>
       </div>
 
       <div class="user-portfolio">

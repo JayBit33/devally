@@ -13,6 +13,7 @@ export default {
       user: {},
       id: this.$route.params.id,
       messageBoxOpen: false,
+      messageSentSuccessful: false
     };
   },
   components: {
@@ -25,7 +26,7 @@ export default {
       return `${this.user.firstname} ${this.user.lastname}`;
     },
     skillsFormatted() {
-      return this.user.skills.join(", ");
+      return this.user.categories.join(", ");
     },
     username() {
       return this.getLoggedInUser.username;
@@ -46,7 +47,9 @@ export default {
       CometChat.sendMessage(textMessage).then(
         message => {
           console.log("Message sent successfully:", message);
-          // Do something with message
+          // TODO Do something with message
+          // Should create a toast component that is on main page and recieves events when it needs triggered
+          this.messageSentSuccessful = true;
         },
         error => {
           console.log("Message sending failed with error:", error);
