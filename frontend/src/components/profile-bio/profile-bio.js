@@ -15,8 +15,11 @@ export default {
     FontAwesomeIcon
   },
   computed: {
+    accountType() {
+      return this.user.user_type_id === '1' ? 'developer' : 'developer & visionary'
+    },
     skillsFormatted() {
-      return this.user.skills.map((skill) => skill).join(", ");
+      return this.user.categories.map((c) => c).join(", ");
     },
   },
 };

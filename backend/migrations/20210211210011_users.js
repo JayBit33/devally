@@ -1,3 +1,5 @@
+// (c) Waveybits Inc. <2021>
+// ALL RIGHTS RESERVED
 
 exports.up = function(knex) {
   return knex.schema.createTable('users', (table) => {
@@ -7,12 +9,10 @@ exports.up = function(knex) {
     table.string('password');
     table.string('firstname');
     table.string('lastname');
-    table.json('account_types'); // must use JSON.stringify(arraydata) when setting value
-    table.json('skills').nullable(); // must use JSON.stringify(arraydata) when setting value
-    table.json('hiring_options').nullable(); // must use JSON.stringify(arraydata) when setting value
-    table.integer('rating');
+    table.integer('rating').nullable();
+    table.bigInteger('user_type_id').unsigned().references('id').inTable('user_types').onDelete('CASCADE') // foreign key links user_type by id
+    table.string('profile_image').nullable();
     table.timestamp('user_since').defaultTo(knex.fn.now());
-    table.string('profile_image');
   })
 };
 
@@ -21,6 +21,7 @@ exports.down = function(knex) {
 };
 
 
+// WHEN RUNNING LATEST MIGRATIONS AND RUNNING SEEDS ORDER MATTERS!!!!!!!! SINCE USERS HAS USER_TYPE_ID USER_TYPES TABLE MIGRATION MUST BE MADE FIRST!
 // create migrations command: knex migrate:make create-tablename
 // run migrations command: knex migrate:latest
 // create seed for table command: knex seed:make 01_tablename

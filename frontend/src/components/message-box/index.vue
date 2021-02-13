@@ -2,7 +2,7 @@
 <!-- ALL RIGHTS RESERVED -->
 <template>
   <div class="message-box">
-    <font-awesome-icon :icon="['fas','times']" class="message-box_closeBtn" />
+    <font-awesome-icon :icon="['fas','times']" class="message-box_closeBtn" @click="$emit('close')"/>
     <textarea type="text" v-model="messageText" class="message-box_textarea" />
     <button class="message-box_sendMsgBtn" @click="$emit('messageSent',messageText)">Send</button>
   </div>

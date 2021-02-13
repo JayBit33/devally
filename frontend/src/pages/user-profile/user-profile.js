@@ -28,8 +28,8 @@ export default {
     fullName() {
       return `${this.user.firstname} ${this.user.lastname}`;
     },
-    skillsFormatted() {
-      return this.user.skills.join(", ");
+    categoriesFormatted() {
+      return this.user.categories.join(", ");
     }
   },
   async created() {

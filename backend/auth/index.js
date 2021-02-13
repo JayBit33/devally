@@ -1,3 +1,6 @@
+// (c) Waveybits Inc. <2021>
+// ALL RIGHTS RESERVED
+
 const express = require('express');
 const bcrypt = require('bcrypt');
 const router = express.Router();

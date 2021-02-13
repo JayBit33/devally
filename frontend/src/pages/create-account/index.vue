@@ -47,16 +47,16 @@
       <br>
        <el-radio-group v-model="createForm.account_type" class="radio-group" required="true">
         <el-radio-button label="Developer" class="radio_btn"></el-radio-button>
-        <el-radio-button label="Entrepreneur" class="radio_btn"></el-radio-button>
+        <el-radio-button label="Visionary" class="radio_btn"></el-radio-button>
         <el-radio-button label="Both" class="radio_btn"></el-radio-button>
       </el-radio-group>
       </div>
       <button type="submit" class="form2_submit" @click="nextStep">Next</button>
     </div>
     <!-- Step 3 -->
-    <div v-if="activeStep === 2 && createForm.account_type === 'Developer'" class="create-account_form3">
+    <div v-if="activeStep === 2 && (createForm.account_type === 'Developer' || createForm.account_type === 'Both')" class="create-account_form3">
       <div class="input">
-        <label>Payment Options</label>
+        <label>Acceptable Payment Options</label>
         <el-select v-model="createForm.hiring_options" multiple placeholder="Hiring Option" class="details payment-detail">
         <el-option
           v-for="item in ['Shares','Flat Rate']"
@@ -78,10 +78,10 @@
         </el-select>
       </div>
       <div class="input">
-        <label>Skills</label>
+        <label>Experience Building/Designing</label>
         <el-select v-model="createForm.skills" multiple placeholder="Skills" class="details skills-detail">
           <el-option
-            v-for="item in ['Websites','Mobile Apps', 'Ecommerce Sites','SAAS', 'IOT']"
+            v-for="item in ['Websites','Mobile Apps', 'Ecommerce Sites','SAAS']"
             :key="item"
             :label="item"
             :value="item">
@@ -93,7 +93,50 @@
         <el-input type="textarea" class="form3_description" v-model="createForm.description"></el-input>
       </div>
       <button type="submit" class="form3_submit" @click="nextStep">Create Account</button>
+    </div>
+    <div v-if="activeStep === 2 && createForm.account_type === 'Visionary'" class="create-account_form3">
+      <div class="input">
+        <label>Interested Project Categories</label>
+        <el-select v-model="createForm.roles" multiple placeholder="categories" class="details roles-detail">
+          <el-option
+            v-for="item in ['Web Application','Mobile App', 'Ecommerce Site', 'SAAS']"
+            :key="item"
+            :label="item"
+            :value="item">
+          </el-option>
+        </el-select>
       </div>
+      <!-- <div class="input">
+        <label>How Do You Plan to Fund Projects?</label>
+        <el-select v-model="createForm.hiring_options" multiple placeholder="Hiring Option" class="details payment-detail">
+          <el-option
+            v-for="item in ['Bootstrap (self funded)','VC\'s']"
+            :key="item"
+            :label="item"
+            :value="item">
+          </el-option>
+        </el-select>
+      </div>
+
+      <div class="input">
+        <label>How Much Time Do you Plan on Dedicating?</label>
+        <el-select v-model="createForm.hiring_options" multiple placeholder="Hiring Option" class="details payment-detail">
+          <el-option
+            v-for="item in ['Bootstrap (self funded)','VC\'s']"
+            :key="item"
+            :label="item"
+            :value="item">
+          </el-option>
+        </el-select>
+      </div> -->
+
+
+      <div class="input">
+        <label>Bio Description</label>
+        <el-input type="textarea" class="form3_description" v-model="createForm.description"></el-input>
+      </div>
+      <button type="submit" class="form3_submit" @click="nextStep">Create Account</button>
+    </div>
   </div>
 </template>
 

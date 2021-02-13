@@ -1,3 +1,6 @@
+// (c) Waveybits Inc. <2021>
+// ALL RIGHTS RESERVED
+
 const request = require('supertest');
 const app = require('../index');
 const { expect } = require('chai')
