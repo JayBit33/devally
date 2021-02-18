@@ -14,6 +14,8 @@ exports.up = function(knex) {
     table.json('viewable_regions'); // must use JSON.stringify(arraydata) when setting value
     table.json('funding_types'); // must use JSON.stringify(arraydata) when setting value
     table.timestamp('date_created').defaultTo(knex.fn.now());
+
+    // table.boolean('ispublic')
   })
 };
 

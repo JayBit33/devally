@@ -12,6 +12,7 @@ exports.up = function(knex) {
     table.integer('rating').nullable();
     table.bigInteger('user_type_id').unsigned().references('id').inTable('user_types').onDelete('CASCADE') // foreign key links user_type by id
     table.string('profile_image').nullable();
+    // table.json('connections').nullable(); // must use JSON.stringify(arraydata) when setting value
     table.timestamp('user_since').defaultTo(knex.fn.now());
   })
 };
