@@ -85,8 +85,8 @@
 
   .daily-message {
     position: absolute;
-    top: 40%;
-    left: 27%;
+    top: 30%;
+    left: calc(50% - 400px);
     text-align: center;
 
     h2 {
