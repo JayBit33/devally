@@ -16,7 +16,11 @@ export default {
       drawerDirection: 'rtl',
       id: this.$route.params.id,
       isLoading: true,
-      messages: []
+      messages: [],
+      messagesViewActive: false,
+      projectsViewActive: false,
+      connectionsViewActive: false,
+      settingsViewActive: false,
     };
   },
   components: {
@@ -99,12 +103,34 @@ export default {
         return this.getDevUserByUsername(sendersUsername).profile_image;
       }
     },
-     handleClose(done) {
+    handleClose(done) {
       this.$confirm('Are you sure you want to close this?')
         .then(() => {
           done();
         })
         .catch(() => {});
+    },
+    updateView(view) {
+      this.messagesViewActive = false;
+      this.projectsViewActive = false;
+      this.connectionsViewActive = false;
+      this.settingsViewActive = false;
+      switch (view) {
+        case 'messages':
+          this.messagesViewActive = true;
+          break;
+        case 'projects':
+          this.projectsViewActive = true;
+          break;
+        case 'connections':
+          this.connectionsViewActive = true;
+          break;
+        case 'settings':
+          this.settingsViewActive = true;
+          break;
+        default:
+          break;
+      }
     }
   },
 };
