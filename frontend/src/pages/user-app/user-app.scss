@@ -49,6 +49,9 @@
       &:focus, &:hover, &:active {
         background-color: $sidebar_secondary;
         color: black;
+        cursor: pointer;
+        border-color: $sidebar_secondary;
+        outline: none;
       }
     }
 
@@ -85,7 +88,7 @@
   .daily-message {
     position: absolute;
     top: 30%;
-    left: calc(50% - 400px);
+    left: calc(50% - 420px);
     text-align: center;
 
     h2 {

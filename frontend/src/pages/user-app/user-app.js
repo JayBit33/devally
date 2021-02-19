@@ -21,6 +21,7 @@ export default {
       projectsViewActive: false,
       connectionsViewActive: false,
       settingsViewActive: false,
+      profileViewActive: false
     };
   },
   components: {
@@ -115,6 +116,8 @@ export default {
       this.projectsViewActive = false;
       this.connectionsViewActive = false;
       this.settingsViewActive = false;
+      this.profileViewActive = false;
+
       switch (view) {
         case 'messages':
           this.messagesViewActive = true;
@@ -127,6 +130,9 @@ export default {
           break;
         case 'settings':
           this.settingsViewActive = true;
+          break;
+        case 'profile':
+          this.profileViewActive = true;
           break;
         default:
           break;
