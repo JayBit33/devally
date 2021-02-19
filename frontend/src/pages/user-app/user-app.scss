@@ -1,0 +1,100 @@
+@import '../../scss/variables.scss';
+
+.user-app {
+  position: relative;
+  &_sidebar {
+    // display: flex;
+    // justify-content: center;
+    // flex-direction: column;
+    width: 14rem;
+    height: 100vh;
+    padding: 2rem;
+    background-color: $sidebar_bg;
+
+    &-avatar {
+      width: 14rem;
+      border-radius: 30%;
+      margin: 0 auto;
+    }
+
+    &-fullname {
+      font-family: 'Montserrat';
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: white;
+      text-align: center;
+      margin-top: .5rem;
+      margin-bottom: 0;
+    }
+
+    &-accountType {
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: lighter;
+      color: $sidebar_secondary;
+      text-align: center;
+      margin-top: .5rem;
+      margin-bottom: 2rem;
+    }
+
+    &-updateProfile {
+      font-size: 1.2rem;
+      color: white;
+      padding: .5rem 1rem;
+      background-color: transparent;
+      border-radius: 10rem;
+      border: 2px solid $sidebar_secondary;
+      display: block;
+      margin: 0 auto;
+
+      &:focus, &:hover, &:active {
+        background-color: $sidebar_secondary;
+        color: black;
+      }
+    }
+
+    &-nav {
+      display: block;
+      text-decoration: none;
+      list-style-type: none;
+      padding: 0;
+
+      li {
+        margin-top: 8rem;
+        text-align: center;
+        cursor: pointer;
+
+        &:focus, &:hover, &:active {
+          .sidebar-icon, h4 {
+            color: $sidebar_secondary
+          }
+        }
+
+        .sidebar-icon {
+          font-size: 4.5rem;
+          color: white;
+        }
+
+        h4 {
+          font-size: 1.25rem;
+          color: white;
+        }
+      }
+    }
+  }
+
+  .daily-message {
+    position: absolute;
+    top: 40%;
+    left: 27%;
+    text-align: center;
+
+    h2 {
+      font-size: 4rem;
+    }
+
+    h3 {
+      font-size: 2rem;
+    }
+  }
+}

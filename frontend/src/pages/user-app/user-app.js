@@ -25,6 +25,13 @@ export default {
   },
   computed: {
     ...mapGetters(['getDevUser', 'getDevUserByUsername']),
+    accountType() {
+      return this.user.user_type_id === 1
+      ? 'developer'
+      : this.user.user_type_id === 2
+      ? 'visionary'
+      : 'developer | visionary'
+    },
     fullName() {
       return `${this.user.firstname} ${this.user.lastname}`;
     },

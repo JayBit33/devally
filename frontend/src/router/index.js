@@ -5,7 +5,7 @@ import VueRouter from 'vue-router'
 import Home from '../pages/Home'
 import Devs from '../pages/devs'
 import Dev from '../pages/dev'
-import UserProfile from '../pages/user-profile'
+import UserApp from '../pages/user-app'
 import Projects from '../pages/projects'
 import Works from '../pages/Works'
 import About from '../pages/About'
@@ -21,7 +21,7 @@ const router = new VueRouter({
     { path: '/devs', name: 'Devs', component: Devs, meta: { breadcrumb: [ { name: 'home', to: '/' }, { name: 'developers', to: '/devs' }]} },
     { path: '/dev/:id?', name: 'Dev', component: Dev, meta: { breadcrumb: [ { name: 'home', to: '/' }, { name: 'developers', to: '/devs' }, { name: 'developer', to: '/dev' }]} },
     { path: '/projects', name: 'Projects', component: Projects, meta: { breadcrumb: []} },
-    { path: '/profile/:id?', name: 'Profile', component: UserProfile, meta: { breadcrumb: [] } },
+    { path: '/profile/:id?', name: 'Profile', component: UserApp, meta: { breadcrumb: [] } },
     { path: '/works',  name: 'Works', component: Works, meta: { breadcrumb: []} },
     { path: '/about',  name: 'About', component: About, meta: { breadcrumb: []} },
     { path: '/signin',  name: 'SignIn', component: SignIn, meta: { breadcrumb: [] }},
