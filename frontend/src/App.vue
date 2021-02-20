@@ -55,7 +55,7 @@ export default {
       return this.getLoggedInUser.username;
     },
     showHeaderFooter() {
-      return !this.$route.name === 'Profile'
+      return this.$route.name === 'Profile' ? false : true
     }
   },
   methods: {
@@ -180,5 +180,37 @@ html {
   padding-top: 11rem;
   margin-top: 0;
   margin-bottom: 0;
+}
+
+.fade-in {
+animation: fadeIn ease 7s;
+-webkit-animation: fadeIn ease 7s;
+-moz-animation: fadeIn ease 7s;
+-o-animation: fadeIn ease 7s;
+-ms-animation: fadeIn ease 7s;
+}
+@keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
+}
+
+@-moz-keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
+}
+
+@-webkit-keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
+}
+
+@-o-keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
+}
+
+@-ms-keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
 }
 </style>

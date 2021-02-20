@@ -29,11 +29,18 @@
     </div>
 
     <div class="daily-message" v-if="!profileViewActive && !messagesViewActive && !projectsViewActive && !connectionsViewActive && !settingsViewActive">
-      <h2>Happy Wednesday!</h2>
-      <h3> "I'm always doing things I can't do; that's how I get to do them." -Pablo Picasso</h3>
+      <h2 class="fade-in">Happy Wednesday!</h2>
+      <h3 class="fade-in"> "I'm always doing things I can't do; that's how I get to do them." -Pablo Picasso</h3>
     </div>
 
-    <div v-if="profileViewActive" class="views"><h1>Profile</h1></div>
+    <div v-if="profileViewActive" class="views">
+      <div class="header">
+        <div class="title">
+          <font-awesome-icon class="icon" :icon="['fas','cog']"></font-awesome-icon>
+          <h1>Profile</h1>
+        </div>
+      </div>
+    </div>
     <div v-if="messagesViewActive" class="views"><h1>Messages</h1></div>
     <div v-if="projectsViewActive" class="views"><h1>Projects</h1></div>
     <div v-if="connectionsViewActive" class="views"><h1>Connections</h1></div>

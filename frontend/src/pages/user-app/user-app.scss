@@ -105,8 +105,29 @@
     background-color: $user-app_body;
 
     h1 {
-      padding-top: 4rem;
+      padding-top: 0rem;
       padding-left: 4rem;
+    }
+  }
+  .header {
+    background-color: $sidebar_bg;
+    width: 100%;
+    margin: 0;
+    // border-left: 2px solid $user-app_body;
+    padding: 0 3rem;
+    color: white;
+
+    .title {
+      .icon {
+        position: relative;
+        font-size: 2rem;
+        left: 1.4rem;
+        top: 3.5rem;
+      }
+      h1 {
+        font-family: 'Montserrat';
+        font-weight: 300;
+      }
     }
   }
 }

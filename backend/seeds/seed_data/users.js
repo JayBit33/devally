@@ -14,7 +14,10 @@ module.exports = [
     lastname: 'Eichs',
     rating: 4,
     user_type_id: 3,
-    profile_image: 'profile19.jpg'
+    profile_image: 'profile19.jpg',
+    connections: JSON.stringify([1,7,12]),
+    notification_settings: JSON.stringify({ messages: true, added_connection: true, project_invitation: true }),
+    subscription_settings: JSON.stringify({ featured_projects: true, weekly_news: true, updates: true })
   },
   {
     username: 'jen38950',
@@ -24,7 +27,10 @@ module.exports = [
     lastname: 'Smith',
     rating: 3,
     user_type_id: 1,
-    profile_image: 'profile15.jpg'
+    profile_image: 'profile15.jpg',
+    connections: JSON.stringify([2,8,13]),
+    notification_settings: JSON.stringify({ messages: true, added_connection: true, project_invitation: true }),
+    subscription_settings: JSON.stringify({ featured_projects: true, weekly_news: true, updates: true })
   },
   {
     username: 'beny89',
@@ -34,7 +40,10 @@ module.exports = [
     lastname: 'Antoitte',
     rating: 5,
     user_type_id: 3,
-    profile_image: 'profile14.jpg'
+    profile_image: 'profile14.jpg',
+    connections: JSON.stringify([3,9,14]),
+    notification_settings: JSON.stringify({ messages: true, added_connection: true, project_invitation: true }),
+    subscription_settings: JSON.stringify({ featured_projects: true, weekly_news: true, updates: true })
   },
   {
     username: 'appmaker',
@@ -43,7 +52,10 @@ module.exports = [
     firstname: 'Ben',
     lastname: 'Hill',
     user_type_id: 1,
-    profile_image: 'profil13.jpg'
+    profile_image: 'profil13.jpg',
+    connections: null,
+    notification_settings: JSON.stringify({ messages: true, added_connection: true, project_invitation: true }),
+    subscription_settings: JSON.stringify({ featured_projects: true, weekly_news: true, updates: true })
   },
   {
     username: 'waveybits',
@@ -53,7 +65,10 @@ module.exports = [
     lastname: 'Boseman',
     rating: 4,
     user_type_id: 3,
-    profile_image: 'profile12.jpg'
+    profile_image: 'profile12.jpg',
+    connections: JSON.stringify([5,10,15]),
+    notification_settings: JSON.stringify({ messages: true, added_connection: true, project_invitation: true }),
+    subscription_settings: JSON.stringify({ featured_projects: true, weekly_news: true, updates: true })
   },
   {
     username: 'bossman',
@@ -63,7 +78,10 @@ module.exports = [
     lastname: 'Man',
     rating: 5,
     user_type_id: 3,
-    profile_image: 'profile6.jpg'
+    profile_image: 'profile6.jpg',
+    connections: JSON.stringify([6,11,4]),
+    notification_settings: JSON.stringify({ messages: true, added_connection: true, project_invitation: true }),
+    subscription_settings: JSON.stringify({ featured_projects: true, weekly_news: true, updates: true })
   },
   {
     username: 'cinyloo',
@@ -73,7 +91,10 @@ module.exports = [
     lastname: 'Loo',
     rating: 5,
     user_type_id: 1,
-    profile_image: 'profile10.jpg'
+    profile_image: 'profile10.jpg',
+    connections: null,
+    notification_settings: JSON.stringify({ messages: true, added_connection: true, project_invitation: true }),
+    subscription_settings: JSON.stringify({ featured_projects: true, weekly_news: true, updates: true })
   },
   {
     username: 'androidDev',
@@ -83,7 +104,10 @@ module.exports = [
     lastname: 'Summer',
     rating: 4,
     user_type_id: 1,
-    profile_image: 'profile9.jpg'
+    profile_image: 'profile9.jpg',
+    connections: null,
+    notification_settings: JSON.stringify({ messages: true, added_connection: true, project_invitation: true }),
+    subscription_settings: JSON.stringify({ featured_projects: true, weekly_news: false, updates: true })
   },
   {
     username: 'yoohoo',
@@ -92,7 +116,10 @@ module.exports = [
     firstname: 'Yoo',
     lastname: 'Hoo',
     user_type_id: 1,
-    profile_image: 'profile8.jpg'
+    profile_image: 'profile8.jpg',
+    connections: null,
+    notification_settings: JSON.stringify({ messages: true, added_connection: true, project_invitation: true }),
+    subscription_settings: JSON.stringify({ featured_projects: true, weekly_news: false, updates: true })
   },
   {
     username: 'gamer3521',
@@ -102,7 +129,10 @@ module.exports = [
     lastname: 'Bloom',
     rating: 3,
     user_type_id: 1,
-    profile_image: 'profile7.jpg'
+    profile_image: 'profile7.jpg',
+    connections: null,
+    notification_settings: JSON.stringify({ messages: true, added_connection: true, project_invitation: true }),
+    subscription_settings: JSON.stringify({ featured_projects: true, weekly_news: false, updates: true })
   },
   {
     username: 'iosDev',
@@ -111,7 +141,10 @@ module.exports = [
     firstname: 'Anderson',
     lastname: 'Silva',
     user_type_id: 1,
-    profile_image: 'profile3.jpg'
+    profile_image: 'profile3.jpg',
+    connections: null,
+    notification_settings: JSON.stringify({ messages: true, added_connection: true, project_invitation: true }),
+    subscription_settings: JSON.stringify({ featured_projects: true, weekly_news: false, updates: true })
   },
   {
     username: 'JoshB',
@@ -122,6 +155,9 @@ module.exports = [
     rating: 4,
     user_type_id: 1,
     profile_image: 'profile2.jpg',
+    connections: null,
+    notification_settings: JSON.stringify({ messages: true, added_connection: true, project_invitation: true }),
+    subscription_settings: JSON.stringify({ featured_projects: true, weekly_news: false, updates: true })
   },
   {
     username: 'Gamebread',
@@ -131,6 +167,9 @@ module.exports = [
     lastname: 'Masvidal',
     user_type_id: 1,
     profile_image: 'profile4.jpg',
+    connections: null,
+    notification_settings: JSON.stringify({ messages: true, added_connection: true, project_invitation: true }),
+    subscription_settings: JSON.stringify({ featured_projects: true, weekly_news: false, updates: true })
   },
   {
     username: 'bullet',
@@ -140,7 +179,9 @@ module.exports = [
     lastname: 'Shevchenko',
     user_type_id: 1,
     profile_image: 'profile11.jpg',
-
+    connections: null,
+    notification_settings: JSON.stringify({ messages: true, added_connection: true, project_invitation: true }),
+    subscription_settings: JSON.stringify({ featured_projects: true, weekly_news: false, updates: true })
   },
   {
     username: 'The_Lioness',
@@ -150,6 +191,9 @@ module.exports = [
     lastname: 'Nunes',
     user_type_id: 1,
     profile_image: 'profile5.jpg',
+    connections: null,
+    notification_settings: JSON.stringify({ messages: true, added_connection: true, project_invitation: true }),
+    subscription_settings: JSON.stringify({ featured_projects: true, weekly_news: false, updates: true })
   },
   {
     username: 'Vision',
@@ -159,6 +203,9 @@ module.exports = [
     lastname: 'Marvel',
     user_type_id: 2,
     profile_image: 'profile2.jpg',
+    connections: null,
+    notification_settings: JSON.stringify({ messages: true, added_connection: true, project_invitation: true }),
+    subscription_settings: JSON.stringify({ featured_projects: true, weekly_news: false, updates: true })
   },
   {
     username: 'WandaM',
@@ -168,6 +215,9 @@ module.exports = [
     lastname: 'Rhomboso',
     user_type_id: 2,
     profile_image: 'profile8.jpg',
+    connections: null,
+    notification_settings: JSON.stringify({ messages: true, added_connection: true, project_invitation: true }),
+    subscription_settings: JSON.stringify({ featured_projects: true, weekly_news: false, updates: true })
   },
   {
     username: 'IronMan',
@@ -177,6 +227,9 @@ module.exports = [
     lastname: 'Stark',
     user_type_id: 2,
     profile_image: 'profile10.jpg',
+    connections: null,
+    notification_settings: JSON.stringify({ messages: true, added_connection: true, project_invitation: true }),
+    subscription_settings: JSON.stringify({ featured_projects: true, weekly_news: false, updates: true })
   },
   {
     username: 'Captain America',
@@ -186,6 +239,9 @@ module.exports = [
     lastname: 'Rogers',
     user_type_id: 2,
     profile_image: 'profile10.jpg',
+    connections: null,
+    notification_settings: JSON.stringify({ messages: true, added_connection: true, project_invitation: true }),
+    subscription_settings: JSON.stringify({ featured_projects: true, weekly_news: false, updates: true })
   },
   {
     username: 'HulkDev',
@@ -195,6 +251,9 @@ module.exports = [
     lastname: 'Banner',
     user_type_id: 2,
     profile_image: 'profile12.jpg',
+    connections: null,
+    notification_settings: JSON.stringify({ messages: true, added_connection: true, project_invitation: true }),
+    subscription_settings: JSON.stringify({ featured_projects: true, weekly_news: false, updates: true })
   },
   {
     username: 'BlackWidow',
@@ -204,6 +263,9 @@ module.exports = [
     lastname: 'Romanov',
     user_type_id: 2,
     profile_image: 'profile3.jpg',
+    connections: null,
+    notification_settings: JSON.stringify({ messages: true, added_connection: true, project_invitation: true }),
+    subscription_settings: JSON.stringify({ featured_projects: true, weekly_news: false, updates: true })
   },
   {
     username: 'Thor',
@@ -213,6 +275,9 @@ module.exports = [
     lastname: 'Romanov',
     user_type_id: 2,
     profile_image: 'profile12.jpg',
+    connections: null,
+    notification_settings: JSON.stringify({ messages: true, added_connection: true, project_invitation: true }),
+    subscription_settings: JSON.stringify({ featured_projects: true, weekly_news: false, updates: true })
   },
   {
     username: 'Rhonda32',
@@ -222,6 +287,9 @@ module.exports = [
     lastname: 'Rousey',
     user_type_id: 2,
     profile_image: 'profile4.jpg',
+    connections: null,
+    notification_settings: JSON.stringify({ messages: true, added_connection: true, project_invitation: true }),
+    subscription_settings: JSON.stringify({ featured_projects: true, weekly_news: false, updates: false })
   },
   {
     username: 'LastOne',
@@ -232,6 +300,9 @@ module.exports = [
     rating: 4,
     user_type_id: 2,
     profile_image: 'profile14.jpg',
+    connections: null,
+    notification_settings: JSON.stringify({ messages: true, added_connection: true, project_invitation: true }),
+    subscription_settings: JSON.stringify({ featured_projects: true, weekly_news: false, updates: true })
   },
 
 ]
