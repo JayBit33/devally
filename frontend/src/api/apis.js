@@ -1,8 +1,18 @@
 import axios from 'axios';
-import { BASE_AUTH_URL, BASE_USERS_URL } from '@/constants/apiUrls';
+import { BASE_AUTH_URL, BASE_USERS_URL, BASE_PROJECTS_URL } from '@/constants/apiUrls';
 
-export const userAPI = axios.create({
+export const usersAPI = axios.create({
   baseURL: BASE_USERS_URL,
+  withCredentials: true,
+  headers: {
+    'content-type': 'application/json',
+    'api-version': 1
+  },
+  crossDomain: true
+});
+
+export const projectsAPI = axios.create({
+  baseURL: BASE_PROJECTS_URL,
   withCredentials: true,
   headers: {
     'content-type': 'application/json',

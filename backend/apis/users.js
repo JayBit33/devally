@@ -28,7 +28,7 @@ function validUser(user) {
   return hasUsername && hasPassword && hasFirstname && hasLastname;
 }
 
-router.post('/', (req, res, next) => {
+router.post('/create-user', (req, res, next) => {
   if (validUser(req.body)) {
     queries.createUser(req.body).then(user => {
       res.send(user[0]);

@@ -34,12 +34,7 @@
     </div>
 
     <div v-if="profileViewActive" class="views">
-      <div class="header">
-        <div class="title">
-          <font-awesome-icon class="icon" :icon="['fas','cog']"></font-awesome-icon>
-          <h1>Profile</h1>
-        </div>
-      </div>
+      <h1>Update Profile</h1>
     </div>
     <div v-if="messagesViewActive" class="views"><h1>Messages</h1></div>
     <div v-if="projectsViewActive" class="views"><h1>Projects</h1></div>

@@ -51,6 +51,7 @@ module.exports = [
     password: hash,
     firstname: 'Ben',
     lastname: 'Hill',
+    rating: 5,
     user_type_id: 1,
     profile_image: 'profil13.jpg',
     connections: null,

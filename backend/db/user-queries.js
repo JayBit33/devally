@@ -4,29 +4,6 @@
 const knex = require('./knex');
 
 module.exports = {
-  getAllUsers() {
-    // return knex('users');
-    knex('users').where('user_type_id', 1).orWhere('user_type_id', 3)
-    .select(
-      'users.id',
-      'users.username',
-      'users.email',
-      'users.password',
-      'users.firstname',
-      'users.lastname',
-      'users.profile_image',
-      'users.user_since',
-      'developers.roles',
-      'developers.categories',
-      'developers.hiring_options',
-      'developers.rating',
-      'developers.bio',
-      'developers.profile_image',
-      'developers.rating',
-    )
-    .from('users')
-    .innerJoin('developers', 'users.id', 'developers.user_id')
-  },
   getAllByParam(param) {
     const query = knex('users');
     if (param.username) {
@@ -48,8 +25,12 @@ module.exports = {
             .join('developers', 'users.id', '=', 'developers.user_id')
             .select('*')
   },
+  // get visionary accounts
   getCustomers() {
-    return knex('users').whereRaw("users.account_types ->> 0 = 'entrepreneur' or users.account_types ->> 1 = 'entrepreneur'");
+    return knex('users')
+          .join('developers', 'users.id', '=', 'developers.user_id')
+          .select('*')
+         // .whereRaw("users.user_type_id = 2 or users.user_type_id = 3");
   },
   createUser(user) {
     return knex('users').insert(user, '*').then(user => user[0]);
