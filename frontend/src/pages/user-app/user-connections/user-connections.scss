@@ -1,3 +1,25 @@
 // (c) Waveybits Inc. <2021>
 // ALL RIGHTS RESERVED
 @import '../../../scss/variables.scss';
+
+.user-connections {
+  margin-left: 0rem;
+  .icon {
+    font-size: 2rem;
+    position: relative;
+    top: 6.125rem;
+    left: 8rem;
+
+  }
+  .title {
+    margin-top: 4rem;
+    margin-left: 11rem;
+  }
+
+  .connections {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 4rem;
+  }
+}

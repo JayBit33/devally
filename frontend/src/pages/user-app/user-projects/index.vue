@@ -1,7 +1,9 @@
 <!-- (c) Waveybits Inc. <2021> -->
 <!-- ALL RIGHTS RESERVED -->
 <template>
-  <h1>User Projects</h1>
+  <div class="user-projects">
+    <h1 class="title">User Projects</h1>
+  </div>
 </template>
 
 <script src="./user-projects.js"></script>

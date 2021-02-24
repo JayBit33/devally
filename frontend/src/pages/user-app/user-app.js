@@ -2,13 +2,18 @@
 // ALL RIGHTS RESERVED
 
 import MessageNotifier from '@/components/message-notifier';
+import UserConnections from '@/pages/user-app/user-connections';
+import UserMessages from '@/pages/user-app/user-messages';
+import UserProfile from '@/pages/user-app/user-profile';
+import UserProjects from '@/pages/user-app/user-projects';
+import UserSettings from '@/pages/user-app/user-settings';
 import { CometChat } from "@cometchat-pro/chat";
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import dayjs from 'dayjs';
 import { mapActions, mapGetters } from 'vuex';
 
 export default {
-  name: "UserProfile",
+  name: "UserApp",
   data() {
     return {
       user: {},
@@ -26,7 +31,12 @@ export default {
   },
   components: {
     FontAwesomeIcon,
-    MessageNotifier
+    MessageNotifier,
+    UserConnections,
+    UserMessages,
+    UserProfile,
+    UserProjects,
+    UserSettings
   },
   computed: {
     ...mapGetters(['getDevUser', 'getDevUserByUsername']),

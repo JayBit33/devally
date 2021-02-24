@@ -34,12 +34,20 @@
     </div>
 
     <div v-if="profileViewActive" class="views">
-      <h1>Update Profile</h1>
+      <user-profile />
     </div>
-    <div v-if="messagesViewActive" class="views"><h1>Messages</h1></div>
-    <div v-if="projectsViewActive" class="views"><h1>Projects</h1></div>
-    <div v-if="connectionsViewActive" class="views"><h1>Connections</h1></div>
-    <div v-if="settingsViewActive" class="views"><h1>Settings</h1></div>
+    <div v-if="messagesViewActive" class="views">
+      <user-messages />
+    </div>
+    <div v-if="projectsViewActive" class="views">
+      <user-projects />
+    </div>
+    <div v-if="connectionsViewActive" class="views">
+      <user-connections :connectionIds="user.connections" />
+    </div>
+    <div v-if="settingsViewActive" class="views">
+      <user-settings />
+    </div>
 
     <!--el-drawer
       title="Messages"

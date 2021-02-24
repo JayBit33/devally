@@ -18,7 +18,11 @@ module.exports = {
     return query;
   },
   getUserById(id) {
-    return knex('users').where('id', id).first();
+    return knex('users')
+          .where('id', id)
+          .join('developers', 'users.id', '=', 'developers.user_id')
+          .select('*')
+          .first();
   },
   getDevUsers() {
     return knex('users')

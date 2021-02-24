@@ -5,7 +5,7 @@
     <div class="user-profile">
       <img :src="require('../../assets/' + user.profile_image)" />
       <h4>{{ fullName }}</h4>
-      <button class="btn">Collaborate</button>
+      <button class="btn">Add Contact</button>
       <button class="btn" @click="openMessageBox">Message</button>
     </div>
     <div class="user-info">

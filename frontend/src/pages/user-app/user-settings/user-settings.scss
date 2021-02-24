@@ -1,3 +1,167 @@
 // (c) Waveybits Inc. <2021>
 // ALL RIGHTS RESERVED
 @import '../../../scss/variables.scss';
+
+.user-settings {
+  font-family: 'Montserrat';
+  margin: 2rem 7rem;
+  margin-left: 7rem;
+  &_icon {
+    font-size: 2rem;
+    position: relative;
+    top: 4.25rem;
+  }
+  &_title {
+    margin-top: 2rem;
+    margin-bottom: 4rem;
+    margin-left: 3rem;
+  }
+
+  &_grid {
+    display: grid;
+    grid-template-rows: 2fr;
+    grid-template-columns: 2fr 2fr;
+    row-gap: 8rem;
+    column-gap: 14rem;
+    max-width: 1280px;
+    margin: 4rem auto;
+    padding: 2rem;
+
+    &_notifications {
+      h2 {
+        font-family: 'Montserrat';
+        font-size: 2rem;
+        font-weight: 600;
+        margin-bottom: 0;
+      }
+
+      h4 {
+        color: $subtext;
+        font-size: 1rem;
+        margin-top: .75rem;
+        margin-left: .125rem;
+      }
+
+      .option1, .option2, .option3 {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        color: $text;
+      }
+
+    }
+    &_subscriptions {
+      h2 {
+        font-family: 'Montserrat';
+        font-size: 2rem;
+        font-weight: 600;
+        margin-bottom: 0;
+      }
+
+      h4 {
+        color: $subtext;
+        font-size: 1rem;
+        margin-top: .75rem;
+        margin-left: .125rem;
+      }
+
+      .option1, .option2, .option3 {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        color: $text;
+        font-size: 1rem;
+      }
+
+    }
+    &_billing {
+      h2 {
+        font-family: 'Montserrat';
+        font-size: 2rem;
+        font-weight: 600;
+        margin-bottom: 0;
+      }
+
+      h4 {
+        color: $subtext;
+        font-size: 1rem;
+        margin-top: .75rem;
+        margin-left: .125rem;
+      }
+      h5 {
+        font-size: 1.125rem;
+        margin-bottom: 1.5rem;
+      }
+      table {
+        table-layout: fixed;
+        tr {
+          margin-bottom: 1rem;
+        }
+        td {
+          padding-top: 1rem;
+
+          input {
+            margin-top: .5rem;
+          }
+        }
+        label {
+          font-family: inherit;
+          color: $text;
+          font-size: 1rem;
+        }
+        input {
+          border: 1px solid $input-border;
+          padding: .5rem;
+          margin-right: 2rem;
+        }
+      }
+    }
+    &_password {
+      h2 {
+        font-family: 'Montserrat';
+        font-size: 2rem;
+        font-weight: 600;
+        margin-bottom: 0;
+      }
+
+      h4 {
+        color: $subtext;
+        font-size: 1rem;
+        margin-top: .75rem;
+        margin-left: .25rem;
+      }
+
+      .update_btn {
+        font-family: 'Montserrat';
+        font-size: 1rem;
+        font-weight: 500;
+        background-color: $btn;
+        color: white;
+        border-radius: 1rem;
+        border: none;
+        outline: none;
+        padding: 1rem;
+        margin-top: 1rem;
+        cursor: pointer;
+      }
+
+    }
+  }
+
+  .save_settings {
+    font-family: 'Montserrat';
+    font-size: 1rem;
+    font-weight: 500;
+    background-color: $btn;
+    color: white;
+    border-radius: 1rem;
+    border: none;
+    outline: none;
+    padding: 1rem;
+    margin-top: 1rem;
+    cursor: pointer;
+    position: absolute;
+    bottom: 8rem;
+    right: 5vw;
+  }
+}

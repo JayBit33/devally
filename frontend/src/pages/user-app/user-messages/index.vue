@@ -1,7 +1,9 @@
 <!-- (c) Waveybits Inc. <2021> -->
 <!-- ALL RIGHTS RESERVED -->
 <template>
-  <h1>User Messages</h1>
+  <div class="user-messages">
+    <h1 class="title">User Messages</h1>
+  </div>
 </template>
 
 <script src="./user-messages.js"></script>

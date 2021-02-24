@@ -55,6 +55,16 @@ Vue.use(Vuex)
                     }).catch(error => reject(error));
             })
         },
+        fetchUserById({commit}, id) {
+            return new Promise((resolve, reject) => {
+                usersAPI.get(`/user-by-id/${id}`)
+                    .then(res => {
+                        commit('');
+                        console.log('res', res.data);
+                        resolve(res.data);
+                    }).catch(error => reject(error));
+            })
+        },
         fetchProjects({commit}) {
             return new Promise((resolve, reject) => {
                 projectsAPI.get(`/`)

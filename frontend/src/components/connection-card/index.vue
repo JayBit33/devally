@@ -1,0 +1,19 @@
+<!-- (c) Waveybits Inc. <2021> -->
+<!-- ALL RIGHTS RESERVED -->
+<template>
+  <div class="connection-card">
+    <img class="connection-card-avatar" :src="require('../../assets/' + connection.profile_image)" />
+    <h4 class="connection-card-fullname">{{ fullName }}</h4>
+    <h5 class="connection-card-accountType">{{ accountType }}</h5>
+    <ul class="roles">
+      <li v-for="(role,i) in roles" :key="i">{{role}}</li>
+    </ul>
+    <div class="actions">
+      <button class="btn">Message</button>
+      <font-awesome-icon :icon="['fas','trash-alt']" class="delete-icon"></font-awesome-icon>
+    </div>
+  </div>
+</template>
+
+<script src="./connection-card.js"></script>
+<style src="./connection-card.scss" lang="scss" scoped></style>

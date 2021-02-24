@@ -1,7 +1,9 @@
 <!-- (c) Waveybits Inc. <2021> -->
 <!-- ALL RIGHTS RESERVED -->
 <template>
-  <h1>User Profile</h1>
+  <div class="user-profile">
+    <h1 class="title">User Profile</h1>
+  </div>
 </template>
 
 <script src="./user-profile.js"></script>

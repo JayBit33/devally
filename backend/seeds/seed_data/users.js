@@ -41,7 +41,7 @@ module.exports = [
     rating: 5,
     user_type_id: 3,
     profile_image: 'profile14.jpg',
-    connections: JSON.stringify([3,9,14]),
+    connections: JSON.stringify([4,9,14]),
     notification_settings: JSON.stringify({ messages: true, added_connection: true, project_invitation: true }),
     subscription_settings: JSON.stringify({ featured_projects: true, weekly_news: true, updates: true })
   },
@@ -67,7 +67,7 @@ module.exports = [
     rating: 4,
     user_type_id: 3,
     profile_image: 'profile12.jpg',
-    connections: JSON.stringify([5,10,15]),
+    connections: JSON.stringify([3,4,9,10,11,12,13,14,15]),
     notification_settings: JSON.stringify({ messages: true, added_connection: true, project_invitation: true }),
     subscription_settings: JSON.stringify({ featured_projects: true, weekly_news: true, updates: true })
   },
@@ -80,7 +80,7 @@ module.exports = [
     rating: 5,
     user_type_id: 3,
     profile_image: 'profile6.jpg',
-    connections: JSON.stringify([6,11,4]),
+    connections: JSON.stringify([7,11,4]),
     notification_settings: JSON.stringify({ messages: true, added_connection: true, project_invitation: true }),
     subscription_settings: JSON.stringify({ featured_projects: true, weekly_news: true, updates: true })
   },
