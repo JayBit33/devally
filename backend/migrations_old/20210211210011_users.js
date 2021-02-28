@@ -26,3 +26,10 @@ exports.down = function(knex) {
 // run migrations command: knex migrate:latest
 // create seed for table command: knex seed:make 01_tablename
 // run seed command: knex seed:run
+
+
+// update tables
+// migrate:rollback -> migrate:latest -> seed:run
+
+// run specific file
+// knex seed:run --specific=01_users.js

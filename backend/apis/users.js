@@ -4,11 +4,11 @@ const express = require('express');
 const router = express.Router();
 const queries = require('../db/user-queries');
 
-router.get('/', (req, res) => {
-  queries.getAllUsers().then(users => {
-    res.json(users);
-  })
-})
+// router.get('/', (req, res) => {
+//   queries.getAllUsers().then(users => {
+//     res.json(users);
+//   })
+// })
 
 router.get('/query', (req, res) => {
   const { username, rating } = req.query;
@@ -28,7 +28,7 @@ function validUser(user) {
   return hasUsername && hasPassword && hasFirstname && hasLastname;
 }
 
-router.post('/', (req, res, next) => {
+router.post('/create-user', (req, res, next) => {
   if (validUser(req.body)) {
     queries.createUser(req.body).then(user => {
       res.send(user[0]);
@@ -55,11 +55,12 @@ function isValidId(req, res, next) {
   next(new Error('Invalid ID'));
 }
 
-router.get('/:id', isValidId, (req, res, next) => {
+router.get('/user-by-id/:id', isValidId, (req, res, next) => {
   queries.getUserById(req.params.id).then(user => {
     if (user) {
       res.json(user);
     } else {
+      console.log('no user')
       res.status(404);
       next(new Error('User Does Not Exist'))
     }

@@ -2,13 +2,18 @@
 // ALL RIGHTS RESERVED
 
 import MessageNotifier from '@/components/message-notifier';
+import UserConnections from '@/pages/user-app/user-connections';
+import UserMessages from '@/pages/user-app/user-messages';
+import UserProfile from '@/pages/user-app/user-profile';
+import UserProjects from '@/pages/user-app/user-projects';
+import UserSettings from '@/pages/user-app/user-settings';
 import { CometChat } from "@cometchat-pro/chat";
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import dayjs from 'dayjs';
 import { mapActions, mapGetters } from 'vuex';
 
 export default {
-  name: "UserProfile",
+  name: "UserApp",
   data() {
     return {
       user: {},
@@ -16,15 +21,32 @@ export default {
       drawerDirection: 'rtl',
       id: this.$route.params.id,
       isLoading: true,
-      messages: []
+      messages: [],
+      messagesViewActive: false,
+      projectsViewActive: false,
+      connectionsViewActive: false,
+      settingsViewActive: false,
+      profileViewActive: false
     };
   },
   components: {
     FontAwesomeIcon,
-    MessageNotifier
+    MessageNotifier,
+    UserConnections,
+    UserMessages,
+    UserProfile,
+    UserProjects,
+    UserSettings
   },
   computed: {
     ...mapGetters(['getDevUser', 'getDevUserByUsername']),
+    accountType() {
+      return this.user.user_type_id === 1
+      ? 'developer'
+      : this.user.user_type_id === 2
+      ? 'visionary'
+      : 'developer | visionary'
+    },
     fullName() {
       return `${this.user.firstname} ${this.user.lastname}`;
     },
@@ -92,12 +114,39 @@ export default {
         return this.getDevUserByUsername(sendersUsername).profile_image;
       }
     },
-     handleClose(done) {
+    handleClose(done) {
       this.$confirm('Are you sure you want to close this?')
         .then(() => {
           done();
         })
         .catch(() => {});
+    },
+    updateView(view) {
+      this.messagesViewActive = false;
+      this.projectsViewActive = false;
+      this.connectionsViewActive = false;
+      this.settingsViewActive = false;
+      this.profileViewActive = false;
+
+      switch (view) {
+        case 'messages':
+          this.messagesViewActive = true;
+          break;
+        case 'projects':
+          this.projectsViewActive = true;
+          break;
+        case 'connections':
+          this.connectionsViewActive = true;
+          break;
+        case 'settings':
+          this.settingsViewActive = true;
+          break;
+        case 'profile':
+          this.profileViewActive = true;
+          break;
+        default:
+          break;
+      }
     }
   },
 };

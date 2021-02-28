@@ -114,3 +114,7 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# compiled vanilla js build file after babel transpile
+server-build.js
+dist

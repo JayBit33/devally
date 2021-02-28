@@ -2,7 +2,7 @@
 // ALL RIGHTS RESERVED
 import Vue from 'vue';
 import Vuex from 'vuex';
-import {authAPI, userAPI} from '@/api/apis';
+import {authAPI, usersAPI, projectsAPI } from '@/api/apis';
 import { CometChat } from "@cometchat-pro/chat";
 
 Vue.use(Vuex)
@@ -11,7 +11,8 @@ Vue.use(Vuex)
         devUsers: null,
         loggedIn: false,
         loggedInUser: null,
-        loggedInUserId: 2
+        loggedInUserId: 2,
+        projects: null
     };
 
     const getters = {
@@ -21,6 +22,7 @@ Vue.use(Vuex)
         getCurrentUserId: state => state.loggedInUserId,
         isLoggedIn: state => state.loggedIn,
         getLoggedInUser: state => state.loggedInUser,
+        getProjects: state => state.projects,
 
     };
 
@@ -36,16 +38,39 @@ Vue.use(Vuex)
         },
         updateLoggedInUser(state, user) {
             state.loggedInUser = user;
+        },
+        updateProjects(state, projects) {
+            state.projects = projects;
         }
     };
 
     const actions = {
         fetchDevUsers({commit}) {
             return new Promise((resolve, reject) => {
-                userAPI.get(`/dev-accounts`)
+                usersAPI.get(`/dev-accounts`)
                     .then(res => {
                         console.log('fetchDevUsers', res.data)
                         commit("updateDevUsers", res.data);
+                        resolve(res.data);
+                    }).catch(error => reject(error));
+            })
+        },
+        fetchUserById({commit}, id) {
+            return new Promise((resolve, reject) => {
+                usersAPI.get(`/user-by-id/${id}`)
+                    .then(res => {
+                        commit('');
+                        console.log('res', res.data);
+                        resolve(res.data);
+                    }).catch(error => reject(error));
+            })
+        },
+        fetchProjects({commit}) {
+            return new Promise((resolve, reject) => {
+                projectsAPI.get(`/`)
+                    .then(res => {
+                        console.log('fetchProjects', res.data)
+                        commit("updateProjects", res.data);
                         resolve(res.data);
                     }).catch(error => reject(error));
             })

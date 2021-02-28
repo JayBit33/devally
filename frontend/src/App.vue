@@ -2,7 +2,7 @@
 <!-- ALL RIGHTS RESERVED -->
 <template>
   <div id="main-component">
-    <div class="header">
+    <div v-if="showHeaderFooter" class="header">
       <nav>
         <router-link to="/" class="logo link">DevAlly</router-link>
         <ul>
@@ -18,11 +18,11 @@
     <user-options-dropdown v-if="optionsViewable" @optionSelected="closeOptions" />
 
     <div class="page-content">
-      <breadcrumbs />
+      <breadcrumbs v-if="showHeaderFooter" />
       <router-view />
     </div>
 
-    <div class="footer">
+    <div v-if="showHeaderFooter" class="footer">
       <p>&copy; DevAlly 2021</p>
     </div>
   </div>
@@ -53,6 +53,9 @@ export default {
     },
     username() {
       return this.getLoggedInUser.username;
+    },
+    showHeaderFooter() {
+      return this.$route.name === 'Profile' ? false : true
     }
   },
   methods: {
@@ -160,6 +163,7 @@ html {
   background-image: url('./assets/devs_bg.png');
   background-repeat: no-repeat;
   background-size: cover;
+  min-height: 80vh;
   z-index: 1;
   // margin-left: 7rem;
   // margin-right: 7rem;
@@ -176,5 +180,37 @@ html {
   padding-top: 11rem;
   margin-top: 0;
   margin-bottom: 0;
+}
+
+.fade-in {
+animation: fadeIn ease 7s;
+-webkit-animation: fadeIn ease 7s;
+-moz-animation: fadeIn ease 7s;
+-o-animation: fadeIn ease 7s;
+-ms-animation: fadeIn ease 7s;
+}
+@keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
+}
+
+@-moz-keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
+}
+
+@-webkit-keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
+}
+
+@-o-keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
+}
+
+@-ms-keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
 }
 </style>

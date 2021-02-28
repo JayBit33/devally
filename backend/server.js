@@ -4,6 +4,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const app = express();
 const users = require('./apis/users');
+const projects = require('./apis/projects');
 const auth = require('./auth');
 const port = process.env.PORT || 3000;
 
@@ -18,6 +19,7 @@ app.use(express.json());
 
 app.use('/auth', auth);
 app.use('/api/v1/users', users);
+app.use('/api/v1/projects', projects);
 
 app.use((err, req, res, next) => {
   res.status(err.status || 500);

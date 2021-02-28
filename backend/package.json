@@ -4,12 +4,17 @@
   "description": "nodejs backend for devally",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon",
-    "test": "(dropdb --if-exists test-devally-main && createdb test-devally-main) && NODE_ENV=test mocha"
+    "dev": "nodemon --exec babel-node server.js",
+    "test": "(dropdb --if-exists test-devally-main && createdb test-devally-main) && NODE_ENV=test mocha",
+    "build": "babel backend -out-dir dist",
+    "start": "node /dist/server.js"
   },
   "author": "Waveybits inc.",
   "license": "ISC",
   "dependencies": {
+    "@babel/core": "^7.12.16",
+    "@babel/node": "^7.12.16",
+    "@babel/preset-env": "^7.12.16",
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
@@ -19,6 +24,7 @@
     "pg": "^8.5.1"
   },
   "devDependencies": {
+    "@babel/cli": "^7.12.16",
     "chai": "^4.2.0",
     "mocha": "^8.2.1",
     "supertest": "^6.1.1"

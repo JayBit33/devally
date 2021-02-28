@@ -9,11 +9,15 @@ exports.up = function(knex) {
     table.string('name');
     table.string('category');
     table.string('description');
+    table.boolean('is_public');
     table.boolean('is_seeking_allys').defaultTo(true);
     table.json('hiring_options') // must use JSON.stringify(arraydata) when setting value
     table.json('viewable_regions'); // must use JSON.stringify(arraydata) when setting value
     table.json('funding_types'); // must use JSON.stringify(arraydata) when setting value
+    table.boolean('is_featured');
     table.timestamp('date_created').defaultTo(knex.fn.now());
+
+    // table.boolean('ispublic')
   })
 };
 

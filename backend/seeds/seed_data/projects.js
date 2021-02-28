@@ -15,7 +15,9 @@ module.exports = [
     description: 'Helps find homes for stray cats',
     hiring_options: JSON.stringify([...hiring_options]),
     viewable_regions: JSON.stringify([regions[0],regions[4]]),
-    funding_types: JSON.stringify([funding_types[0]])
+    funding_types: JSON.stringify([funding_types[0]]),
+    is_public: true,
+    is_featured: true,
   },
   {
     creator_id: 3,
@@ -25,7 +27,9 @@ module.exports = [
     description: 'Send money to anyone anywhere anytime.',
     hiring_options: JSON.stringify([hiring_options[0]]),
     viewable_regions: JSON.stringify([regions[0]]),
-    funding_types: JSON.stringify([funding_types[1]])
+    funding_types: JSON.stringify([funding_types[1]]),
+    is_public: true,
+    is_featured: true,
   },
   {
     creator_id: 5,
@@ -35,7 +39,10 @@ module.exports = [
     description: 'Collaborate with team by assigning tasks to each member and tracking progress.',
     hiring_options: JSON.stringify([hiring_options[1]]),
     viewable_regions: JSON.stringify([regions[0],regions[1]]),
-    funding_types: JSON.stringify([funding_types[2]])
+    funding_types: JSON.stringify([funding_types[2]]),
+    is_seeking_allys: false,
+    is_public: true,
+    is_featured: false,
   },
   {
     creator_id: 6,
@@ -45,7 +52,9 @@ module.exports = [
     description: 'Buy any product and have it at your door tomorrow',
     hiring_options: JSON.stringify([...hiring_options]),
     viewable_regions: JSON.stringify([...regions]),
-    funding_types: JSON.stringify([funding_types[3]])
+    funding_types: JSON.stringify([funding_types[3]]),
+    is_public: false,
+    is_featured: true,
   },
   {
     creator_id: 16,
@@ -55,6 +64,8 @@ module.exports = [
     description: 'Find all your favorite movies, music and entertainment in one place.',
     hiring_options: JSON.stringify([...hiring_options]),
     viewable_regions: JSON.stringify([...regions]),
-    funding_types: JSON.stringify([funding_types[4]])
+    funding_types: JSON.stringify([funding_types[4]]),
+    is_public: true,
+    is_featured: true,
   }
 ]

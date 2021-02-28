@@ -1,0 +1,62 @@
+// (c) Waveybits Inc. <2021>
+// ALL RIGHTS RESERVED
+@import '../../../scss/variables.scss';
+
+.user-connections {
+  margin-left: 0rem;
+  .icon {
+    font-size: 2rem;
+    position: relative;
+    top: 6.125rem;
+    left: 8rem;
+
+  }
+  .title {
+    margin-top: 4rem;
+    margin-left: 11rem;
+  }
+
+  .connections {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 4rem;
+  }
+
+  .nav {
+    list-style-type: none;
+    padding: 0;
+    width: 10rem;
+    position: absolute;
+    right: 9rem;
+    top: 3.75rem;
+    color: $secondary;
+    display: inline;
+
+    li {
+      text-decoration: none;
+      padding: .5rem .25rem;
+      color: $secondary;
+      display: inline;
+
+      &:hover {
+        color: $button-primary;
+      }
+      .icon {
+        font-size: 1.25rem;
+        color: white;
+        padding-right: 1.5rem;
+        margin-left: .5rem;
+        position: relative;
+        top: .2rem;
+        color: $secondary;
+      }
+      .accountIcon {
+        margin-right: -.125rem;
+      }
+      .signoutIcon {
+        margin-right: -.25rem;
+      }
+    }
+  }
+}
