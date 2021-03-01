@@ -5,11 +5,14 @@
 
 .user-app {
   display: flex;
+  height: 100vh;
+  position: relative;
+  overflow-y: scroll;
 
   &_sidebar {
     width: 14rem;
-    height: 100vh;
     padding: 2rem;
+    height: max-content;
     background-color: $sidebar_bg;
     // box-shadow: 3px 0px 15px -2px rgba(0,0,0,0.54);
     // -webkit-box-shadow: 3px 0px 15px -2px rgba(0,0,0,0.54);
@@ -93,10 +96,12 @@
   }
 
   .daily-message {
-    position: absolute;
-    top: 30%;
+    position: fixed;
+    top: 50%;
     left: calc(50% - 420px);
+    transform: translate(0%, -50%);
     text-align: center;
+    pointer-events: none;
 
     h2 {
       font-size: 4rem;
