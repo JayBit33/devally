@@ -1,0 +1,63 @@
+@import '../../scss/variables.scss';
+
+.user-modal {
+  margin: 0 auto;
+  width: 80%;
+  background-color: $message_bg;
+  border: 1px solid $border;
+  text-align: center;
+  padding: 2rem 0;
+  position: relative;
+
+  &__title {
+    margin: .25rem 0;
+    h4 {
+      font-family: 'Montserrat';
+      font-size: 1.5rem;
+      margin: 0;
+    }
+  }
+
+  &__button {
+    background-color: $btn;
+    width: max-content;
+    margin: .25rem auto;
+    padding: .5rem 2rem;
+    border-radius: 50rem;
+    transition: .3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $message_bg;
+
+    .icon {
+      margin: 0 .25rem;
+      font-size: 1rem;
+    }
+
+    h4 {
+      font-family: 'Montserrat';
+      margin: 0 .25rem;
+      line-height: 100%;
+      font-size: 1rem;
+      font-weight: 400;
+    }
+
+    &:hover {
+      cursor: pointer;
+      background-color: $button-primary_hover;
+    }
+  }
+
+  &__close {
+    position: absolute;
+    top: .5rem;
+    right: .5rem;
+    font-size: 1.25rem;
+    transition: .3s;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
