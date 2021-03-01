@@ -5,9 +5,8 @@
 
 .user-app {
   display: flex;
-  height: 100vh;
-  position: relative;
-  overflow-y: scroll;
+  min-height: 100vh;
+  z-index: 2;
 
   &_sidebar {
     width: 14rem;
@@ -101,7 +100,7 @@
     left: calc(50% - 420px);
     transform: translate(0%, -50%);
     text-align: center;
-    pointer-events: none;
+    overflow-y: hidden;
 
     h2 {
       font-size: 4rem;
@@ -113,7 +112,12 @@
   }
 
   .views {
-    width: 100%;
+    width: calc(100% - 18rem);
+    height: 100vh;
+    position: fixed;
+    overflow-y: hidden;
+    top: 0;
+    left: 18rem;
     background-color: $user-app_body;
   }
 }
