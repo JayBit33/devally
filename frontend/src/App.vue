@@ -80,6 +80,10 @@ export default {
 
 <style lang="scss">
 
+* {
+  font-family: 'Montserrat';
+}
+
 body,
 html {
   margin: 0;

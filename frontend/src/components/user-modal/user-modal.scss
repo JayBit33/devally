@@ -2,7 +2,8 @@
 
 .user-modal {
   margin: 0 auto;
-  width: 80%;
+  margin-left: 4rem;
+  width: calc(100% - 8rem);
   background-color: $message_bg;
   border: 1px solid $border;
   text-align: center;
