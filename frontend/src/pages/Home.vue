@@ -73,7 +73,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../scss/variables';
 
 .main {
   max-width: 1780px;
