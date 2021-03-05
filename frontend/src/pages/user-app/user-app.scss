@@ -8,8 +8,11 @@
 
   &_sidebar {
     width: 14rem;
-    padding: 2rem;
-    height: max-content;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 0 2rem;
+    height: 100vh;
     background-color: $sidebar_bg;
     // box-shadow: 3px 0px 15px -2px rgba(0,0,0,0.54);
     // -webkit-box-shadow: 3px 0px 15px -2px rgba(0,0,0,0.54);
@@ -19,7 +22,7 @@
     &-avatar {
       width: 14rem;
       border-radius: 30%;
-      margin: 1rem auto;
+      margin: 2rem auto;
     }
 
     &-fullname {
@@ -43,7 +46,7 @@
     }
 
     &-updateProfile {
-      font-size: 1.2rem;
+      font-size: 1rem;
       color: white;
       padding: .5rem 1rem;
       background-color: transparent;
@@ -51,7 +54,7 @@
       border: 2px solid $sidebar_secondary;
       display: block;
       margin: 0 auto;
-      margin-bottom: 7rem;
+      margin-bottom: 3rem;
 
       &:focus, &:hover, &:active {
         background-color: $sidebar_secondary;
@@ -69,7 +72,7 @@
       padding: 0;
 
       li {
-        margin-bottom: 8rem;
+        margin-bottom: 2.785rem;
         text-align: center;
         cursor: pointer;
 
@@ -80,12 +83,14 @@
         }
 
         .sidebar-icon {
-          font-size: 3.5rem;
+          font-size: 2.5rem;
           color: white;
+          line-height: 100%;
         }
 
         h4 {
-          font-size: 1.25rem;
+          margin: .5rem;
+          font-size: 1rem;
           color: white;
         }
       }
@@ -111,9 +116,10 @@
 
   .views {
     width: calc(100% - 18rem);
-    height: 100vh;
-    position: fixed;
-    overflow-y: hidden;
+    min-height: calc(100vh - 3rem);
+    height: max-content;
+    padding-bottom: 3rem;
+    position: absolute;
     top: 0;
     left: 18rem;
     background-color: $user-app_body;
