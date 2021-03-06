@@ -3,8 +3,20 @@
 <template>
   <div class="user-connections">
     <ul class="nav">
-      <router-link to="/" class="link" ><li>Site Home</li></router-link>
-      <router-link to="/" class="link" ><li @click="$emit('optionSelected', 'signout')">Sign Out</li></router-link>
+      <div class="home-link">
+        <router-link to="/" class="link" >
+          <li>
+            <font-awesome-icon :icon="['fas','home']" class="nav-icon"></font-awesome-icon>
+            <span>Site Home</span>
+          </li>
+        </router-link>
+      </div>
+      <div class="sign-out-link">
+        <li @click="$emit('optionSelected', 'signout')">
+          <font-awesome-icon :icon="['fas','power-off']" class="nav-icon"></font-awesome-icon>
+          <span>Sign Out</span>
+        </li>
+      </div>
     </ul>
     <font-awesome-icon :icon="['fas','user-friends']" class="icon"></font-awesome-icon>
     <h1 class="title">User Connections</h1>
