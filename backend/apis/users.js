@@ -1,19 +1,24 @@
 // (c) Waveybits Inc. <2021>
 // ALL RIGHTS RESERVED
-const express = require('express');
+import express from 'express';
+import queries from '../db/user-queries';
 const router = express.Router();
-const queries = require('../db/user-queries');
 
-// router.get('/', (req, res) => {
-//   queries.getAllUsers().then(users => {
-//     res.json(users);
-//   })
-// })
-
+/**
+ * @swagger
+ * /query:
+ *   get:
+ *     summary: Retrieve a list of users by a given parameter
+ *     description: Retrieve a list of users
+*/
 router.get('/query', (req, res) => {
   const { username, rating } = req.query;
   queries.getAllByParam({username, rating}).then(users => {
     res.json(users)
+    res.send(200)
+  }).catch(error => {
+    console.log(error)
+    res.send(500)
   })
 })
 
@@ -28,7 +33,14 @@ function validUser(user) {
   return hasUsername && hasPassword && hasFirstname && hasLastname;
 }
 
-router.post('/create-user', (req, res, next) => {
+/**
+ * @swagger
+ * /api/v1/users/create:
+ *   post:
+ *     summary: Create a new user
+ *     description: Create a new user
+*/
+router.post('/create', (req, res, next) => {
   if (validUser(req.body)) {
     queries.createUser(req.body).then(user => {
       res.send(user[0]);
@@ -38,13 +50,27 @@ router.post('/create-user', (req, res, next) => {
   }
 })
 
-router.get('/dev-accounts', (req, res) => {
+/**
+ * @swagger
+ * /api/v1/users/devs:
+ *   get:
+ *     summary: Retrieve all dev users
+ *     description: Retrieve all users that are listed as developer accounts
+*/
+router.get('/devs', (req, res) => {
   queries.getDevUsers().then(users => {
     res.send(users);
   })
 })
 
-router.get('/customers', (req, res) => {
+/**
+ * @swagger
+ * /api/v1/users/visionaries:
+ *   get:
+ *     summary: Retrieve all visionary users
+ *     description: Retrieve all users that are listed as visionary accounts
+*/
+router.get('/visionaries', (req, res) => {
   queries.getCustomers().then(users => {
     res.json(users);
   })
@@ -55,7 +81,14 @@ function isValidId(req, res, next) {
   next(new Error('Invalid ID'));
 }
 
-router.get('/user-by-id/:id', isValidId, (req, res, next) => {
+/**
+ * @swagger
+ * /api/v1/users/user/:id:
+ *   get:
+ *     summary: Retrieve user by id
+ *     description: Retrieve single user by id
+*/
+router.get('/user/:id', isValidId, (req, res, next) => {
   queries.getUserById(req.params.id).then(user => {
     if (user) {
       res.json(user);
@@ -67,6 +100,13 @@ router.get('/user-by-id/:id', isValidId, (req, res, next) => {
   })
 })
 
+/**
+ * @swagger
+ * /api/v1/users/:id:
+ *   put:
+ *     summary: Update user record by user id
+ *     description: Update user record by user id
+*/
 router.put('/:id', isValidId, (req, res, next) => {
   queries.updateUserById(req.params.id, req.body).then(user => {
     if (user) {
@@ -78,6 +118,13 @@ router.put('/:id', isValidId, (req, res, next) => {
   })
 })
 
+/**
+ * @swagger
+ * /api/v1/users/:id:
+ *   delete:
+ *     summary: Delete user record by user id
+ *     description: Delete a user
+*/
 router.delete('/:id', isValidId, (req, res, next) => {
   queries.deleteUserById(req.params.id).then(() => {
     res.json({
@@ -85,6 +132,12 @@ router.delete('/:id', isValidId, (req, res, next) => {
     })
   })
 })
+
+// router.get('/', (req, res) => {
+//   queries.getAllUsers().then(users => {
+//     res.json(users);
+//   })
+// })
 
 // Any route below this point will error out "Invalid Id"
 

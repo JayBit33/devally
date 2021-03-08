@@ -21,7 +21,10 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "knex": "^0.21.16",
-    "pg": "^8.5.1"
+    "pg": "^8.5.1",
+    "swagger-autogen": "^2.6.9",
+    "swagger-jsdoc": "5.0.1",
+    "swagger-ui-express": "^4.1.6"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.16",

@@ -1,12 +1,15 @@
-const express = require("express");
-const cors = require("cors");
-const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
-const app = express();
-const users = require('./apis/users');
-const projects = require('./apis/projects');
-const auth = require('./auth');
+import express from 'express';
+import cors from 'cors'
+import cookieParser from 'cookie-parser';
+import bodyParser from 'body-parser';
+import swaggerJsDoc from 'swagger-jsdoc';
+import swaggerUi from 'swagger-ui-express';
+import users from './apis/users';
+import projects from './apis/projects';
+import auth from './auth';
+
 const port = process.env.PORT || 3000;
+const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -16,6 +19,37 @@ app.use(cors({
   origin: 'http://localhost:8081'
 }));
 app.use(express.json());
+
+
+const swaggerDefinition = {
+  openapi: '3.0.0',
+  info: {
+    title: 'Dev API',
+    version: '1.0.0',
+    description: 'REST API for DevAlly.',
+    license: {
+      name: '@copyright Waveybits',
+    },
+  },
+  servers: [
+    {
+      url: 'http://localhost:3000',
+      description: 'Development server',
+    },
+    // add projection server when available
+    // {
+    //   url: 'http://localhost:3000',
+    //   description: 'Development server',
+    // },
+  ],
+};
+
+const options = {
+  swaggerDefinition,
+  apis: ['./apis/*.js', './auth/*.js']
+};
+const swaggerSpec = swaggerJsDoc(options);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use('/auth', auth);
 app.use('/api/v1/users', users);
@@ -28,6 +62,7 @@ app.use((err, req, res, next) => {
     error: req.app.get('env') === 'development' ? err : {}
   })
 })
+
 
 app.listen(port, () => console.log('server listening...'));
 
