@@ -24,7 +24,7 @@ app.use(express.json());
 const swaggerDefinition = {
   openapi: '3.0.0',
   info: {
-    title: 'Dev API',
+    title: 'DevAlly API',
     version: '1.0.0',
     description: 'REST API for DevAlly.',
     license: {
