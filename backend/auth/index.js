@@ -21,6 +21,39 @@ function validUser(user) {
   return isValidEmail && isValidPassword
 }
 
+/**
+ * @swagger
+ * /signup:
+ *   post:
+ *     summary: Retrieve a list of users by a given parameter
+ *     description: Retrieve a list of users
+ *     responses:
+ *       200:
+ *         description: signup for devally.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                   id:
+ *                     type: integer
+ *                     description: The user ID for the newly created user.
+ *                     example: 0
+ *                   message:
+ *                     type: string
+ *                     example: 'user successfully created'
+ *       400:
+ *         description: newly created user account failed.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                   message:
+ *                     type: string
+ *                     example: 'Email is taken'
+ *
+*/
 router.post('/signup', (req, res, next) => {
   if (validUser(req.body)) {
     users.getAllByParam({email: req.body.email}).then(user => {
