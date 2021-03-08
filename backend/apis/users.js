@@ -16,44 +16,41 @@ const router = express.Router();
  *         content:
  *           application/json:
  *             schema:
- *               type: object
- *               properties:
- *                 users:
- *                   type: array
- *                   items:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                     type: integer
+ *                     description: The user ID.
+ *                     example: 0
+ *                   username:
+ *                     type: string
+ *                     example: 'bossman'
+ *                   email:
+ *                     type: string
+ *                     example: 'bossman@devally.com'
+ *                   firstname:
+ *                     type: string
+ *                     example: 'Boss'
+ *                   lastname:
+ *                     type: string
+ *                     example: 'Man'
+ *                   user_type_id:
+ *                     type: integer
+ *                     example: 1
+ *                   profile_image:
+ *                     type: string
+ *                     example: 'profile12351.png'
+ *                   connections:
+ *                     type: array
+ *                     example: [1,3,21]
+ *                   notification_settings:
  *                     type: object
- *                     properties:
- *                       id:
- *                         type: integer
- *                         description: The user ID.
- *                         example: 0
- *                       username:
- *                         type: string
- *                         example: 'bossman'
- *                       email:
- *                         type: string
- *                         example: 'bossman@devally.com'
- *                       firstname:
- *                         type: string
- *                         example: 'Boss'
- *                       lastname:
- *                         type: string
- *                         example: 'Man'
- *                       user_type_id:
- *                         type: integer
- *                         example: 1
- *                       profile_image:
- *                         type: string
- *                         example: 'profile12351.png'
- *                       connections:
- *                         type: array
- *                         example: [1,3,21]
- *                       notification_settings:
- *                         type: object
- *                         example: { messages: true, added_connection: true, project_invitation: true }
- *                       subscription_settings:
- *                         type: object
- *                         example: { featured_projects: true, weekly_news: true, updates: true }
+ *                     example: { messages: true, added_connection: true, project_invitation: true }
+ *                   subscription_settings:
+ *                     type: object
+ *                     example: { featured_projects: true, weekly_news: true, updates: true }
 */
 router.get('/query', (req, res) => {
   const { username, rating } = req.query;
@@ -145,44 +142,41 @@ router.post('/create', (req, res, next) => {
  *         content:
  *           application/json:
  *             schema:
- *               type: object
- *               properties:
- *                 users:
- *                   type: array
- *                   items:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                     type: integer
+ *                     description: The user ID.
+ *                     example: 0
+ *                   username:
+ *                     type: string
+ *                     example: 'bossman'
+ *                   email:
+ *                     type: string
+ *                     example: 'bossman@devally.com'
+ *                   firstname:
+ *                     type: string
+ *                     example: 'Boss'
+ *                   lastname:
+ *                     type: string
+ *                     example: 'Man'
+ *                   user_type_id:
+ *                     type: integer
+ *                     example: 1
+ *                   profile_image:
+ *                     type: string
+ *                     example: 'profile12351.png'
+ *                   connections:
+ *                     type: array
+ *                     example: [1,3,21]
+ *                   notification_settings:
  *                     type: object
- *                     properties:
- *                       id:
- *                         type: integer
- *                         description: The user ID.
- *                         example: 0
- *                       username:
- *                         type: string
- *                         example: 'bossman'
- *                       email:
- *                         type: string
- *                         example: 'bossman@devally.com'
- *                       firstname:
- *                         type: string
- *                         example: 'Boss'
- *                       lastname:
- *                         type: string
- *                         example: 'Man'
- *                       user_type_id:
- *                         type: integer
- *                         example: 1
- *                       profile_image:
- *                         type: string
- *                         example: 'profile12351.png'
- *                       connections:
- *                         type: array
- *                         example: [1,3,21]
- *                       notification_settings:
- *                         type: object
- *                         example: { messages: true, added_connection: true, project_invitation: true }
- *                       subscription_settings:
- *                         type: object
- *                         example: { featured_projects: true, weekly_news: true, updates: true }
+ *                     example: { messages: true, added_connection: true, project_invitation: true }
+ *                   subscription_settings:
+ *                     type: object
+ *                     example: { featured_projects: true, weekly_news: true, updates: true }
 */
 router.get('/devs', (req, res) => {
   queries.getDevUsers().then(users => {
@@ -202,44 +196,41 @@ router.get('/devs', (req, res) => {
  *         content:
  *           application/json:
  *             schema:
- *               type: object
- *               properties:
- *                 users:
- *                   type: array
- *                   items:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                     type: integer
+ *                     description: The user ID.
+ *                     example: 0
+ *                   username:
+ *                     type: string
+ *                     example: 'bossman'
+ *                   email:
+ *                     type: string
+ *                     example: 'bossman@devally.com'
+ *                   firstname:
+ *                     type: string
+ *                     example: 'Boss'
+ *                   lastname:
+ *                     type: string
+ *                     example: 'Man'
+ *                   user_type_id:
+ *                     type: integer
+ *                     example: 1
+ *                   profile_image:
+ *                     type: string
+ *                     example: 'profile12351.png'
+ *                   connections:
+ *                     type: array
+ *                     example: [1,3,21]
+ *                   notification_settings:
  *                     type: object
- *                     properties:
- *                       id:
- *                         type: integer
- *                         description: The user ID.
- *                         example: 0
- *                       username:
- *                         type: string
- *                         example: 'bossman'
- *                       email:
- *                         type: string
- *                         example: 'bossman@devally.com'
- *                       firstname:
- *                         type: string
- *                         example: 'Boss'
- *                       lastname:
- *                         type: string
- *                         example: 'Man'
- *                       user_type_id:
- *                         type: integer
- *                         example: 1
- *                       profile_image:
- *                         type: string
- *                         example: 'profile12351.png'
- *                       connections:
- *                         type: array
- *                         example: [1,3,21]
- *                       notification_settings:
- *                         type: object
- *                         example: { messages: true, added_connection: true, project_invitation: true }
- *                       subscription_settings:
- *                         type: object
- *                         example: { featured_projects: true, weekly_news: true, updates: true }
+ *                     example: { messages: true, added_connection: true, project_invitation: true }
+ *                   subscription_settings:
+ *                     type: object
+ *                     example: { featured_projects: true, weekly_news: true, updates: true }
 */
 router.get('/visionaries', (req, res) => {
   queries.getCustomers().then(users => {
@@ -266,9 +257,6 @@ function isValidId(req, res, next) {
  *             schema:
  *               type: object
  *               properties:
- *                 user:
- *                   type: object
- *                   properties:
  *                       id:
  *                         type: integer
  *                         description: The user ID.
