@@ -23,11 +23,24 @@ function validUser(user) {
 
 /**
  * @swagger
- * /signup:
+ * auth/signup:
  *   post:
  *     summary: Retrieve a list of users by a given parameter
  *     description: Retrieve a list of users
  *     tags: [{ 'name': 'Auth'}]
+ *     parameters:
+   *       - name: username
+   *         description: User's username.
+   *         in: body
+   *         required: true
+   *         type: string
+   *         example: 'jbit33'
+   *       - name: password
+   *         description: User's password.
+   *         in: body
+   *         required: true
+   *         type: string
+   *         example: 'password123'
  *     responses:
  *       200:
  *         description: signup for devally.
@@ -81,11 +94,24 @@ router.post('/signup', (req, res, next) => {
 
 /**
  * @swagger
- * /login:
+ * auth/login:
  *   post:
  *     summary: Login a user
  *     description: Login a user
  *     tags: [{ 'name': 'Auth'}]
+ *     parameters:
+ *       - name: username
+ *         description: User's username
+ *         required: true
+ *         in: body
+ *         type: string
+ *         example: 'jaybit33'
+ *       - name: password
+ *         description: User's password.
+ *         in: body
+ *         required: true
+ *         type: string
+ *         example: 'password123'
  *     responses:
  *       200:
  *         description: login to devally.
@@ -95,15 +121,24 @@ router.post('/signup', (req, res, next) => {
  *               type: object
  *               properties:
  *                   result:
- *                     type: string
- *                     description: NOT SURE COME BACK TO
- *                     example: not sure
+ *                     type: boolean
+ *                     description: Whether login was succesfull or not
+ *                     example: true
  *                   message:
  *                     type: string
  *                     example: 'login successfull'
  *                   user:
- *                     type: object
- *                     example: User data
+ *                     example:
+ *                         id: 0
+ *                         username: 'bossman'
+ *                         email: 'bossman@devally.com'
+ *                         firstname: 'Boss'
+ *                         lastname: 'Man'
+ *                         user_type_id: 2
+ *                         profile_image: 'profile39012.png'
+ *                         connections: [1,3,21]
+ *                         notification_settings: { messages: true, added_connection: true, project_invitation: true }
+ *                         subscription_settings: { featured_projects: true, weekly_news: true, updates: true }
  *       400:
  *         description: newly created user account failed.
  *         content:

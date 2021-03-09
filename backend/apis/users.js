@@ -6,7 +6,7 @@ const router = express.Router();
 
 /**
  * @swagger
- * /query:
+ * /api/v1/users/query:
  *   get:
  *     summary: Retrieve a list of users by a given parameter
  *     description: Retrieve a list of users
