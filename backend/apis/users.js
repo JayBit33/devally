@@ -10,6 +10,7 @@ const router = express.Router();
  *   get:
  *     summary: Retrieve a list of users by a given parameter
  *     description: Retrieve a list of users
+ *     tags: [{ 'name': 'Users'}]
  *     responses:
  *       200:
  *         description: A list of users.
@@ -80,6 +81,7 @@ function validUser(user) {
  *   post:
  *     summary: Create a new user
  *     description: Create a new user
+ *     tags: [{ 'name': 'Users'}]
  *     responses:
  *       200:
  *         description: User data that was created.
@@ -136,6 +138,7 @@ router.post('/create', (req, res, next) => {
  *   get:
  *     summary: Retrieve all dev users
  *     description: Retrieve all users that are listed as developer accounts
+ *     tags: [{ 'name': 'Users'}]
  *     responses:
  *       200:
  *         description: A list of users with account type of developer.
@@ -190,6 +193,7 @@ router.get('/devs', (req, res) => {
  *   get:
  *     summary: Retrieve all visionary users
  *     description: Retrieve all users that are listed as visionary accounts
+ *     tags: [{ 'name': 'Users'}]
  *     responses:
  *       200:
  *         description: A list of users with account type of visionary.
@@ -249,6 +253,7 @@ function isValidId(req, res, next) {
  *   get:
  *     summary: Retrieve user by id
  *     description: Retrieve single user by id
+ *     tags: [{ 'name': 'Users'}]
  *     responses:
  *       200:
  *         description: User with matching id.
@@ -307,6 +312,7 @@ router.get('/user/:id', isValidId, (req, res, next) => {
  *   put:
  *     summary: Update user record by user id
  *     description: Update user record by user id
+ *     tags: [{ 'name': 'Users'}]
 */
 router.put('/:id', isValidId, (req, res, next) => {
   queries.updateUserById(req.params.id, req.body).then(user => {
@@ -325,6 +331,7 @@ router.put('/:id', isValidId, (req, res, next) => {
  *   delete:
  *     summary: Delete user record by user id
  *     description: Delete a user
+ *     tags: [{ 'name': 'Users'}]
 */
 router.delete('/:id', isValidId, (req, res, next) => {
   queries.deleteUserById(req.params.id).then(() => {

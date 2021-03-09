@@ -27,6 +27,7 @@ function validUser(user) {
  *   post:
  *     summary: Retrieve a list of users by a given parameter
  *     description: Retrieve a list of users
+ *     tags: [{ 'name': 'Auth'}]
  *     responses:
  *       200:
  *         description: signup for devally.
@@ -78,6 +79,43 @@ router.post('/signup', (req, res, next) => {
   }
 });
 
+/**
+ * @swagger
+ * /login:
+ *   post:
+ *     summary: Login a user
+ *     description: Login a user
+ *     tags: [{ 'name': 'Auth'}]
+ *     responses:
+ *       200:
+ *         description: login to devally.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                   result:
+ *                     type: string
+ *                     description: NOT SURE COME BACK TO
+ *                     example: not sure
+ *                   message:
+ *                     type: string
+ *                     example: 'login successfull'
+ *                   user:
+ *                     type: object
+ *                     example: User data
+ *       400:
+ *         description: newly created user account failed.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                   message:
+ *                     type: string
+ *                     example: 'Incorrect Password'
+ *
+*/
 router.post('/login', (req, res, next) => {
   if (validUser(req.body)) {
     users.getAllByParam({email: req.body.email})
