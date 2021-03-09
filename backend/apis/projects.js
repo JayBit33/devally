@@ -23,6 +23,61 @@ router.post('/create-project', (req, res, next) => {
   }
 })
 
+/**
+ * @swagger
+ * /api/v1/projects/:
+ *   get:
+ *     summary: Retrieve all projects
+ *     description: Retrieve a list of projects
+ *     tags: [{ 'name': 'Projects'}]
+ *     responses:
+ *       200:
+ *         description: A list of users.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                     type: integer
+ *                     description: The project ID.
+ *                     example: 3
+ *                   creator_id:
+ *                     type: integer
+ *                     example: 7
+ *                   team_member_ids:
+ *                     type: array
+ *                     example: [11,8,0]
+ *                   name:
+ *                     type: string
+ *                     example: 'Task Manager'
+ *                   category:
+ *                     type: string
+ *                     example: 'Mobile App'
+ *                   description:
+ *                     type: string
+ *                     example: 'Collaborate with team by assigning tasks to each member and tracking progress.'
+ *                   hiring_options:
+ *                     type: array
+ *                     example: ['Shares', 'Flat Rate']
+ *                   viewable_regions:
+ *                     type: array
+ *                     example: ['US','South America','Africa','Asia','Europe']
+ *                   funding_types:
+ *                     type: array
+ *                     example: ['Bootstrapped', 'Venture Capital', 'Friends & Family']
+ *                   is_seeking_allys:
+ *                     type: boolean
+ *                     example: false
+ *                   is_public:
+ *                     type: boolean
+ *                     example: true
+ *                   is_featured:
+ *                     type: boolean
+ *                     example: false
+*/
 router.get('/', (_, res) => {
   queries.getProjects().then(projects => {
     res.json(projects);
