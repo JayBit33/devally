@@ -249,7 +249,7 @@ function isValidId(req, res, next) {
 
 /**
  * @swagger
- * /api/v1/users/user/:id:
+ * /api/v1/users/:id:
  *   get:
  *     summary: Retrieve user by id
  *     description: Retrieve single user by id
@@ -294,7 +294,7 @@ function isValidId(req, res, next) {
  *                         type: object
  *                         example: { featured_projects: true, weekly_news: true, updates: true }
 */
-router.get('/user/:id', isValidId, (req, res, next) => {
+router.get('/:id', isValidId, (req, res, next) => {
   queries.getUserById(req.params.id).then(user => {
     if (user) {
       res.json(user);

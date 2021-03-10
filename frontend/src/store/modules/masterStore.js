@@ -57,7 +57,7 @@ Vue.use(Vuex)
         },
         fetchUserById({commit}, id) {
             return new Promise((resolve, reject) => {
-                usersAPI.get(`/user/${id}`)
+                usersAPI.get(`/${id}`)
                     .then(res => {
                         commit('');
                         console.log('res', res.data);
