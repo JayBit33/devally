@@ -11,19 +11,19 @@ module.exports = {
     }
     return query;
   },
-  getProjectById(id) {
-    return knex('projects').where('id', id).first();
-  },
   getProjects() {
     return knex('projects').select('*')
+  },
+  getProject(id) {
+    return knex('projects').where('id', id).first();
   },
   createProject(project) {
     return knex('projects').insert(project, '*').then(project => project[0]);
   },
-  updateProjectById(id, project) {
-    return knex('projects').where('id', id).update(project, '*');
+  updateProject(id, project) {
+    return knex('projects').where('id', id).update(project, '*').then(project => project[0]);
   },
-  deleteUserById(id) {
+  deleteProject(id) {
     return knex('projects').where('id', id).del();
   }
 }
