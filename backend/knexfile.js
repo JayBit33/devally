@@ -8,7 +8,7 @@ module.exports = {
       // filename: 'postgres://localhost/devally-main'
       host: '127.0.0.1',
       user: 'postgres',
-      password: 'password',
+      password: 'Xeroxparc33',
       database: 'devally-main'
     }
   },

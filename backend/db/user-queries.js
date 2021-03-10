@@ -40,7 +40,7 @@ module.exports = {
     return knex('users').insert(user, '*').then(user => user[0]);
   },
   updateUserById(id, user) {
-    return knex('users').where('id', id).update(user, '*');
+    return knex('users').where('id', id).update(user, '*').then(user => user[0]);
   },
   deleteUserById(id) {
     return knex('users').where('id', id).del();

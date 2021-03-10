@@ -118,3 +118,5 @@ dist
 # compiled vanilla js build file after babel transpile
 server-build.js
 dist
+
+knexfile.js

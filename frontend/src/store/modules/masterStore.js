@@ -47,7 +47,7 @@ Vue.use(Vuex)
     const actions = {
         fetchDevUsers({commit}) {
             return new Promise((resolve, reject) => {
-                usersAPI.get(`/dev-accounts`)
+                usersAPI.get(`/devs`)
                     .then(res => {
                         console.log('fetchDevUsers', res.data)
                         commit("updateDevUsers", res.data);
@@ -57,7 +57,7 @@ Vue.use(Vuex)
         },
         fetchUserById({commit}, id) {
             return new Promise((resolve, reject) => {
-                usersAPI.get(`/user-by-id/${id}`)
+                usersAPI.get(`/${id}`)
                     .then(res => {
                         commit('');
                         console.log('res', res.data);
