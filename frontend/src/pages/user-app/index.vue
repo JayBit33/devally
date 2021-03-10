@@ -33,6 +33,24 @@
       <h3 class="fade-in"> "I'm always doing things I can't do; that's how I get to do them." -Pablo Picasso</h3>
     </div>
 
+    <div class="nav" v-if="profileViewActive || messagesViewActive || projectsViewActive || connectionsViewActive || settingsViewActive">
+      <div class="home-link">
+        <router-link to="/" class="link" >
+          <li>
+            <font-awesome-icon :icon="['fas','home']" class="nav-icon"></font-awesome-icon>
+            <span>Site Home</span>
+          </li>
+        </router-link>
+      </div>
+
+      <div class="sign-out-link">
+        <li @click="$emit('optionSelected', 'signout')">
+          <font-awesome-icon :icon="['fas','power-off']" class="nav-icon"></font-awesome-icon>
+          <span>Sign Out</span>
+        </li>
+      </div>
+    </div>
+
     <div v-if="profileViewActive" class="views">
       <user-profile />
     </div>
