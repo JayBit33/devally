@@ -3,7 +3,7 @@
 <template>
   <div class="user-app" v-loading.fullscreen.lock="isLoading">
     <div class="user-app_sidebar">
-      <img class="user-app_sidebar-avatar" :src="require('../../assets/' + user.profile_image)" />
+      <img v-if="user && user.profile_image" class="user-app_sidebar-avatar" :src="getImage(user.profile_image)" />
       <h4 class="user-app_sidebar-fullname">{{ fullName }}</h4>
       <h5 class="user-app_sidebar-accountType">{{ accountType }}</h5>
       <button class="user-app_sidebar-updateProfile" @click="updateView('profile')">update profile</button>

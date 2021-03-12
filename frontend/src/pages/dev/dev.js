@@ -13,7 +13,17 @@ export default {
       user: {},
       id: this.$route.params.id,
       messageBoxOpen: false,
-      messageSentSuccessful: false
+      messageSentSuccessful: false,
+      portfolioImages: [
+        'project.png',
+        'project.png',
+        'project.png',
+        'project.png',
+        'project.png',
+        'project.png',
+        'project.png',
+        'project.png'
+      ]
     };
   },
   components: {
@@ -37,6 +47,9 @@ export default {
   },
   methods: {
     ...mapActions(['fetchDevUsers']),
+    getImage(imageName) {
+      return require(`@/assets/${imageName}`)
+    },
     messageUser(messageText) {
       this.messageBoxOpen = true;
       var receiverID = this.user.username;
