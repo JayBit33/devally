@@ -53,7 +53,7 @@ module.exports = [
     lastname: 'Hill',
     rating: 5,
     user_type_id: 1,
-    profile_image: 'profil13.jpg',
+    profile_image: 'profile13.jpg',
     connections: null,
     notification_settings: JSON.stringify({ messages: true, added_connection: true, project_invitation: true }),
     subscription_settings: JSON.stringify({ featured_projects: true, weekly_news: true, updates: true })
