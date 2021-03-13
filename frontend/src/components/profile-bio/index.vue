@@ -3,7 +3,7 @@
 <template>
   <div class="profile-bio">
     <div class="user-profile">
-      <img :src="require('@/assets/' + user.profile_image)" />
+      <img v-if="user && user.profile_image" :src="getImage(user.profile_image)" />
       <h4>{{ user.username }}</h4>
       <router-link :to="{ name: 'Dev', params: { id: user.id }}" class="btn">Learn More</router-link>
     </div>

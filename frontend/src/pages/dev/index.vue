@@ -35,14 +35,7 @@
       <div class="user-portfolio">
         <h3>Portfolio</h3>
         <div class="user-portfolio_images">
-          <img :src="require('@/assets/project.png')" />
-          <img :src="require('@/assets/project.png')" />
-          <img :src="require('@/assets/project.png')" />
-          <img :src="require('@/assets/project.png')" />
-          <img :src="require('@/assets/project.png')" />
-          <img :src="require('@/assets/project.png')" />
-          <img :src="require('@/assets/project.png')" />
-          <img :src="require('@/assets/project.png')" />
+          <img v-for="(image, index) in portfolioImages" :key="image + index" :src="getImage(image)" />
         </div>
       </div>
     </div>

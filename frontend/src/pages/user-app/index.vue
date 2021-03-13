@@ -3,7 +3,7 @@
 <template>
   <div class="user-app" v-loading.fullscreen.lock="isLoading">
     <div class="user-app_sidebar">
-      <img class="user-app_sidebar-avatar" :src="require('../../assets/' + user.profile_image)" />
+      <img v-if="user && user.profile_image" class="user-app_sidebar-avatar" :src="getImage(user.profile_image)" />
       <h4 class="user-app_sidebar-fullname">{{ fullName }}</h4>
       <h5 class="user-app_sidebar-accountType">{{ accountType }}</h5>
       <button class="user-app_sidebar-updateProfile" @click="updateView('profile')">update profile</button>
@@ -31,6 +31,24 @@
     <div class="daily-message" v-if="!profileViewActive && !messagesViewActive && !projectsViewActive && !connectionsViewActive && !settingsViewActive">
       <h2 class="fade-in">Happy Wednesday!</h2>
       <h3 class="fade-in"> "I'm always doing things I can't do; that's how I get to do them." -Pablo Picasso</h3>
+    </div>
+
+    <div class="nav" v-if="profileViewActive || messagesViewActive || projectsViewActive || connectionsViewActive || settingsViewActive">
+      <div class="home-link">
+        <router-link to="/" class="link" >
+          <li>
+            <font-awesome-icon :icon="['fas','home']" class="nav-icon"></font-awesome-icon>
+            <span>Site Home</span>
+          </li>
+        </router-link>
+      </div>
+
+      <div class="sign-out-link">
+        <li @click="$emit('optionSelected', 'signout')">
+          <font-awesome-icon :icon="['fas','power-off']" class="nav-icon"></font-awesome-icon>
+          <span>Sign Out</span>
+        </li>
+      </div>
     </div>
 
     <div v-if="profileViewActive" class="views">

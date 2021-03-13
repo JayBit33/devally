@@ -79,6 +79,9 @@ export default {
   },
   methods: {
     ...mapActions(['fetchDevUsers']),
+    getImage(imageName) {
+      return require(`@/assets/${imageName}`)
+    },
     openMessageDrawer() {
       this.drawerOpen = true;
     },

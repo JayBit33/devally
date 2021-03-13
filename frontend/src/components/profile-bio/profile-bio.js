@@ -22,4 +22,9 @@ export default {
       return this.user.categories.map((c) => c).join(", ");
     },
   },
+  methods: {
+    getImage(imageName) {
+      return require(`@/assets/${imageName}`)
+    }
+  }
 };
