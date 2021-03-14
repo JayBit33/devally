@@ -7,22 +7,24 @@
   z-index: 2;
 
   &_sidebar {
-    width: 14rem;
+    width: 18rem;
     position: fixed;
     top: 0;
     left: 0;
-    padding: 0 2rem;
+    padding: 0;
     height: 100vh;
     background-color: $sidebar_bg;
     // box-shadow: 3px 0px 15px -2px rgba(0,0,0,0.54);
     // -webkit-box-shadow: 3px 0px 15px -2px rgba(0,0,0,0.54);
     // -moz-box-shadow: 3px 0px 15px -2px rgba(0,0,0,0.54);
     z-index: 9;
+    display: flex;
+    flex-direction: column;
 
     &-avatar {
       width: 14rem;
       border-radius: 2rem;
-      margin: 2rem auto;
+      margin: 2rem 2rem;
     }
 
     &-fullname {
@@ -54,7 +56,12 @@
       border: 2px solid $sidebar_secondary;
       display: block;
       margin: 0 auto;
-      margin-bottom: 6rem;
+      margin-bottom: 0rem;
+
+      &.active {
+        background-color: $sidebar_secondary;
+        color: $sidebar_icon_active;
+      }
 
       &:focus, &:hover, &:active {
         background-color: $sidebar_secondary;
@@ -66,15 +73,28 @@
     }
 
     &-nav {
-      display: block;
       text-decoration: none;
       list-style-type: none;
       padding: 0;
-
+      margin-bottom: 0;
+      display: flex;
+      justify-content: space-between;
+      align-content: space-between;
+      align-items: center;
+      flex-direction: column;
+      width: 100%;
+      flex-grow: 1;
+      
       li {
-        margin-bottom: 7rem;
+        width: 100%;
+        margin-bottom: 0rem;
+        padding: 3vh 0;
         text-align: center;
         cursor: pointer;
+
+        &.active {
+          background-color: $sidebar_icon_active;
+        }
 
         &:focus, &:hover, &:active {
           .sidebar-icon, h4 {

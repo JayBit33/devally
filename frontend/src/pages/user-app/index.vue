@@ -6,22 +6,22 @@
       <img v-if="user && user.profile_image" class="user-app_sidebar-avatar" :src="getImage(user.profile_image)" />
       <h4 class="user-app_sidebar-fullname">{{ fullName }}</h4>
       <h5 class="user-app_sidebar-accountType">{{ accountType }}</h5>
-      <button class="user-app_sidebar-updateProfile" @click="updateView('profile')">update profile</button>
+      <button class="user-app_sidebar-updateProfile" @click="updateView('profile')" :class="{'active': profileViewActive}">Update Profile</button>
 
       <ul class="user-app_sidebar-nav">
-        <li @click="updateView('messages')">
+        <li @click="updateView('messages')" :class="{'active': messagesViewActive}">
           <font-awesome-icon class="sidebar-icon" :icon="['fas','envelope']" ></font-awesome-icon>
           <h4>Messages</h4>
         </li>
-        <li @click="updateView('projects')">
+        <li @click="updateView('projects')" :class="{'active': projectsViewActive}">
           <font-awesome-icon class="sidebar-icon" :icon="['fas','project-diagram']" ></font-awesome-icon>
           <h4>Projects</h4>
         </li>
-        <li @click="updateView('connections')">
+        <li @click="updateView('connections')" :class="{'active': connectionsViewActive}">
           <font-awesome-icon class="sidebar-icon" :icon="['fas','address-book']" ></font-awesome-icon> <!-- user-friends -->
           <h4>Connections</h4>
         </li>
-        <li @click="updateView('settings')">
+        <li @click="updateView('settings')" :class="{'active': settingsViewActive}">
           <font-awesome-icon class="sidebar-icon" :icon="['fas','cog']" ></font-awesome-icon>
           <h4>Settings</h4>
         </li>
