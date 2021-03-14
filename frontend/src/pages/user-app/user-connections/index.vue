@@ -14,8 +14,19 @@
     />
     <!-- <filter-search  style="position: relative; left: 615px; top: -1px;" /> -->
     <div class="connections">
-      <connection-card v-for="connection in connections" :connection="connection" :key="connection.id" />
+      <connection-card v-for="connection in connectionsShown" :connection="connection" :key="connection.id" />
     </div>
+
+    <el-pagination
+      v-if="!isLoading"
+      id="pagination"
+      background
+      layout="prev, pager, next"
+      :pageSize="pageSize"
+      :total="connections ? connections.length : 0"
+      @current-change="updateDisplayedUsers"
+    >
+    </el-pagination>
   </div>
 </template>
 

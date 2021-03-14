@@ -3,6 +3,7 @@
 
 import ConnectionCard from '@/components/connection-card';
 import FilterSearch from '@/components/filter-search';
+import PaginationMixin from '../../../mixins/paginationMixin';
 import UserModal from '@/components/user-modal';
 import { mapActions } from 'vuex'
 
@@ -19,6 +20,12 @@ export default {
     ConnectionCard,
     FilterSearch,
     UserModal
+  },
+  mixins: [PaginationMixin],
+  computed: {
+    connectionsShown() {
+      return this.connections ? this.connections.slice(this.startIdx, this.endIdx) : [];
+    }
   },
   methods: {
     ...mapActions(['fetchUserById']),

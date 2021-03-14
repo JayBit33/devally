@@ -47,3 +47,51 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
 
 // create-account form3 for developers
 .el-textarea, .el-textarea__inner { height: 10rem; resize: none;}
+
+
+// pagination
+.el-pagination.is-background .el-pager li {
+  width: 2.125rem;
+  height: 2.125rem;
+  font-size: 1rem;
+  min-width: 0;
+  padding-top: .25rem;
+}
+
+.el-pagination.is-background .el-pager li:not(.disabled) {
+  background-color: $pag-bg;
+  color: #FFFFFF;
+  border-radius: 10rem;
+}
+.el-pagination.is-background .el-pager li:not(.disabled).active {
+  background-color: $sidebar_icon_active;
+  color: #FFFFFF;
+  border-radius: 10rem;
+}
+.el-pagination.is-background .el-pager li:not(.disabled):hover {
+  background-color: $sidebar_icon_active;
+  color: #FFFFFF;
+}
+
+.el-pagination.is-background button.btn-prev,
+.el-pagination.is-background button.btn-next {
+  background-color: $sidebar_icon_active;
+  color: white;
+  margin-top: .25rem;
+  margin-right: 1rem;
+  margin-left: 1rem;
+
+  &:hover {
+    background-color: $sidebar_bg;
+  }
+
+  .el-icon {
+    font-size: 1rem;
+    padding-top: .125rem;
+  }
+}
+.el-pagination.is-background button.btn-prev:disabled,
+.el-pagination.is-background button.btn-next:disabled {
+  color: white;
+  margin-top: .25rem;
+}

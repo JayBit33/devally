@@ -19,8 +19,11 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    margin-top: 4rem;
+    margin: 4rem 0;
   }
 
-  
+  #pagination {
+    display: flex;
+    justify-content: center;
+  }
 }

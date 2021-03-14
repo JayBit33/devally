@@ -3,6 +3,7 @@
 
 import ProfileBio from '../../components/profile-bio';
 import FilterSearch from '../../components/filter-search';
+import PaginationMixin from '../../mixins/paginationMixin';
 import { mapActions, mapGetters } from 'vuex';
 
 export default {
@@ -10,10 +11,10 @@ export default {
   data() {
     return {
       isLoading: true,
-      pageSize: 5,
-      currentPageIdx: 1,
-      startIdx: 0,
-      endIdx: 5,
+      // pageSize: 5,
+      // currentPageIdx: 1,
+      // startIdx: 0,
+      // endIdx: 5,
       filters: null
     }
   },
@@ -21,6 +22,7 @@ export default {
     FilterSearch,
     ProfileBio
   },
+  mixins: [PaginationMixin],
   computed: {
     ...mapGetters(['getDevUsers']),
     users() {
@@ -42,17 +44,17 @@ export default {
   },
   methods: {
     ...mapActions(['fetchDevUsers']),
-    updateDisplayedUsers(page) {
-      if (page === 1) {
-        this.startIdx = 0;
-        this.currentPageIdx = 1
-      } else {
-        this.startIdx = (page * this.pageSize) - this.pageSize;
-        this.currentPageIdx = page
-      }
-      this.endIdx = this.pageSize * page;
-      window.scrollTo(0,0);
-    },
+    // updateDisplayedUsers(page) {
+    //   if (page === 1) {
+    //     this.startIdx = 0;
+    //     this.currentPageIdx = 1
+    //   } else {
+    //     this.startIdx = (page * this.pageSize) - this.pageSize;
+    //     this.currentPageIdx = page
+    //   }
+    //   this.endIdx = this.pageSize * page;
+    //   window.scrollTo(0,0);
+    // },
     updateUsersShown(filters) {
       this.filters = filters;
       // Make sure to add all possible values for hiringOptin, skills & rating when they are null
