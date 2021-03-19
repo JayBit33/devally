@@ -13,7 +13,7 @@ Vue.use(Vuex)
         loggedInUser: null,
         loggedInUserId: 2,
         projects: null,
-        toastShown: false,
+        toastShown: true,
         toast: {}
     };
 
@@ -49,10 +49,10 @@ Vue.use(Vuex)
         showToast(state) {
             state.toastShown = true
             setTimeout(() => {
-                if (state.toastShown) { // when clicking close button this will be false and prevent a false close after a second toast
+                if (state.toastShown) {
                     state.toastShown = false
                 }
-            }, 3000)
+            }, 5000)
         },
         hideToast(state) {
             state.toastShown = false

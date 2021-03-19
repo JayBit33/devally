@@ -1,6 +1,8 @@
 // (c) Waveybits Inc. <2021>
 // ALL RIGHTS RESERVED
 
+import { mapMutations } from "vuex";
+
 export default {
   name: 'UserSettings',
   data() {
@@ -14,6 +16,7 @@ export default {
     }
   },
   methods: {
+    ...mapMutations(['showToast', 'updateToast']),
     updateNotifyMessageReceived() {
       this.notify_message_received = !this.notify_message_received;
     },
@@ -31,6 +34,19 @@ export default {
     },
     updateDevallyUpdates() {
       this.subscribe_devally_updates = !this.subscribe_devally_updates;
+    },
+    saveSettings() {
+      let toast = {
+        type: 'success',
+        message: [
+          { text: 'You have successfully save your settings', emphasis: false }
+        ],
+        hasAction: false,
+        actionRedirect: '/'
+      }
+
+      this.updateToast(toast);
+      this.showToast()
     }
   }
 }

@@ -10,9 +10,10 @@ export default {
     }
   },
   created() {
+    let intervalRate = 10
     this.timer = setInterval(() => {
-      this.slider -= .3333
-    }, 10)
+      this.slider -= 100 / (5000 / intervalRate)
+    }, intervalRate)
   },
   methods: {
     ...mapMutations(['hideToast'])

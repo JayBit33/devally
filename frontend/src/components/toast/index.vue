@@ -6,6 +6,7 @@
     <font-awesome-icon v-else-if="type == 'warning'" class="toast-icon" :icon="['fas','info-circle']" />
 
     <div class="toast-message">
+      <h6 class="toast-message-title">{{type}}!</h6>
       <span v-for="item in message" :key="item.text" :class="{'toast-message-emphasis': item.emphasis}">{{item.text}} </span>
     </div>
 

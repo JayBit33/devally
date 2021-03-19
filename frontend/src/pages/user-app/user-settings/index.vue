@@ -130,7 +130,7 @@
         <button class="update_btn">Update Password</button>
       </div>
     </div>
-    <button class="save_settings" >Save Settings</button>
+    <button class="save_settings" @click="saveSettings">Save Settings</button>
   </div>
 </template>
 
