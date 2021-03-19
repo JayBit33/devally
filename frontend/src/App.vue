@@ -2,6 +2,15 @@
 <!-- ALL RIGHTS RESERVED -->
 <template>
   <div id="main-component">
+    <Toast
+      class="toast-container"
+      v-if="isToastShown"
+      :type="getToast.type"
+      :message="getToast.message"
+      :hasAction="getToast.hasAction"
+      @toast-action-click="handleToastAction"
+    >
+    </Toast>
     <div v-if="showHeaderFooter" class="header">
       <nav>
         <router-link to="/" class="logo link">DevAlly</router-link>
@@ -31,6 +40,7 @@
 <script>
 import UserOptionsDropdown from './components/user-options-dropdown/';
 import Breadcrumbs from './components/breadcrumbs/';
+import Toast from '@/components/toast'
 import { mapGetters, mapMutations } from 'vuex';
 
 export default {
@@ -44,10 +54,11 @@ export default {
   },
   components: {
     Breadcrumbs,
-    UserOptionsDropdown
+    UserOptionsDropdown,
+    Toast
   },
   computed: {
-    ...mapGetters(['getLoggedInUser','isLoggedIn']),
+    ...mapGetters(['getLoggedInUser','isLoggedIn', 'isToastShown', 'getToast']),
     signedIn() {
       return this.isLoggedIn;
     },
@@ -59,7 +70,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['updateIsLoggedIn']),
+    ...mapMutations(['updateIsLoggedIn', 'showToast', 'hideToast', 'updateToast']),
     backgroundOn(isOn) {
       this.background = isOn;
     },
@@ -73,6 +84,10 @@ export default {
         this.$router.push({ name: 'Home' })
       }
       this.optionsViewable = false;
+    },
+    handleToastAction() {
+      this.$router.push(this.getToast.actionRedirect)
+      this.hideToast()
     }
   }
 };
@@ -96,6 +111,14 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+
+  .toast-container {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
 }
 
 .link { text-decoration: none; color: black; }

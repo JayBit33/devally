@@ -1,0 +1,143 @@
+.toast {
+  min-height: 1.5rem;
+  position: relative;
+  padding: 1.5rem 1.25rem;
+  border-radius: .75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+
+  &.success {
+    background-color: $toast-success;
+    .toast {
+      &-countdown-slider {
+        background-color: $toast-success-light;
+      }
+      &-action {
+        &-icon {
+          color: $toast-success;
+        }
+        &:hover {
+          background-color: $toast-success-light;
+        }
+      }
+    }
+  }
+  &.error {
+    background-color: $toast-error;
+    .toast {
+      &-countdown-slider {
+        background-color: $toast-error-light;
+      }
+      &-action {
+        &-icon {
+          color: $toast-error;
+        }
+        &:hover {
+          background-color: $toast-error-light;
+        }
+      }
+    }
+  }
+  &.info {
+    background-color: $toast-info;
+    .toast {
+      &-countdown-slider {
+        background-color: $toast-info-light;
+      }
+      &-action {
+        &-icon {
+          color: $toast-info;
+        }
+        &:hover {
+          background-color: $toast-info-light;
+        }
+      }
+    }
+  }
+  &.warning {
+    background-color: $toast-warning;
+    .toast {
+      &-countdown-slider {
+        background-color: $toast-warning-light;
+      }
+      &-action {
+        &-icon {
+          color: $toast-warning;
+        }
+        &:hover {
+          background-color: $toast-warning-light;
+        }
+      }
+    }
+  }
+
+  &-close {
+    position: absolute;
+    top: .75rem;
+    right: 1rem;
+    color: white;
+    font-size: 1.25rem;
+    transition: .3s;
+
+    &:hover {
+      cursor: pointer;
+      opacity: .75;
+    }
+  }
+  
+  &-icon {
+    color: white;
+    font-size: 2.5rem;
+    margin-right: 1rem;
+  }
+
+  &-message {
+    color: white;
+    font-weight: 500;
+    width: 20rem;
+    margin-right: 1rem;
+
+    &-emphasis {
+      font-weight: 700;
+    }
+  }
+
+  &-action {
+    position: relative;
+    bottom: -3rem;
+    right: -3rem;
+    background-color: white;
+    border-radius: 50%;
+    height: 5rem;
+    width: 5rem;
+    transition: .3s;
+    cursor: pointer;
+    z-index: 6;
+
+    &-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-100%, -100%) rotate(-10deg);
+      font-size: 1.25rem;
+      transition: .3s;
+    }
+
+    &:hover {
+      .toast-action-icon {
+        color: white;
+      }
+    }
+  }
+
+  &-countdown-slider {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50%;
+    height: .75rem;
+    border-radius: 0 0 0 .75rem;
+  }
+}
