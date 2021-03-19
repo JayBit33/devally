@@ -1,10 +1,12 @@
 // (c) Waveybits Inc. <2021>
 // ALL RIGHTS RESERVED
-
-import { mapMutations } from "vuex";
+import Toast from '@/components/toast'
 
 export default {
   name: 'UserSettings',
+  components: {
+    Toast
+  },
   data() {
     return {
       notify_message_received: true,
@@ -13,10 +15,24 @@ export default {
       subscribe_featured_projects: true,
       subscribe_weekly_newsletter: true,
       subscribe_devally_updates: true,
+      toast: {
+        type: '',
+        message: [{ text: '', emphasis: false }],
+        hasAction: false,
+        actionRedirect: '/',
+        isShown: false,
+        duration: 0
+      }
     }
   },
   methods: {
-    ...mapMutations(['showToast', 'updateToast']),
+    closeToast() {
+      this.toast.isShown = false
+    },
+    handleToastAction() {
+      this.$router.push(this.toast.actionRedirect)
+      this.hideToast()
+    },
     updateNotifyMessageReceived() {
       this.notify_message_received = !this.notify_message_received;
     },
@@ -36,17 +52,16 @@ export default {
       this.subscribe_devally_updates = !this.subscribe_devally_updates;
     },
     saveSettings() {
-      let toast = {
+      // TODO
+      // Build the toast off of the response from an updateUserSettings route
+      this.toast = {
         type: 'success',
         message: [
-          { text: 'You have successfully save your settings', emphasis: false }
+          { text: 'You have successfully saved your settings', emphasis: false }
         ],
-        hasAction: false,
-        actionRedirect: '/'
+        isShown: true,
+        duration: 5000
       }
-
-      this.updateToast(toast);
-      this.showToast()
     }
   }
 }

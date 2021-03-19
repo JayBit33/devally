@@ -12,9 +12,7 @@ Vue.use(Vuex)
         loggedIn: false,
         loggedInUser: null,
         loggedInUserId: 2,
-        projects: null,
-        toastShown: true,
-        toast: {}
+        projects: null
     };
 
     const getters = {
@@ -23,8 +21,6 @@ Vue.use(Vuex)
         getDevUserByUsername: state => username => state.devUsers?.find(user => user.username === username),
         getCurrentUserId: state => state.loggedInUserId,
         isLoggedIn: state => state.loggedIn,
-        isToastShown: state => state.toastShown,
-        getToast: state => state.toast,
         getLoggedInUser: state => state.loggedInUser,
         getProjects: state => state.projects,
 
@@ -45,20 +41,6 @@ Vue.use(Vuex)
         },
         updateProjects(state, projects) {
             state.projects = projects;
-        },
-        showToast(state) {
-            state.toastShown = true
-            setTimeout(() => {
-                if (state.toastShown) {
-                    state.toastShown = false
-                }
-            }, 5000)
-        },
-        hideToast(state) {
-            state.toastShown = false
-        },
-        updateToast(state, toast) {
-            state.toast = toast
         }
     };
 

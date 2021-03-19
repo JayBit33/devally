@@ -1,8 +1,6 @@
-import { mapMutations } from 'vuex';
-
 export default {
   name: 'toast',
-  props: ['type', 'hasAction', 'message'],
+  props: ['type', 'hasAction', 'message', 'duration'],
   data() {
     return {
       timer: null,
@@ -12,13 +10,15 @@ export default {
   created() {
     let intervalRate = 10
     this.timer = setInterval(() => {
-      this.slider -= 100 / (5000 / intervalRate)
+      this.slider -= 100 / (this.duration / intervalRate)
+      if (this.slider <= 0) {
+        this.$emit('toast-close')
+      }
     }, intervalRate)
   },
-  methods: {
-    ...mapMutations(['hideToast'])
-  },
+  methods: {},
   unMounted() {
+    this.$emit('toast-close')
     clearInterval(this.timer)
   }
 }

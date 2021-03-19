@@ -8,6 +8,14 @@
   align-items: center;
   overflow: hidden;
 
+  &-container {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+
   &.success {
     background-color: $toast-success;
     .toast {

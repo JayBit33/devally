@@ -2,6 +2,16 @@
 <!-- ALL RIGHTS RESERVED -->
 <template>
   <div class="user-settings">
+    <Toast
+      v-if="toast && toast.isShown"
+      :type="toast.type"
+      :message="toast.message"
+      :hasAction="toast.hasAction"
+      :duration="toast.duration"
+      @toast-action-click="handleToastAction"
+      @toast-close="closeToast"
+    >
+    </Toast>
     <font-awesome-icon class="user-settings_icon" :icon="['fas','cog']" ></font-awesome-icon>
     <h1 class="user-settings_title">Settings</h1>
     <div class="user-settings_grid">
