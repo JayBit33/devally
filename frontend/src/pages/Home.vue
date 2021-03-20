@@ -25,13 +25,13 @@
         </div>
         <div>
           <h3 style="text-align:center; font-size: 1.75rem;">All Starts Here</h3>
-          <p>The path to making your idea a reality starts here! In less than 7 minutes you can create an account, create a project and start looking for the people you need to bring it to life.</p>
-          <p>Don't let someone beat you to finish line. Get started on your project today and make the future brighter.</p>
+          <p>The path to making your idea a reality starts here! In 5 minutes or less you can create an account, create a project and start looking for the people you need to bring it to life.</p>
+          <p>Don't let someone beat you to finish line. Get started on your project today!</p>
             <button>Create Project</button>
             </div>
         <div class="build-text">
           <h3 style="text-align:center; font-size: 1.75rem;">Find Passionate People</h3>
-          <p>Search from thousands of profiles to find the professionals you need. Wether you are in need of a graphic designer, web developer, mobile app dev, project manager or dev-ops you can find them all here. </p>
+          <p>Search our community to find the professionals you need. Whether you are in need of a graphic designer, web developer, mobile app dev, project manager or dev-ops you can find them all here. </p>
             <router-link to="/devs" class="link"><button>Search Devs</button></router-link>
         </div>
         <div class="getting-started_steps_build">
@@ -47,9 +47,9 @@
         </div>
         <div class="life-text">
           <h3 style="text-align:center; font-size: 1.75rem;">Make it A Reality</h3>
-          <p>This is step where the magic happens! You and your new team begin the journey of design and creation. We know it is a lot to accomplish and you will have questions along the way.</p>
-          <p>This is why we will still be here for you. We have articles and newsletters that help to guide you on your entrepreneurial journey!</p>
-          <button>Start Here</button>
+          <p>This is the step where the magic happens! You and your new team begin the journey of designing and creating your site/app/software. We know it is a lot to accomplish and you will have questions along the way.</p>
+          <p>This is why we will still be here for you. We have articles and newsletters that help to guide you on your entrepreneurial journey.</p>
+          <button>View Articles</button>
         </div>
       </div>
     </div>
