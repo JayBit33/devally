@@ -6,8 +6,8 @@
       <div class="col-1">
         <h1>Build A Team And</h1>
         <h1> Make Your Tech Idea A Reality</h1>
-        <h4>great community of developers willing to join a team</h4>
-        <h4>for pay or ownership</h4>
+        <h4>Community of developers looking to join a team</h4>
+        <h4>and build the next best thing since Jarvis.</h4>
         <button class="btn"><router-link to="/devs" class="link">GET STARTED</router-link></button>
       </div>
       <div class="col-2">
@@ -25,18 +25,13 @@
         </div>
         <div>
           <h3 style="text-align:center; font-size: 1.75rem;">All Starts Here</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus eveniet itaque earum recusandae quaerat voluptas neque sed nihil odit.
-            Officiis animi officia incidunt pariatur suscipit ea esse, hic quia deleniti?</p>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus eveniet itaque earum recusandae quaerat voluptas neque sed nihil odit.
-            Officiis animi officia incidunt pariatur suscipit ea esse, hic quia deleniti?</p>
+          <p>The path to making your idea a reality starts here! In less than 7 minutes you can create an account, create a project and start looking for the people you need to bring it to life.</p>
+          <p>Don't let someone beat you to finish line. Get started on your project today and make the future brighter.</p>
             <button>Create Project</button>
             </div>
         <div class="build-text">
           <h3 style="text-align:center; font-size: 1.75rem;">Find Passionate People</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus eveniet itaque earum recusandae quaerat voluptas neque sed nihil odit.
-            Officiis animi officia incidunt pariatur suscipit ea esse, hic quia deleniti?</p>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus eveniet itaque earum recusandae quaerat voluptas neque sed nihil odit.
-            Officiis animi officia incidunt pariatur suscipit ea esse, hic quia deleniti?</p>
+          <p>Search from thousands of profiles to find the professionals you need. Wether you are in need of a graphic designer, web developer, mobile app dev, project manager or dev-ops you can find them all here. </p>
             <router-link to="/devs" class="link"><button>Search Devs</button></router-link>
         </div>
         <div class="getting-started_steps_build">
@@ -52,10 +47,8 @@
         </div>
         <div class="life-text">
           <h3 style="text-align:center; font-size: 1.75rem;">Make it A Reality</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus eveniet itaque earum recusandae quaerat voluptas neque sed nihil odit.
-            Officiis animi officia incidunt pariatur suscipit ea esse, hic quia deleniti?
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus eveniet itaque earum recusandae quaerat voluptas neque sed nihil odit.
-            Officiis animi officia incidunt pariatur suscipit ea esse, hic quia deleniti?</p>
+          <p>This is step where the magic happens! You and your new team begin the journey of design and creation. We know it is a lot to accomplish and you will have questions along the way.</p>
+          <p>This is why we will still be here for you. We have articles and newsletters that help to guide you on your entrepreneurial journey!</p>
           <button>Start Here</button>
         </div>
       </div>
@@ -77,6 +70,7 @@ export default {
 
 .main {
   max-width: 1780px;
+  background-color: white;
 
   .home-banner {
     display: grid;
@@ -92,12 +86,12 @@ export default {
     .col-1 {
       margin-left: 2.5rem;
       h1 {
-        font: 500 2rem 'Montserrat';
+        font: 500 2.125rem 'Montserrat';
         color: $primary;
         line-height: 1.5rem;
       }
       h4 {
-        font: 1rem 'Montserrat';
+        font: 1.125rem 'Montserrat';
         line-height: .5rem;
       }
       button {
@@ -128,8 +122,9 @@ export default {
     }
     p {
       font-family: 'Arial';
-      font-size: 1.125rem;
+      font-size: 1.25rem;
       line-height: 1.75rem;
+      font-weight: 500;
       text-align: center;
     }
     &_steps {
@@ -193,6 +188,7 @@ export default {
     cursor: pointer;
   }
 }
+
 
 // current header issues below 1652
 @media (min-width: 1652px)  {
