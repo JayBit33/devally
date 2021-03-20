@@ -84,7 +84,7 @@
         background-color: $button-secondary;
         border: none;
         box-shadow: 2px 4px 8px 1px rgba(199, 193, 193, 0.8);
-
+        cursor: pointer;
         &:focus {
           border: none;
           outline: none;
