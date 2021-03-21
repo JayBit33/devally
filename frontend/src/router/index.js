@@ -8,6 +8,7 @@ import Dev from '../pages/dev'
 import UserApp from '../pages/user-app'
 import Projects from '../pages/projects'
 import Works from '../pages/Works'
+import Resources from '../pages/Resources'
 import About from '../pages/About'
 import SignIn from '../pages/signin'
 import CreateAccount from '../pages/create-account'
@@ -23,6 +24,7 @@ const router = new VueRouter({
     { path: '/projects', name: 'Projects', component: Projects, meta: { breadcrumb: []} },
     { path: '/profile/:id?', name: 'Profile', component: UserApp, meta: { breadcrumb: [] } },
     { path: '/works',  name: 'Works', component: Works, meta: { breadcrumb: []} },
+    { path: '/resources',  name: 'Resources', component: Resources, meta: { breadcrumb: []} },
     { path: '/about',  name: 'About', component: About, meta: { breadcrumb: []} },
     { path: '/signin',  name: 'SignIn', component: SignIn, meta: { breadcrumb: [] }},
     { path: '/create-account',  name: 'CreateAccount', component: CreateAccount, meta: { breadcrumb: []} },

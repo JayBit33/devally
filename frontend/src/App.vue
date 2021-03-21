@@ -9,6 +9,7 @@
           <li><router-link to="/works" class="link">how it works</router-link><span>/</span></li>
           <li><router-link to="/devs" class="link">find developers</router-link><span>/</span></li>
           <li><router-link to="/projects" class="link">browse projects</router-link><span>/</span></li>
+          <li><router-link to="/resources" class="link">resources</router-link><span>/</span></li>
           <li><router-link to="/about" class="link">about</router-link></li>
         </ul>
       </nav>
