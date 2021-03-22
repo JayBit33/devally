@@ -1,6 +1,7 @@
 // (c) Waveybits Inc. <2021>
 // ALL RIGHTS RESERVED
 import Toast from '@/components/toast'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'UserSettings',
@@ -19,19 +20,24 @@ export default {
         type: '',
         message: [{ text: '', emphasis: false }],
         hasAction: false,
-        actionRedirect: '/',
+        actionRedirect: '',
         isShown: false,
         duration: 0
       }
     }
   },
+  computed: {
+    ...mapGetters(['getLoggedInUser'])
+  },
   methods: {
+    ...mapActions(['updateUser']),
     closeToast() {
       this.toast.isShown = false
     },
     handleToastAction() {
+      console.log()
       this.$router.push(this.toast.actionRedirect)
-      this.hideToast()
+      this.toast.isShown = false
     },
     updateNotifyMessageReceived() {
       this.notify_message_received = !this.notify_message_received;
@@ -51,16 +57,23 @@ export default {
     updateDevallyUpdates() {
       this.subscribe_devally_updates = !this.subscribe_devally_updates;
     },
-    saveSettings() {
+    async saveSettings() {
       // TODO
       // Build the toast off of the response from an updateUserSettings route
+      let userInfo = await this.getLoggedInUser
+      const response = await this.updateUser(userInfo)
+      const json = await response.json()
+      console.log(json)
+
       this.toast = {
         type: 'success',
         message: [
           { text: 'You have successfully saved your settings', emphasis: false }
         ],
         isShown: true,
-        duration: 5000
+        duration: 5000,
+        //hasAction: true,
+        //actionRedirect: '/'
       }
     }
   }

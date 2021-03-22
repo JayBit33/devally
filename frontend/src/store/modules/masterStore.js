@@ -96,6 +96,19 @@ Vue.use(Vuex)
                         }
                     }).catch(error => reject(error));
             })
+        },
+        updateUser({commit}, userInfo) {
+            return new Promise((resolve, reject) => {
+                usersAPI.put(`/${userInfo.id}`, userInfo)
+                    .then(res => {
+                        commit('');
+                        console.log('res', res.data);
+                        resolve(res.data);
+                    }).catch(error => {
+                        console.log(error)
+                        reject(error)
+                    });
+            })
         }
     }
 
