@@ -39,8 +39,8 @@ module.exports = {
   createUser(user) {
     return knex('users').insert(user, '*').then(user => user[0]);
   },
-  updateUserById(id, user) {
-    return knex('users').where('id', id).update(user, '*').then(user => user[0]);
+  updateUserById(id, userInfo) {
+    return knex('users').where('id', id).update(userInfo, '*').then(user => user[0]);
   },
   deleteUserById(id) {
     return knex('users').where('id', id).del();
