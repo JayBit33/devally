@@ -2,7 +2,7 @@
 <!-- ALL RIGHTS RESERVED -->
 <template>
   <div class="connection-card">
-    <font-awesome-icon :icon="['fas','trash-alt']" class="delete-icon"></font-awesome-icon>
+    <font-awesome-icon @click="$emit('delete-click')" :icon="['fas','trash-alt']" class="delete-icon"></font-awesome-icon>
     <img class="connection-card-avatar" :src="require('../../assets/' + connection.profile_image)" />
     <h4 class="connection-card-fullname">{{ fullName }}</h4>
     <h5 class="connection-card-accountType">{{ accountType }}</h5>

@@ -2,6 +2,16 @@
 <!-- ALL RIGHTS RESERVED -->
 <template>
   <div class="user-connections">
+    <Toast
+      v-if="toast && toast.isShown"
+      :type="toast.type"
+      :message="toast.message"
+      :hasAction="toast.hasAction"
+      :duration="toast.duration"
+      @toast-action-click="handleToastAction"
+      @toast-close="closeToast"
+    >
+    </Toast>
     <font-awesome-icon :icon="['fas','user-friends']" class="icon"></font-awesome-icon>
     <h1 class="title">User Connections</h1>
     <user-modal
@@ -14,7 +24,7 @@
     />
     <!-- <filter-search  style="position: relative; left: 615px; top: -1px;" /> -->
     <div class="connections">
-      <connection-card v-for="connection in connectionsShown" :connection="connection" :key="connection.id" />
+      <connection-card v-for="connection in connectionsShown" :connection="connection" :key="connection.id" @delete-click="removeConnection(connection)" />
     </div>
 
     <el-pagination

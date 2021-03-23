@@ -1,11 +1,21 @@
 <!-- (c) Waveybits Inc. <2021> -->
 <!-- ALL RIGHTS RESERVED -->
 <template>
-  <div class="dev" :style="{'background-image': 'url(' + require('@/assets/devs_bg.png') + ')'}">
+  <div class="dev" :style="{'background-image': 'url(' + getImage('devs_bg.png') + ')'}">
+    <Toast
+      v-if="toast && toast.isShown"
+      :type="toast.type"
+      :message="toast.message"
+      :hasAction="toast.hasAction"
+      :duration="toast.duration"
+      @toast-action-click="handleToastAction"
+      @toast-close="closeToast"
+    >
+    </Toast>
     <div class="user-profile">
-      <img :src="require('../../assets/' + user.profile_image)" />
+      <img v-if="user && user.profile_image" :src="getImage(user.profile_image)" />
       <h4>{{ fullName }}</h4>
-      <button class="btn">Add Contact</button>
+      <button class="btn" @click="addContact">Add Contact</button>
       <button class="btn" @click="openMessageBox">Message</button>
     </div>
     <div class="user-info">
