@@ -3,14 +3,18 @@
 <template>
   <div class="connection-card">
     <font-awesome-icon @click="$emit('delete-click')" :icon="['fas','trash-alt']" class="delete-icon"></font-awesome-icon>
-    <img class="connection-card-avatar" :src="require('../../assets/' + connection.profile_image)" />
+    <!-- <img class="connection-card-avatar" :src="require('../../assets/' + connection.profile_image)" /> -->
+    <div class="connection-card-avatar" :style="{'background-image': `url(${require('../../assets/' + connection.profile_image)})`}"></div>
     <h4 class="connection-card-fullname">{{ fullName }}</h4>
     <h5 class="connection-card-accountType">{{ accountType }}</h5>
     <ul class="roles">
       <li v-for="(role,i) in roles" :key="i">{{role}}</li>
     </ul>
     <div class="actions">
-      <!-- <font-awesome-icon :icon="['fas','envelope']" class="msg-icon"></font-awesome-icon> -->
+      <div class="msg-container btn">
+        <h4>Message</h4>
+        <font-awesome-icon :icon="['fas','envelope']" class="msg-icon"></font-awesome-icon>
+      </div>
     </div>
   </div>
 </template>
