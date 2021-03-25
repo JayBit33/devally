@@ -35,7 +35,6 @@ export default {
       this.toast.isShown = false
     },
     handleToastAction() {
-      console.log()
       this.$router.push(this.toast.actionRedirect)
       this.toast.isShown = false
     },
@@ -58,23 +57,26 @@ export default {
       this.subscribe_devally_updates = !this.subscribe_devally_updates;
     },
     async saveSettings() {
-      // TODO
-      // Build the toast off of the response from an updateUserSettings route
-      let userInfo = await this.getLoggedInUser
-      const response = await this.updateUser(userInfo)
-      const json = await response.json()
-      console.log(json)
-
-      this.toast = {
-        type: 'success',
-        message: [
-          { text: 'You have successfully saved your settings', emphasis: false }
-        ],
-        isShown: true,
-        duration: 5000,
-        //hasAction: true,
-        //actionRedirect: '/'
+      let user = await this.getLoggedInUser
+      let id, response
+      if (user) {
+        id = user.id
+        let updates = {
+          notification_settings: JSON.stringify({ messages: this.notify_message_received, added_connection: this.notify_added_connection, project_invitation: this.notify_project_invitation }),
+          subscription_settings: JSON.stringify({ featured_projects: this.subscribe_featured_projects, weekly_news: this.subscribe_weekly_newsletter, updates: this.subscribe_devally_updates })
+        }
+        response = await this.updateUser({id, updates})
       }
+
+      if (response && user) {
+        this.toast.message = [{ text: 'You have successfully saved your settings', emphasis: false }]
+        this.toast.type = 'success'
+      } else {
+        this.toast.message = [{ text: 'You have', emphasis: false }, { text: 'unsuccessfully', emphasis: true}, {text: 'saved your settings', emphasis: false }]
+        this.toast.type = 'error'
+      }
+      this.toast.duration = 5000
+      this.toast.isShown = true
     }
   }
 }

@@ -2,6 +2,7 @@
 // ALL RIGHTS RESERVED
 
 import MessageBox from '../../components/message-box';
+import Toast from '@/components/toast'
 // import COMETCHAT_CONSTANTS from '@/chat/constants.js';
 import { CometChat } from "@cometchat-pro/chat";
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -23,12 +24,21 @@ export default {
         'project.png',
         'project.png',
         'project.png'
-      ]
+      ],
+      toast: {
+        type: '',
+        message: [{ text: '', emphasis: false }],
+        hasAction: false,
+        actionRedirect: '',
+        isShown: false,
+        duration: 0
+      }
     };
   },
   components: {
     FontAwesomeIcon,
-    MessageBox
+    MessageBox,
+    Toast
   },
   computed: {
     ...mapGetters(['getDevUsers', 'getDevUser','getLoggedInUser']),
@@ -46,7 +56,55 @@ export default {
     await this.fetchDevUsers().then(() => this.user = this.getDevUser(this.$route.params.id));
   },
   methods: {
-    ...mapActions(['fetchDevUsers']),
+    ...mapActions(['fetchDevUsers', 'updateUser']),
+    async addContact() {
+      let user = await this.getLoggedInUser
+      let id, response
+
+      if (user.connections.some(connection => connection == this.id)) {
+        this.toast.message = [
+          { text: 'You already have', emphasis: false },
+          { text: this.user.firstname + " " + this.user.lastname, emphasis: true },
+          { text: 'added to your connections', emphasis: false }
+        ]
+        this.toast.type = 'warning'
+      } else {
+        if (user) {
+          id = user.id
+          let updates = {
+            connections: JSON.stringify([...user.connections, this.id])
+          }
+          response = await this.updateUser({ id, updates })
+        }
+  
+        if (response && user) {
+          this.toast.message = [
+            { text: 'You have successfully added', emphasis: false },
+            { text: this.user.firstname + " " + this.user.lastname, emphasis: true },
+            { text: 'to your connections', emphasis: false }
+          ]
+          this.toast.type = 'success'
+        } else {
+          this.toast.message = [
+            { text: 'You have', emphasis: false },
+            { text: 'unsuccessfully', emphasis: true },
+            { text: 'added', emphasis: false },
+            { text: this.user.firstname + " " + this.user.lastname, emphasis: true },
+            { text: 'to your connections', emphasis: false }
+          ]
+          this.toast.type = 'error'
+        }
+      }
+      this.toast.duration = 5000
+      this.toast.isShown = true
+    },
+    closeToast() {
+      this.toast.isShown = false
+    },
+    handleToastAction() {
+      this.$router.push(this.toast.actionRedirect)
+      this.toast.isShown = false
+    },
     getImage(imageName) {
       return require(`@/assets/${imageName}`)
     },

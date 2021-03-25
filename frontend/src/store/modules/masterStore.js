@@ -97,9 +97,10 @@ Vue.use(Vuex)
                     }).catch(error => reject(error));
             })
         },
-        updateUser({commit}, userInfo) {
+        updateUser({ commit }, payload) {
+            const {id, updates} = payload
             return new Promise((resolve, reject) => {
-                usersAPI.put(`/${userInfo.id}`, userInfo)
+                usersAPI.put(`/${id}`, updates)
                     .then(res => {
                         commit('');
                         console.log('res', res.data);
