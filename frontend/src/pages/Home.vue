@@ -8,7 +8,7 @@
         <h1> Make Your Tech Idea A Reality</h1>
         <h4>Community of developers looking to join a team</h4>
         <h4>and build the next best thing since Jarvis.</h4>
-        <button class="btn"><router-link to="/devs" class="link">GET STARTED</router-link></button>
+        <button class="btn"><router-link to="/devs" class="link">Get Started</router-link></button>
       </div>
       <div class="col-2">
         <img src="images/3593965.jpg" />
@@ -16,41 +16,50 @@
     </div>
 
     <div class="getting-started">
-      <h2>Getting Started Is Simple</h2>
+      <h1>Getting Started Is Simple</h1>
       <div class="getting-started_steps">
-        <div class="getting-started_steps_create">
-          <h4>#1</h4>
+        <div>
+          <img src="images/4071498.jpg" style="width: 300px" />
           <h2>Create A Project</h2>
-          <img src="images/4071498.jpg" />
+          <p>The path to making your idea a reality starts here! In 5 minutes or less you can create an account, a project and start searching for the people you need to bring it to life.
+          Don't let someone beat you to the finish line. Get started on your project today!</p>
+          <router-link to="/devs" class="link"><button>Create Project</button></router-link>
         </div>
         <div>
-          <h3 style="text-align:center; font-size: 1.75rem;">All Starts Here</h3>
-          <p>The path to making your idea a reality starts here! In 5 minutes or less you can create an account, create a project and start looking for the people you need to bring it to life.</p>
-          <p>Don't let someone beat you to finish line. Get started on your project today!</p>
-            <button>Create Project</button>
-            </div>
-        <div class="build-text">
-          <h3 style="text-align:center; font-size: 1.75rem;">Find Passionate People</h3>
-          <p>Search our community to find the professionals you need. Whether you are in need of a graphic designer, web developer, mobile app dev, project manager or dev-ops you can find them all here. </p>
-            <router-link to="/devs" class="link"><button>Search Devs</button></router-link>
-        </div>
-        <div class="getting-started_steps_build">
-          <h4>#2</h4>
+          <img src="images/team.png" style="width: 300px" />
           <h2>Build A Team</h2>
-          <img src="images/4367890.png" />
+          <p>Great teams build great products. Search our community to find the professionals you need. Whether you are in need of a graphic designer, web developer, mobile app dev, project manager, dev-ops or all of the above, you can find them all here. </p>
+          <router-link to="/devs" class="link"><button>Search Devs</button></router-link>
         </div>
-
-        <div class="getting-started_steps_life">
-          <h4>#3</h4>
+        <div>
+          <img src="images/4309857.jpg" style="width: 300px" />
           <h2>Bring Your Idea To Life</h2>
-          <img src="images/4309857.jpg" />
+          <p>As you and your new team begin the journey of designing and creating your product we will still be here for you. We know it is a lot to accomplish and you will have questions along the way.
+           We have articles that help to guide you on your journey.</p>
+          <router-link to="/devs" class="link"><button>View Articles</button></router-link>
         </div>
-        <div class="life-text">
-          <h3 style="text-align:center; font-size: 1.75rem;">Make it A Reality</h3>
-          <p>This is the step where the magic happens! You and your new team begin the journey of designing and creating your site/app/software. We know it is a lot to accomplish and you will have questions along the way.</p>
-          <p>This is why we will still be here for you. We have articles and newsletters that help to guide you on your entrepreneurial journey.</p>
-          <button>View Articles</button>
-        </div>
+      </div>
+    </div>
+
+    <div class="join-devs">
+      <div>
+        <img src="images/programmer-man.png" style="width:500px" />
+      </div>
+      <div class="join-devs_col2">
+        <h2>Want To Build Something From the Ground Up?</h2>
+        <p>Are you a web, mobile or software developer, graphic designer or project manager? Join DevAlly and find paid jobs or work for part ownership in tech startups.</p>
+        <router-link to="/signin" class="link"><button>Join Now</button></router-link>
+      </div>
+    </div>
+
+    <div class="start-learning">
+      <div>
+        <h2>Need Guidance on how to start and run a tech startup?</h2>
+        <p>We got you covered. Read up on software development methodologies, how to start a business and much more.</p>
+        <router-link to="/signin" class="link"><button>Start Learning</button></router-link>
+      </div>
+      <div>
+        <img src="images/201brain-knowledge.png" style="width:700px" />
       </div>
     </div>
   </div>
@@ -69,7 +78,7 @@ export default {
 <style lang="scss" scoped>
 
 .main {
-  max-width: 1780px;
+  // max-width: 1780px;
   background-color: white;
 
   .home-banner {
@@ -86,7 +95,7 @@ export default {
     .col-1 {
       margin-left: 2.5rem;
       h1 {
-        font: 500 2.125rem 'Montserrat';
+        font: 700 2.125rem 'Montserrat';
         color: $primary;
         line-height: 1.5rem;
       }
@@ -115,65 +124,154 @@ export default {
   }
 
   .getting-started {
+    margin: 5rem 0;
+    h1 {
+      font-size: 2.5rem; color: #514E4E;
+      text-decoration: underline;
+      text-align: center;
+      margin-bottom: 7rem;
+    }
     h2 {
       font-size: 2.5rem; color: #514E4E;
       text-decoration: underline;
       text-align: center;
     }
-    p {
-      font-family: 'Arial';
-      font-size: 1.25rem;
-      line-height: 1.75rem;
-      font-weight: 500;
-      text-align: center;
-    }
     &_steps {
       display: grid;
-      grid-template-rows: 1fr 1fr 1fr;
-      grid-template-columns: 8fr 4fr;
+      grid-template-rows: 1fr;
+      grid-template-columns: 4fr 4fr 4fr;
       gap: 2rem 4rem;
       align-items: end;
-      margin: 0 auto;
-      max-width: 1280px;
-      h4 { font: bold 2.75rem 'Segoe UI'; color: black;  margin-bottom: 0; margin-right: 1.5rem; }
-      h2 { text-align: left; }
+      margin: 0 4rem;
+
+      div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      h2 {
+        font-family: 'Montserrat';
+        font-size: 2rem;
+        text-decoration: none;
+        color: black;
+        text-align: center;
+      }
+      p {
+        width: 30rem;
+        font-family: 'Segoe UI';
+        font-size: 1.25rem;
+        line-height: 2rem;
+        text-align: center;
+      }
       img { width: 400px; }
       .link {
           color: white;
         button {
           display: block;
-          background-color: #6B8BA4;
+          background-color: $button-secondary;
           color: white;
           font: 1.25rem 'Montserrat';
           text-transform: uppercase;
           margin-top: 2rem;
           padding: 1rem 2rem;
           border: none;
+          border-radius: 1rem;
           margin: 2rem auto;
           cursor: pointer;
         }
       }
+    }
+  }
 
-      &_create, &_build, &_life {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      }
-      &_build {
-
-        img { width: 700px;  }
-      }
-
-      .build-text {
-        text-align: center;
-        margin-bottom: 3rem;
-      }
-      .life-text {
-        text-align: center;
-        margin-bottom: 5rem;
+  .join-devs {
+    background-color: $home-page-section-bg;
+    display: grid;
+    grid-template-columns: 4fr 5fr;
+    align-items: center;
+    padding: 4rem;
+    div {
+      margin: 0 4rem;
+    }
+    div:nth-child(2) {
+      margin-right: 9rem;
+    }
+    h2 {
+      font-family:'Montserrat';
+      font-size: 2rem;
+      text-align: center;
+      color: black;
+    }
+    p {
+      font-family: 'Segoe UI';
+      font-size: 1.25rem;
+      line-height: 2rem;
+      text-align: center;
+      color: $text;
+    }
+    .link {
+      color: white;
+      button {
+        display: block;
+        background-color: $button-secondary;
+        color: white;
+        font: 1.25rem 'Montserrat';
+        text-transform: uppercase;
+        margin-top: 2rem;
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 2rem;
+        margin: 2rem auto;
+        cursor: pointer;
       }
     }
   }
+
+  .start-learning {
+    display: grid;
+    grid-template-columns: 4fr 3fr;
+    align-items: center;
+    padding: 4rem;
+    div {
+      margin: 0 4rem;
+    }
+    div:nth-child(2) {
+      margin-right: 4rem;
+    }
+    h2 {
+      font-family:'Montserrat';
+      font-size: 2rem;
+      line-height: 3rem;
+      text-align: left;
+      max-width: 40rem;
+      color: black;
+    }
+    p {
+      font-family: 'Segoe UI';
+      font-size: 1.25rem;
+      line-height: 2rem;
+      text-align: left;
+      color: $text;
+    }
+    .link {
+      color: white;
+      button {
+        display: block;
+        background-color: $button-secondary;
+        color: white;
+        font: 1.25rem 'Montserrat';
+        text-transform: uppercase;
+        margin-top: 2rem;
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 1rem;
+        margin: 1rem auto;
+        float: left;
+        cursor: pointer;
+      }
+    }
+  }
+
   // remove after inserting <router-link> for all buttons
   button {
     display: block;

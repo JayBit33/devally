@@ -24,7 +24,7 @@
         <div class="getting-started_steps_build">
           <h4>#2</h4>
           <h2>Build A Team</h2>
-          <img src="images/4367890.png" />
+          <img src="images/team.png" style="width: 400px" />
         </div>
 
         <div class="getting-started_steps_life">

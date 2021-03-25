@@ -164,7 +164,8 @@ html {
 }
 
 .page-content {
-  background-image: url('./assets/devs_bg.png');
+  // background-image: url('./assets/devs_bg.png');
+  background-color: white;
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 80vh;
