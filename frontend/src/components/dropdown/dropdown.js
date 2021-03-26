@@ -3,7 +3,7 @@
 
 export default {
   name: 'Dropdown',
-  props: ['items','optionTitle'],
+  props: ['items', 'optionTitle', 'isMultiSelect', 'selectedItems'],
   data() {
     return {
       optionsShowing: false,

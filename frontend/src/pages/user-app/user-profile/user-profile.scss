@@ -1,7 +1,63 @@
 // (c) Waveybits Inc. <2021>
 // ALL RIGHTS RESERVED
+.user-profile {
+  .icon {
+    font-size: 2rem;
+    position: relative;
+    top: 6.125rem;
+    left: 8rem;
+  }
+  .title {
+    margin-top: 4rem;
+    margin-left: 12rem;
+  }
+  
+  .profile-content {
+    margin: 0 auto;
+    margin-top: 3rem;
+    width: 40%;
+    background-color: $user-app_body;
 
-.title {
-  margin-top: 4rem;
-  margin-left: 4rem;
+    h4 {
+      margin: .25rem 0;
+    }
+
+    .interested-categories, .roles, .hiring-options {
+      margin: 2rem 0;
+      .profile-dropdown {
+        width: 100%;
+      }
+    }
+
+    .bio {
+      textarea {
+        padding: .5rem;
+        width: calc(100% - 1rem);
+        outline: none;
+        border: 1px solid $element-border;
+        border-radius: .25rem;
+        resize: vertical;
+        transition: .3s;
+
+        &:hover {
+          border-color: $element-border-hover;
+        }
+        &:focus {
+          border-color: $element-border-focus;
+        }
+      }
+    }
+    
+    .update-btn {
+      background-color: $btn;
+      margin: 2rem 0;
+      padding: .5rem 1.25rem;
+      border-radius: 50rem;
+      font-size: 1rem;
+      color: $user-app_body;
+      width: max-content;
+      cursor: pointer;
+      float: right;
+    }
+  }
 }

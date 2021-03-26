@@ -12,12 +12,13 @@
       <li v-for="(item,i) in items" :key="i" @click="onItemSelection">{{ item }}</li>
     </ul>
   </div> -->
-  <el-select v-model="value" placeholder="Select">
+  <el-select :value="selectedItems" :multiple="isMultiSelect" placeholder="Select" @change="$emit('item-selection', $event)">
     <el-option
       v-for="item in items"
-      :key="item.value"
-      :label="item.label"
-      :value="item.value">
+      :key="item"
+      :label="item"
+      :value="item"
+    >
     </el-option>
   </el-select>
 </div>

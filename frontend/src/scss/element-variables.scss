@@ -95,3 +95,18 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
   color: white;
   margin-top: .25rem;
 }
+
+// Dropdown
+.el-select {
+  width: 100%;
+}
+
+.el-select-dropdown .el-scrollbar .el-select-dropdown__wrap .el-scrollbar__view
+.el-select-dropdown__item {
+  &.selected {
+    padding: 0 20px !important;
+    &:after {
+      border-right: none !important;
+    }
+  }
+}
