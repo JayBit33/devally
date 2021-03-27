@@ -16,41 +16,41 @@
       <img v-if="user && user.profile_image" class="user-app_sidebar-avatar" :src="getImage(user.profile_image)" />
       <h4 class="user-app_sidebar-fullname">{{ fullName }}</h4>
       <h5 class="user-app_sidebar-accountType">{{ accountType }}</h5>
-      <button class="user-app_sidebar-updateProfile" @click="updateView('profile')" :class="{'active': profileViewActive}">Update Profile</button>
+      <button class="user-app_sidebar-updateProfile" @click="updateView('profile')" :class="{'active': $route.params.view == 'profile'}">Update Profile</button>
 
       <ul class="user-app_sidebar-nav">
-        <li @click="updateView('messages')" :class="{'active': messagesViewActive}">
+        <li @click="updateView('messages')" :class="{'active': $route.params.view == 'messages'}">
           <font-awesome-icon class="sidebar-icon" :icon="['fas','envelope']" ></font-awesome-icon>
           <h4>Messages</h4>
         </li>
-        <li @click="updateView('projects')" :class="{'active': projectsViewActive}">
+        <li @click="updateView('projects')" :class="{'active': $route.params.view == 'projects'}">
           <font-awesome-icon class="sidebar-icon" :icon="['fas','project-diagram']" ></font-awesome-icon>
           <h4>Projects</h4>
         </li>
-        <li @click="updateView('connections')" :class="{'active': connectionsViewActive}">
+        <li @click="updateView('connections')" :class="{'active': $route.params.view == 'connections'}">
           <font-awesome-icon class="sidebar-icon" :icon="['fas','address-book']" ></font-awesome-icon> <!-- user-friends -->
           <h4>Connections</h4>
         </li>
-        <li @click="updateView('settings')" :class="{'active': settingsViewActive}">
+        <li @click="updateView('settings')" :class="{'active': $route.params.view == 'settings'}">
           <font-awesome-icon class="sidebar-icon" :icon="['fas','cog']" ></font-awesome-icon>
           <h4>Settings</h4>
         </li>
       </ul>
     </div>
 
-    <div class="daily-message" v-if="!profileViewActive && !messagesViewActive && !projectsViewActive && !connectionsViewActive && !settingsViewActive">
+    <div class="daily-message" v-if="!$route.params.view">
       <h2 class="fade-in">Happy Wednesday!</h2>
       <h3 class="fade-in"> "I'm always doing things I can't do; that's how I get to do them." -Pablo Picasso</h3>
     </div>
 
-    <div class="nav" v-if="profileViewActive || messagesViewActive || projectsViewActive || connectionsViewActive || settingsViewActive">
+    <div class="nav" v-if="$route.params.view">
       <div class="home-link">
         <router-link to="/" class="link" >
           <li>
             <font-awesome-icon :icon="['fas','long-arrow-alt-left']" class="nav-icon back"></font-awesome-icon>
             <span>Back To Site</span>
           </li>
-          <li @click="$emit('optionSelected', 'signout')">
+          <li @click="signout">
             <font-awesome-icon :icon="['fas','power-off']" class="nav-icon"></font-awesome-icon>
             <span id="signout">Sign Out</span>
           </li>
@@ -58,19 +58,19 @@
       </div>
     </div>
 
-    <div v-if="profileViewActive" class="views">
+    <div v-if="$route.params.view == 'profile'" class="views">
       <user-profile @toast-update="toast = $event" />
     </div>
-    <div v-if="messagesViewActive" class="views">
+    <div v-if="$route.params.view == 'messages'" class="views">
       <user-messages />
     </div>
-    <div v-if="projectsViewActive" class="views">
+    <div v-if="$route.params.view == 'projects'" class="views">
       <user-projects />
     </div>
-    <div v-if="connectionsViewActive" class="views">
+    <div v-if="$route.params.view == 'connections'" class="views">
       <user-connections :connectionIds="user.connections" />
     </div>
-    <div v-if="settingsViewActive" class="views">
+    <div v-if="$route.params.view == 'settings'" class="views">
       <user-settings @toast-update="toast = $event" />
     </div>
 

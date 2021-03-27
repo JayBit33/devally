@@ -11,7 +11,7 @@ import UserSettings from '@/pages/user-app/user-settings';
 import { CometChat } from "@cometchat-pro/chat";
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import dayjs from 'dayjs';
-import { mapActions, mapGetters } from 'vuex';
+import { mapActions, mapGetters, mapMutations } from 'vuex';
 
 export default {
   name: "UserApp",
@@ -23,11 +23,6 @@ export default {
       id: this.$route.params.id,
       isLoading: true,
       messages: [],
-      messagesViewActive: false,
-      projectsViewActive: false,
-      connectionsViewActive: false,
-      settingsViewActive: false,
-      profileViewActive: false,
       toast: {
         type: '',
         message: [{ text: '', emphasis: false }],
@@ -88,6 +83,7 @@ export default {
     );
   },
   methods: {
+    ...mapMutations(['updateIsLoggedIn']),
     ...mapActions(['fetchDevUsers']),
     closeToast() {
       this.toast.isShown = false
@@ -141,31 +137,13 @@ export default {
         })
         .catch(() => {});
     },
+    signout() {
+      this.updateIsLoggedIn(false);
+    },
     updateView(view) {
-      this.messagesViewActive = false;
-      this.projectsViewActive = false;
-      this.connectionsViewActive = false;
-      this.settingsViewActive = false;
-      this.profileViewActive = false;
-
-      switch (view) {
-        case 'messages':
-          this.messagesViewActive = true;
-          break;
-        case 'projects':
-          this.projectsViewActive = true;
-          break;
-        case 'connections':
-          this.connectionsViewActive = true;
-          break;
-        case 'settings':
-          this.settingsViewActive = true;
-          break;
-        case 'profile':
-          this.profileViewActive = true;
-          break;
-        default:
-          break;
+      let id = this.$route.params.id
+      if (view != this.$route.params.view) {
+        this.$router.push(`/profile/${id}/${view}`)
       }
     }
   },
