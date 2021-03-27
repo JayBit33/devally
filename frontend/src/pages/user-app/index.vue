@@ -37,17 +37,14 @@
       <div class="home-link">
         <router-link to="/" class="link" >
           <li>
-            <font-awesome-icon :icon="['fas','home']" class="nav-icon"></font-awesome-icon>
-            <span>Site Home</span>
+            <font-awesome-icon :icon="['fas','long-arrow-alt-left']" class="nav-icon back"></font-awesome-icon>
+            <span>Back To Site</span>
+          </li>
+          <li @click="$emit('optionSelected', 'signout')">
+            <font-awesome-icon :icon="['fas','power-off']" class="nav-icon"></font-awesome-icon>
+            <span id="signout">Sign Out</span>
           </li>
         </router-link>
-      </div>
-
-      <div class="sign-out-link">
-        <li @click="$emit('optionSelected', 'signout')">
-          <font-awesome-icon :icon="['fas','power-off']" class="nav-icon"></font-awesome-icon>
-          <span>Sign Out</span>
-        </li>
       </div>
     </div>
 

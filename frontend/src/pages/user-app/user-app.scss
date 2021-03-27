@@ -141,13 +141,20 @@
     padding: 0;
     width: max-content;
     position: absolute;
-    right: 3.5rem;
+    right: 4rem;
     top: 3.75rem;
     color: $secondary;
     display: flex;
     z-index: 5;
 
+    .link {
+      display: flex;
+      align-items:flex-end;
+    }
+
     li {
+      font-family: 'Open Sans",sans-serif';
+      font-size: .75rem;
       text-decoration: none;
       padding: 0rem .25rem;
       margin: .5rem .5rem;
@@ -177,7 +184,12 @@
       .nav-icon {
         font-size: 1.5rem;
       }
-
+      .back {
+        font-size: 2.5rem;
+      }
+      #signout {
+        padding-top: .5rem;
+      }
       &:hover {
         color: $button-tri;
       }
@@ -193,6 +205,7 @@
     position: absolute;
     top: 0;
     left: 18rem;
-    background-color: $user-app_body;
+    background-image: url('../../assets/devs_bg.png');
+    background-size: contain;
   }
 }
