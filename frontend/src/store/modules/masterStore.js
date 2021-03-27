@@ -2,7 +2,7 @@
 // ALL RIGHTS RESERVED
 import Vue from 'vue';
 import Vuex from 'vuex';
-import {authAPI, usersAPI, projectsAPI } from '@/api/apis';
+import {authAPI, baseApi, usersAPI, projectsAPI } from '@/api/apis';
 import { CometChat } from "@cometchat-pro/chat";
 
 Vue.use(Vuex)
@@ -72,6 +72,15 @@ Vue.use(Vuex)
                         console.log('fetchProjects', res.data)
                         commit("updateProjects", res.data);
                         resolve(res.data);
+                    }).catch(error => reject(error));
+            })
+        },
+        getDevOptions() {
+            return new Promise((resolve, reject) => {
+                baseApi.get('/dev-options')
+                    .then(res => {
+                        // TODO
+                        resolve(res.data)
                     }).catch(error => reject(error));
             })
         },

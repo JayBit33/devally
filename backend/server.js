@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import swaggerJsDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
+import baseApi from './apis/baseApi';
 import users from './apis/users';
 import projects from './apis/projects';
 import auth from './auth';
@@ -16,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser('mycatsarealwayssilly')); // process.env.COOKIE_SECRET set secret as env var
 app.use(cors({
   credentials: true,
-  origin: 'http://localhost:8081'
+  origin: 'http://localhost:8080'
 }));
 app.use(express.json());
 
@@ -52,6 +53,7 @@ const swaggerSpec = swaggerJsDoc(options);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use('/auth', auth);
+app.use('/api/v1/', baseApi);
 app.use('/api/v1/users', users);
 app.use('/api/v1/projects', projects);
 

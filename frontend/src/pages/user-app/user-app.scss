@@ -81,7 +81,7 @@
       flex-direction: column;
       width: 100%;
       flex-grow: 1;
-      
+
       li {
         display: flex;
         flex-direction: column;
@@ -151,7 +151,7 @@
       text-decoration: none;
       padding: 0rem .25rem;
       margin: .5rem .5rem;
-      color: $secondary;
+      color: $button-secondary;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -165,7 +165,7 @@
         margin-left: .5rem;
         position: relative;
         top: .2rem;
-        color: $secondary;
+        color: $button-secondary;
       }
       .accountIcon {
         margin-right: -.125rem;
@@ -179,7 +179,7 @@
       }
 
       &:hover {
-        color: $button-primary;
+        color: $button-tri;
       }
 
     }

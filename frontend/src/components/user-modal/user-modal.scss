@@ -7,7 +7,7 @@
   background-color: $message_bg;
   border: 1px solid $border;
   text-align: center;
-  padding: 2rem 0;
+  padding: 1.75rem 0;
   position: relative;
 
   &__title {
@@ -22,7 +22,7 @@
   &__button {
     background-color: $btn;
     width: max-content;
-    margin: .25rem auto;
+    margin: 1rem auto;
     padding: .5rem 2rem;
     border-radius: 50rem;
     transition: .3s;

@@ -23,7 +23,7 @@
           <h3>I receive a message</h3>
           <el-switch
             v-model="notify_message_received"
-            active-color="#6BA487"
+            active-color="#4B687E"
             inactive-color="#A9AFB5"
             @click="updateNotifyMessageReceived">
           </el-switch>
@@ -33,7 +33,7 @@
           <h3>Someone adds me as a connection</h3>
           <el-switch
             v-model="notify_added_connection"
-            active-color="#6BA487"
+            active-color="#4B687E"
             inactive-color="#A9AFB5"
             @click="updateNotifyAddedConnection">
           </el-switch>
@@ -43,7 +43,7 @@
           <h3>I receive an invitation to join a project</h3>
           <el-switch
             v-model="notify_project_invitation"
-            active-color="#6BA487"
+            active-color="#4B687E"
             inactive-color="#A9AFB5"
             @click="updateNotifyProjectInvite">
           </el-switch>
@@ -57,7 +57,7 @@
           <h3>Featured projects</h3>
           <el-switch
             v-model="subscribe_featured_projects"
-            active-color="#6BA487"
+            active-color="#4B687E"
             inactive-color="#A9AFB5"
             @click="updateFeaturedProjects">
           </el-switch>
@@ -67,7 +67,7 @@
           <h3>Weekly newsletters</h3>
           <el-switch
             v-model="subscribe_weekly_newsletter"
-            active-color="#6BA487"
+            active-color="#4B687E"
             inactive-color="#A9AFB5"
             @click="updateWeeklyNewsletter">
           </el-switch>
@@ -77,7 +77,7 @@
           <h3>Devally updates</h3>
           <el-switch
             v-model="subscribe_devally_updates"
-            active-color="#6BA487"
+            active-color="#4B687E"
             inactive-color="#A9AFB5"
             @click="updateDevallyUpdates">
           </el-switch>

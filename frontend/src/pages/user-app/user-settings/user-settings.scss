@@ -109,7 +109,7 @@
           font-size: 1rem;
         }
         input {
-          border: 1px solid $input-border;
+          border: 1px solid $button-tri;
           padding: .5rem;
           margin-right: 2rem;
         }
@@ -134,7 +134,7 @@
         font-family: 'Montserrat';
         font-size: 1rem;
         font-weight: 500;
-        background-color: $btn;
+        background-color: $button-tri;
         color: white;
         border-radius: 1rem;
         border: none;
@@ -151,7 +151,7 @@
     font-family: 'Montserrat';
     font-size: 1rem;
     font-weight: 500;
-    background-color: $btn;
+    background-color: $button-tri;
     color: white;
     border-radius: 1rem;
     border: none;
