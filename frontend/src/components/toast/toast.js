@@ -16,8 +16,8 @@ export default {
       }
     }, intervalRate)
   },
-  unMounted() {
-    this.$emit('toast-close')
+  destroyed() {
     clearInterval(this.timer)
+    this.$emit('toast-close')
   }
 }

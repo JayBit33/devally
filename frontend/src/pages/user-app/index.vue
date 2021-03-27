@@ -2,6 +2,16 @@
 <!-- ALL RIGHTS RESERVED -->
 <template>
   <div class="user-app" v-loading.fullscreen.lock="isLoading">
+    <Toast
+      v-if="toast && toast.isShown"
+      :type="toast.type"
+      :message="toast.message"
+      :hasAction="toast.hasAction"
+      :duration="toast.duration"
+      @toast-action-click="handleToastAction"
+      @toast-close="closeToast"
+    >
+    </Toast>
     <div class="user-app_sidebar">
       <img v-if="user && user.profile_image" class="user-app_sidebar-avatar" :src="getImage(user.profile_image)" />
       <h4 class="user-app_sidebar-fullname">{{ fullName }}</h4>
@@ -49,7 +59,7 @@
     </div>
 
     <div v-if="profileViewActive" class="views">
-      <user-profile />
+      <user-profile @toast-update="toast = $event" />
     </div>
     <div v-if="messagesViewActive" class="views">
       <user-messages />
@@ -61,7 +71,7 @@
       <user-connections :connectionIds="user.connections" />
     </div>
     <div v-if="settingsViewActive" class="views">
-      <user-settings />
+      <user-settings @toast-update="toast = $event" />
     </div>
 
     <!--el-drawer

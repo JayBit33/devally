@@ -2,7 +2,7 @@
 // ALL RIGHTS RESERVED
 import Vue from 'vue';
 import Vuex from 'vuex';
-import {authAPI, baseApi, usersAPI, projectsAPI } from '@/api/apis';
+import { authAPI, baseAPI, usersAPI, projectsAPI } from '@/api/apis';
 import { CometChat } from "@cometchat-pro/chat";
 
 Vue.use(Vuex)
@@ -77,7 +77,7 @@ Vue.use(Vuex)
         },
         getDevOptions() {
             return new Promise((resolve, reject) => {
-                baseApi.get('/dev-options')
+                baseAPI.get('/dev-options')
                     .then(res => {
                         // TODO
                         resolve(res.data)
@@ -107,9 +107,10 @@ Vue.use(Vuex)
             })
         },
         updateUser({ commit }, payload) {
-            const {id, updates} = payload
+            let {id, updates, table} = payload
+            table = table ? table : 'users'
             return new Promise((resolve, reject) => {
-                usersAPI.put(`/${id}`, updates)
+                usersAPI.put(`/${id}`, {updates, table})
                     .then(res => {
                         commit('');
                         console.log('res', res.data);

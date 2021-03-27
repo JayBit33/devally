@@ -2,6 +2,7 @@
 // ALL RIGHTS RESERVED
 
 import MessageNotifier from '@/components/message-notifier';
+import Toast from '@/components/toast'
 import UserConnections from '@/pages/user-app/user-connections';
 import UserMessages from '@/pages/user-app/user-messages';
 import UserProfile from '@/pages/user-app/user-profile';
@@ -26,12 +27,21 @@ export default {
       projectsViewActive: false,
       connectionsViewActive: false,
       settingsViewActive: false,
-      profileViewActive: false
+      profileViewActive: false,
+      toast: {
+        type: '',
+        message: [{ text: '', emphasis: false }],
+        hasAction: false,
+        actionRedirect: '',
+        isShown: false,
+        duration: 0
+      }
     };
   },
   components: {
     FontAwesomeIcon,
     MessageNotifier,
+    Toast,
     UserConnections,
     UserMessages,
     UserProfile,
@@ -79,6 +89,13 @@ export default {
   },
   methods: {
     ...mapActions(['fetchDevUsers']),
+    closeToast() {
+      this.toast.isShown = false
+    },
+    handleToastAction() {
+      this.$router.push(this.toast.actionRedirect)
+      this.toast.isShown = false
+    },
     getImage(imageName) {
       return require(`@/assets/${imageName}`)
     },
