@@ -325,6 +325,19 @@ router.put('/:id', isValidId, (req, res, next) => {
   })
 })
 
+// TODO
+// router.put('/update/:id', isValidId, (req, res) => {
+//   console.log(req)
+//   queries.updateByUserType(req.params.id, req.body.userTypeId, req.body.data).then(res => {
+//     if (res) {
+//       res.json(res)
+//     } else {
+//       res.status(404);
+//       next(new Error('User Does Not Exist'))
+//     }
+//   })
+// })
+
 /**
  * @swagger
  * /api/v1/users/:id:

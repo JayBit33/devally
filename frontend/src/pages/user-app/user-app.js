@@ -26,7 +26,8 @@ export default {
       projectsViewActive: false,
       connectionsViewActive: false,
       settingsViewActive: false,
-      profileViewActive: false
+      profileViewActive: false,
+      profileTest: ''
     };
   },
   components: {
@@ -81,6 +82,24 @@ export default {
     ...mapActions(['fetchDevUsers']),
     getImage(imageName) {
       return require(`@/assets/${imageName}`)
+    },
+    getImageFromBlob(blob) {
+      console.log('suppose blob', typeof blob)
+      var reader = new FileReader();
+
+      // new Blob([blob], { type: 'image/*'}).arrayBuffer().then( async (arrayBuffer) => {
+      //   let blob2 = new Blob([new Uint8Array(arrayBuffer)], {type: blob.type });
+      //   reader.readAsDataURL(blob2);
+      //   reader.onload = () => {
+      //     this.profileTest = reader.result
+      //   };
+      // });
+      reader.readAsDataURL(new Blob([blob], { type: 'image/*'}));
+      reader.onload = () => {
+        this.profileTest = reader.result
+      };
+      // return require(`@/assets/${imageName}`)
+      return this.profileTest
     },
     openMessageDrawer() {
       this.drawerOpen = true;

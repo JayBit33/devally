@@ -1,6 +1,8 @@
 // (c) Waveybits Inc. <2021>
 // ALL RIGHTS RESERVED
 const express = require('express');
+const knexfile = require('../knexfile')
+import queries from '../db/baseApi-queries';
 const router = express.Router();
 
 // to view swagger: http://localhost:3000/api-docs/
@@ -36,6 +38,18 @@ router.get('/dev-options', (_, res) => {
   const categories = ['Website', 'Mobile App', 'Ecommerce', 'SAAS'];
   const hiring_options = ['Shares', 'Flat Rate'];
   res.json({ roles, categories, hiring_options });
+})
+
+router.patch('/upload-profile-img/:id', async (req, res) => {
+  const data  = req.body;
+  const response = await queries.uploadProfileImg(req.params.id, data);
+  if (response) {
+    res.status(200).json(response);
+  } else {
+    console.log(`no user with id ${req.params.id}`)
+    res.status(404);
+    next(new Error('User Does Not Exist'))
+  }
 })
 
 

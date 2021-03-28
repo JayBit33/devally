@@ -2,7 +2,7 @@
 // ALL RIGHTS RESERVED
 import Vue from 'vue';
 import Vuex from 'vuex';
-import {authAPI, baseApi, usersAPI, projectsAPI } from '@/api/apis';
+import {authAPI, baseAPI, usersAPI, projectsAPI } from '@/api/apis';
 import { CometChat } from "@cometchat-pro/chat";
 
 Vue.use(Vuex)
@@ -77,7 +77,7 @@ Vue.use(Vuex)
         },
         getDevOptions() {
             return new Promise((resolve, reject) => {
-                baseApi.get('/dev-options')
+                baseAPI.get('/dev-options')
                     .then(res => {
                         // TODO
                         resolve(res.data)
@@ -118,6 +118,19 @@ Vue.use(Vuex)
                         console.log(error)
                         reject(error)
                     });
+            })
+        },
+        updateUserProfileImg({ commit }, id, file) {
+            return new Promise((resolve, reject) => {
+                baseAPI.patch(`/upload-profile-img/${id}`, file)
+                .then(res => {
+                    commit('');
+                    console.log('res', res.data);
+                    resolve(res.data);
+                }).catch(error => {
+                    console.log(error)
+                    reject(error)
+                });
             })
         }
     }

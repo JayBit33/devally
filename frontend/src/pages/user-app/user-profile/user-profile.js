@@ -43,7 +43,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['updateUser', 'fetchUserById']),
+    ...mapActions(['updateUser', 'fetchUserById', 'updateUserProfileImg']),
     handleCategoriesSelection(e) {
       this.selectedCategories = e
     },
@@ -53,8 +53,10 @@ export default {
     handleHiringOptionsSelection(e) {
       this.selectedHiringOptions = e
     },
-    updateProfile() {
+    async updateProfileImage() {
       // TODO
+      const res = await this.updateUserProfileImg(this.user.id, this.selectedFile)
+      console.log(res)
     }
   }
 }
