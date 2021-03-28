@@ -99,6 +99,10 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
 // Dropdown
 .el-select {
   width: 100%;
+
+  &__tags {
+    cursor: pointer;
+  }
 }
 
 .el-select-dropdown .el-scrollbar .el-select-dropdown__wrap .el-scrollbar__view

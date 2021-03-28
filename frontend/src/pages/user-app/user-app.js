@@ -2,6 +2,7 @@
 // ALL RIGHTS RESERVED
 
 import MessageNotifier from '@/components/message-notifier';
+import Toast from '@/components/toast'
 import UserConnections from '@/pages/user-app/user-connections';
 import UserMessages from '@/pages/user-app/user-messages';
 import UserProfile from '@/pages/user-app/user-profile';
@@ -10,7 +11,7 @@ import UserSettings from '@/pages/user-app/user-settings';
 import { CometChat } from "@cometchat-pro/chat";
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import dayjs from 'dayjs';
-import { mapActions, mapGetters } from 'vuex';
+import { mapActions, mapGetters, mapMutations } from 'vuex';
 
 export default {
   name: "UserApp",
@@ -27,12 +28,21 @@ export default {
       connectionsViewActive: false,
       settingsViewActive: false,
       profileViewActive: false,
-      profileTest: ''
+      profileTest: '',
+      toast: {
+        type: '',
+        message: [{ text: '', emphasis: false }],
+        hasAction: false,
+        actionRedirect: '',
+        isShown: false,
+        duration: 0
+      }
     };
   },
   components: {
     FontAwesomeIcon,
     MessageNotifier,
+    Toast,
     UserConnections,
     UserMessages,
     UserProfile,
@@ -79,7 +89,15 @@ export default {
     );
   },
   methods: {
+    ...mapMutations(['updateIsLoggedIn']),
     ...mapActions(['fetchDevUsers']),
+    closeToast() {
+      this.toast.isShown = false
+    },
+    handleToastAction() {
+      this.$router.push(this.toast.actionRedirect)
+      this.toast.isShown = false
+    },
     getImage(imageName) {
       return require(`@/assets/${imageName}`)
     },
@@ -143,31 +161,13 @@ export default {
         })
         .catch(() => {});
     },
+    signout() {
+      this.updateIsLoggedIn(false);
+    },
     updateView(view) {
-      this.messagesViewActive = false;
-      this.projectsViewActive = false;
-      this.connectionsViewActive = false;
-      this.settingsViewActive = false;
-      this.profileViewActive = false;
-
-      switch (view) {
-        case 'messages':
-          this.messagesViewActive = true;
-          break;
-        case 'projects':
-          this.projectsViewActive = true;
-          break;
-        case 'connections':
-          this.connectionsViewActive = true;
-          break;
-        case 'settings':
-          this.settingsViewActive = true;
-          break;
-        case 'profile':
-          this.profileViewActive = true;
-          break;
-        default:
-          break;
+      let id = this.$route.params.id
+      if (view != this.$route.params.view) {
+        this.$router.push(`/profile/${id}/${view}`)
       }
     }
   },

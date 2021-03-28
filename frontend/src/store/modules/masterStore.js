@@ -107,9 +107,10 @@ Vue.use(Vuex)
             })
         },
         updateUser({ commit }, payload) {
-            const {id, updates} = payload
+            let {id, updates, table} = payload
+            table = table ? table : 'users'
             return new Promise((resolve, reject) => {
-                usersAPI.put(`/${id}`, updates)
+                usersAPI.put(`/${id}`, {updates, table})
                     .then(res => {
                         commit('');
                         console.log('res', res.data);
