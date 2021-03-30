@@ -68,7 +68,11 @@ export default {
         duration: 0
       }
       if (response && user) {
-        toast.message = [{ text: 'You have successfully saved your settings', emphasis: false }],
+        toast.message = [
+          {text: 'You have', emphasis: false},
+          {text: 'successfully', emphasis: true},
+          {text: 'saved your settings', emphasis: false }
+        ],
         toast.type = 'success'
         this.updateLoggedInUser(response)
       } else {

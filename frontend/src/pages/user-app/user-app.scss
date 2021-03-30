@@ -65,7 +65,7 @@
 
       &:focus, &:hover, &:active {
         background-color: $sidebar_secondary;
-        color: black;
+        color: $sidebar_bg;
         cursor: pointer;
         border-color: $sidebar_secondary;
         outline: none;

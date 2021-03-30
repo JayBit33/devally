@@ -92,6 +92,8 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
 }
 .el-pagination.is-background button.btn-prev:disabled,
 .el-pagination.is-background button.btn-next:disabled {
+  background-color: $pag-bg;
+  cursor: default;
   color: white;
   margin-top: .25rem;
 }
