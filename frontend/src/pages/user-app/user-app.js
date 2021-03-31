@@ -50,7 +50,7 @@ export default {
     UserSettings
   },
   computed: {
-    ...mapGetters(['getDevUser', 'getDevUserByUsername', 'isLoggedIn']),
+    ...mapGetters(['getDevUser', 'getDevUserByUsername', 'isLoggedIn', 'getCurrentUserId']),
     accountType() {
       return this.user.user_type_id === 1
       ? 'developer'
@@ -66,7 +66,7 @@ export default {
     }
   },
   async created() {
-    if (!this.isLoggedIn) {
+    if (!this.isLoggedIn || this.$route.params.id != this.getCurrentUserId) {
       this.$router.push('/signin')
       return
     }
