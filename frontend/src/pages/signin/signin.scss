@@ -10,6 +10,10 @@
     background-repeat: no-repeat;
     background-size: cover;
 
+    .toast-container {
+      z-index: 10000;
+    }
+
     &_error-msg {
       position: absolute;
       width: 70%;

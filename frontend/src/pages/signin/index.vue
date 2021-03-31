@@ -2,6 +2,16 @@
 <!-- ALL RIGHTS RESERVED -->
 <template>
   <div class="signin">
+    <Toast
+      v-if="toast && toast.isShown"
+      :type="toast.type"
+      :message="toast.message"
+      :hasAction="toast.hasAction"
+      :duration="toast.duration"
+      @toast-action-click="handleToastAction"
+      @toast-close="closeToast"
+    >
+    </Toast>
     <el-alert
       v-if="loginErrorMsg"
       class="signin_error-msg"
