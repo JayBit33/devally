@@ -21,7 +21,7 @@ const router = new VueRouter({
     { path: '/', name: 'Home', component: Home, meta: { breadcrumb: []} },
     { path: '/devs', name: 'Devs', component: Devs, meta: { breadcrumb: [ { name: 'home', to: '/' }, { name: 'developers', to: '/devs' }]} },
     { path: '/dev/:id?', name: 'Dev', component: Dev, meta: { breadcrumb: [ { name: 'home', to: '/' }, { name: 'developers', to: '/devs' }, { name: 'developer', to: '/dev' }]} },
-    { path: '/projects', name: 'Projects', component: Projects, meta: { breadcrumb: []} },
+    { path: '/projects', name: 'Projects', component: Projects, meta: { breadcrumb: [{ name: 'home', to: '/' }, { name: 'projects', to: '/projects' }]} },
     { path: '/profile/:id?/:view?', name: 'Profile', component: UserApp, meta: { breadcrumb: [] } },
     { path: '/works',  name: 'Works', component: Works, meta: { breadcrumb: []} },
     { path: '/resources',  name: 'Resources', component: Resources, meta: { breadcrumb: []} },

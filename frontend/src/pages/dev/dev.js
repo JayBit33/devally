@@ -41,7 +41,7 @@ export default {
     Toast
   },
   computed: {
-    ...mapGetters(['getDevUsers', 'getDevUser','getLoggedInUser']),
+    ...mapGetters(['getDevUsers', 'getDevUser', 'getLoggedInUser', 'isLoggedIn']),
     fullName() {
       return `${this.user.firstname} ${this.user.lastname}`;
     },
@@ -54,6 +54,19 @@ export default {
   },
   async created() {
     await this.fetchDevUsers().then(() => this.user = this.getDevUser(this.$route.params.id));
+    if (!this.isLoggedIn) {
+      this.toast.type = 'info'
+      this.toast.message = [
+        { text: 'Sign in', emphasis: true },
+        { text: 'or', emphasis: false },
+        { text: 'Sign up', emphasis: true },
+        { text: 'to collaborate with developers', emphasis: false }
+      ]
+      this.toast.hasAction = true
+      this.toast.actionRedirect = '/signin'
+      this.toast.duration = 5000
+      this.toast.isShown = true
+    }
   },
   methods: {
     ...mapActions(['fetchDevUsers', 'updateUser']),
