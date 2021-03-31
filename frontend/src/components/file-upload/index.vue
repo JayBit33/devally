@@ -3,7 +3,7 @@
     class="file-upload"
     :class="{'dragging': dragging, 'bottom-margin': selectedFile}"
   >
-    <input type="file" class="upload-input" name="image" :accept="fileType + '/*'" ref="uploadInput" @change="handleFile($event.target.files[0])">
+    <input type="file" class="upload-input" name="profile_image" :accept="fileType + '/*'" ref="uploadInput" @change="handleFile($event.target.files[0])">
 
     <div v-if="!selectedFile" class="no-file" @click="$refs.uploadInput.click()">
       <h4>{{fileTitle}}</h4>

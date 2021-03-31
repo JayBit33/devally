@@ -54,7 +54,8 @@ export default {
     },
     async updateProfileImage() {
       // TODO
-      const res = await this.updateUserProfileImg(this.user.id, this.selectedFile)
+      // const blob = new Blob([this.selectedFile], { type: this.selectedFile.type })
+      const res = await this.updateUserProfileImg(this.user.id)
       console.log(res)
     },
     async updateProfile() {

@@ -121,9 +121,9 @@ Vue.use(Vuex)
                     });
             })
         },
-        updateUserProfileImg({ commit }, id, file) {
+        updateUserProfileImg({ commit }, id) {
             return new Promise((resolve, reject) => {
-                baseAPI.patch(`/upload-profile-img/${id}`, file)
+                baseAPI.patch(`/upload-profile-img/${id}`)
                 .then(res => {
                     commit('');
                     console.log('res', res.data);

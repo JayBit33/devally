@@ -4,7 +4,7 @@
 const knex = require('./knex');
 
 module.exports = {
-  uploadProfileImg(id, data) {
-    return knex('users').where('id', id).update('profile_blob', data, '*').then(user => user[0]);
+  async uploadProfileImg(id, data) {
+    return knex('users').where('id', id).update('profile_image', data, '*').then(user => user[0]);
   }
 }

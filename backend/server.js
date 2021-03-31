@@ -12,6 +12,7 @@ import auth from './auth';
 const port = process.env.PORT || 3000;
 const app = express();
 
+app.use('/uploads', express.static('uploads'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser('mycatsarealwayssilly')); // process.env.COOKIE_SECRET set secret as env var

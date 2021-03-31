@@ -3,7 +3,14 @@
 const express = require('express');
 const knexfile = require('../knexfile')
 import queries from '../db/baseApi-queries';
+import multer from 'multer';
 const router = express.Router();
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, './uploads/');
+  }
+})
+const upload = multer({ storage: storage });
 
 // to view swagger: http://localhost:3000/api-docs/
 
@@ -40,9 +47,8 @@ router.get('/dev-options', (_, res) => {
   res.json({ roles, categories, hiring_options });
 })
 
-router.patch('/upload-profile-img/:id', async (req, res) => {
-  const data  = req.body;
-  const response = await queries.uploadProfileImg(req.params.id, data);
+router.patch('/upload-profile-img/:id', upload.single('profile_image'), async (req, res) => {
+  const response = await queries.uploadProfileImg(req.params.id, req.file.path);
   if (response) {
     res.status(200).json(response);
   } else {

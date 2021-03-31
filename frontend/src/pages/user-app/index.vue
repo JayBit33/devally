@@ -13,7 +13,7 @@
     >
     </Toast>
     <div class="user-app_sidebar">
-      <img v-if="user && user.profile_image" class="user-app_sidebar-avatar" :src="getImageFromBlob(user.profile_blob)" />
+      <img v-if="user && user.profile_image" class="user-app_sidebar-avatar" :src="getImage(user.profile_image)" />
       <h4 class="user-app_sidebar-fullname">{{ fullName }}</h4>
       <h5 class="user-app_sidebar-accountType">{{ accountType }}</h5>
       <button class="user-app_sidebar-updateProfile" @click="updateView('profile')" :class="{'active': $route.params.view == 'profile'}">Update Profile</button>

@@ -28,7 +28,7 @@ export default {
       connectionsViewActive: false,
       settingsViewActive: false,
       profileViewActive: false,
-      profileTest: '',
+      profileImageUrl: '',
       toast: {
         type: '',
         message: [{ text: '', emphasis: false }],
@@ -98,26 +98,9 @@ export default {
       this.$router.push(this.toast.actionRedirect)
       this.toast.isShown = false
     },
-    getImage(imageName) {
-      return require(`@/assets/${imageName}`)
-    },
-    getImageFromBlob(blob) {
-      console.log('suppose blob', typeof blob)
-      var reader = new FileReader();
-
-      // new Blob([blob], { type: 'image/*'}).arrayBuffer().then( async (arrayBuffer) => {
-      //   let blob2 = new Blob([new Uint8Array(arrayBuffer)], {type: blob.type });
-      //   reader.readAsDataURL(blob2);
-      //   reader.onload = () => {
-      //     this.profileTest = reader.result
-      //   };
-      // });
-      reader.readAsDataURL(new Blob([blob], { type: 'image/*'}));
-      reader.onload = () => {
-        this.profileTest = reader.result
-      };
-      // return require(`@/assets/${imageName}`)
-      return this.profileTest
+    getImage(filePath) {
+      this.profileImageUrl = `http://localhost:3000/${filePath}`;
+      return this.profileImageUrl
     },
     openMessageDrawer() {
       this.drawerOpen = true;
