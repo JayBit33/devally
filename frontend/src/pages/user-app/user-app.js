@@ -50,7 +50,7 @@ export default {
     UserSettings
   },
   computed: {
-    ...mapGetters(['getDevUser', 'getDevUserByUsername', 'isLoggedIn', 'getCurrentUserId']),
+    ...mapGetters(['getDevUser', 'getDevUserByUsername', 'isLoggedIn', 'getCurrentUserId', 'getLoggedInUser']),
     accountType() {
       return this.user.user_type_id === 1
       ? 'developer'
@@ -63,7 +63,10 @@ export default {
     },
     categoriesFormatted() {
       return this.user.categories.join(", ");
-    }
+    },
+    getImage() {
+      return `http://localhost:3000/${this.getLoggedInUser.profile_image}`;
+    },
   },
   async created() {
     if (!this.isLoggedIn || this.$route.params.id != this.getCurrentUserId) {

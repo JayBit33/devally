@@ -1,5 +1,6 @@
 .file-upload {
   width: 100%;
+  min-width: 100%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -32,7 +33,11 @@
     font-size: 1.25rem;
   }
   .upload-input {
-    display: none;
+    position: absolute;
+    height: 0;
+    width: 0;
+    // display: none;
+    opacity: 0;
   }
 
   .no-file, .has-file {

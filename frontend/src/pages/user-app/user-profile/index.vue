@@ -54,7 +54,7 @@
         <textarea v-model="bio" name="bio" cols="30" rows="10"></textarea>
       </div>
 
-      <div class="update-btn" @click="updateProfileImage">Update</div>
+      <div class="update-btn" @click="updateProfile">Update</div>
     </div>
 
   </div>

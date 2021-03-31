@@ -22,9 +22,11 @@
     flex-direction: column;
 
     &-avatar {
-      width: 14rem;
+      width: 11rem;
+      height: 11rem;
+      object-fit: cover;
       border-radius: 2rem;
-      margin: 2rem 2rem;
+      margin: 2rem auto;
     }
 
     &-fullname {

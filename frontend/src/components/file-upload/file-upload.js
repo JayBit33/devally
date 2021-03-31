@@ -25,6 +25,7 @@ export default {
   watch: {
     selectedFile() {
       if (!this.selectedFile) return
+      
       var reader = new FileReader();
       reader.readAsDataURL(this.selectedFile);
       reader.onload = () => {

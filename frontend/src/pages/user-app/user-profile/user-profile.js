@@ -2,7 +2,7 @@
 // ALL RIGHTS RESERVED
 import Dropdown from '@/components/dropdown'
 import fileUpload from '@/components/file-upload'
-import { mapActions, mapGetters } from 'vuex';
+import { mapActions, mapGetters, mapMutations } from 'vuex';
 
 export default {
   name: 'UserProfile',
@@ -42,6 +42,7 @@ export default {
     }
   },
   methods: {
+    ...mapMutations(['updateLoggedInUser']),
     ...mapActions(['updateUser', 'fetchUserById', 'getDevOptions', 'updateUserProfileImg']),
     handleCategoriesSelection(e) {
       this.selectedCategories = e
@@ -53,10 +54,14 @@ export default {
       this.selectedHiringOptions = e
     },
     async updateProfileImage() {
-      // TODO
-      // const blob = new Blob([this.selectedFile], { type: this.selectedFile.type })
-      const res = await this.updateUserProfileImg(this.user.id)
-      console.log(res)
+      let formData = new FormData(document.getElementById('upload-form'))
+      try {
+        let res = await this.updateUserProfileImg({ id: this.user.id, form: formData})
+        this.updateLoggedInUser(res)
+        return true
+      } catch {
+        return false
+      }
     },
     async updateProfile() {
       // TODO
@@ -70,6 +75,11 @@ export default {
       let table = this.isDevUser ? 'developers' : 'visionaries'
       const response = await this.updateUser({id, updates, table})
 
+      let profileResponse = false
+      if (this.selectedFile) {
+        profileResponse = await this.updateProfileImage()
+      }
+
       let toast = {
         type: '',
         message: [{ text: '', emphasis: false }],
@@ -78,7 +88,7 @@ export default {
         isShown: false,
         duration: 0
       }
-      if (response) {
+      if (response && profileResponse) {
         toast.message = [{ text: 'You have', emphasis: false }, { text: 'successfully', emphasis: true }, { text: 'updated your profile', emphasis: false }],
         toast.type = 'success'
       } else {
@@ -87,6 +97,7 @@ export default {
       }
       toast.duration = 5000
       toast.isShown = true
+      this.selectedFile = null
       this.$emit('toast-update', toast)
     }
   }

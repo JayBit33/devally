@@ -2,7 +2,7 @@
 // ALL RIGHTS RESERVED
 import Vue from 'vue';
 import Vuex from 'vuex';
-import {authAPI, baseAPI, usersAPI, projectsAPI } from '@/api/apis';
+import { authAPI, baseAPI, usersAPI, projectsAPI } from '@/api/apis';
 import { CometChat } from "@cometchat-pro/chat";
 
 Vue.use(Vuex)
@@ -121,9 +121,15 @@ Vue.use(Vuex)
                     });
             })
         },
-        updateUserProfileImg({ commit }, id) {
+        updateUserProfileImg({ commit }, payload) {
+            const { id, form } = payload
             return new Promise((resolve, reject) => {
-                baseAPI.patch(`/upload-profile-img/${id}`)
+                // console.log('masterStore form', ...form)
+                baseAPI.patch(`/upload-profile-img/${id}`, form, {
+                    headers: {
+                      "Content-Type": "multipart/form-data"
+                    }
+                })
                 .then(res => {
                     commit('');
                     console.log('res', res.data);
