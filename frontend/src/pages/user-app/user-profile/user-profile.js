@@ -75,7 +75,7 @@ export default {
       let table = this.isDevUser ? 'developers' : 'visionaries'
       const response = await this.updateUser({id, updates, table})
 
-      let profileResponse = false
+      let profileResponse = true
       if (this.selectedFile) {
         profileResponse = await this.updateProfileImage()
       }
