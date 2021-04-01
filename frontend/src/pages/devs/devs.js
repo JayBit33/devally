@@ -13,6 +13,7 @@ export default {
       allHiringOption: null,
       allSkills: null,
       isLoading: true,
+      searchInput: null,
       // pageSize: 5,
       // currentPageIdx: 1,
       // startIdx: 0,
@@ -29,7 +30,22 @@ export default {
     ...mapGetters(['getDevUsers']),
     users() {
       if (!this.filters) {
-        return this.getDevUsers;
+        if (this.searchInput) {
+          return this.getDevUsers.filter(user => {
+            let filterBool = true
+            let letters = [...this.searchInput]
+            letters.forEach((letter, i) => {
+              let username = user.username
+              let firstname = user.firstname
+              if (letter.toLowerCase() != username[i].toLowerCase() && letter.toLowerCase() != firstname[i].toLowerCase())  {
+                filterBool = false
+              }
+            });
+          return filterBool
+          })
+        } else {
+          return this.getDevUsers;
+        }
       } else {
         return this.getDevUsers.filter(user => {
           return user.hiring_options.some(option => this.filters.hiringOption.includes(option)) &&
@@ -61,6 +77,11 @@ export default {
     //   this.endIdx = this.pageSize * page;
     //   window.scrollTo(0,0);
     // },
+    searchInputChange(input) {
+      this.filters = null;
+      this.searchInput = input
+      this.updateDisplayedUsers(1);
+    },
     updateUsersShown(filters) {
       this.filters = filters;
       if (filters === null) return

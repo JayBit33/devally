@@ -5,7 +5,7 @@
     <div class="filter-search_search">
       <font-awesome-icon :icon="['fas','filter']" class="filter-search_search-filter" :class="{'active': isFilterVisible}" @click="toggleFilterOptions" />
       <font-awesome-icon :icon="['fas','search']" class="filter-search_search-search"  @click="$refs.devSearchInput.focus()"/>
-      <input class="filter-search_search-input" ref="devSearchInput" :placeholder="placeholderText" />
+      <input v-model="inputText" @keyup="$emit('search-input', inputText)" class="filter-search_search-input" ref="devSearchInput" :placeholder="placeholderText" />
     </div>
     <br>
     <div v-if="isFilterVisible" class="filter-search_filterOptions" >

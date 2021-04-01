@@ -9,7 +9,8 @@ export default {
   data() {
     return {
       isFilterVisible: false,
-      placeholderText: 'Search professionals by username',
+      placeholderText: 'Search professionals by username or firstname',
+      inputText: null,
       allHiringOption: null,
       allRating: null,
       allSkills: null,
