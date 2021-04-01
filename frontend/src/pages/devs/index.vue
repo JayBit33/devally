@@ -2,7 +2,7 @@
 <!-- ALL RIGHTS RESERVED -->
 <template>
   <div class="main">
-    <div class="background-overlay_pic" :style="{'background-image': 'url(' + require('@/assets/devs_bg.png') + ')'}"></div>
+    <!-- <div class="background-overlay_pic" :style="{'background-image': 'url(' + require('@/assets/devs_bg.png') + ')'}"></div> -->
     <div class="background-overlay_color"></div>
 
     <filter-search class="filter" @applyFilters="updateUsersShown" @reset="updateDisplayedUsers(1)" />
