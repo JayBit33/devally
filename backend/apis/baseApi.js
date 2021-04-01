@@ -9,8 +9,22 @@ const storage = multer.diskStorage({
   destination: function(req, file, cb) {
     cb(null, './uploads/');
   }
-})
-const upload = multer({ storage: storage });
+});
+
+const fileFilter = (req, file, cb) => {
+  if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+}
+const upload = multer({
+  storage: storage,
+  limits: {
+    fileSize: 1024 * 1024 * 5 // 5MB
+  },
+  fileFilter: fileFilter
+});
 
 // to view swagger: http://localhost:3000/api-docs/
 
@@ -48,14 +62,14 @@ router.get('/dev-options', (_, res) => {
 })
 
 router.patch('/upload-profile-img/:id', upload.single('profile_image'), async (req, res) => {
-  const response = await queries.uploadProfileImg(req.params.id, req.file.path);
-  if (response) {
-    res.status(200).json(response);
-  } else {
-    console.log(`no user with id ${req.params.id}`)
-    res.status(404);
-    next(new Error('User Does Not Exist'))
-  }
+  console.log(req.file)
+  queries.uploadProfileImg(req.params.id, req.file.path).then(user => {
+    res.json(user)
+    res.send(200)
+  }).catch(error => {
+    console.log(error)
+    res.send(500)
+  })
 })
 
 
