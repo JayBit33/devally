@@ -1,23 +1,56 @@
 // (c) Waveybits Inc. <2021>
 // ALL RIGHTS RESERVED
 
+.page-content {
+  background-color: transparent;
+}
 
-  .main {
-    overflow: hidden;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    // background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+.main {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .background-overlay  {
+    &_pic {
+      position: fixed;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+      height: 100%;
+      width: 100%;
+      z-index: 1;
+      opacity: .95;
+      /* Create the parallax scrolling effect */
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    &_color {
+      position: fixed;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+      height: 100%;
+      width: 100%;
+      z-index: 0;
+      background-color: lighten($devs-page-section-bg, 5) ;
+    }
+  }
+
+  .filter {
+    z-index: 3;
   }
   .dev-profiles {
-    margin: 4rem  auto;
+    z-index: 3;
+    margin: 0 auto;
+    margin-bottom: 4rem;
   }
   #pagination {
+    z-index: 3;
     display: flex;
     justify-content: center;
   }
+
+}

@@ -2,8 +2,9 @@
 // ALL RIGHTS RESERVED
 
 .breadcrumbs {
-  margin-top: 4rem;
   margin-left: 14rem;
+  z-index: 1;
+  position: relative;
   h4 {
     display: inline;
     padding: 0 .75rem;

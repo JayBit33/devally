@@ -17,36 +17,36 @@
 
       <div class="interested-categories">
         <h4>Interested Categories</h4>
-        <Dropdown
+        <dropdown
           class="profile-dropdown"
           :items="allCategories"
           :isMultiSelect="true"
           :selectedItems="selectedCategories"
           @item-selection="handleCategoriesSelection"
         >
-        </Dropdown>
+        </dropdown>
       </div>
       <div v-if="isDevUser" class="roles">
         <h4>Roles</h4>
-        <Dropdown
+        <dropdown
           class="profile-dropdown"
           :items="allRoles"
           :isMultiSelect="true"
           :selectedItems="selectedRoles"
           @item-selection="handleRolesSelection"
         >
-        </Dropdown>
+        </dropdown>
       </div>
       <div v-if="isDevUser" class="hiring-options">
         <h4>Hiring Options</h4>
-        <Dropdown
+        <dropdown
           class="profile-dropdown"
           :items="allHiringOptions"
           :isMultiSelect="true"
           :selectedItems="selectedHiringOptions"
           @item-selection="handleHiringOptionsSelection"
         >
-        </Dropdown>
+        </dropdown>
       </div>
 
       <div class="bio">

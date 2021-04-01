@@ -8,8 +8,9 @@
       width: 10rem;
       background-color: $secondary-darker;
       position: absolute;
-      right: 1.5rem;
-      top: 3.75rem;
+      right: 2rem;
+      top: 4.25rem;
+      z-index: 5;
       &:before {
         display: block;
         content: '';

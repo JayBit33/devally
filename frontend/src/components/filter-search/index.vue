@@ -2,10 +2,10 @@
 <!-- ALL RIGHTS RESERVED -->
 <template>
   <div class="filter-search">
-    <font-awesome-icon :icon="['fas','filter']" class="filter-search_filter" @click="toggleFilterOptions" />
     <div class="filter-search_search">
-      <font-awesome-icon :icon="['fas','search']" class="filter-search_search-icon" />
-      <input type="search" class="filter-search_search-input" :placeholder="placeholderText" />
+      <font-awesome-icon :icon="['fas','filter']" class="filter-search_search-filter" :class="{'active': isFilterVisible}" @click="toggleFilterOptions" />
+      <font-awesome-icon :icon="['fas','search']" class="filter-search_search-search"  @click="$refs.devSearchInput.focus()"/>
+      <input class="filter-search_search-input" ref="devSearchInput" :placeholder="placeholderText" />
     </div>
     <br>
     <div v-if="isFilterVisible" class="filter-search_filterOptions" >
@@ -13,38 +13,43 @@
       <dropdown optionTitle="Payment Type" :items="['Shares','Project Fee', 'Hourly']" />
       <dropdown optionTitle="Skills" :items="['Java','Sprint Boot']" />
       <dropdown optionTitle="Rating" :items="['> 3','> 4']" /> -->
-      <h5>Payment Type</h5>
-      <el-select v-model="hiringOption" placeholder="Hiring Option" class="filters payment-type_filter">
-        <el-option
-          v-for="item in ['Shares','Flat Rate']"
-          :key="item"
-          :label="item"
-          :value="item">
-        </el-option>
-      </el-select>
-      <h5>Skills Needed</h5>
-      <el-select v-model="skills" multiple placeholder="Skills" class="filters skills-filter">
-        <el-option
-          v-for="item in ['Frontend','Backend', 'UX/UI','Devops', 'Project Manager']"
-          :key="item"
-          :label="item"
-          :value="item">
-        </el-option>
-      </el-select>
-      <h5>Rating</h5>
-      <el-select v-model="rating" placeholder="Rating" class="filters rating-filter">
-        <el-option
-          v-for="item in ['>=1','>=2', '>=3','>=4','>=5']"
-          :key="item"
-          :label="item"
-          :value="item">
-        </el-option>
-      </el-select>
-      <button type="submit" id="apply-filters" @click.stop="applyFilters">Apply Filters</button>
-      <el-button class="reset-btn" @click="resetFilters">Reset</el-button>
+      <div class="filter-search_filterOptions_dropdowns">
+        <dropdown
+          class="filters payment-type_filter"
+          :items="allHiringOption"
+          :isMultiSelect="false"
+          :optionTitle="'Payment Type'"
+          :selectedItems="hiringOption"
+          @item-selection="hiringOption = $event"
+        >
+        </dropdown>
+        <dropdown
+          class="filters skills_filter"
+          :collapsedTags="true"
+          :items="allSkills"
+          :isMultiSelect="true"
+          :optionTitle="'Skills'"
+          :selectedItems="skills"
+          @item-selection="skills = $event"
+        >
+        </dropdown>
+        <dropdown
+          class="filters rating_filter"
+          :items="allRating"
+          :isMultiSelect="false"
+          :optionTitle="'Rating'"
+          :selectedItems="rating"
+          @item-selection="rating = $event"
+        >
+        </dropdown>
+      </div>
+      <div class="filter-search_filterOptions_buttons">
+        <button id="apply-filters" @click.stop="applyFilters">Apply</button>
+        <button class="reset-btn" @click="resetFilters">Clear</button>
+      </div>
     </div>
  </div>
 </template>
 
 <script src="./filter-search.js" />
-<style src="./filter-search.scss" lang="scss" scoped />
+<style src="./filter-search.scss" lang="scss" scoped/>

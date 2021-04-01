@@ -1,7 +1,10 @@
 <!-- (c) Waveybits Inc. <2021> -->
 <!-- ALL RIGHTS RESERVED -->
 <template>
-  <div class="main" :style="{'background-image': 'url(' + require('@/assets/devs_bg.png') + ')'}">
+  <div class="main">
+    <div class="background-overlay_pic" :style="{'background-image': 'url(' + require('@/assets/devs_bg.png') + ')'}"></div>
+    <div class="background-overlay_color"></div>
+
     <filter-search class="filter" @applyFilters="updateUsersShown" @reset="updateDisplayedUsers(1)" />
     <div class="dev-profiles"  v-loading.fullscreen.lock="isLoading" >
       <profile-bio v-for="user in usersShown" :key="user.id" :user="user" class="profile" ></profile-bio>

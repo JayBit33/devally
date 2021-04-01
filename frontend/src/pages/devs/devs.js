@@ -10,6 +10,8 @@ export default {
   name: "Devs",
   data() {
     return {
+      allHiringOption: null,
+      allSkills: null,
       isLoading: true,
       // pageSize: 5,
       // currentPageIdx: 1,
@@ -29,21 +31,25 @@ export default {
       if (!this.filters) {
         return this.getDevUsers;
       } else {
-        return this.getDevUsers.filter(user =>
-          user.hiring_options.some(option => this.filters.hiringOption.includes(option)) &&
-          user.skills.some(skill => this.filters.skills.includes(skill))  &&
-          Number(user.rating) >= Number(this.filters.rating.split('')[2]));
+        return this.getDevUsers.filter(user => {
+          return user.hiring_options.some(option => this.filters.hiringOption.includes(option)) &&
+            user.roles.some(skill => this.filters.skills.includes(skill))  &&
+            Number(user.rating) >= Number(this.filters.rating.split('')[2])
+        })
       }
     },
     usersShown() {
       return this.users ? this.users.slice(this.startIdx, this.endIdx) : [];
     }
   },
-  created() {
+  async created() {
     this.fetchDevUsers()
+    const { roles, hiring_options } = await this.getDevOptions()
+    this.allHiringOption = hiring_options
+    this.allSkills = roles
   },
   methods: {
-    ...mapActions(['fetchDevUsers']),
+    ...mapActions(['fetchDevUsers', 'getDevOptions']),
     // updateDisplayedUsers(page) {
     //   if (page === 1) {
     //     this.startIdx = 0;
@@ -57,9 +63,10 @@ export default {
     // },
     updateUsersShown(filters) {
       this.filters = filters;
+      if (filters === null) return
       // Make sure to add all possible values for hiringOptin, skills & rating when they are null
-      if (this.filters.hiringOption === null) { this.filters.hiringOption = ['Shares','Flat Rate'] }
-      if (!filters.skills.length) { this.filters.skills = ['Frontend','Backend','UX/UI']; }
+      if (this.filters.hiringOption === null) { this.filters.hiringOption = this.allHiringOption }
+      if (this.filters.skills === null || this.filters.skills.length === 0) { this.filters.skills = this.allSkills; }
       if (this.filters.rating === null) { this.filters.rating = '>=1'; }
       this.updateDisplayedUsers(1); // send pagination back to page 1 on filter
     },

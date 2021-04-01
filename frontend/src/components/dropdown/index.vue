@@ -12,7 +12,7 @@
       <li v-for="(item,i) in items" :key="i" @click="onItemSelection">{{ item }}</li>
     </ul>
   </div> -->
-  <el-select :value="selectedItems" :multiple="isMultiSelect" placeholder="Select" @change="$emit('item-selection', $event)">
+  <el-select :collapse-tags="collapsedTags" :value="selectedItems" :multiple="isMultiSelect" :placeholder="optionTitle ? optionTitle : 'Select'" @change="$emit('item-selection', $event)">
     <el-option
       v-for="item in items"
       :key="item"

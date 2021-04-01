@@ -13,8 +13,8 @@
           <li><router-link to="/about" class="link">about</router-link></li>
         </ul>
       </nav>
-      <button v-if="!signedIn"><router-link to="/signin" class="signin">Sign In</router-link></button>
-      <button v-else ><span id="username">{{ username }}</span><font-awesome-icon class="user-icon" :icon="['fas','user']" @click="onOptionsClick" /></button>
+      <button v-if="!signedIn" class="signin-button"><router-link to="/signin" class="signin">Sign In</router-link></button>
+      <button v-else class="signin-button"><span id="username">{{ username }}</span><font-awesome-icon class="user-icon" :icon="['fas','user']" @click="onOptionsClick" /></button>
     </div>
     <user-options-dropdown v-if="optionsViewable" @optionSelected="closeOptions" />
 
@@ -103,11 +103,15 @@ html {
 
 .header {
   width: 100%;
-  margin: 2rem 0rem 2rem 2rem;
+  padding: 3rem 1rem 2rem 3rem;
   color: black;
   display: flex;
   align-items: flex-start;
   justify-content:space-between;
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 3;
 
   .logo {
     font: bold 1.5rem 'Montserrat';
@@ -138,10 +142,10 @@ html {
     }
   }
   .signin {
-  text-decoration: unset;
-  font-family: 'Montserrat';
-  font-size: 1rem;
-  color: $button-secondary;
+    text-decoration: unset;
+    font-family: 'Montserrat';
+    font-size: 1rem;
+    color: $button-secondary;
   }
 
   button {
@@ -153,6 +157,9 @@ html {
       color: $primary;
       font-size: 1.5rem;
       cursor: pointer;
+    }
+    &.signin-button {
+      background-color: transparent;
     }
   }
 
@@ -169,10 +176,13 @@ html {
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 80vh;
-  z-index: 1;
+  z-index: 3;
   // margin-left: 7rem;
   // margin-right: 7rem;
   // max-width: 1960px;
+  .breadcrumbs {
+    z-index: 3;
+  }
 }
 
 .footer {
@@ -185,6 +195,7 @@ html {
   padding-top: 11rem;
   margin-top: 0;
   margin-bottom: 0;
+  z-index: 3;
 }
 
 .fade-in {
