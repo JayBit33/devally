@@ -13,6 +13,7 @@ export default {
       allHiringOption: null,
       allSkills: null,
       isLoading: true,
+      refreshUsers: false,
       searchInput: null,
       // pageSize: 5,
       // currentPageIdx: 1,
@@ -77,19 +78,30 @@ export default {
     //   this.endIdx = this.pageSize * page;
     //   window.scrollTo(0,0);
     // },
+    showRefresh() {
+      this.refreshUsers = true
+      setTimeout(() => {
+        this.refreshUsers = false
+      }, 200)
+    },
     searchInputChange(input) {
       this.filters = null;
       this.searchInput = input
       this.updateDisplayedUsers(1);
+      this.showRefresh()
     },
     updateUsersShown(filters) {
       this.filters = filters;
-      if (filters === null) return
+      if (filters === null) {
+        this.searchInput = null
+        return
+      }
       // Make sure to add all possible values for hiringOptin, skills & rating when they are null
       if (this.filters.hiringOption === null) { this.filters.hiringOption = this.allHiringOption }
       if (this.filters.skills === null || this.filters.skills.length === 0) { this.filters.skills = this.allSkills; }
       if (this.filters.rating === null) { this.filters.rating = '>=1'; }
       this.updateDisplayedUsers(1); // send pagination back to page 1 on filter
+      this.showRefresh()
     },
   },
   watch: {

@@ -40,6 +40,7 @@ export default {
       }
     },
     resetFilters() {
+      this.inputText = null;
       this.hiringOption = null;
       this.skills = [];
       this.rating =  null;

@@ -46,6 +46,30 @@
     z-index: 3;
     margin: 0 auto;
     margin-bottom: 4rem;
+    .profiles {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 10rem;
+      
+      .loading-users {
+        font-size: 2.5rem;
+      }
+
+      .no-users {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        h2 {
+          margin: 0 1rem;
+          font-size: 2rem;
+        }
+        .icon {
+          margin: 0 1rem;
+          font-size: 2.5rem;
+        }
+      }
+    }
   }
   #pagination {
     z-index: 3;
