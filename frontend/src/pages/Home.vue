@@ -59,7 +59,7 @@
         <router-link to="/signin" class="link"><button>Start Learning</button></router-link>
       </div>
       <div>
-        <img :src="getImage('201brain-knowledge.png')" style="width:700px" />
+        <img :src="getImage('201brain-knowledge.png')" style="width:350px" />
       </div>
     </div>
   </div>
@@ -242,6 +242,9 @@ export default {
     }
     div:nth-child(2) {
       margin-right: 4rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     h2 {
       font-family:'Montserrat';
