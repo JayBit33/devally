@@ -211,5 +211,17 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+
+    .icon {
+      font-size: 2rem;
+      position: relative;
+      top: 5.25rem;
+      left: 5rem;
+    }
+    .title {
+      margin-top: 3rem;
+      margin-bottom: 4rem;
+      margin-left: 9rem;
+    }
   }
 }

@@ -2,8 +2,6 @@
 <!-- ALL RIGHTS RESERVED -->
 <template>
   <div class="user-profile">
-    <font-awesome-icon :icon="['fas','id-card']" class="icon"></font-awesome-icon>
-    <h1 class="title">User Profile</h1>
 
     <div class="profile-content">
 

@@ -2,13 +2,23 @@
 
 .user-modal {
   margin: 0 auto;
-  margin-left: 4rem;
-  width: calc(100% - 8rem);
+  margin-left: 5rem;
+  width: calc(100% - 10rem);
   background-color: $user-app_body;
   border: 1px solid $border;
   text-align: center;
-  padding: 1.75rem 0;
+  padding: 2.25rem 0;
   position: relative;
+  border-radius: 1.5rem;
+
+  &__text {
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-left: 22rem;
+  }
 
   &__title {
     margin: .25rem 0;
@@ -22,7 +32,7 @@
   &__button {
     background-color: $btn;
     width: max-content;
-    margin: 1rem auto;
+    margin: .25rem auto;
     padding: .5rem 2rem;
     border-radius: 50rem;
     transition: .3s;
@@ -50,10 +60,22 @@
     }
   }
 
+  &__image {
+    min-width: 12rem;
+    height: 12rem;
+    object-fit: contain;
+    position: absolute;
+    top: -3.5rem;
+    right: 10rem;
+    font-size: 1.25rem;
+    transition: .3s;
+
+  }
+
   &__close {
     position: absolute;
-    top: .5rem;
-    right: .5rem;
+    top: .75rem;
+    right: 1rem;
     font-size: 1.25rem;
     transition: .3s;
 

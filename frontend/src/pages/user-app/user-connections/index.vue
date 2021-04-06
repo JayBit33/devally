@@ -12,13 +12,13 @@
       @toast-close="closeToast"
     >
     </Toast>
-    <font-awesome-icon :icon="['fas','user-friends']" class="icon"></font-awesome-icon>
-    <h1 class="title">User Connections</h1>
     <user-modal
       v-if="isUserModalOpen"
       title="Want to add more connections?"
       btnTxt="Find people..."
       :btnIcon="['fas','user-friends']"
+      :imageName="'201brain-knowledge.png'"
+      :styles="{'backgroundColor': '#FF8A85', 'color': 'black', 'buttonBackground': '#123D50'}"
       @button-click="handleUserModalButton"
       @close-modal="closeModal"
     />

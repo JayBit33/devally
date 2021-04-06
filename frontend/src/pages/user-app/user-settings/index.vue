@@ -2,8 +2,7 @@
 <!-- ALL RIGHTS RESERVED -->
 <template>
   <div class="user-settings">
-    <font-awesome-icon class="user-settings_icon" :icon="['fas','cog']" ></font-awesome-icon>
-    <h1 class="user-settings_title">Settings</h1>
+    
     <div class="user-settings_grid">
       <div class="user-settings_grid_notifications">
         <h2>Notifications</h2>

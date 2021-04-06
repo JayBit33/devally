@@ -59,7 +59,7 @@
         <router-link to="/signin" class="link"><button>Start Learning</button></router-link>
       </div>
       <div>
-        <img src="images/201brain-knowledge.png" style="width:700px" />
+        <img :src="getImage('201brain-knowledge.png')" style="width:700px" />
       </div>
     </div>
   </div>
@@ -71,6 +71,11 @@ export default {
   name: "Home",
   props: [],
   created() {
+  },
+  methods: {
+    getImage(imageName) {
+      return require(`@/assets/${imageName}`)
+    }
   }
 }
 </script>

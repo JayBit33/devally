@@ -59,18 +59,28 @@
     </div>
 
     <div v-if="$route.params.view == 'profile'" class="views">
+      <font-awesome-icon :icon="['fas','id-card']" class="icon"></font-awesome-icon>
+      <h1 class="title">User Profile</h1>
       <user-profile @toast-update="toast = $event" />
     </div>
     <div v-if="$route.params.view == 'messages'" class="views">
+      <font-awesome-icon :icon="['fas','envelope']" class="icon"></font-awesome-icon>
+      <h1 class="title">User Messages</h1>
       <user-messages />
     </div>
     <div v-if="$route.params.view == 'projects'" class="views">
+      <font-awesome-icon :icon="['fas','clipboard']" class="icon"></font-awesome-icon>
+      <h1 class="title">User Projects</h1>
       <user-projects />
     </div>
     <div v-if="$route.params.view == 'connections'" class="views">
+      <font-awesome-icon :icon="['fas','user-friends']" class="icon"></font-awesome-icon>
+      <h1 class="title">User Connections</h1>
       <user-connections :connectionIds="user.connections" />
     </div>
     <div v-if="$route.params.view == 'settings'" class="views">
+      <font-awesome-icon class="icon" :icon="['fas','cog']" ></font-awesome-icon>
+      <h1 class="title">Settings</h1>
       <user-settings @toast-update="toast = $event" />
     </div>
 

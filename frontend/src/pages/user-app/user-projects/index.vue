@@ -2,12 +2,13 @@
 <!-- ALL RIGHTS RESERVED -->
 <template>
   <div class="user-projects">
-    <h1 class="title">User Projects</h1>
     <user-modal
       v-if="isUserModalOpen"
-      title="Want to find new projects?"
-      btnTxt="Search here..."
-      :btnIcon="['fas','search']"
+      title="Put your project in the spotlight"
+      btnTxt="Get Featured"
+      :btnIcon="['fas','clipboard-check']"
+      :imageName="'spotlight.png'"
+      :styles="{'backgroundColor': '#00B6E4', 'color': 'white', 'buttonBackground': '#005399'}"
       @button-click="handleUserModalButton"
       @close-modal="closeModal"
     />
