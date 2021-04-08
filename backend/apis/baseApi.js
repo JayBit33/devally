@@ -21,7 +21,7 @@ const fileFilter = (req, file, cb) => {
 const upload = multer({
   storage: storage,
   limits: {
-    fileSize: 1024 * 1024 * 5 // 5MB
+    fileSize: 1024 * 1024 * 7 // 7MB
   },
   fileFilter: fileFilter
 });
@@ -61,10 +61,30 @@ router.get('/dev-options', (_, res) => {
   res.json({ roles, categories, hiring_options });
 })
 
+/**
+ * @swagger
+ * /api/v1/upload-profile-img/:id:
+ *   patch:
+ *     summary: Update user's profile image
+ *     description: Update user's profile image by storing file in uploads folder and path in db under profile_image
+ *     tags: [{ 'name': 'BaseApi'}]
+ *     responses:
+ *       200:
+ *         description: returns user's new profile image path.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                  profile_image:
+ *                    type: string
+ *                    description: profile image path for user.
+ *                    example: 'uploads/389200284872020.jpg'
+ */
 router.patch('/upload-profile-img/:id', upload.single('profile_image'), async (req, res) => {
   console.log(req.file)
   queries.uploadProfileImg(req.params.id, req.file.path).then(user => {
-    res.json(user)
+    res.json(user.profile_image)
     res.send(200)
   }).catch(error => {
     console.log(error)

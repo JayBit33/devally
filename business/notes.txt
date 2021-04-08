@@ -1,6 +1,8 @@
 
-use real life use cases to determine domains for domain driven design 
+use real life use cases to determine domains for domain driven design
 write user stories
+
+ Devally "Helping you Find a technical co-founder"
 
 Potential Features
 
@@ -10,3 +12,27 @@ list repository
 walk customer through SDLM steps. How to manage and run a team
 Article section on how to develop site,saas, ecom etc.
 
+g
+Potential Issues
+
+quality of developers! Do we vet them?
+Security
+
+GREAT ADVICE FROM INDUSTRY PROFESSIONALS
+
+ANALYTICS!! MUST HAVE KNOW WHERE YOUR USERS SPEND THE MOST TIME AND DON'T.
+
+TODOS
+Get MVP out ASAP
+Get initial Users
+Talk to users and get feedback
+iterate (Improve the product)
+
+Lean MVP
+Very fast to build (weeks not months) - landing page and form
+Very limited functionality
+Appeal to a small set of users ( not every possible user)
+Base to iterate from
+
+
+Remember launch is only a big deal for you not for your users.
