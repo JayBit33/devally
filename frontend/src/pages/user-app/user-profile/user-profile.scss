@@ -1,22 +1,20 @@
 // (c) Waveybits Inc. <2021>
 // ALL RIGHTS RESERVED
 .user-profile {
-  .icon {
-    font-size: 2rem;
-    position: relative;
-    top: 6.125rem;
-    left: 8rem;
-  }
-  .title {
-    margin-top: 4rem;
-    margin-left: 12rem;
-  }
+  position: relative;
 
   .profile-content {
     margin: 0 auto;
     margin-top: 3rem;
-    width: 40%;
-    //background-color: $user-app_body;
+    width: 80%;
+    &-container {
+      margin: 0 auto;
+      width: 80%;
+      background-color: $content-background;
+      border: 1px solid $border-default;
+      padding: 1rem 0;
+      border-radius: .3rem;
+    }
 
     h4 {
       margin: .25rem 0;
@@ -57,7 +55,7 @@
       color: $user-app_body;
       width: max-content;
       cursor: pointer;
-      float: right;
+      margin-left: auto;
     }
   }
 }

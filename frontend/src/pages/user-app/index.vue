@@ -35,6 +35,10 @@
           <font-awesome-icon class="sidebar-icon" :icon="['fas','cog']" ></font-awesome-icon>
           <h4>Settings</h4>
         </li>
+        <li @click="updateView('tasks')" :class="{'active': $route.params.view == 'tasks'}">
+          <font-awesome-icon class="sidebar-icon" :icon="['fas','tasks']" ></font-awesome-icon>
+          <h4>Tasks</h4>
+        </li>
       </ul>
     </div>
 
@@ -61,7 +65,9 @@
     <div v-if="$route.params.view == 'profile'" class="views">
       <font-awesome-icon :icon="['fas','id-card']" class="icon"></font-awesome-icon>
       <h1 class="title">User Profile</h1>
-      <user-profile @toast-update="toast = $event" />
+      <user-profile @toast-update="toast = $event">
+        <font-awesome-icon :icon="['fas','id-card']" class="view-icon"></font-awesome-icon>
+      </user-profile>
     </div>
     <div v-if="$route.params.view == 'messages'" class="views">
       <font-awesome-icon :icon="['fas','envelope']" class="icon"></font-awesome-icon>
@@ -82,6 +88,10 @@
       <font-awesome-icon class="icon" :icon="['fas','cog']" ></font-awesome-icon>
       <h1 class="title">Settings</h1>
       <user-settings @toast-update="toast = $event" />
+    </div>
+    <div v-if="$route.params.view == 'tasks'" class="views">
+      <font-awesome-icon class="icon" :icon="['fas','tasks']" ></font-awesome-icon>
+      <h1 class="title">Tasks</h1>
     </div>
 
     <!--el-drawer

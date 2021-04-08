@@ -2,57 +2,63 @@
 <!-- ALL RIGHTS RESERVED -->
 <template>
   <div class="user-profile">
+    <slot>
+      <font-awesome-icon :icon="['fas','id-card']" class="view-icon"></font-awesome-icon>
+    </slot>
 
-    <div class="profile-content">
+    <div class="profile-content-container">
+      <div class="profile-content">
 
-      <file-upload
-        :fileTitle="'Profile Image'"
-        :fileType="'image'"
-        :selectedFile="selectedFile"
-        @file-clear="selectedFile = null"
-        @file-change="selectedFile = $event"
-      ></file-upload>
 
-      <div class="interested-categories">
-        <h4>Interested Categories</h4>
-        <dropdown
-          class="profile-dropdown"
-          :items="allCategories"
-          :isMultiSelect="true"
-          :selectedItems="selectedCategories"
-          @item-selection="handleCategoriesSelection"
-        >
-        </dropdown>
+        <file-upload
+          :fileTitle="'Profile Image'"
+          :fileType="'image'"
+          :selectedFile="selectedFile"
+          @file-clear="selectedFile = null"
+          @file-change="selectedFile = $event"
+        ></file-upload>
+
+        <div class="interested-categories">
+          <h4>Interested Categories</h4>
+          <dropdown
+            class="profile-dropdown"
+            :items="allCategories"
+            :isMultiSelect="true"
+            :selectedItems="selectedCategories"
+            @item-selection="handleCategoriesSelection"
+          >
+          </dropdown>
+        </div>
+        <div v-if="isDevUser" class="roles">
+          <h4>Roles</h4>
+          <dropdown
+            class="profile-dropdown"
+            :items="allRoles"
+            :isMultiSelect="true"
+            :selectedItems="selectedRoles"
+            @item-selection="handleRolesSelection"
+          >
+          </dropdown>
+        </div>
+        <div v-if="isDevUser" class="hiring-options">
+          <h4>Hiring Options</h4>
+          <dropdown
+            class="profile-dropdown"
+            :items="allHiringOptions"
+            :isMultiSelect="true"
+            :selectedItems="selectedHiringOptions"
+            @item-selection="handleHiringOptionsSelection"
+          >
+          </dropdown>
+        </div>
+
+        <div class="bio">
+          <h4>Bio</h4>
+          <textarea v-model="bio" name="bio" cols="30" rows="10"></textarea>
+        </div>
+
+        <div class="update-btn" @click="updateProfile">Update</div>
       </div>
-      <div v-if="isDevUser" class="roles">
-        <h4>Roles</h4>
-        <dropdown
-          class="profile-dropdown"
-          :items="allRoles"
-          :isMultiSelect="true"
-          :selectedItems="selectedRoles"
-          @item-selection="handleRolesSelection"
-        >
-        </dropdown>
-      </div>
-      <div v-if="isDevUser" class="hiring-options">
-        <h4>Hiring Options</h4>
-        <dropdown
-          class="profile-dropdown"
-          :items="allHiringOptions"
-          :isMultiSelect="true"
-          :selectedItems="selectedHiringOptions"
-          @item-selection="handleHiringOptionsSelection"
-        >
-        </dropdown>
-      </div>
-
-      <div class="bio">
-        <h4>Bio</h4>
-        <textarea v-model="bio" name="bio" cols="30" rows="10"></textarea>
-      </div>
-
-      <div class="update-btn" @click="updateProfile">Update</div>
     </div>
 
   </div>

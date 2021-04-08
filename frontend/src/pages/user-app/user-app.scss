@@ -22,18 +22,18 @@
     flex-direction: column;
 
     &-avatar {
-      width: 11rem;
-      height: 11rem;
+      width: 8rem;
+      height: 8rem;
       object-fit: cover;
-      border-radius: 2rem;
-      margin: 2rem auto;
+      border-radius: 50%;
+      margin: 2rem auto 1rem auto;
     }
 
     &-fullname {
       font-family: 'Montserrat';
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       font-weight: 500;
-      color: white;
+      color: $sidebar_icon;
       text-align: center;
       margin-top: .5rem;
       margin-bottom: 0;
@@ -41,28 +41,30 @@
 
     &-accountType {
       font-family: inherit;
-      font-size: 1rem;
+      font-size: 1.1rem;
       font-weight: lighter;
       color: $sidebar_secondary;
       text-align: center;
       margin-top: .5rem;
-      margin-bottom: 2rem;
+      margin-bottom: 1rem;
     }
 
     &-updateProfile {
       font-size: 1rem;
       color: white;
       padding: .5rem 1rem;
-      background-color: transparent;
-      border-radius: 10rem;
-      border: 2px solid $sidebar_secondary;
+      background-color: $btn-default;
+      border-radius: .5rem;
+      outline: none;
+      border: none;
       display: block;
       margin: 0 auto;
       margin-bottom: 0rem;
+      transition: .3s;
 
       &.active {
         background-color: $sidebar_secondary;
-        color: $sidebar_icon_active;
+        color: white;
       }
 
       &:focus, &:hover, &:active {
@@ -95,27 +97,28 @@
         padding: 3vh 0;
         text-align: center;
         cursor: pointer;
+        transition: .3s;
+        border-right: 1px solid transparent;
 
         &.active {
-          background-color: $sidebar_icon_active;
+          background-color: $app-background;
         }
 
         &:focus, &:hover, &:active {
-          .sidebar-icon, h4 {
-            color: $sidebar_secondary
-          }
+          background-color: $app-background;
+          border-right: 1px solid $border-default;
         }
-
+        
         .sidebar-icon {
-          font-size: 2.5rem;
-          color: white;
+          font-size: 2rem;
+          color: $sidebar_icon;
           line-height: 100%;
         }
 
         h4 {
           margin: .5rem;
           font-size: 1rem;
-          color: white;
+          color: $sidebar_icon;
         }
       }
     }
@@ -207,21 +210,35 @@
     position: absolute;
     top: 0;
     left: 18rem;
-    background-image: url('../../assets/devs_bg.png');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-color: $app-background;
+    // background-image: url('../../assets/devs_bg.png');
+    // background-position: center;
+    // background-repeat: no-repeat;
+    // background-size: cover;
 
     .icon {
-      font-size: 2rem;
+      font-size: 1.5rem;
       position: relative;
-      top: 5.25rem;
-      left: 5rem;
+      top: 2.75rem;
+      left: 3rem;
     }
     .title {
-      margin-top: 3rem;
-      margin-bottom: 4rem;
-      margin-left: 9rem;
+      font-size: 1.5rem;
+      margin-top: 1rem;
+      margin-bottom: 6rem;
+      margin-left: 6rem;
+    }
+
+    .view-icon {
+      position: absolute;
+      top: -4rem;
+      left: 12%;
+      z-index: 2;
+      font-size: 5rem;
+      opacity: .8;
+      color: $btn-default;
+      padding: 1.5rem;
+      border-radius: 50%;
     }
   }
 }
