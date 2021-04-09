@@ -8,6 +8,7 @@ import UserMessages from '@/pages/user-app/user-messages';
 import UserProfile from '@/pages/user-app/user-profile';
 import UserProjects from '@/pages/user-app/user-projects';
 import UserSettings from '@/pages/user-app/user-settings';
+import SidebarButton from '@/pages/user-app/controls/sidebar-btn';
 import { CometChat } from "@cometchat-pro/chat";
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import dayjs from 'dayjs';
@@ -42,6 +43,7 @@ export default {
   components: {
     FontAwesomeIcon,
     MessageNotifier,
+    SidebarButton,
     Toast,
     UserConnections,
     UserMessages,

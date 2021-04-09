@@ -22,17 +22,17 @@
     flex-direction: column;
 
     &-avatar {
-      width: 8rem;
-      height: 8rem;
+      width: 12rem;
+      height: 12rem;
       object-fit: cover;
       border-radius: 50%;
-      margin: 2rem auto 1rem auto;
+      margin: 7rem auto 1rem auto;
     }
 
     &-fullname {
       font-family: 'Montserrat';
       font-size: 1.4rem;
-      font-weight: 500;
+      font-weight: 600;
       color: $sidebar_icon;
       text-align: center;
       margin-top: .5rem;
@@ -80,11 +80,10 @@
       text-decoration: none;
       list-style-type: none;
       padding: 0;
-      margin-bottom: 0;
+      margin: 7rem 0 9rem 0;
       display: flex;
       flex-direction: column;
       width: 100%;
-      flex-grow: 1;
 
       li {
         display: flex;
@@ -94,11 +93,10 @@
         flex-grow: 1;
         width: 100%;
         margin-bottom: 0rem;
-        padding: 3vh 0;
+        padding: 1.5vh 0;
         text-align: center;
         cursor: pointer;
         transition: .3s;
-        border-right: 1px solid transparent;
 
         &.active {
           background-color: $app-background;
@@ -106,21 +104,27 @@
 
         &:focus, &:hover, &:active {
           background-color: $app-background;
-          border-right: 1px solid $border-default;
+          // border-right: 1px solid $border-default;
         }
-        
+
         .sidebar-icon {
-          font-size: 2rem;
+          font-size: 3rem;
           color: $sidebar_icon;
           line-height: 100%;
         }
 
         h4 {
-          margin: .5rem;
+          font-family: 'Open Sans';
           font-size: 1rem;
+          font-weight: 400;
+          margin: .5rem;
           color: $sidebar_icon;
         }
       }
+    }
+
+    .signout-btn {
+      margin-bottom: 4rem;
     }
   }
 

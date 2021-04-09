@@ -16,19 +16,24 @@
       <img v-if="user && user.profile_image" class="user-app_sidebar-avatar" :src="getImage" />
       <h4 class="user-app_sidebar-fullname">{{ fullName }}</h4>
       <h5 class="user-app_sidebar-accountType">{{ accountType }}</h5>
-      <button class="user-app_sidebar-updateProfile" @click="updateView('profile')" :class="{'active': $route.params.view == 'profile'}">Update Profile</button>
+      <sidebar-button
+        displayText="update profile"
+        :class="{'active': $route.params.view == 'profile'}"
+        @click="updateView('profile')"
+      >
+      </sidebar-button>
 
       <ul class="user-app_sidebar-nav">
         <li @click="updateView('messages')" :class="{'active': $route.params.view == 'messages'}">
-          <font-awesome-icon class="sidebar-icon" :icon="['fas','envelope']" ></font-awesome-icon>
+          <font-awesome-icon class="sidebar-icon" :icon="['fas','comment-alt']" ></font-awesome-icon>
           <h4>Messages</h4>
         </li>
         <li @click="updateView('projects')" :class="{'active': $route.params.view == 'projects'}">
-          <font-awesome-icon class="sidebar-icon" :icon="['fas','project-diagram']" ></font-awesome-icon>
+          <font-awesome-icon class="sidebar-icon" :icon="['fas','clipboard']" ></font-awesome-icon>
           <h4>Projects</h4>
         </li>
         <li @click="updateView('connections')" :class="{'active': $route.params.view == 'connections'}">
-          <font-awesome-icon class="sidebar-icon" :icon="['fas','address-book']" ></font-awesome-icon> <!-- user-friends -->
+          <font-awesome-icon class="sidebar-icon" :icon="['fas','users']" ></font-awesome-icon> <!-- user-friends -->
           <h4>Connections</h4>
         </li>
         <li @click="updateView('settings')" :class="{'active': $route.params.view == 'settings'}">
@@ -40,6 +45,10 @@
           <h4>Tasks</h4>
         </li>
       </ul>
+      <sidebar-button
+        displayText="sign out"
+        class="signout-btn"
+      ></sidebar-button>
     </div>
 
     <div class="daily-message" v-if="!$route.params.view">
