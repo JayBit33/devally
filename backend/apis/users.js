@@ -254,6 +254,13 @@ function isValidId(req, res, next) {
  *     summary: Retrieve user by id
  *     description: Retrieve single user by id
  *     tags: [{ 'name': 'Users'}]
+ *     parameters:
+ *       - id: 3
+ *         description: User's id
+ *         required: true
+ *         in: params
+ *         type: Number
+ *         example: 3
  *     responses:
  *       200:
  *         description: User with matching id.
@@ -313,6 +320,13 @@ router.get('/:id', isValidId, (req, res, next) => {
  *     summary: Update user record by user id
  *     description: Update user record by user id
  *     tags: [{ 'name': 'Users'}]
+ *     parameters:
+ *       - id: 3
+ *         description: User's id
+ *         required: true
+ *         in: params
+ *         type: Number
+ *         example: 34
 */
 router.put('/:id', isValidId, (req, res, next) => {
   queries.updateUserById(req.params.id, req.body).then(user => {
@@ -345,10 +359,17 @@ router.put('/:id', isValidId, (req, res, next) => {
  *     summary: Delete user record by user id
  *     description: Delete a user
  *     tags: [{ 'name': 'Users'}]
+ *     parameters:
+ *       - id: 34
+ *         description: User's id
+ *         required: true
+ *         in: params
+ *         type: Number
+ *         example: 34
 */
 router.delete('/:id', isValidId, (req, res, next) => {
   queries.deleteUserById(req.params.id).then(() => {
-    res.json({
+    res.status(200).json({
       deleted: true
     })
   })

@@ -84,11 +84,13 @@ router.post('/signup', (req, res, next) => {
             })
           })
       } else {
-        next(new Error('Email is taken'))
+        return res.status(422).json({
+          message: 'Email is taken'
+        });
       }
     })
   } else {
-    next(new Error('Invalid user'))
+    next(new Error('Invalid user info'))
   }
 });
 
@@ -172,6 +174,58 @@ router.post('/login', (req, res, next) => {
   } else {
     next(new Error('input not valid'))
   }
+})
+
+/**
+ * @swagger
+ * auth/delete/:id:
+ *   delete:
+ *     summary: Delete a user
+ *     description: Delete a user by id
+ *     tags: [{ 'name': 'Auth'}]
+ *     parameters:
+ *       - id: 34
+ *         description: User's id
+ *         required: true
+ *         in: params
+ *         type: Number
+ *         example: 34
+ *     responses:
+ *       200:
+ *         description: succesfully deleted user.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                   message:
+ *                     type: string
+ *                     example: 'User deleted'
+ *       500:
+ *         description: deleting user account failed.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                   error:
+ *                     type: string
+ *                     example: 'Error Message'
+ *
+*/
+router.delete('/delete/:id', (req, res) => {
+  users.deleteUserById(req.params.id)
+    .then(res => {
+      res.status(200).json({
+        message: 'User deleted'
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({
+        error: err
+      })
+    })
 })
 
 module.exports = router;
