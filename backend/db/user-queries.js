@@ -7,7 +7,7 @@ module.exports = {
   getAllByParam(param) {
     const query = knex('users');
     if (param.username) {
-      query.where('username', 'like', `%${param.username}%`);
+      query.where('username', 'like', `%${param.username}%`).first();
     }
     if (param.rating) {
       query.where('rating', param.rating);

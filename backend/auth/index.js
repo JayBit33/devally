@@ -157,9 +157,9 @@ router.post('/login', (req, res, next) => {
   if (validUser(req.body)) {
     users.getAllByParam({email: req.body.email})
       .then(user => {
-        if (!user) res.json({ message: 'User with email does not exist'})
+        if (!user) res.status(401).json({ message: 'Auth failed'})
         bcrypt.compare(req.body.password, user.password)
-          .then((result => {
+          .then(result => {
             if (result) {
               res.cookie('user_id', user.id, {
                 httpOnly: true,
@@ -169,7 +169,7 @@ router.post('/login', (req, res, next) => {
               res.status(200).json({ result, message: 'login successful', user: user})
             }
             else res.json({ message: 'Incorrect password'})
-          }))
+          })
       })
   } else {
     next(new Error('input not valid'))
