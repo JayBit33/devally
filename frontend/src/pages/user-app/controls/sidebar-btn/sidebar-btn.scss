@@ -8,5 +8,11 @@
     padding: .25rem 2rem;
     font-family: 'Montserrat';
     font-size: 1rem;
+
+    &:active, &:focus, &:hover {
+      cursor: pointer;
+      outline: none;
+      border: none;
+    }
   }
 }

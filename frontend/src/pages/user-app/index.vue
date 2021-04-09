@@ -19,7 +19,7 @@
       <sidebar-button
         displayText="update profile"
         :class="{'active': $route.params.view == 'profile'}"
-        @click="updateView('profile')"
+        @clicked="updateView('profile')"
       >
       </sidebar-button>
 
@@ -48,6 +48,7 @@
       <sidebar-button
         displayText="sign out"
         class="signout-btn"
+        @clicked="signout"
       ></sidebar-button>
     </div>
 
@@ -62,10 +63,6 @@
           <li>
             <font-awesome-icon :icon="['fas','long-arrow-alt-left']" class="nav-icon back"></font-awesome-icon>
             <span>Back To Site</span>
-          </li>
-          <li @click="signout">
-            <font-awesome-icon :icon="['fas','power-off']" class="nav-icon"></font-awesome-icon>
-            <span id="signout">Sign Out</span>
           </li>
         </router-link>
       </div>

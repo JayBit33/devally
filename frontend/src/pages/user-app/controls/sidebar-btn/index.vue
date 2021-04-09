@@ -1,6 +1,6 @@
 <template>
   <div class="sidebar-btn">
-    <button class="sidebar-btn_button">{{ displayText }}</button>
+    <button class="sidebar-btn_button" @click="$emit('clicked')">{{ displayText }}</button>
   </div>
 </template>
 

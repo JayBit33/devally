@@ -26,7 +26,7 @@
       height: 12rem;
       object-fit: cover;
       border-radius: 50%;
-      margin: 7rem auto 1rem auto;
+      margin: 6rem auto 1rem auto;
     }
 
     &-fullname {
@@ -80,7 +80,7 @@
       text-decoration: none;
       list-style-type: none;
       padding: 0;
-      margin: 7rem 0 9rem 0;
+      margin: 7vh 0 9vh 0;
       display: flex;
       flex-direction: column;
       width: 100%;
@@ -155,6 +155,12 @@
     color: $secondary;
     display: flex;
     z-index: 5;
+
+    .home-link {
+      position: relative;
+      right: 2rem;
+      bottom: 2rem;
+    }
 
     .link {
       display: flex;
