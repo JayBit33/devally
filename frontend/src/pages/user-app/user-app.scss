@@ -315,7 +315,7 @@
 }
 
 
-@media only screen and (max-height: 1200px) {
+@media only screen and (max-height: 1280px) {
   .user-app {
     &_sidebar {
       &-avatar {
@@ -324,7 +324,27 @@
         margin-top: 3rem;
       }
       &-nav {
+        margin: 7vh 0;
+      }
+    }
+  }
+}
+
+@media only screen and (max-height: 980px) {
+  .user-app {
+    &_sidebar {
+      &-avatar {
+        width: 9rem;
+        height: 9rem;
+        margin-top: 2rem;
+      }
+      &-nav {
         margin: 4vh 0;
+        li {
+          .sidebar-icon {
+            font-size: 2.125rem;
+          }
+        }
       }
     }
   }
