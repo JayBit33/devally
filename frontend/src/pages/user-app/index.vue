@@ -53,83 +53,100 @@
     </div>
 
     <div class="daily-message" v-if="!$route.params.view">
-      <h2 class="fade-in">Happy Wednesday!</h2>
-      <h3 class="fade-in"> "I'm always doing things I can't do; that's how I get to do them." -Pablo Picasso</h3>
+      <!-- <h2 class="fade-in">Happy Wednesday!</h2> -->
+      
     </div>
 
-    <div class="nav" v-if="$route.params.view">
-      <div class="home-link">
-        <router-link to="/" class="link" >
-          <li>
-            <font-awesome-icon :icon="['fas','long-arrow-alt-left']" class="nav-icon back"></font-awesome-icon>
-            <span>Back To Site</span>
-          </li>
-        </router-link>
+    <div class="user-app_content">
+
+      <div class="greeting" v-if="!$route.params.view">
+        <div class="greeting__text">
+          <h2 class="fade-in">Welcome Back</h2>
+          <h2 class="fade-in greeting__text__name">{{user.firstname}}</h2>
+        </div>
+        <div class="greeting__image">
+          <img src="@/assets/programmer-man.png" alt="">
+        </div>
+        <div class="greeting__quote">
+          <h3 class="fade-in"> "I'm always doing things I can't do; that's how I get to do them." -Pablo Picasso</h3>
+        </div>
       </div>
-    </div>
 
-    <div v-if="$route.params.view == 'profile'" class="views">
-      <font-awesome-icon :icon="['fas','id-card']" class="icon"></font-awesome-icon>
-      <h1 class="title">User Profile</h1>
-      <user-profile @toast-update="toast = $event">
-        <font-awesome-icon :icon="['fas','id-card']" class="view-icon"></font-awesome-icon>
-      </user-profile>
-    </div>
-    <div v-if="$route.params.view == 'messages'" class="views">
-      <font-awesome-icon :icon="['fas','envelope']" class="icon"></font-awesome-icon>
-      <h1 class="title">User Messages</h1>
-      <user-messages />
-    </div>
-    <div v-if="$route.params.view == 'projects'" class="views">
-      <font-awesome-icon :icon="['fas','clipboard']" class="icon"></font-awesome-icon>
-      <h1 class="title">User Projects</h1>
-      <user-projects />
-    </div>
-    <div v-if="$route.params.view == 'connections'" class="views">
-      <font-awesome-icon :icon="['fas','user-friends']" class="icon"></font-awesome-icon>
-      <h1 class="title">User Connections</h1>
-      <user-connections :connectionIds="user.connections" />
-    </div>
-    <div v-if="$route.params.view == 'settings'" class="views">
-      <font-awesome-icon class="icon" :icon="['fas','cog']" ></font-awesome-icon>
-      <h1 class="title">Settings</h1>
-      <user-settings @toast-update="toast = $event" />
-    </div>
-    <div v-if="$route.params.view == 'tasks'" class="views">
-      <font-awesome-icon class="icon" :icon="['fas','tasks']" ></font-awesome-icon>
-      <h1 class="title">Tasks</h1>
-    </div>
+      <div class="nav" v-if="$route.params.view">
+        <div class="home-link">
+          <router-link to="/" class="link" >
+            <li>
+              <font-awesome-icon :icon="['fas','long-arrow-alt-left']" class="nav-icon back"></font-awesome-icon>
+              <span>Back To Site</span>
+            </li>
+          </router-link>
+        </div>
+      </div>
 
-    <!--el-drawer
-      title="Messages"
-      :append-to-body="true"
-      :visible.sync="drawerOpen"
-      :direction="drawerDirection"
-      size="20%"
-    >
-      <div class="messages">
-        <ul>
-          <li v-for="(message,idx) in messages" :key="idx" class="message">
-            <div class="message-header">
-              <el-avatar :size="60" class="avatar" src="https://empty" @error="errorHandler" >
-                <img :src="require('@/assets/' + getProfileImage(message.entities.sender.entity.uid))" />
-              </el-avatar>
-              <div class="user-date">
-                <h4 class="username">Waveybits</h4>
-                 TODO this needs updated and pulled from user db to determine wether the user is online or logged off
-                <h5 v-if="message.entities.sender.entity.status === 'available'" class="senderActive">online</h5>
+      <div v-if="$route.params.view == 'profile'" class="views">
+        <font-awesome-icon :icon="['fas','id-card']" class="icon"></font-awesome-icon>
+        <h1 class="title">User Profile</h1>
+        <user-profile @toast-update="toast = $event">
+          <font-awesome-icon :icon="['fas','id-card']" class="view-icon"></font-awesome-icon>
+        </user-profile>
+      </div>
+      <div v-if="$route.params.view == 'messages'" class="views">
+        <font-awesome-icon :icon="['fas','envelope']" class="icon"></font-awesome-icon>
+        <h1 class="title">User Messages</h1>
+        <user-messages />
+      </div>
+      <div v-if="$route.params.view == 'projects'" class="views">
+        <font-awesome-icon :icon="['fas','clipboard']" class="icon"></font-awesome-icon>
+        <h1 class="title">User Projects</h1>
+        <user-projects />
+      </div>
+      <div v-if="$route.params.view == 'connections'" class="views">
+        <font-awesome-icon :icon="['fas','user-friends']" class="icon"></font-awesome-icon>
+        <h1 class="title">User Connections</h1>
+        <user-connections :connectionIds="user.connections" />
+      </div>
+      <div v-if="$route.params.view == 'settings'" class="views">
+        <font-awesome-icon class="icon" :icon="['fas','cog']" ></font-awesome-icon>
+        <h1 class="title">Settings</h1>
+        <user-settings @toast-update="toast = $event" />
+      </div>
+      <div v-if="$route.params.view == 'tasks'" class="views">
+        <font-awesome-icon class="icon" :icon="['fas','tasks']" ></font-awesome-icon>
+        <h1 class="title">Tasks</h1>
+      </div>
+
+      <!--el-drawer
+        title="Messages"
+        :append-to-body="true"
+        :visible.sync="drawerOpen"
+        :direction="drawerDirection"
+        size="20%"
+      >
+        <div class="messages">
+          <ul>
+            <li v-for="(message,idx) in messages" :key="idx" class="message">
+              <div class="message-header">
+                <el-avatar :size="60" class="avatar" src="https://empty" @error="errorHandler" >
+                  <img :src="require('@/assets/' + getProfileImage(message.entities.sender.entity.uid))" />
+                </el-avatar>
+                <div class="user-date">
+                  <h4 class="username">Waveybits</h4>
+                  TODO this needs updated and pulled from user db to determine wether the user is online or logged off
+                  <h5 v-if="message.entities.sender.entity.status === 'available'" class="senderActive">online</h5>
+                </div>
+                <h3 class="date-sent">{{getMessageDate(message.sentAt)}}</h3>
               </div>
-              <h3 class="date-sent">{{getMessageDate(message.sentAt)}}</h3>
-            </div>
-              <p>{{message.text}}</p>
-          </li>
-        </ul>
-      </div>
-    </!--el-drawer>
-    <message-notifier :numberOfMessages="messages.length" :haveMessages="messages.length > 0" @openMessageBox="openMessageDrawer"></message-notifier>
-  -->
+                <p>{{message.text}}</p>
+            </li>
+          </ul>
+        </div>
+      </!--el-drawer>
+      <message-notifier :numberOfMessages="messages.length" :haveMessages="messages.length > 0" @openMessageBox="openMessageDrawer"></message-notifier>
+    -->
 
+    </div>
   </div>
+
 </template>
 
 <script src="./user-app.js"></script>
