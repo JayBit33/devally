@@ -156,6 +156,7 @@ export default {
     },
     signout() {
       this.updateIsLoggedIn(false);
+      this.$router.push('/')
     },
     updateView(view) {
       let id = this.$route.params.id

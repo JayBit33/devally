@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors'
-import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
 import swaggerJsDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import baseApi from './apis/baseApi';
@@ -21,6 +21,9 @@ app.use(cors({
   origin: 'http://localhost:8080'
 }));
 app.use(express.json());
+
+console.log(process.env.JWT_KEY)
+console.log(process.env.JRTEM_KEY)
 
 const swaggerDefinition = {
   openapi: '3.0.0',

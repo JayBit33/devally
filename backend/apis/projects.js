@@ -3,6 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const queries = require('../db/project-queries');
+import authChecker from './middelware/auth-checker';
 
 function validProject(project) {
   const hasCreator = typeof project.creator_id == 'number' && project.creator_id.trim() != '';
@@ -22,17 +23,6 @@ function isValidId(req, res, next) {
   if(!isNaN(req.params.id)) return next();
   next(new Error('Invalid ID'));
 }
-
-// Create new project
-router.post('/create-project', (req, res, next) => {
-  if (validProject(req.body)) {
-    queries.createProject(req.body).then(project => {
-      res.send(project[0]);
-    })
-  } else {
-    next(new Error('Invalid Project Data'));
-  }
-})
 
 /**
  * @swagger
@@ -106,7 +96,7 @@ router.get('/', (_, res) => {
  *       - name: id
  *         description: project id
  *         required: true
- *         in: path
+ *         in: params
  *         type: integer
  *         example: 3
  *     responses:
@@ -175,14 +165,20 @@ router.get('/:id', (req, res) => {
  *         in: body
  *         type: object
  *         example: { id: 3, creator_id: 7, team_member_ids: [118,0], name: Task Manager, category: Mobile App, description: Collaborate with team by assigning tasks to each member and tracking progress., hiring_options: ["Shares","Flat Rate"], viewable_regions: ["US","South America","Africa","Asia","Europe"], funding_types: ["Bootstrapped","Venture Capital","Friends & Family"], is_seeking_allys: false, is_public: true, is_featured: false }
- *     responses:
- *       200:
- *         description: Project with matching id.
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
+ *       - name: token
+ *         description: user auth token
+ *         required: true
+ *         in: headers
+ *         type: string
+ *         example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IndhdmV5Yml0c0BnbWFpbC5jb20iLCJ1c2VySWQiOjUsImlhdCI6MTYxODAxMDk3NCwiZXhwIjoxNjE4MDE0NTc0fQ.REKKslAtHUu4kF_kLgdjNKxFpBaQw2NyU7byjOefuYA
+ *         responses:
+ *          200:
+ *           description: Project with matching id.
+ *           content:
+ *             application/json:
+ *                schema:
+ *                  type: object
+ *                  properties:
  *                   id:
  *                     type: integer
  *                     description: The project ID.
@@ -221,10 +217,10 @@ router.get('/:id', (req, res) => {
  *                     type: boolean
  *                     example: false
 */
-router.post('/', (req, res, next) => {
-  if (validProject(req.body)) {
-    queries.createProject(req.body).then(project => {
-      res.json(project);
+router.post('/', authChecker, (req, res, next) => {
+  if (validProject(req.body.project)) {
+    queries.createProject(req.body.project).then(project => {
+      res.status(201).json({ project });
     })
   } else {
     next(new Error('Invalid Project Data'));
@@ -242,7 +238,7 @@ router.post('/', (req, res, next) => {
  *      - name: id
  *        description: project id
  *        required: true
- *        in: path
+ *        in: params
  *        type: integer
  *        example: 11
  *      - name: project
@@ -251,6 +247,12 @@ router.post('/', (req, res, next) => {
  *        in: body
  *        type: object
  *        example: { team_member_ids: [118,12,110], hiring_options: ["Shares"] }
+ *      - name: token
+ *        description: user auth token
+ *        required: true
+ *        in: headers
+ *        type: string
+ *        example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IndhdmV5Yml0c0BnbWFpbC5jb20iLCJ1c2VySWQiOjUsImlhdCI6MTYxODAxMDk3NCwiZXhwIjoxNjE4MDE0NTc0fQ.REKKslAtHUu4kF_kLgdjNKxFpBaQw2NyU7byjOefuYA
  *     responses:
  *       200:
  *         description: Project with matching id.
@@ -297,7 +299,7 @@ router.post('/', (req, res, next) => {
  *                     type: boolean
  *                     example: false
 */
-router.post('/:id', (req, res, next) => {
+router.post('/:id', authChecker, (req, res, next) => {
   queries.updateProject(req.params.id, req.body).then(project => {
     if (project) {
       res.json(project);
@@ -319,9 +321,15 @@ router.post('/:id', (req, res, next) => {
  *       - name: id
  *         description: project id
  *         required: true
- *         in: path
+ *         in: params
  *         type: integer
  *         example: 3
+ *       - name: token
+ *         description: user auth token
+ *         required: true
+ *         in: headers
+ *         type: string
+ *         example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IndhdmV5Yml0c0BnbWFpbC5jb20iLCJ1c2VySWQiOjUsImlhdCI6MTYxODAxMDk3NCwiZXhwIjoxNjE4MDE0NTc0fQ.REKKslAtHUu4kF_kLgdjNKxFpBaQw2NyU7byjOefuYA
  *     responses:
  *       200:
  *         description: Whether project was succesfully deleted.
@@ -334,7 +342,7 @@ router.post('/:id', (req, res, next) => {
  *                     type: boolean
  *                     example: true
 */
-router.delete('/:id', isValidId, (req, res) => {
+router.delete('/:id', authChecker, isValidId, (req, res) => {
   queries.deleteProject(req.params.id).then(() => {
     res.json({
       deleted: true

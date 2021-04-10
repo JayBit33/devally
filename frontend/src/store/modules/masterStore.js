@@ -32,6 +32,7 @@ Vue.use(Vuex)
         },
         updateIsLoggedIn(state, isLoggedIn) {
             state.loggedIn = isLoggedIn;
+            state.loggedInUser = null;
         },
         updateUserId(state, id) {
             state.loggedInUserId = id;

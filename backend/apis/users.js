@@ -1,6 +1,7 @@
 // (c) Waveybits Inc. <2021>
 // ALL RIGHTS RESERVED
 import express from 'express';
+import authChecker from './middelware/auth-checker';
 import queries from '../db/user-queries';
 const router = express.Router();
 
@@ -125,7 +126,7 @@ function validUser(user) {
 router.post('/create', (req, res, next) => {
   if (validUser(req.body)) {
     queries.createUser(req.body).then(user => {
-      res.send(user[0]);
+      res.status(201).send(user[0]);
     })
   } else {
     next(new Error('Invalid User Data'));
@@ -183,7 +184,7 @@ router.post('/create', (req, res, next) => {
 */
 router.get('/devs', (req, res) => {
   queries.getDevUsers().then(users => {
-    res.send(users);
+    res.status(200).send(users);
   })
 })
 
@@ -238,7 +239,7 @@ router.get('/devs', (req, res) => {
 */
 router.get('/visionaries', (req, res) => {
   queries.getCustomers().then(users => {
-    res.json(users);
+    res.status(200).json(users);
   })
 })
 
@@ -304,7 +305,7 @@ function isValidId(req, res, next) {
 router.get('/:id', isValidId, (req, res, next) => {
   queries.getUserById(req.params.id).then(user => {
     if (user) {
-      res.json(user);
+      res.status(200).json(user);
     } else {
       console.log('no user')
       res.status(404);
@@ -331,7 +332,7 @@ router.get('/:id', isValidId, (req, res, next) => {
 router.put('/:id', isValidId, (req, res, next) => {
   queries.updateUserById(req.params.id, req.body).then(user => {
     if (user) {
-      res.json(user);
+      res.status(204).json(user);
     } else {
       res.status(404);
       next(new Error('User Does Not Exist'))
@@ -360,17 +361,27 @@ router.put('/:id', isValidId, (req, res, next) => {
  *     description: Delete a user
  *     tags: [{ 'name': 'Users'}]
  *     parameters:
- *       - id: 34
+ *       - name: id
  *         description: User's id
  *         required: true
  *         in: params
  *         type: Number
  *         example: 34
+ *       - name: token
+ *         description: user auth token
+ *         required: true
+ *         in: headers
+ *         type: string
+ *         example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IndhdmV5Yml0c0BnbWFpbC5jb20iLCJ1c2VySWQiOjUsImlhdCI6MTYxODAxMDk3NCwiZXhwIjoxNjE4MDE0NTc0fQ.REKKslAtHUu4kF_kLgdjNKxFpBaQw2NyU7byjOefuYA
 */
-router.delete('/:id', isValidId, (req, res, next) => {
+router.delete('/:id', authChecker, isValidId, (req, res, next) => {
   queries.deleteUserById(req.params.id).then(() => {
-    res.status(200).json({
+    res.status(202).json({
       deleted: true
+    })
+  }).catch(err => {
+    res.status(500).json({
+      error: err
     })
   })
 })

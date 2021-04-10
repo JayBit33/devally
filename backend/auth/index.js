@@ -1,11 +1,11 @@
 // (c) Waveybits Inc. <2021>
 // ALL RIGHTS RESERVED
 
-const express = require('express');
-const bcrypt = require('bcrypt');
+import express from 'express';
+import bcrypt from 'bcrypt';
+import { createAccessToken, createJRTEM } from './utils/authorization';
+import users from '../db/user-queries';
 const router = express.Router();
-
-const users = require('../db/user-queries');
 const { user } = require('../test/fixtures')
 
 router.get('/', (req, res) => {
@@ -161,12 +161,14 @@ router.post('/login', (req, res, next) => {
         bcrypt.compare(req.body.password, user.password)
           .then(result => {
             if (result) {
-              res.cookie('user_id', user.id, {
+              const accessToken = createAccessToken(user)
+              res.cookie('jrtem', createJRTEM(user),
+              {
                 httpOnly: true,
                 secure: req.app.get('env') != 'development',
                 signed: true
               });
-              res.status(200).json({ result, message: 'login successful', user: user})
+              res.status(200).json({ result, message: 'Auth successful', user: user, accessToken})
             }
             else res.json({ message: 'Incorrect password'})
           })
