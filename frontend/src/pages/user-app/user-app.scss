@@ -258,10 +258,12 @@
   .user-app {
     &_sidebar {
       &-avatar {
+        width: 9rem;
+        height: 9rem;
         margin-top: 3rem;
       }
       &-nav {
-        margin: 6vh 0;
+        margin: 4vh 0;
       }
     }
   }
