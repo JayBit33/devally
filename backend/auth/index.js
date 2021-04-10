@@ -178,4 +178,8 @@ router.post('/login', (req, res, next) => {
   }
 });
 
+router.post('/refresh_token', (req) => {
+  console.log(req.headers)
+})
+
 module.exports = router;
