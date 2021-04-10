@@ -252,3 +252,17 @@
     }
   }
 }
+
+
+@media only screen and (max-height: 1200px) {
+  .user-app {
+    &_sidebar {
+      &-avatar {
+        margin-top: 3rem;
+      }
+      &-nav {
+        margin: 6vh 0;
+      }
+    }
+  }
+}
