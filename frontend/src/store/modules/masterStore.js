@@ -147,9 +147,8 @@ Vue.use(Vuex)
                 });
             })
         },
-        retrieveRefreshToken({commit, getters}) {
+        retrieveRefreshToken({commit}) {
             return new Promise((resolve, reject) => {
-                usersAPI.defaults.headers.common['Authorization'] = `Bearer ${getters.getAccessToken}`;
                 authAPI.post('/refresh_token')
                 .then(res => {
                     console.log(res.data)

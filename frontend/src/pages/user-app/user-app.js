@@ -79,7 +79,7 @@ export default {
         this.$router.push('/signin')
         return
       }
-    }, 500);
+    }, 1000);
 
     await this.fetchDevUsers().then(() => {
       this.user = this.getDevUser(this.$route.params.id);
