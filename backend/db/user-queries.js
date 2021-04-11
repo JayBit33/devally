@@ -46,5 +46,8 @@ module.exports = {
   },
   deleteUserById(id) {
     return knex('users').where('id', id).del();
+  },
+  revokeRefreshToken(id) {
+    return knex('users').where('id', id).update({ 'token_version': knex.raw('token_version + 1') })
   }
 }

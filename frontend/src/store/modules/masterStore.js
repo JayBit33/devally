@@ -8,6 +8,7 @@ import { CometChat } from "@cometchat-pro/chat";
 Vue.use(Vuex)
 
     const state = {
+        accessToken: null,
         devUsers: null,
         loggedIn: false,
         loggedInUser: null,
@@ -16,6 +17,7 @@ Vue.use(Vuex)
     };
 
     const getters = {
+        getAccessToken: state => state.accessToken,
         getDevUsers: state => state.devUsers,
         getDevUser: state => id => state.devUsers?.find(user => user.id == id),
         getDevUserByUsername: state => username => state.devUsers?.find(user => user.username === username),
@@ -27,6 +29,9 @@ Vue.use(Vuex)
     };
 
     const mutations = {
+        updateAccessToken(state, payload) {
+            state.accessToken = payload;
+        },
         updateDevUsers(state, users) {
             state.devUsers = users;
         },
@@ -94,14 +99,15 @@ Vue.use(Vuex)
                             commit('updateUserId', res.data.user.id);
                             commit('updateIsLoggedIn', res.data.result);
                             commit('updateLoggedInUser', res.data.user);
+                            commit('updateAccessToken', res.data.accessToken);
                             CometChat.login(res.data.user.username, '7550adcf70e27f56b88bf5e46295aabf32f49403').then(
                                 user => {
                                   console.log("Login Successful:", { user });
                                 },
                                 error => {
-                                  console.log("Login failed with exception:", { error });
+                                    console.log("Login failed with exception:", { error });
                                 }
-                              );
+                            );
                             resolve(res.data);
                         }
                     }).catch(error => reject(error));
@@ -139,6 +145,35 @@ Vue.use(Vuex)
                     console.log(error)
                     reject(error)
                 });
+            })
+        },
+        retrieveRefreshToken({commit, getters}) {
+            return new Promise((resolve, reject) => {
+                usersAPI.defaults.headers.common['Authorization'] = `Bearer ${getters.getAccessToken}`;
+                authAPI.post('/refresh_token')
+                .then(res => {
+                    console.log(res.data)
+                    commit('updateAccessToken', res.data.accessToken);
+                    commit('updateIsLoggedIn', true);
+                    commit('updateLoggedInUser', res.data.user);
+                    commit('updateUserId', res.data.user.id);
+                    resolve(res.data);
+                }).catch(error => {
+                    reject(error)
+                });
+            })
+        },
+        testToken({getters}) {
+            usersAPI.defaults.headers.common['Authorization'] = `Bearer ${getters.getAccessToken}`;
+            return new Promise((resolve, reject) => {
+                usersAPI.get('/test')
+                    .then(res => {
+                        console.log(res)
+                        resolve(res.data)
+                    }).catch(error => {
+                        console.log(error)
+                        reject(error)
+                    })
             })
         }
     }

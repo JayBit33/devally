@@ -23,14 +23,22 @@
       <p>In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available. It is also used to temporarily replace text in a process called greeking, which allows designers to consider the form of a webpage or publication, without the meaning of the text influencing the design.
       Versions of the Lorem ipsum text have been used in typesetting at least since the 1960s, when it was popularized by advertisements for Letraset transfer sheets.[1] Lorem ipsum was introduced to the digital world in the mid-1980s, when Aldus employed it in graphic and word-processing templates for its desktop publishing program PageMaker. Other popular word processors including Pages and Microsoft Word have since adopted Lorem ipsum, as have many LaTeX packages, web content managers such as Joomla! and WordPress, and CSS libraries such as
       </p>
-
+      <button @click="callTestRoute" style="margin: 1rem 0; background-color: green; color: white; font-size: 1rem; border: none; padding: .75rem;">Test</button>
     </div>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
   name: 'About',
+   methods: {
+    ...mapActions(['testToken']),
+    callTestRoute() {
+      this.testToken().then(res => console.log('res from route', res));
+    }
+   }
 
 }
 </script>

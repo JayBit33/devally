@@ -5,6 +5,14 @@ import authChecker from './middelware/auth-checker';
 import queries from '../db/user-queries';
 const router = express.Router();
 
+// Fake route to test accessToken
+router.get('/test', authChecker, (req, res) => {
+  console.log('user data', req.userData)
+  res.json({
+    message: 'access granted'
+  })
+})
+
 /**
  * @swagger
  * /api/v1/users/query:
@@ -382,6 +390,15 @@ router.delete('/:id', authChecker, isValidId, (req, res, next) => {
   }).catch(err => {
     res.status(500).json({
       error: err
+    })
+  })
+})
+
+// Use to revoke users refresh tokens
+router.put('/revoke/:id', (req, res) => {
+  queries.revokeRefreshToken(req.params.id).then(() => {
+    res.status(202).json({
+      revoked: true
     })
   })
 })

@@ -16,7 +16,8 @@ export const usersAPI = axios.create({
   withCredentials: true,
   headers: {
     'content-type': 'application/json',
-    'api-version': 1
+    'api-version': 1,
+    // 'authorization': 'Bearer ' + getAccessToken()
   },
   crossDomain: true
 });

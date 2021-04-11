@@ -3,7 +3,8 @@
 
 import express from 'express';
 import bcrypt from 'bcrypt';
-import { createAccessToken, createJRTEM } from './utils/authorization';
+import jwt from 'jsonwebtoken';
+import { createAccessToken, createJRTEM, sendRefreshToken } from './utils/authorization';
 import users from '../db/user-queries';
 const router = express.Router();
 const { user } = require('../test/fixtures')
@@ -162,12 +163,7 @@ router.post('/login', (req, res, next) => {
           .then(result => {
             if (result) {
               const accessToken = createAccessToken(user)
-              res.cookie('jrtem', createJRTEM(user),
-              {
-                httpOnly: true,
-                secure: req.app.get('env') != 'development',
-                signed: true
-              });
+              sendRefreshToken(req, res, createJRTEM(user))
               res.status(200).json({ result, message: 'Auth successful', user: user, accessToken})
             }
             else res.json({ message: 'Incorrect password'})
@@ -178,8 +174,28 @@ router.post('/login', (req, res, next) => {
   }
 });
 
-router.post('/refresh_token', (req) => {
-  console.log(req.headers)
+router.post('/refresh_token', (req, res) => {
+  const token = req.cookies.jrtem
+  if (!token) return res.send({ ok: false, accessToken: '' })
+
+  let decodedPayload = null;
+  try {
+    decodedPayload = jwt.verify(token, process.env.JRTEM_KEY)
+    console.log('is rt valid', decodedPayload)
+  } catch(err) {
+    console.log(err)
+    return res.send({ ok: false, accessToken: '' })
+  }
+
+  // token is valid
+  // we can send back an access token
+  // if we ever need to revoke a users refresh token (i.e. their account was hacked)
+  // simply go to db token_version column for that user and increment the integer
+  users.getUserById(decodedPayload.userId).then(user => {
+    if (!user || user.token_version !== decodedPayload.tokenVersion) return res.send({ ok: false, accessToken: '' });
+    sendRefreshToken(req, res, createJRTEM(user))
+    return res.send({ ok: true, accessToken: createAccessToken(user), user: user })
+  })
 })
 
 module.exports = router;

@@ -8,23 +8,23 @@ import baseApi from './apis/baseApi';
 import users from './apis/users';
 import projects from './apis/projects';
 import auth from './auth';
+import 'dotenv/config'
 
 const port = process.env.PORT || 3000;
 const app = express();
 
-app.use('/uploads', express.static('uploads'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser('mycatsarealwayssilly')); // process.env.COOKIE_SECRET set secret as env var
+// Middleware
 app.use(cors({
   credentials: true,
   origin: 'http://localhost:8080'
 }));
+app.use('/uploads', express.static('uploads'));
+app.use(bodyParser.json());
+app.use(cookieParser()); // process.env.COOKIE_SECRET set secret as env var
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());
 
-console.log(process.env.JWT_KEY)
-console.log(process.env.JRTEM_KEY)
-
+// Setup Swagger
 const swaggerDefinition = {
   openapi: '3.0.0',
   info: {
@@ -55,6 +55,8 @@ const options = {
 const swaggerSpec = swaggerJsDoc(options);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
+
+// Routes
 app.use('/auth', auth);
 app.use('/api/v1/', baseApi);
 app.use('/api/v1/users', users);
@@ -68,7 +70,7 @@ app.use((err, req, res, next) => {
   })
 })
 
-
+// Run Server
 app.listen(port, () => console.log('server listening...'));
 
 module.exports = app;

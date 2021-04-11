@@ -32,7 +32,7 @@
 <script>
 import UserOptionsDropdown from './components/user-options-dropdown/';
 import Breadcrumbs from './components/breadcrumbs/';
-import { mapGetters, mapMutations } from 'vuex';
+import { mapActions, mapGetters, mapMutations } from 'vuex';
 
 export default {
   name: "App",
@@ -47,6 +47,11 @@ export default {
     Breadcrumbs,
     UserOptionsDropdown
   },
+  mounted() {
+    this.retrieveRefreshToken().then(res => {
+      console.log('token refreshed', res);
+    })
+  },
   computed: {
     ...mapGetters(['getLoggedInUser','isLoggedIn']),
     signedIn() {
@@ -60,6 +65,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['retrieveRefreshToken']),
     ...mapMutations(['updateIsLoggedIn']),
     backgroundOn(isOn) {
       this.background = isOn;
