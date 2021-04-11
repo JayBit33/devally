@@ -70,11 +70,16 @@ export default {
       return `http://localhost:3000/${this.getLoggedInUser.profile_image}`;
     },
   },
+  mounted() {
+
+  },
   async created() {
-    if (!this.isLoggedIn || this.$route.params.id != this.getCurrentUserId) {
-      this.$router.push('/signin')
-      return
-    }
+    setTimeout(() => {
+      if (!this.isLoggedIn && this.$route.params.id != this.getCurrentUserId) {
+        this.$router.push('/signin')
+        return
+      }
+    }, 500);
 
     await this.fetchDevUsers().then(() => {
       this.user = this.getDevUser(this.$route.params.id);
@@ -99,6 +104,7 @@ export default {
     );
   },
   methods: {
+    ...mapActions(['retrieveRefreshToken']),
     ...mapMutations(['updateIsLoggedIn']),
     ...mapActions(['fetchDevUsers']),
     closeToast() {

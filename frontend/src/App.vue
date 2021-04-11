@@ -47,7 +47,7 @@ export default {
     Breadcrumbs,
     UserOptionsDropdown
   },
-  mounted() {
+  created() {
     this.retrieveRefreshToken().then(res => {
       console.log('token refreshed', res);
     })
