@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 import 'dotenv/config'
 
 export const createAccessToken = (user) => {
-  return jwt.sign({ userId: user.id }, process.env.JWT_KEY, { expiresIn: "1h" });
+  return jwt.sign({ userId: user.id }, process.env.JWT_KEY, { expiresIn: "2h" });
 }
 
 export const createJRTEM = (user) => {
