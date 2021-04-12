@@ -26,11 +26,21 @@
         <dropdown
           class="filters skills_filter"
           :collapsedTags="true"
-          :items="allSkills"
+          :items="allRoles"
           :isMultiSelect="true"
-          :optionTitle="'Skills'"
-          :selectedItems="skills"
-          @item-selection="skills = $event"
+          :optionTitle="'Roles'"
+          :selectedItems="roles"
+          @item-selection="roles = $event"
+        >
+        </dropdown>
+        <dropdown
+          class="filters categories_filter"
+          :collapsedTags="true"
+          :items="allCategories"
+          :isMultiSelect="true"
+          :optionTitle="'Categories'"
+          :selectedItems="categories"
+          @item-selection="categories = $event"
         >
         </dropdown>
         <dropdown
