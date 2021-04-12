@@ -174,6 +174,13 @@ router.post('/login', (req, res, next) => {
   }
 });
 
+router.get('/logout', (req, res) => {
+  sendRefreshToken(req, res, '')
+  res.status(200).json({
+    message: 'succesfull logout'
+  })
+})
+
 router.post('/refresh_token', (req, res) => {
   const token = req.cookies.jrtem
   if (!token) return res.send({ ok: false, accessToken: '' })

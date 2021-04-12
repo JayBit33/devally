@@ -104,7 +104,7 @@ export default {
     );
   },
   methods: {
-    ...mapActions(['retrieveRefreshToken']),
+    ...mapActions(['logout','retrieveRefreshToken']),
     ...mapMutations(['updateIsLoggedIn']),
     ...mapActions(['fetchDevUsers']),
     closeToast() {
@@ -162,7 +162,8 @@ export default {
     },
     signout() {
       this.updateIsLoggedIn(false);
-      this.$router.push('/')
+      this.logout();
+      this.$router.push('/');
     },
     updateView(view) {
       let id = this.$route.params.id
