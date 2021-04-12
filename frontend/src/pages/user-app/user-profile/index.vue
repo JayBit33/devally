@@ -9,6 +9,10 @@
     <div class="profile-content-container">
       <div class="profile-content">
 
+        <div class="account-type">
+          <h2 @click="changeAccountType('developer')" class="account-type_buttons" :class="{'selected': isDevUser}">Developer</h2>
+          <h2 @click="changeAccountType('visionary')" class="account-type_buttons" :class="{'selected': !isDevUser, 'disabled': (user.user_type_id !== '3' && user.user_type_id !== '2')}">Visionary</h2>
+        </div>
 
         <file-upload
           :fileTitle="'Profile Image'"

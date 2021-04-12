@@ -20,7 +20,8 @@ export default {
       selectedRoles: [],
       selectedHiringOptions: [],
       bio: "",
-      user: {}
+      user: {},
+      isDevUser: false
     }
   },
   async created() {
@@ -34,16 +35,18 @@ export default {
     this.allCategories = res.categories
     this.allRoles = res.roles
     this.allHiringOptions = res.hiring_options
+    this.isDevUser = (this.user.user_type_id == "1" || this.user.user_type_id == "3")
   },
   computed: {
-    ...mapGetters(['getLoggedInUser']),
-    isDevUser() {
-      return (this.user.user_type_id == "1" || this.user.user_type_id == "3")
-    }
+    ...mapGetters(['getLoggedInUser'])
   },
   methods: {
     ...mapMutations(['updateLoggedInUser']),
     ...mapActions(['updateUser', 'fetchUserById', 'getDevOptions', 'updateUserProfileImg']),
+    changeAccountType(type) {
+      if (!(this.user.user_type_id == "3")) return
+      this.isDevUser = (type === 'developer')
+    },
     handleCategoriesSelection(e) {
       this.selectedCategories = e
     },
@@ -64,7 +67,6 @@ export default {
       }
     },
     async updateProfile() {
-      // TODO
       let id = this.$route.params.id
       let updates = {
         categories: JSON.stringify(this.selectedCategories),
