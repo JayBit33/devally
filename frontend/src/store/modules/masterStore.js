@@ -162,6 +162,12 @@ Vue.use(Vuex)
                 });
             })
         },
+        logout({commit}) {
+            commit('updateAccessToken', "");
+            return new Promise((resolve, reject) => {
+                authAPI.get('/logout').then(res => resolve(res.data)).catch(err => reject(err));
+            })
+        },
         testToken({getters}) {
             usersAPI.defaults.headers.common['Authorization'] = `Bearer ${getters.getAccessToken}`;
             return new Promise((resolve, reject) => {

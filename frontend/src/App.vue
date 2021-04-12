@@ -65,7 +65,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['retrieveRefreshToken']),
+    ...mapActions(['logout','retrieveRefreshToken']),
     ...mapMutations(['updateIsLoggedIn']),
     backgroundOn(isOn) {
       this.background = isOn;
@@ -77,6 +77,7 @@ export default {
     closeOptions(opt) {
       if (opt === 'signout') {
         this.updateIsLoggedIn(false);
+        this.logout();
         this.$router.push({ name: 'Home' })
       }
       this.optionsViewable = false;
