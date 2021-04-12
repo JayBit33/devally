@@ -11,7 +11,8 @@ export default {
   data() {
     return {
       allHiringOption: null,
-      allSkills: null,
+      allRoles: null,
+      allCategories: null,
       isLoading: true,
       refreshUsers: false,
       searchInput: null,
@@ -50,7 +51,8 @@ export default {
       } else {
         return this.getDevUsers.filter(user => {
           return user.hiring_options.some(option => this.filters.hiringOption.includes(option)) &&
-            user.roles.some(skill => this.filters.skills.includes(skill))  &&
+            user.roles.some(role => this.filters.roles.includes(role)) &&
+            user.categories.some(category => this.filters.categories.includes(category)) &&
             Number(user.rating) >= Number(this.filters.rating.split('')[2])
         })
       }
@@ -61,9 +63,10 @@ export default {
   },
   async created() {
     this.fetchDevUsers()
-    const { roles, hiring_options } = await this.getDevOptions()
+    const { roles, hiring_options, categories } = await this.getDevOptions()
     this.allHiringOption = hiring_options
-    this.allSkills = roles
+    this.allRoles = roles
+    this.allCategories = categories
   },
   methods: {
     ...mapActions(['fetchDevUsers', 'getDevOptions']),
@@ -98,7 +101,8 @@ export default {
       }
       // Make sure to add all possible values for hiringOptin, skills & rating when they are null
       if (this.filters.hiringOption === null) { this.filters.hiringOption = this.allHiringOption }
-      if (this.filters.skills === null || this.filters.skills.length === 0) { this.filters.skills = this.allSkills; }
+      if (this.filters.roles === null || this.filters.roles.length === 0) { this.filters.roles = this.allRoles; }
+      if (this.filters.categories === null || this.filters.categories.length === 0) { this.filters.categories = this.allCategories; }
       if (this.filters.rating === null) { this.filters.rating = '>=1'; }
       this.updateDisplayedUsers(1); // send pagination back to page 1 on filter
       this.showRefresh()

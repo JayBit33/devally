@@ -153,7 +153,7 @@ Vue.use(Vuex)
                 .then(res => {
                     console.log(res.data)
                     commit('updateAccessToken', res.data.accessToken);
-                    commit('updateIsLoggedIn', true);
+                    commit('updateIsLoggedIn', !(res.data.accessToken === ""));
                     commit('updateLoggedInUser', res.data.user);
                     commit('updateUserId', res.data.user.id);
                     resolve(res.data);
