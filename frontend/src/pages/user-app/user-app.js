@@ -2,6 +2,7 @@
 // ALL RIGHTS RESERVED
 
 import MessageNotifier from '@/components/message-notifier';
+import ProjectInfoCollapsable from '@/components/project-info-collapsable';
 import Toast from '@/components/toast'
 import UserConnections from '@/pages/user-app/user-connections';
 import UserMessages from '@/pages/user-app/user-messages';
@@ -43,6 +44,7 @@ export default {
   components: {
     FontAwesomeIcon,
     MessageNotifier,
+    ProjectInfoCollapsable,
     SidebarButton,
     Toast,
     UserConnections,
@@ -69,6 +71,71 @@ export default {
     getImage() {
       return `http://localhost:3000/${this.getLoggedInUser.profile_image}`;
     },
+    userProjects() {
+      return [{
+        "id": 3,
+        "creator_id": 7,
+        "team_member_ids": [
+          11,
+          8,
+          0
+        ],
+        "name": "Task Manager",
+        "category": "Mobile App",
+        "description": "Collaborate with team by assigning tasks to each member and tracking progress.",
+        "hiring_options": [
+          "Shares",
+          "Flat Rate"
+        ],
+        "viewable_regions": [
+          "US",
+          "South America",
+          "Africa",
+          "Asia",
+          "Europe"
+        ],
+        "funding_types": [
+          "Bootstrapped",
+          "Venture Capital",
+          "Friends & Family"
+        ],
+        "is_seeking_allys": false,
+        "is_public": true,
+        "is_featured": false,
+
+      },
+        {
+          "id": 4,
+          "creator_id": 8,
+          "team_member_ids": [
+            12,
+            9
+          ],
+          "name": "Task Manager 2",
+          "category": "Mobile App",
+          "description": "Collaborate with team by assigning tasks to each member and tracking progress.",
+          "hiring_options": [
+            "Shares",
+            "Flat Rate"
+          ],
+          "viewable_regions": [
+            "US",
+            "South America",
+            "Africa",
+            "Asia",
+            "Europe"
+          ],
+          "funding_types": [
+            "Bootstrapped",
+            "Venture Capital",
+            "Friends & Family"
+          ],
+          "is_seeking_allys": false,
+          "is_public": true,
+          "is_featured": false,
+
+        }]
+    }
   },
   mounted() {
 

@@ -1,0 +1,49 @@
+.project-info-collapsable {
+  margin: 0;
+  margin-bottom: 1rem;
+
+  &__header {
+    padding: .5rem 0;
+    background-color: $mute-red;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    position: relative;
+    cursor: pointer;
+
+    h2 {
+      margin: 0;
+      font-weight: 600;
+    }
+    .icon {
+      position: absolute;
+      left: .5rem;
+      font-size: 1.75rem;
+    }
+  }
+
+  &__content {
+    width: 100%;
+    text-align: center;
+    h2 {
+      margin: 1rem 0 .5rem 0;
+    }
+    &__information {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .info {
+        margin: 0 .75rem;
+        h4 {
+          margin: .5rem 0;
+        }
+        .icon {
+          font-size: 1.75rem;
+          color: $mute-red;
+        }
+      }
+    }
+  }
+}
