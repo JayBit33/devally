@@ -28,6 +28,20 @@ router.get('/notifications', (res) => {
     }]
   })
 })
+// Replace with query.
+router.get('/tasks', (res) => {
+  res.json({
+    tasks: [ {
+      message: 'Find a front-end developer that has experience with VueJS'
+    },
+    {
+      message: 'Create designs. Jen should have them completed by noon today'
+    },
+  {
+    message: 'Determine where to host application. Azure, Google Cloud and AWS are some viable options.'
+  }]
+  })
+})
 
 /**
  * @swagger
