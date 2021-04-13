@@ -13,6 +13,22 @@ router.get('/test', authChecker, (req, res) => {
   })
 })
 
+// Replace with query.
+router.get('/notifications', (res) => {
+  res.json({
+    notifications: [ {
+      senderId: 4,
+      projectId: null,
+      message: 'Added you as a connection'
+    },
+    {
+      senderId: 12,
+      projectId: 4,
+      message: 'Recieved a project invitation'
+    }]
+  })
+})
+
 /**
  * @swagger
  * /api/v1/users/query:
