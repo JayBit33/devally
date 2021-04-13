@@ -7,6 +7,7 @@ import swaggerUi from 'swagger-ui-express';
 import baseApi from './apis/baseApi';
 import users from './apis/users';
 import projects from './apis/projects';
+import messages from './apis/messages';
 import auth from './auth';
 import 'dotenv/config'
 
@@ -61,6 +62,7 @@ app.use('/auth', auth);
 app.use('/api/v1/', baseApi);
 app.use('/api/v1/users', users);
 app.use('/api/v1/projects', projects);
+app.use('/api/v1/messages', messages);
 
 app.use((err, req, res, next) => {
   res.status(err.status || 500);

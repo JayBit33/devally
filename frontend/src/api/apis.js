@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { BASE_API_URL, BASE_AUTH_URL, BASE_USERS_URL, BASE_PROJECTS_URL } from '@/constants/apiUrls';
+import { BASE_API_URL, BASE_AUTH_URL, BASE_CHAT_URL, BASE_USERS_URL, BASE_PROJECTS_URL } from '@/constants/apiUrls';
 
 export const baseAPI = axios.create({
   baseURL: BASE_API_URL,
@@ -34,6 +34,16 @@ export const projectsAPI = axios.create({
 
 export const authAPI = axios.create({
   baseURL: BASE_AUTH_URL,
+  withCredentials: true,
+  headers: {
+    'content-type': 'application/json',
+    'api-version': 1
+  },
+  crossDomain: true
+});
+
+export const chatAPI = axios.create({
+  baseURL: BASE_CHAT_URL,
   withCredentials: true,
   headers: {
     'content-type': 'application/json',
