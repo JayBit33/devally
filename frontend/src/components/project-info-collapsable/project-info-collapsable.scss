@@ -1,6 +1,7 @@
 .project-info-collapsable {
   margin: 0;
   margin-bottom: 1rem;
+  margin-top: 1rem;
 
   &__header {
     padding: .5rem 0;
@@ -15,6 +16,7 @@
 
     h2 {
       margin: 0;
+      font-family: 'Open Sans';
       font-weight: 600;
     }
     .icon {
@@ -28,7 +30,13 @@
     width: 100%;
     text-align: center;
     h2 {
-      margin: 1rem 0 .5rem 0;
+      font-family: 'Open Sans';
+      font-size: 1.25rem;
+      font-weight: 400;
+      margin: 1rem 0 .75rem 0;
+    }
+    .info-total {
+      font-weight: bold;
     }
     &__information {
       display: flex;
