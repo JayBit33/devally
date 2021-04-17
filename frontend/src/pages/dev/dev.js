@@ -46,7 +46,7 @@ export default {
       return `${this.user.firstname} ${this.user.lastname}`;
     },
     skillsFormatted() {
-      return this.user.categories.join(", ");
+      return this.user.dev_categories.join(", ");
     },
     username() {
       return this.getLoggedInUser.username;
@@ -89,7 +89,7 @@ export default {
           }
           response = await this.updateUser({ id, updates })
         }
-  
+
         if (response && user) {
           this.toast.message = [
             { text: 'You have successfully added', emphasis: false },

@@ -21,7 +21,7 @@
     <div class="user-info">
       <div class="user-info_accounttype">
         <h3>Roles:</h3>
-        <h4>{{ user.roles.join(", ") }}</h4>
+        <h4>{{ user.dev_roles.join(", ") }}</h4>
       </div>
       <div class="user-info_hiringoptions">
         <h3>Hiring Options:</h3>
@@ -39,7 +39,7 @@
       </div>
       <div class="user-bio">
         <h3>Bio</h3>
-        <p>{{ user.bio }}</p>
+        <p>{{ user.dev_bio }}</p>
       </div>
 
       <div class="user-portfolio">

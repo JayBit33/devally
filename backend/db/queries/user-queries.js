@@ -14,7 +14,7 @@ module.exports = {
     }
     if (param.email) {
       query.where('email', param.email)
-           .select(['users.id','users.username','users.email','users.firstname','users.lastname', 'users.bio', 'users.visionary_categories','users.rating','users.profile_image', 'users.user_type_id', 'users.connections', 'users.notifications', 'users.tasks', 'users.notification_settings','users.subscription_settings','users.token_version', 'users.user_since'])
+           .select(['users.id','users.username','users.email', 'users.password', 'users.firstname','users.lastname', 'users.bio', 'users.visionary_categories','users.rating','users.profile_image', 'users.user_type_id', 'users.connections', 'users.notifications', 'users.tasks', 'users.notification_settings','users.subscription_settings','users.token_version', 'users.user_since'])
            .first();
     }
     return query;

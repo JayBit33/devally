@@ -155,7 +155,7 @@ Vue.use(Vuex)
                     commit('updateAccessToken', res.data.accessToken);
                     commit('updateIsLoggedIn', !(res.data.accessToken === ""));
                     commit('updateLoggedInUser', res.data.user);
-                    commit('updateUserId', res.data.user.id);
+                    // commit('updateUserId', res.data.user.id);
                     resolve(res.data);
                 }).catch(error => {
                     reject(error)

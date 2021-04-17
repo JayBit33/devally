@@ -7,7 +7,6 @@ const jwt = require('jsonwebtoken');
 const { createAccessToken, createJRTEM, sendRefreshToken } = require('./utils/authorization');
 const users = require('../db/queries/user-queries');
 const router = express.Router();
-const { user } = require('../test/fixtures')
 
 router.get('/', (req, res) => {
   res.json({
@@ -159,6 +158,7 @@ router.post('/login', (req, res, next) => {
     users.getAllByParam({email: req.body.email})
       .then(user => {
         if (!user) res.status(401).json({ message: 'Auth failed'})
+        console.log('password', req.body.password);
         bcrypt.compare(req.body.password, user.password)
           .then(result => {
             if (result) {
@@ -167,6 +167,8 @@ router.post('/login', (req, res, next) => {
               res.status(200).json({ result, message: 'Auth successful', user: user, accessToken})
             }
             else res.json({ message: 'Incorrect password'})
+          }).catch(err => {
+            console.log('error decrypting password');
           })
       })
   } else {
