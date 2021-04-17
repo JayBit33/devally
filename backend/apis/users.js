@@ -225,7 +225,13 @@ router.post('/create', (req, res, next) => {
 */
 router.get('/devs', (req, res) => {
   queries.getDevUsers().then(users => {
-    res.status(200).send(users);
+    if (users) {
+      res.status(200).send(users);
+    } else {
+      console.log('cant return users')
+      res.status(404);
+      next(new Error('Issue returning users'))
+    }
   })
 })
 

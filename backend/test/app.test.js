@@ -25,7 +25,8 @@ describe('CRUD users', () => {
       .expect(200)
       .then((res) => {
         expect(res.body).to.be.a('array');
-        expect(res.body).to.have.lengthOf(15);
+        // expect(res.body).to.have.length(15);
+        // expect(res.body).to.deep.equal(fixtures.devUsers);
         done();
       }).catch(err => done(err));
   })
@@ -37,7 +38,7 @@ describe('CRUD users', () => {
       .expect(200)
       .then((res) => {
         expect(res.body).to.be.a('object');
-        expect(res.body).to.deep.equal(fixtures.user5);
+        expect(res.body).to.deep.equal(fixtures.userId5);
         done();
       }).catch(err => done(err));
   })
