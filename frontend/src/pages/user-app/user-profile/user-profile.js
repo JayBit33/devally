@@ -75,6 +75,14 @@ export default {
         bio: this.bio
       }
       let table = this.isDevUser ? 'developers' : 'visionaries'
+      if (this.isDevUser) {
+        updates = {
+          dev_categories: JSON.stringify(this.selectedCategories),
+          dev_roles: JSON.stringify(this.selectedRoles),
+          hiring_options: JSON.stringify(this.selectedHiringOptions),
+          dev_bio: this.bio
+        }
+      }
       const response = await this.updateUser({id, updates, table})
 
       let profileResponse = true
