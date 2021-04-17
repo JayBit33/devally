@@ -1,8 +1,8 @@
 // (c) Waveybits Inc. <2021>
 // ALL RIGHTS RESERVED
-import express from 'express';
-import authChecker from './middelware/auth-checker';
-import queries from '../db/user-queries';
+const express = require('express');
+const authChecker = require('./middelware/auth-checker');
+const queries = require('../db/queries/user-queries');
 const router = express.Router();
 
 // Fake route to test accessToken
@@ -31,15 +31,18 @@ router.get('/notifications', (res) => {
 // Replace with query.
 router.get('/tasks', (res) => {
   res.json({
-    tasks: [ {
+    tasks: [{
+      projectId: 3,
       message: 'Find a front-end developer that has experience with VueJS'
     },
     {
+      projectId: 11,
       message: 'Create designs. Jen should have them completed by noon today'
     },
-  {
-    message: 'Determine where to host application. Azure, Google Cloud and AWS are some viable options.'
-  }]
+    {
+      projectId: 21,
+      message: 'Determine where to host application. Azure, Google Cloud and AWS are some viable options.'
+    }]
   })
 })
 

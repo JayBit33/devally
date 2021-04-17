@@ -9,9 +9,17 @@ exports.up = function(knex) {
     table.string('password');
     table.string('firstname');
     table.string('lastname');
+    table.string('bio');
+    table.json('visionary_categories').nullable();
     table.integer('rating').nullable();
     table.bigInteger('user_type_id').unsigned().references('id').inTable('user_types').onDelete('CASCADE') // foreign key links user_type by id
     table.string('profile_image').nullable();
+    table.json('connections').nullable(); // must use JSON.stringify(arraydata) when setting value
+    table.json('notifications').nullable(); // must use JSON.stringify(arraydata) when setting value
+    table.json('tasks').nullable(); // must use JSON.stringify(arraydata) when setting value
+    table.json('notification_settings').nullable(); // must use JSON.stringify(arraydata) when setting value
+    table.json('subscription_settings').nullable(); // must use JSON.stringify(arraydata) when setting value
+    table.integer('token_version').defaultTo(0);
     table.timestamp('user_since').defaultTo(knex.fn.now());
   })
 };

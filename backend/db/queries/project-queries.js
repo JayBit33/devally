@@ -1,7 +1,7 @@
 // (c) Waveybits Inc. <2021>
 // ALL RIGHTS RESERVED
 
-const knex = require('./knex');
+const knex = require('../knex');
 
 module.exports = {
   getAllByParam(param) {

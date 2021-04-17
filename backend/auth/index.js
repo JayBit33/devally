@@ -1,11 +1,11 @@
 // (c) Waveybits Inc. <2021>
 // ALL RIGHTS RESERVED
 
-import express from 'express';
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
-import { createAccessToken, createJRTEM, sendRefreshToken } from './utils/authorization';
-import users from '../db/user-queries';
+const express = require('express');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const { createAccessToken, createJRTEM, sendRefreshToken } = require('./utils/authorization');
+const users = require('../db/queries/user-queries');
 const router = express.Router();
 const { user } = require('../test/fixtures')
 

@@ -2,8 +2,8 @@
 // ALL RIGHTS RESERVED
 const express = require('express');
 const knexfile = require('../knexfile')
-import queries from '../db/baseApi-queries';
-import multer from 'multer';
+const queries = require('../db/queries/baseApi-queries');
+const multer = require('multer');
 const router = express.Router();
 const storage = multer.diskStorage({
   destination: function(req, file, cb) {

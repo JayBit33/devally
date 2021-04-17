@@ -1,243 +1,135 @@
-const users = [
+
+const roles = ['Frontend', 'Backend', 'Graphic Designer', 'UX/UI', 'Devops', 'Project Manager'];
+const categories = ['Website', 'Mobile App', 'Ecommerce', 'SAAS'];
+const hiring_options = ['Shares', 'Flat Rate'];
+const devUsers = [
   {
-    id: 1,
-    username: 'jeb',
-    password: 'password',
-    firstname: 'Jeb',
-    lastname: 'Eichs',
-    account_types: JSON.stringify(['entrepreneur','developer']),
-    skills: JSON.stringify(['SPAs', 'Frontend', 'Websites', 'Graphic Design']),
-    hiring_options: JSON.stringify(['Shares']),
-    rating: 5,
-    profile_image: 'profile3.jpg'
+    roles: JSON.stringify([roles[0],roles[2]]),
+    categories: JSON.stringify([...categories]),
+    hiring_options: JSON.stringify([...hiring_options]),
+    bio: 'Frontend and Backend developer with 5 years of experience building webapps and saas projects.',
+    user_id: 1
   },
   {
-    id: 2,
-    username: 'jen38950',
-    password: 'password',
-    firstname: 'Jen',
-    lastname: 'Smith',
-    account_types: JSON.stringify(['developer']),
-    skills: JSON.stringify(['SPAs', 'Backend', 'Websites', 'Graphic Design']),
-    hiring_options: JSON.stringify(['Flat Rate','Shares']),
-    rating: 3,
-    profile_image: 'profile5.jpg'
+    roles: JSON.stringify([roles[2]]),
+    categories: JSON.stringify([categories[0], categories[2], categories[3]]),
+    hiring_options: JSON.stringify([hiring_options[0]]),
+    bio: 'Graphic designer with master photoshop and illustrator skills. Can create graphics for any type of project.',
+    user_id: 2
   },
   {
-    id: 3,
-    username: 'beny89',
-    password: 'password',
-    firstname: 'Ben',
-    lastname: 'Antoitte',
-    account_types: JSON.stringify(['developer']),
-    skills: JSON.stringify(['Java', 'Spring Boot', 'Backend']),
-    hiring_options: JSON.stringify(['Flat Rate','Shares']),
-    rating: 4,
-    profile_image: 'profile2.jpg'
+    roles: JSON.stringify([roles[2], roles[3]]),
+    categories: JSON.stringify([categories[2], categories[3]]),
+    hiring_options: JSON.stringify([hiring_options[1]]),
+    bio: 'Capable of taking on any graphic role. UX/UI and graphic designer.',
+    user_id: 3
   },
   {
-    id: 4,
-    username: 'appmaker',
-    password: 'password',
-    firstname: 'Ben',
-    lastname: 'Hill',
-    account_types: JSON.stringify(['developer']),
-    skills: JSON.stringify(['UX/UI', 'Graphic Design']),
-    hiring_options: JSON.stringify(['Flat Rate','Shares']),
-    rating: 4,
-    profile_image: 'profile4.jpg'
+    roles: JSON.stringify([roles[4]]),
+    categories: JSON.stringify([categories[0], categories[1]]),
+    hiring_options: JSON.stringify([hiring_options[1]]),
+    bio: 'Skilled devops engineer. Experience with CI/CD like jenkins and gitlab. Setting up production environments and pipelines.',
+    user_id: 4
   },
   {
-    id: 5,
-    username: 'cindyloo',
-    password: 'password',
-    firstname: 'Cindy',
-    lastname: 'Summer',
-    account_types: JSON.stringify(['developer']),
-    skills: JSON.stringify(['UX/UI', 'Graphic Design']),
-    hiring_options: JSON.stringify(['Flat Rate','Shares']),
-    rating: 1,
-    profile_image: 'user_profile.jpg'
+    roles: JSON.stringify([roles[5]]),
+    categories: JSON.stringify([...categories]),
+    hiring_options: JSON.stringify([hiring_options[0]]),
+    bio: '8 years of project managment experience. Use Agile SDLC methodoligies. Can organize your team and get the best output out of the team.',
+    user_id: 5
   },
   {
-    id: 6,
-    username: 'androidDev',
-    password: 'password',
-    firstname: 'Cindy',
-    lastname: 'Summer',
-    account_types: JSON.stringify(['developer']),
-    skills: JSON.stringify(['UX/UI', 'Graphic Design']),
-    hiring_options: JSON.stringify(['Flat Rate']),
-    rating: 5,
-    profile_image: 'profile6.jpg'
+    roles: JSON.stringify([roles[1]]),
+    categories: JSON.stringify([...categories]),
+    hiring_options: JSON.stringify([...hiring_options]),
+    bio: 'Junior backend developer. Proficient in C# as well as Java with Spring Boot. 3 years developing backend API\'s and services',
+    user_id: 6
   },
   {
-    id: 7,
-    username: 'ios-dev',
-    password: 'password',
-    firstname: 'Cindy',
-    lastname: 'Summer',
-    account_types: JSON.stringify(['developer']),
-    skills: JSON.stringify(['UX/UI', 'Graphic Design']),
-    hiring_options: JSON.stringify(['Shares']),
-    rating: 5,
-    profile_image: 'profile7.jpg'
+    roles: JSON.stringify([roles[0]]),
+    categories: JSON.stringify([categories[1], categories[3]]),
+    hiring_options: JSON.stringify([hiring_options[1]]),
+    bio: 'Can build any web application using ReactJs, Bootstrap and other 3rd party services. Have experience designing authoriztion logic and managing large number of users',
+    user_id: 7
   },
   {
-    id: 8,
-    username: 'bestapps',
-    password: 'password',
-    firstname: 'Cindy',
-    lastname: 'Summer',
-    account_types: JSON.stringify(['developer']),
-    skills: JSON.stringify(['UX/UI', 'Graphic Design']),
-    hiring_options: JSON.stringify(['Flat Rate','Shares']),
-    rating: 4,
-    profile_image: 'profile8.jpg'
+    roles: JSON.stringify([roles[0]]),
+    categories: JSON.stringify([categories[0], categories[2], categories[3]]),
+    hiring_options: JSON.stringify([...hiring_options]),
+    bio: 'Have been building websites for 10 years. Familiar with all frontend frameworks inclucing React, Angular and VueJS.',
+    user_id: 8
   },
   {
-    id: 9,
-    username: 'game-maker',
-    password: 'password',
-    firstname: 'Cindy',
-    lastname: 'Summer',
-    account_types: JSON.stringify(['developer']),
-    skills: JSON.stringify(['UX/UI', 'Graphic Design']),
-    hiring_options: JSON.stringify(['Flat Rate','Shares']),
-    rating: 4,
-    profile_image: 'profile9.jpg'
+    roles: JSON.stringify([roles[5]]),
+    categories: JSON.stringify([categories[0], categories[2], categories[3]]),
+    hiring_options: JSON.stringify([hiring_options[0]]),
+    bio: '8 years of project managment experience. Use Agile SDLC methodoligies. Can organize your team and get the best output out of the team.',
+    user_id: 9
   },
   {
-    id: 10,
-    username: 'yoohoo',
-    password: 'password',
-    firstname: 'Cindy',
-    lastname: 'Summer',
-    account_types: JSON.stringify(['developer']),
-    skills: JSON.stringify(['Devops']),
-    hiring_options: JSON.stringify(['Flat Rate','Shares']),
-    rating: 4,
-    profile_image: 'profile10.jpg'
+    roles: JSON.stringify([roles[2], roles[3]]),
+    categories: JSON.stringify([categories[1], categories[2], categories[3]]),
+    hiring_options: JSON.stringify([hiring_options[0]]),
+    bio: 'Capable of taking on any graphic role. UX/UI and graphic designer.',
+    user_id: 10
   },
   {
-    id: 11,
-    username: 'googleplaydev',
-    password: 'password',
-    firstname: 'Cindy',
-    lastname: 'Summer',
-    account_types: JSON.stringify(['developer']),
-    skills: JSON.stringify(['UX/UI', 'Graphic Design']),
-    hiring_options: JSON.stringify(['Hourly','Shares']),
-    rating: 2,
-    profile_image: 'profile11.jpg'
+    roles: JSON.stringify([roles[0]]),
+    categories: JSON.stringify([categories[1], categories[2]]),
+    hiring_options: JSON.stringify([hiring_options[0]]),
+    bio: 'Frontend and Backend developer with 5 years of experience building webapps and saas projects.',
+    user_id: 11
   },
   {
-    id: 12,
-    username: 'gamer3521',
-    password: 'password',
-    firstname: 'Cindy',
-    lastname: 'Summer',
-    account_types: JSON.stringify(['developer']),
-    skills: JSON.stringify(['UX/UI', 'Graphic Design']),
-    hiring_options: JSON.stringify(['Hourly','Shares']),
-    rating: 1,
-    profile_image: 'profile12.jpg'
+    roles: JSON.stringify([roles[4]]),
+    categories: JSON.stringify([categories[2], categories[3]]),
+    hiring_options: JSON.stringify([hiring_options[0]]),
+    bio: 'Master of Devops',
+    user_id: 12
   },
   {
-    id: 13,
-    username: 'user1',
-    password: 'password',
-    firstname: 'Cindy',
-    lastname: 'Summer',
-    account_types: JSON.stringify(['developer']),
-    skills: JSON.stringify(['UX/UI', 'Graphic Design']),
-    hiring_options: JSON.stringify(['Hourly','Shares']),
-    rating: 4,
-    profile_image: 'profile13.jpg'
+    roles: JSON.stringify([roles[4]]),
+    categories: JSON.stringify([categories[3]]),
+    hiring_options: JSON.stringify([hiring_options[0]]),
+    bio: 'Looking for someone to setup your pipelines and get your project setup for production. I\'m your guy!',
+    user_id: 13
   },
   {
-    id: 14,
-    username: 'jeffvan',
-    password: 'password',
-    firstname: 'Cindy',
-    lastname: 'Summer',
-    account_types: JSON.stringify(['developer']),
-    skills: JSON.stringify(['UX/UI', 'Graphic Design']),
-    hiring_options: JSON.stringify(['Hourly','Shares']),
-    rating: 5,
-    profile_image: 'profile14.jpg'
+    roles: JSON.stringify([roles[5]]),
+    categories: JSON.stringify([categories[1], categories[3]]),
+    hiring_options: JSON.stringify([hiring_options[0]]),
+    bio: 'Project manager. Have worked for startups before and am familiar with the fast pace of a startup.',
+    user_id: 14
   },
   {
-    id: 15,
-    username: 'joshb',
-    password: 'password',
-    firstname: 'Cindy',
-    lastname: 'Summer',
-    account_types: JSON.stringify(['developer']),
-    skills: JSON.stringify(['UX/UI', 'Graphic Design']),
-    hiring_options: JSON.stringify(['Hourly','Shares']),
-    rating: 4,
-    profile_image: 'profile15.jpg'
+    roles: JSON.stringify([roles[0]]),
+    categories: JSON.stringify([categories[1], categories[2], categories[3]]),
+    hiring_options: JSON.stringify([hiring_options[0]]),
+    bio: 'Years of experience building ecommerce sites. Woocommerce, custom builds. DM me.',
+    user_id: 15
   },
-  {
-    id: 16,
-    username: 'waveygravy',
-    password: 'password',
-    firstname: 'Cindy',
-    lastname: 'Summer',
-    account_types: JSON.stringify(['developer']),
-    skills: JSON.stringify(['UX/UI', 'Graphic Design']),
-    hiring_options: JSON.stringify(['Hourly','Shares']),
-    rating: 4,
-    profile_image: 'profile16.jpg'
-  },
-  {
-    id: 17,
-    username: 'bitcoinman',
-    password: 'password',
-    firstname: 'Cindy',
-    lastname: 'Summer',
-    account_types: JSON.stringify(['developer']),
-    skills: JSON.stringify(['Frontend', 'Backend']),
-    hiring_options: JSON.stringify(['Hourly','Shares']),
-    rating: 3,
-    profile_image: 'profile17.jpg'
-  },
-  {
-    id: 18,
-    username: 'webull',
-    password: 'password',
-    firstname: 'Cindy',
-    lastname: 'Summer',
-    account_types: JSON.stringify(['developer']),
-    skills: JSON.stringify(['UX/UI', 'Graphic Design']),
-    hiring_options: JSON.stringify(['Hourly','Shares']),
-    rating: 4,
-    profile_image: 'profile18.jpg'
-  },
-  {
-    id: 19,
-    username: 'scoobydoo',
-    password: 'password',
-    firstname: 'Cindy',
-    lastname: 'Summer',
-    account_types: JSON.stringify(['developer']),
-    skills: JSON.stringify(['UX/UI', 'Graphic Design']),
-    hiring_options: JSON.stringify(['Hourly','Shares']),
-    rating: 2,
-    profile_image: 'profile19.jpg'
-  },
-]
+];
 
 
-const user = {
-  "username":"entre360",
-  "password":"password",
-  "firstname":"Jeff",
-  "lastname":"Swank"
+const user5 = {
+  id: 5,
+  username: 'waveybits',
+  email: 'waveybits@gmail.com',
+  firstname: 'Wavey',
+  lastname: 'Boseman',
+  rating: 4,
+  profile_image: 'profile12.jpg',
+  connections: [3,4,9,10,11,12,13,14,15],
+  notification_settings: { 'messages': true, 'added_connection': true, 'project_invitation': true },
+  subscription_settings: { 'featured_projects': true, 'weekly_news': true, 'updates': true },
+  roles: ['Project Manager'],
+  categories: ['Website', 'Mobile App', 'Ecommerce', 'SAAS'],
+  hiring_options: ['Shares'],
+  bio: '8 years of project managment experience. Use Agile SDLC methodoligies. Can organize your team and get the best output out of the team.',
 }
 
+
 module.exports = {
-  users,
-  user
+  devUsers,
+  user5
 }

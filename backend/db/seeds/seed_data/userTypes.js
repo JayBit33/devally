@@ -9,10 +9,5 @@ module.exports = [
   {
     id: 2,
     type: 'visionary'
-  },
-  {
-    id: 3,
-    type: 'dual-account'
   }
-
 ]

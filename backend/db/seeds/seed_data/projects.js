@@ -17,6 +17,7 @@ module.exports = [
     viewable_regions: JSON.stringify([regions[0],regions[4]]),
     funding_types: JSON.stringify([funding_types[0]]),
     is_public: true,
+    is_active: true,
     is_featured: true,
   },
   {
@@ -29,6 +30,7 @@ module.exports = [
     viewable_regions: JSON.stringify([regions[0]]),
     funding_types: JSON.stringify([funding_types[1]]),
     is_public: true,
+    is_active: true,
     is_featured: true,
   },
   {
@@ -42,6 +44,7 @@ module.exports = [
     funding_types: JSON.stringify([funding_types[2]]),
     is_seeking_allys: false,
     is_public: true,
+    is_active: false,
     is_featured: false,
   },
   {
@@ -54,6 +57,7 @@ module.exports = [
     viewable_regions: JSON.stringify([...regions]),
     funding_types: JSON.stringify([funding_types[3]]),
     is_public: false,
+    is_active: true,
     is_featured: true,
   },
   {
@@ -66,6 +70,7 @@ module.exports = [
     viewable_regions: JSON.stringify([...regions]),
     funding_types: JSON.stringify([funding_types[4]]),
     is_public: true,
+    is_active: false,
     is_featured: true,
   }
 ]

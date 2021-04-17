@@ -1,8 +1,7 @@
 // (c) Waveybits Inc. <2021>
 // ALL RIGHTS RESERVED
-import express from 'express';
-import authChecker from './middelware/auth-checker';
-import queries from '../db/user-queries';
+const express = require('express');
+const queries = require('../db/queries/user-queries');
 const router = express.Router();
 
 // Fake route to test accessToken

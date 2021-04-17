@@ -2,8 +2,8 @@
 // ALL RIGHTS RESERVED
 const express = require('express');
 const router = express.Router();
-const queries = require('../db/project-queries');
-import authChecker from './middelware/auth-checker';
+const queries = require('../db/queries/project-queries');
+const authChecker = require('./middelware/auth-checker');
 
 function validProject(project) {
   const hasCreator = typeof project.creator_id == 'number' && project.creator_id.trim() != '';

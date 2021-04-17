@@ -1,4 +1,4 @@
-import jwt from 'jsonwebtoken';
+const jwt = require('jsonwebtoken');
 import 'dotenv/config'
 
 export const createAccessToken = (user) => {

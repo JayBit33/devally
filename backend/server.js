@@ -1,15 +1,15 @@
 import express from 'express';
-import cors from 'cors'
-import bodyParser from 'body-parser';
-import cookieParser from 'cookie-parser';
-import swaggerJsDoc from 'swagger-jsdoc';
-import swaggerUi from 'swagger-ui-express';
-import baseApi from './apis/baseApi';
-import users from './apis/users';
-import projects from './apis/projects';
-import messages from './apis/messages';
-import auth from './auth';
-import 'dotenv/config'
+const cors = require('cors')
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const swaggerJsDoc = require( 'swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
+const baseApi = require('./apis/baseApi');
+const users = require('./apis/users');
+const projects = require('./apis/projects');
+const messages = require('./apis/messages');
+const auth = require('./auth');
+require('dotenv').config()
 
 const port = process.env.PORT || 3000;
 const app = express();
