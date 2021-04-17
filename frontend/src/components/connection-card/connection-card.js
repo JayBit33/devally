@@ -12,16 +12,14 @@ export default {
   computed: {
     accountType() {
       return this.connection.user_type_id === 1
-      ? 'developer'
-      : this.connection.user_type_id === 2
-      ? 'visionary'
-      : 'developer | visionary'
+      ? 'developer | visionary'
+      : 'visionary'
     },
     fullName() {
       return `${this.connection.firstname} ${this.connection.lastname}`;
     },
     roles() {
-      return this.connection.roles.map(role => {
+      return this.connection.dev_roles.map(role => {
         if (role === "Graphic Designer") return "GD";
         if (role === "UX/UI") return "UI";
         if (role === "Frontend") return "FE";
