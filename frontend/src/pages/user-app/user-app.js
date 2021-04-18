@@ -26,6 +26,7 @@ export default {
       isLoading: true,
       messages: [],
       messagesViewActive: false,
+      projects: [],
       projectsViewActive: false,
       connectionsViewActive: false,
       settingsViewActive: false,
@@ -67,74 +68,6 @@ export default {
     },
     categoriesFormatted() {
       return this.user.categories.join(", ");
-    },
-    getImage() {
-      return `http://localhost:3000/${this.getLoggedInUser.profile_image}`;
-    },
-    userProjects() {
-      return [{
-        "id": 3,
-        "creator_id": 7,
-        "team_member_ids": [
-          11,
-          8,
-          0
-        ],
-        "name": "Task Manager",
-        "category": "Mobile App",
-        "description": "Collaborate with team by assigning tasks to each member and tracking progress.",
-        "hiring_options": [
-          "Shares",
-          "Flat Rate"
-        ],
-        "viewable_regions": [
-          "US",
-          "South America",
-          "Africa",
-          "Asia",
-          "Europe"
-        ],
-        "funding_types": [
-          "Bootstrapped",
-          "Venture Capital",
-          "Friends & Family"
-        ],
-        "is_seeking_allys": false,
-        "is_public": true,
-        "is_featured": false,
-
-      },
-        {
-          "id": 4,
-          "creator_id": 8,
-          "team_member_ids": [
-            12,
-            9
-          ],
-          "name": "Task Manager 2",
-          "category": "Mobile App",
-          "description": "Collaborate with team by assigning tasks to each member and tracking progress.",
-          "hiring_options": [
-            "Shares",
-            "Flat Rate"
-          ],
-          "viewable_regions": [
-            "US",
-            "South America",
-            "Africa",
-            "Asia",
-            "Europe"
-          ],
-          "funding_types": [
-            "Bootstrapped",
-            "Venture Capital",
-            "Friends & Family"
-          ],
-          "is_seeking_allys": false,
-          "is_public": true,
-          "is_featured": false,
-
-        }]
     }
   },
   mounted() {
@@ -153,8 +86,18 @@ export default {
       this.isLoading = false;
     });
 
+    // this.messages = await this.fetchMessages();
+    this.messages = await Promise.all(this.messages.map(async (n) => {
+      let imgSrc = null
+      if (n.senderId) {
+        imgSrc = await this.getImageFromId(n.senderId)
+      }
+      return {
+        ...n,
+        image_source: imgSrc
+      }
+    }))
     var listenerID = this.user.username;
-
     CometChat.addMessageListener(
       listenerID,
       new CometChat.MessageListener({
@@ -169,17 +112,34 @@ export default {
         }
       })
     );
+
+    this.user.notifications = await Promise.all(this.user.notifications.map(async (n) => {
+      let imgSrc = null
+      if (n.senderId) {
+        imgSrc = await this.getImageFromId(n.senderId)
+      }
+      return {
+        ...n,
+        image_source: imgSrc
+      }
+    }))
+
+    // this.projects = await this.fetchProjects();
   },
   methods: {
-    ...mapActions(['logout','retrieveRefreshToken']),
+    ...mapActions(['logout', 'retrieveRefreshToken', 'fetchDevUsers', 'fetchUserById', 'fetchMessages', 'fetchProjects']),
     ...mapMutations(['updateIsLoggedIn']),
-    ...mapActions(['fetchDevUsers']),
     closeToast() {
       this.toast.isShown = false
     },
     handleToastAction() {
       this.$router.push(this.toast.actionRedirect)
       this.toast.isShown = false
+    },
+    getImageFromId(id) {
+      return this.fetchUserById(id).then(user => {
+        return this.getImage(user.profile_image)
+      })
     },
     getImage(filePath) {
       this.profileImageUrl = `http://localhost:3000/${filePath}`;

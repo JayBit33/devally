@@ -2,7 +2,7 @@
 // ALL RIGHTS RESERVED
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { authAPI, baseAPI, usersAPI, projectsAPI } from '@/api/apis';
+import { authAPI, baseAPI, usersAPI, projectsAPI, chatAPI } from '@/api/apis';
 import { CometChat } from "@cometchat-pro/chat";
 
 Vue.use(Vuex)
@@ -64,6 +64,16 @@ Vue.use(Vuex)
         fetchUserById({commit}, id) {
             return new Promise((resolve, reject) => {
                 usersAPI.get(`/${id}`)
+                    .then(res => {
+                        commit('');
+                        console.log('res', res.data);
+                        resolve(res.data);
+                    }).catch(error => reject(error));
+            })
+        },
+        fetchMessages({commit}) {
+            return new Promise((resolve, reject) => {
+                chatAPI.get('/newest-messages')
                     .then(res => {
                         commit('');
                         console.log('res', res.data);

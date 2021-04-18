@@ -28,6 +28,7 @@
       object-fit: cover;
       border-radius: 50%;
       margin: 6rem auto 1rem auto;
+      cursor: pointer;
     }
 
     &-fullname {
@@ -155,6 +156,7 @@
     display: flex;
     justify-content: center;
   }
+
   .home {
     width: 100%;
     .greeting {
@@ -213,10 +215,10 @@
       margin: 4rem auto;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      grid-gap: 2rem;
+      grid-gap: 3rem;
       &_section {
         width: 100%;
-        min-height: 20rem;
+        min-height: 10rem;
         height: max-content;
         h2 {
           color: $font-dark;
@@ -228,12 +230,86 @@
         }
         .expand-section {
           font-size: .75rem;
-          font-weight: 400;
+          font-weight: 700;
           width: max-content;
           margin: .25rem 0;
           margin-left: auto;
           font-family: 'Montserrat';
           cursor: pointer;
+        }
+
+        &.notifications {
+          .notifications-container {
+            display: grid;
+            grid-template-columns: repeat(2, auto);
+            width: 100%;
+            grid-gap: 1rem;
+          }
+          
+          .notification {
+            justify-self: stretch;
+            align-content: center;
+            display: grid;
+            grid-template-columns: 2.75rem 1fr auto;
+            place-items: center;
+            background-color: $devs-page-section-bg;
+            border-radius: .5rem;
+            padding: .5rem 1rem;
+            margin: .5rem 0;
+            height: 2.5rem;
+            width: auto;
+
+            h2 {
+              margin: 0;
+              font-size: .75rem;
+            }
+            .image-icon {
+              height: 2.75rem;
+              width: 2.75rem;
+              object-fit: cover;
+              border-radius: 50%;
+            }
+            .clipboard-icon {
+              font-size: 2rem;
+            }
+            .trash-icon {
+              font-size: 1.25rem;
+              cursor: pointer;
+            }
+          }
+        }
+        &.current-tasks {
+          .task {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin: 1rem 0;
+            h2 {
+              font-size: .75rem;
+            }
+            .task-icon {
+              font-size: 1.75rem;
+              margin-right: .5rem;
+            }
+          }
+        }
+        &.recent-messages {
+          .message {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin: 1rem 0;
+            .image-icon {
+              height: 3rem;
+              width: 3rem;
+              object-fit: cover;
+              border-radius: 50%;
+              margin-right: 1.5rem;
+            }
+            h2 {
+              font-size: .75rem;
+            }
+          }
         }
       }
     }
