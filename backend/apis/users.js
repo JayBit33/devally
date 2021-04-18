@@ -226,7 +226,7 @@ router.post('/create', (req, res, next) => {
 router.get('/devs', (req, res) => {
   queries.getDevUsers().then(users => {
     if (users) {
-      res.status(200).send(users);
+      res.status(200).json(users);
     } else {
       console.log('cant return users')
       res.status(404);
@@ -285,7 +285,7 @@ router.get('/devs', (req, res) => {
  *                     example: { featured_projects: true, weekly_news: true, updates: true }
 */
 router.get('/visionaries', (req, res) => {
-  queries.getCustomers().then(users => {
+  queries.getVisionaryUsers().then(users => {
     res.status(200).json(users);
   })
 })
