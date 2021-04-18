@@ -3,9 +3,33 @@
   margin-bottom: 1rem;
   margin-top: 1rem;
 
+  &:nth-child(odd) {
+    .project-info-collapsable__header {
+      background-color: $mute-sky-blue;
+    }
+    .project-info-collapsable__content {
+      &__information {
+        .info .icon {
+          color: $mute-sky-blue;
+        }
+      }
+    }
+  }
+  &:nth-child(even) {
+    .project-info-collapsable__header {
+      background-color: $mute-red;
+    }
+    .project-info-collapsable__content {
+      &__information {
+        .info .icon {
+          color: $mute-red;
+        }
+      }
+    }
+  }
+
   &__header {
     padding: .5rem 0;
-    background-color: $mute-red;
     width: 100%;
     display: flex;
     justify-content: center;

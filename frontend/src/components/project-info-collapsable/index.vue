@@ -12,7 +12,7 @@
         <div class="info days-active">
           <h4>Days Active</h4>
           <font-awesome-icon :icon="['fas','clock']" class="icon"></font-awesome-icon>
-          <h2 class="info-total">12</h2>
+          <h2 class="info-total">{{getDayCount(project.date_created)}}</h2>
         </div>
         <div class="info tasks">
           <h4>Tasks Complete</h4>

@@ -5,7 +5,7 @@ const queries = require('../db/queries/user-queries');
 const router = express.Router();
 
 // Fake route to test accessToken
-router.get('/newest-messages', (res) => {
+router.get('/newest-messages', (_, res) => {
   res.json([
     {
       senderId: 11,

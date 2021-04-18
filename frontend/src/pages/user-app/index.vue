@@ -13,7 +13,7 @@
     >
     </Toast>
     <div class="user-app_sidebar">
-      <img v-if="user && user.profile_image" class="user-app_sidebar-avatar" :src="getImage" />
+      <img v-if="user && user.profile_image" class="user-app_sidebar-avatar" :src="getImage(user.profile_image)" @click="updateView('')" />
       <h4 class="user-app_sidebar-fullname">{{ fullName }}</h4>
       <h5 class="user-app_sidebar-accountType">{{ accountType }}</h5>
       <sidebar-button
@@ -72,19 +72,35 @@
         <div class="home_sections">
           <div class="home_sections_section active-projects">
             <h2>Active Projects</h2>
-            <project-info-collapsable v-for="project in userProjects" :key="project.id" :project="project"></project-info-collapsable>
+            <project-info-collapsable v-for="project in projects" :key="project.id" :project="project"></project-info-collapsable>
             <p class="expand-section" @click="updateView('projects')">View All</p>
           </div>
           <div class="home_sections_section recent-messages">
             <h2>Recent Messages</h2>
+            <div class="message" v-for="message in messages" :key="message.message">
+              <img class="image-icon" :src="message.image_source" alt="image">
+              <h2>{{message.message}}</h2>
+            </div>
             <p class="expand-section" @click="updateView('messages')">Read More</p>
           </div>
           <div class="home_sections_section current-tasks">
             <h2>Current Tasks</h2>
+            <div class="task" v-for="task in user.tasks" :key="task.message">
+              <font-awesome-icon :icon="['fas','tasks']" class="task-icon"></font-awesome-icon>
+              <h2>{{task.message}}</h2>
+            </div>
             <p class="expand-section" @click="updateView('tasks')">See More Tasks</p>
           </div>
           <div class="home_sections_section notifications">
             <h2>Nofitications</h2>
+            <div class="notifications-container">
+              <div class="notification" v-for="notification in user.notifications" :key="notification.message">
+                <img class="image-icon" v-if="notification.senderId && !notification.projectId" :src="notification.image_source" alt="image">
+                <font-awesome-icon v-else-if="notification.projectId" :icon="['fas','clipboard']" class="clipboard-icon"></font-awesome-icon>
+                <h2>{{notification.message}}</h2>
+                <font-awesome-icon :icon="['fas','trash']" class="trash-icon"></font-awesome-icon>
+              </div>
+            </div>
             <p class="expand-section">View All</p>
           </div>
         </div>
