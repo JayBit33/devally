@@ -11,7 +11,7 @@ export default {
   },
   computed: {
     accountType() {
-      return this.connection.user_type_id === 1
+      return this.connection.user_type_id === "1"
       ? 'developer | visionary'
       : 'visionary'
     },
