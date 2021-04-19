@@ -73,6 +73,10 @@
           <div class="home_sections_section active-projects">
             <h2>Active Projects</h2>
             <project-info-collapsable v-for="project in projects" :key="project.id" :project="project"></project-info-collapsable>
+            <div v-if="projects.length == 0" class="no-projects">
+              <h2>You have no projects!</h2>
+              <p @click="$router.push('/projects')">Browse projects</p>
+            </div>
             <p class="expand-section" @click="updateView('projects')">View All</p>
           </div>
           <div class="home_sections_section recent-messages">
@@ -80,6 +84,9 @@
             <div class="message" v-for="message in messages" :key="message.message">
               <img class="image-icon" :src="message.image_source" alt="image">
               <h2>{{message.message}}</h2>
+            </div>
+            <div v-if="messages.length == 0" class="no-messages">
+              <h2>You have no new messages.</h2>
             </div>
             <p class="expand-section" @click="updateView('messages')">Read More</p>
           </div>
@@ -95,10 +102,10 @@
             <h2>Nofitications</h2>
             <div class="notifications-container">
               <div class="notification" v-for="notification in user.notifications" :key="notification.message">
-                <img class="image-icon" v-if="notification.senderId && !notification.projectId" :src="notification.image_source" alt="image">
-                <font-awesome-icon v-else-if="notification.projectId" :icon="['fas','clipboard']" class="clipboard-icon"></font-awesome-icon>
+                <img class="image-icon" v-if="notification.senderId && !notification.projectId" :src="notification.image_source" alt="image" @click="updateView('connections')">
+                <font-awesome-icon v-else-if="notification.projectId" :icon="['fas','clipboard']" class="clipboard-icon" @click="updateView('projects')"></font-awesome-icon>
                 <h2>{{notification.message}}</h2>
-                <font-awesome-icon :icon="['fas','trash']" class="trash-icon"></font-awesome-icon>
+                <font-awesome-icon :icon="['fas','trash']" class="trash-icon" @click="deleteNotification(notification)"></font-awesome-icon>
               </div>
             </div>
             <p class="expand-section">View All</p>
@@ -138,7 +145,7 @@
       <div v-if="$route.params.view == 'connections'" class="views">
         <font-awesome-icon :icon="['fas','user-friends']" class="icon"></font-awesome-icon>
         <h1 class="title">User Connections</h1>
-        <user-connections :connectionIds="user.connections" />
+        <user-connections v-if="user.connections && user.connections.length > 0" :connectionIds="user.connections" />
       </div>
       <div v-if="$route.params.view == 'settings'" class="views">
         <font-awesome-icon class="icon" :icon="['fas','cog']" ></font-awesome-icon>

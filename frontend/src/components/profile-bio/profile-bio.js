@@ -23,8 +23,12 @@ export default {
     },
   },
   methods: {
-    getImage(imageName) {
-      return require(`@/assets/${imageName}`)
+    getImage(imageName, fromBE = false) {
+      if (fromBE) {
+        return `http://localhost:3000/${imageName}`;
+      } else {
+        return require(`@/assets/${imageName}`)
+      }
     }
   }
 };

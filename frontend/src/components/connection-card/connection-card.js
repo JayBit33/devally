@@ -11,7 +11,7 @@ export default {
   },
   computed: {
     accountType() {
-      return this.connection.user_type_id === 1
+      return this.connection.user_type_id === "1"
       ? 'developer | visionary'
       : 'visionary'
     },
@@ -27,6 +27,11 @@ export default {
         if (role === "Devops") return "DO";
         if (role === "Project Manager") return "PM";
       });
+    }
+  },
+  methods: {
+    getImage(filePath) {
+      return `http://localhost:3000/${filePath}`;
     }
   }
 }

@@ -65,7 +65,7 @@ Vue.use(Vuex)
             return new Promise((resolve, reject) => {
                 usersAPI.get(`/${id}`)
                     .then(res => {
-                        commit('');
+                        console.log(commit);
                         console.log('res', res.data);
                         resolve(res.data);
                     }).catch(error => reject(error));
@@ -75,7 +75,7 @@ Vue.use(Vuex)
             return new Promise((resolve, reject) => {
                 chatAPI.get('/newest-messages')
                     .then(res => {
-                        commit('');
+                        console.log(commit);
                         console.log('res', res.data);
                         resolve(res.data);
                     }).catch(error => reject(error));
@@ -129,7 +129,7 @@ Vue.use(Vuex)
             return new Promise((resolve, reject) => {
                 usersAPI.put(`/${id}`, {updates, table})
                     .then(res => {
-                        commit('');
+                        console.log(commit);
                         console.log('res', res.data);
                         resolve(res.data);
                     }).catch(error => {
@@ -148,7 +148,7 @@ Vue.use(Vuex)
                     }
                 })
                 .then(res => {
-                    commit('');
+                    console.log(commit);
                     console.log('res', res.data);
                     resolve(res.data);
                 }).catch(error => {

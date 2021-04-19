@@ -91,7 +91,9 @@ export default {
       this.toast.isShown = true
     }
   },
-  created() {
-    this.connectionIds.forEach(id => { console.log('this id', id); this.fetchUserById(id).then(res => this.connections.push(res))});
+  mounted() {
+    this.connectionIds.forEach(id => {
+      this.fetchUserById(id).then(res => this.connections.push(res))
+    });
   },
 }
