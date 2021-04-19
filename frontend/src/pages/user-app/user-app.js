@@ -211,4 +211,9 @@ export default {
       }
     }
   },
+  watch: {
+    getLoggedInUser() {
+      this.user = this.getLoggedInUser
+    }
+  }
 };

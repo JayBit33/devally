@@ -85,10 +85,10 @@ router.patch('/upload-profile-img/:id', upload.single('profile_image'), async (r
   console.log(req.file)
   queries.uploadProfileImg(req.params.id, req.file.path).then(user => {
     res.json(user.profile_image)
-    res.send(200)
+    res.sendStatus(200)
   }).catch(error => {
     console.log(error)
-    res.send(500)
+    res.sendStatus(500)
   })
 })
 
