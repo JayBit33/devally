@@ -5,7 +5,7 @@
 
     <div class="user-display">
       <div class="user-display_background-overlay" :style="{'background-image': `url(${getImage('bg1.jpg')})`}"></div>
-      <img v-if="user && user.profile_image" :src="getImage(user.profile_image)" />
+      <img v-if="user && user.profile_image" :src="getImage(user.profile_image, true)" />
       <h4>{{ user.username }}</h4>
       <h3>{{ user.user_type_id === '1' ? 'Developer / Visionary' : 'Visionary' }}</h3>
       <div class="rating">

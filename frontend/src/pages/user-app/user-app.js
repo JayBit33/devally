@@ -86,7 +86,7 @@ export default {
       this.isLoading = false;
     });
 
-    // this.messages = await this.fetchMessages();
+    this.messages = await this.fetchMessages();
     this.messages = await Promise.all(this.messages.map(async (n) => {
       let imgSrc = null
       if (n.senderId) {
@@ -124,13 +124,25 @@ export default {
       }
     }))
 
-    // this.projects = await this.fetchProjects();
+    this.projects = await this.fetchProjects();
+    this.projects = this.projects.map(project => {
+      return {
+        ...project,
+        tasks_completed: this.user.tasks.filter(task => task.projectId === project.id).length
+      }
+    })
   },
   methods: {
-    ...mapActions(['logout', 'retrieveRefreshToken', 'fetchDevUsers', 'fetchUserById', 'fetchMessages', 'fetchProjects']),
+    ...mapActions(['logout', 'retrieveRefreshToken', 'fetchDevUsers', 'fetchUserById', 'fetchMessages', 'fetchProjects', 'updateUser']),
     ...mapMutations(['updateIsLoggedIn']),
     closeToast() {
       this.toast.isShown = false
+    },
+    async deleteNotification(notification) {
+      let newNotifications = this.user.notifications
+                              .filter(n => !(n.senderId == notification.senderId && n.projectId == notification.projectId && n.message == notification.message))
+      this.user.notifications = newNotifications
+      await this.updateUser({id: this.user.id, updates: { notifications: JSON.stringify(newNotifications) }});
     },
     handleToastAction() {
       this.$router.push(this.toast.actionRedirect)

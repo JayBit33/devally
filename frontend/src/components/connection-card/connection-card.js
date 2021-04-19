@@ -28,5 +28,10 @@ export default {
         if (role === "Project Manager") return "PM";
       });
     }
+  },
+  methods: {
+    getImage(filePath) {
+      return `http://localhost:3000/${filePath}`;
+    }
   }
 }
