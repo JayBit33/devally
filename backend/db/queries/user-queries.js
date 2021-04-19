@@ -22,16 +22,19 @@ module.exports = {
   getUserById(id) {
     return knex('users')
           .where('users.id', id)
-          .join('developers', 'users.id', '=', 'developers.user_id')
+          .leftJoin('developers', 'users.id', 'developers.user_id')
           .select(['users.id','users.username','users.email','users.firstname','users.lastname', 'users.bio', 'users.visionary_categories','users.rating','users.profile_image', 'users.user_type_id', 'users.connections', 'users.notifications', 'users.tasks', 'users.notification_settings','users.subscription_settings','users.token_version',  'developers.dev_roles', 'developers.dev_categories', 'developers.dev_skills', 'developers.hiring_options', 'developers.portfolio', 'developers.dev_bio', 'developers.dev_rating'])
           .first();
   },
   getDevUsers() {
-    return knex('users')
-            .where('user_type_id', 1)
-            .join('developers', 'users.id', '=', 'developers.user_id')
-            .select(['users.id','users.username','users.email','users.firstname','users.lastname', 'users.bio', 'users.visionary_categories','users.rating','users.profile_image', 'users.user_type_id', 'users.connections', 'users.notifications', 'users.tasks', 'users.notification_settings','users.subscription_settings','users.token_version', 'developers.dev_roles', 'developers.dev_categories', 'developers.dev_skills', 'developers.hiring_options', 'developers.portfolio', 'developers.dev_bio', 'developers.dev_rating'])
-  },
+    // return knex('users')
+    //         .where('user_type_id', 1)
+    //         .join('developers', 'users.id', '=', 'developers.user_id')
+            knex.select(['users.id','users.username','users.email','users.firstname','users.lastname', 'users.bio', 'users.visionary_categories','users.rating','users.profile_image', 'users.user_type_id', 'users.connections', 'users.notifications', 'users.tasks', 'users.notification_settings','users.subscription_settings','users.token_version', 'developers.dev_roles', 'developers.dev_categories', 'developers.dev_skills', 'developers.hiring_options', 'developers.portfolio', 'developers.dev_bio', 'developers.dev_rating'])
+              .from('users').leftJoin('developers', () => {
+                this.on('users.id', '=', 'developers.user_id')
+              })
+          },
   getVisionaryUsers() {
     return knex('users')
             .where('user_type_id', 2)

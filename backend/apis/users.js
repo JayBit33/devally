@@ -167,7 +167,7 @@ function validUser(user) {
 router.post('/create', (req, res, next) => {
   if (validUser(req.body)) {
     queries.createUser(req.body).then(user => {
-      res.status(201).send(user[0]);
+      res.status(201).send(user);
     })
   } else {
     next(new Error('Invalid User Data'));

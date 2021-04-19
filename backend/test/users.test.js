@@ -23,23 +23,6 @@ describe('CRUD users', () => {
     console.log('Test working');
   })
 
-
-  // it('Created a new User record', () => {
-  //   request(app)
-  //     .post('/api/v1/users/create')
-  //     .send(fixtures.newUser)
-  //     .set('Accept', 'application/json')
-  //     .expect('Content-Type', /json/)
-  //     .expect(201)
-  //     .then(async (res) => {
-  //       const user = await res.body;
-  //       expect(user).to.be.a('object');
-  //       fixtures.newUser.id = user.id;
-  //       fixtures.newUser.user_since = user.user_since;
-  //       expect(user).to.deep.equal(fixtures.newUser);
-  //     })
-  // });
-
   it('Lists all Dev User Records', (done) => {
     chai.request(app)
       .get('/api/v1/users/devs')
@@ -48,8 +31,8 @@ describe('CRUD users', () => {
         expect(res).to.have.status(200);
         expect(res).to.be.json;
         expect(users).to.be.a('array');
-        expect(users).to.have.lengthOf(12);
-        expect(users).to.equal(fixtures.devUsers);
+        expect(users).to.have.length(15);
+        expect(users).to.deep.equal(fixtures.devUsers);
         done();
     })
   })
@@ -60,25 +43,47 @@ describe('CRUD users', () => {
       .set('Accept', 'application/json')
       .end((err, res) => {
         const users = res.body;
+        expect(res).to.have.status(200);
+        expect(res).to.be.json;
         expect(users).to.be.a('array');
         expect(users).to.have.length(9);
         expect(users).to.deep.equal(fixtures.visUsers);
         done();
-      })
+    })
   })
 
-  // it('Fetch User Record By Id', () => {
-  //   request(app)
-  //     .get('/api/v1/users/5')
+  it('Fetch User Record By Id', (done) => {
+   chai.request(app)
+    .get('/api/v1/users/18')
+    .set('Accept', 'application/json')
+    .end((res) => {
+      const user = res.body;
+      expect(res).to.have.status(200);
+      expect(res).to.be.json;
+      expect(user).to.be.a('object');
+      expect(user).to.equal(fixtures.userId5);
+      done();
+    })
+  })
+
+  // it('Created a new User record', (done) => {
+  //   chai.request(app)
+  //     .post('/api/v1/users/create')
+  //     .send(fixtures.newUser)
   //     .set('Accept', 'application/json')
-  //     .expect('Content-Type', /json/)
-  //     .expect(200)
-  //     .then(async (res) => {
+  //     .end((res) => {
   //       const user = res.body;
-  //       user.should.be.a('object');
-  //       user.should.equal(fixtures.userId5);
-  //     }).catch(err => console.log(err));
-  // })
+  //       expect(res).to.have.status(201);
+  //       expect(res).to.be.json;
+  //       expect(user).to.be.a('object');
+  //       fixtures.newUser.id = user.id;
+  //       fixtures.newUser.user_since = user.user_since;
+  //       expect(user).to.deep.equal(fixtures.newUser);
+  //       done();
+  //   })
+  // });
+
+
 
 
 
