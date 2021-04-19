@@ -26,7 +26,11 @@ export default {
   },
   async created() {
     this.user = await this.fetchUserById(this.$route.params.id)
-    this.selectedCategories = this.user.dev_categories
+    if (this.user.user_type_id == '1') {
+      this.selectedCategories = this.user.dev_categories
+    } else {
+      this.selectedCategories = this.user.visionary_categories
+    }
     this.selectedRoles = this.user.dev_roles
     this.selectedHiringOptions = this.user.hiring_options
     this.bio = this.user.bio
@@ -70,6 +74,7 @@ export default {
 
       let devResponse = false
       let bioResponse = false
+      let visionaryResponse = false
       if (this.isDevUser) {
         let updates = {
           dev_categories: JSON.stringify(this.selectedCategories),
@@ -78,6 +83,11 @@ export default {
           dev_bio: this.bio
         }
         devResponse = await this.updateUser({ id, updates, table: 'developers'})
+      } else {
+        let updates = {
+          visionary_categories: JSON.stringify(this.selectedCategories)
+        }
+        visionaryResponse = await this.updateUser({ id, updates, table: 'users'})
       }
       bioResponse = await this.updateUser({ id, updates: {bio: this.bio}, table: 'users'})
 
@@ -94,7 +104,17 @@ export default {
         isShown: false,
         duration: 0
       }
-      if (((this.isDevUser && devResponse) || !(this.isDevUser || devResponse)) && bioResponse && profileResponse) {
+
+      let successfullUserResponses = false
+      if (this.isDevUser) {
+        if (devResponse) successfullUserResponses = true
+        else successfullUserResponses = false
+      } else {
+        if (visionaryResponse) successfullUserResponses = true
+        else successfullUserResponses = false
+      }
+      
+      if (successfullUserResponses && bioResponse && profileResponse) {
         toast.message = [{ text: 'You have', emphasis: false }, { text: 'successfully', emphasis: true }, { text: 'updated your profile', emphasis: false }],
         toast.type = 'success'
       } else {

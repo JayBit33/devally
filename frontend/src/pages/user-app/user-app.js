@@ -81,12 +81,14 @@ export default {
       }
     }, 1000);
 
-    await this.fetchDevUsers().then(() => {
-      this.user = this.getDevUser(this.$route.params.id);
-      this.isLoading = false;
-    });
+    this.user = await this.fetchUserById(this.$route.params.id)
+    if (this.user) this.isLoading = false
+    // await this.fetchDevUsers().then(() => {
+    //   this.user = this.getDevUser(this.$route.params.id);
+    //   this.isLoading = false;
+    // });
 
-    this.messages = await this.fetchMessages();
+    // this.messages = await this.fetchMessages();
     this.messages = await Promise.all(this.messages.map(async (n) => {
       let imgSrc = null
       if (n.senderId) {
@@ -124,7 +126,7 @@ export default {
       }
     }))
 
-    this.projects = await this.fetchProjects();
+    // this.projects = await this.fetchProjects();
     this.projects = this.projects.map(project => {
       return {
         ...project,
