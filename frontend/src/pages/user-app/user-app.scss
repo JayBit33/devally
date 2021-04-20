@@ -27,7 +27,7 @@
       height: 10rem;
       object-fit: cover;
       border-radius: 50%;
-      margin: 6rem auto 1rem auto;
+      margin: 5rem auto 1rem auto;
       cursor: pointer;
     }
 
@@ -82,7 +82,7 @@
       text-decoration: none;
       list-style-type: none;
       padding: 0;
-      margin: 9vh 0;
+      margin: 8vh 0;
       display: flex;
       flex-direction: column;
       width: 100%;
@@ -110,7 +110,7 @@
         }
 
         .sidebar-icon {
-          font-size: 3rem;
+          font-size: 2.5rem;
           color: $sidebar_icon;
           line-height: 100%;
         }
@@ -459,16 +459,20 @@
 }
 
 
-@media only screen and (max-height: 1280px) {
+@media only screen and (max-height: 1080px) {
   .user-app {
     &_sidebar {
       &-avatar {
-        width: 9rem;
-        height: 9rem;
-        margin-top: 3rem;
+        width: 8.75rem;
+        height: 8.75rem;
+        margin-top: 5rem;
       }
       &-nav {
         margin: 7vh 0;
+      }
+      .signout-btn {
+        position: relative;
+        bottom: 2rem;
       }
     }
   }
@@ -489,6 +493,10 @@
             font-size: 2.125rem;
           }
         }
+      }
+      .signout-btn {
+        position: relative;
+        bottom: 0rem;
       }
     }
   }
