@@ -72,7 +72,7 @@
         <div class="home_sections">
           <div class="home_sections_section active-projects">
             <h2>Active Projects</h2>
-            <project-info-collapsable v-for="project in [projects[0], projects[1]]" :key="project.id" :project="project"></project-info-collapsable>
+            <project-info-collapsable v-for="project in projects.filter((p, i) => i <= 1)" :key="project.id" :project="project"></project-info-collapsable>
             <div v-if="projects.length == 0" class="no-projects">
               <h2>You have no projects!</h2>
               <p @click="$router.push('/projects')">Browse projects</p>
