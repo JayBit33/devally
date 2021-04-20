@@ -26,8 +26,12 @@ export default {
   },
   async created() {
     this.user = await this.fetchUserById(this.$route.params.id)
-    this.selectedCategories = this.user.categories
-    this.selectedRoles = this.user.roles
+    if (this.user.user_type_id == '1') {
+      this.selectedCategories = this.user.dev_categories
+    } else {
+      this.selectedCategories = this.user.visionary_categories
+    }
+    this.selectedRoles = this.user.dev_roles
     this.selectedHiringOptions = this.user.hiring_options
     this.bio = this.user.bio
 
@@ -59,8 +63,7 @@ export default {
     async updateProfileImage() {
       let formData = new FormData(document.getElementById('upload-form'))
       try {
-        let res = await this.updateUserProfileImg({ id: this.user.id, form: formData})
-        this.updateLoggedInUser(res)
+        await this.updateUserProfileImg({ id: this.user.id, form: formData})
         return true
       } catch {
         return false
@@ -68,22 +71,25 @@ export default {
     },
     async updateProfile() {
       let id = this.$route.params.id
-      let updates = {
-        categories: JSON.stringify(this.selectedCategories),
-        roles: JSON.stringify(this.selectedRoles),
-        hiring_options: JSON.stringify(this.selectedHiringOptions),
-        bio: this.bio
-      }
-      let table = this.isDevUser ? 'developers' : 'visionaries'
+
+      let devResponse = false
+      let bioResponse = false
+      let visionaryResponse = false
       if (this.isDevUser) {
-        updates = {
+        let updates = {
           dev_categories: JSON.stringify(this.selectedCategories),
           dev_roles: JSON.stringify(this.selectedRoles),
           hiring_options: JSON.stringify(this.selectedHiringOptions),
           dev_bio: this.bio
         }
+        devResponse = await this.updateUser({ id, updates, table: 'developers'})
+      } else {
+        let updates = {
+          visionary_categories: JSON.stringify(this.selectedCategories)
+        }
+        visionaryResponse = await this.updateUser({ id, updates, table: 'users'})
       }
-      const response = await this.updateUser({id, updates, table})
+      bioResponse = await this.updateUser({ id, updates: {bio: this.bio}, table: 'users'})
 
       let profileResponse = true
       if (this.selectedFile) {
@@ -98,7 +104,17 @@ export default {
         isShown: false,
         duration: 0
       }
-      if (response && profileResponse) {
+
+      let successfullUserResponses = false
+      if (this.isDevUser) {
+        if (devResponse) successfullUserResponses = true
+        else successfullUserResponses = false
+      } else {
+        if (visionaryResponse) successfullUserResponses = true
+        else successfullUserResponses = false
+      }
+      
+      if (successfullUserResponses && bioResponse && profileResponse) {
         toast.message = [{ text: 'You have', emphasis: false }, { text: 'successfully', emphasis: true }, { text: 'updated your profile', emphasis: false }],
         toast.type = 'success'
       } else {
@@ -109,6 +125,9 @@ export default {
       toast.isShown = true
       this.selectedFile = null
       this.$emit('toast-update', toast)
+
+      let userResponse = await this.fetchUserById(id)
+      this.updateLoggedInUser(userResponse)
     }
   }
 }
