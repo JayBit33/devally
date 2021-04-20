@@ -66,7 +66,6 @@ Vue.use(Vuex)
                 usersAPI.get(`/${id}`)
                     .then(res => {
                         console.log(commit);
-                        console.log('res', res.data);
                         resolve(res.data);
                     }).catch(error => reject(error));
             })

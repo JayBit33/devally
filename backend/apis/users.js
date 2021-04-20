@@ -378,8 +378,7 @@ router.get('/:id', isValidId, (req, res, next) => {
 router.put('/:id', isValidId, (req, res, next) => {
   queries.updateUserById(req.params.id, req.body).then(user => {
     if (user) {
-      res.json(user);
-      res.sendStatus(204)
+      res.status(200).json(user);
     } else {
       res.sendStatus(404);
       next(new Error('User Does Not Exist'))
