@@ -88,7 +88,7 @@ export default {
     //   this.isLoading = false;
     // });
 
-    // this.messages = await this.fetchMessages();
+    this.messages = await this.fetchMessages();
     this.messages = await Promise.all(this.messages.map(async (n) => {
       let imgSrc = null
       if (n.senderId) {
@@ -126,7 +126,7 @@ export default {
       }
     }))
 
-    // this.projects = await this.fetchProjects();
+    this.projects = await this.fetchProjects();
     this.projects = this.projects.map(project => {
       return {
         ...project,
