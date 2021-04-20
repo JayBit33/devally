@@ -595,59 +595,74 @@ const userId5 = {
     dev_rating: 3
 }
 
-const newUser = {
+let newUserInfo = {
   username: "testuser",
   email: "testuser@gmail.com",
+  password: "$2b$10$xmFjbO0Ka8.ufPGmzafSMeIVYZkC9.f14JES2KZxpgOaJj3w/K2zK",
   firstname: "Test",
   lastname: "User",
   bio: "I am the Testing Man. Unit, Integration and E2E tests.",
-  visionary_categories: ["Mobile App"],
+  visionary_categories: JSON.stringify(["Mobile App"]),
   rating: 5,
   profile_image: "uploads/profile11.jpg",
-  portfolio: [],
   user_type_id: "1",
-  connections: [3,4,9,8,11,12],
-  notifications: [
-      {
-          "senderId": 4,
-          "projectId": null,
-          "message": "Added you as a connection"
-      },
-      {
-          "senderId": 12,
-          "projectId": 4,
-          "message": "Recieved a project invitation"
-      }
-  ],
-  tasks: [
-      {
-          "projectId": 3,
-          "message": "Find a front-end developer that has experience with VueJS"
-      },
-      {
-          "projectId": 11,
-          "message": "Create designs. Jen should have them completed by noon today"
-      },
-      {
-          "projectId": 21,
-          "message": "Determine where to host application. Azure, Google Cloud and AWS are some viable options."
-      }
-  ],
-  notification_settings: { "messages": true,"added_connection": true,"project_invitation": true },
-  subscription_settings: { "featured_projects": true,"weekly_news": true,"updates": true },
+  connections: JSON.stringify([3,4,9,8,11,12]),
+  notifications: JSON.stringify([
+    {
+      "senderId": 4,
+      "projectId": null,
+      "message": "Added you as a connection"
+    },
+    {
+      "senderId": 12,
+      "projectId": 4,
+      "message": "Recieved a project invitation"
+    }
+  ]),
+  tasks: JSON.stringify([
+    {
+      "projectId": 3,
+      "message": "Find a front-end developer that has experience with VueJS"
+    },
+    {
+      "projectId": 11,
+      "message": "Create designs. Jen should have them completed by noon today"
+    },
+    {
+      "projectId": 21,
+      "message": "Determine where to host application. Azure, Google Cloud and AWS are some viable options."
+    }
+  ]),
+  notification_settings: JSON.stringify({ "messages": true,"added_connection": true,"project_invitation": true }),
+  subscription_settings: JSON.stringify({ "featured_projects": true,"weekly_news": true,"updates": true }),
   token_version: 0,
+}
+
+const newDevUserInfo = {
+  dev_roles: JSON.stringify(["Project Manager"]),
+  dev_categories: JSON.stringify(["Website","Mobile App","Ecommerce","SAAS"]),
+  dev_skills: JSON.stringify(["JavaScript"]),
+  hiring_options: JSON.stringify(["Shares"]),
+  portfolio: JSON.stringify([]),
+  dev_bio: "Experience with Jest, Cypress, Selenium and Mocha testings.",
+  dev_rating: 5,
+}
+const newDevUserInfoReturned = {
   dev_roles: ["Project Manager"],
   dev_categories: ["Website","Mobile App","Ecommerce","SAAS"],
   dev_skills: ["JavaScript"],
   hiring_options: ["Shares"],
+  portfolio: [],
   dev_bio: "Experience with Jest, Cypress, Selenium and Mocha testings.",
-  dev_rating: 5
+  dev_rating: 5,
 }
 
 
 module.exports = {
   devUsers,
-  newUser,
+  newUserInfo,
+  newDevUserInfo,
+  newDevUserInfoReturned,
   userId5,
   visUsers
 }

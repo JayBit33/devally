@@ -54,35 +54,35 @@ describe('CRUD users', () => {
 
   it('Fetch User Record By Id', (done) => {
    chai.request(app)
-    .get('/api/v1/users/18')
+    .get('/api/v1/users/5')
     .set('Accept', 'application/json')
-    .end((res) => {
+    .end((err, res) => {
       const user = res.body;
       expect(res).to.have.status(200);
       expect(res).to.be.json;
       expect(user).to.be.a('object');
-      expect(user).to.equal(fixtures.userId5);
+      expect(user).to.deep.equal(fixtures.userId5);
       done();
     })
   })
 
-  // it('Created a new User record', (done) => {
-  //   chai.request(app)
-  //     .post('/api/v1/users/create')
-  //     .send(fixtures.newUser)
-  //     .set('Accept', 'application/json')
-  //     .end((res) => {
-  //       const user = res.body;
-  //       expect(res).to.have.status(201);
-  //       expect(res).to.be.json;
-  //       expect(user).to.be.a('object');
-  //       fixtures.newUser.id = user.id;
-  //       fixtures.newUser.user_since = user.user_since;
-  //       expect(user).to.deep.equal(fixtures.newUser);
-  //       done();
-  //   })
-  // });
-
+  it('Created a new Dev User record', (done) => {
+    chai.request(app)
+      .post('/api/v1/users/create-dev-account')
+      .set('Accept', 'application/json')
+      .send({ newUserInfo: fixtures.newUserInfo, newDevUserInfo: fixtures.newDevUserInfo})
+      .end((err, res) => {
+        const user = res.body;
+        expect(res).to.have.status(201);
+        expect(res).to.be.json;
+        expect(user).to.be.a('object');
+        fixtures.newDevUserInfoReturned.id = user.id
+        fixtures.newDevUserInfoReturned.user_id = user.user_id;
+        expect(user).to.deep.equal(fixtures.newDevUserInfoReturned);
+        console.log('error', err)
+        done();
+    })
+  });
 
 
 

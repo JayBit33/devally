@@ -72,7 +72,7 @@
         <div class="home_sections">
           <div class="home_sections_section active-projects">
             <h2>Active Projects</h2>
-            <project-info-collapsable v-for="project in projects" :key="project.id" :project="project"></project-info-collapsable>
+            <project-info-collapsable v-for="project in [ projects[0], projects[1] ]" :key="project.id" :project="project"></project-info-collapsable>
             <div v-if="projects.length == 0" class="no-projects">
               <h2>You have no projects!</h2>
               <p @click="$router.push('/projects')">Browse projects</p>
@@ -91,7 +91,7 @@
             <p class="expand-section" @click="updateView('messages')">Read More</p>
           </div>
           <div class="home_sections_section current-tasks">
-            <h2>Current Tasks</h2>
+            <h2 class="title">Current Tasks</h2>
             <div class="task" v-for="task in user.tasks" :key="task.message">
               <font-awesome-icon :icon="['fas','tasks']" class="task-icon"></font-awesome-icon>
               <h2>{{task.message}}</h2>

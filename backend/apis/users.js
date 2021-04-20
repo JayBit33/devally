@@ -96,13 +96,12 @@ router.get('/tasks', (res) => {
  *                     example: { featured_projects: true, weekly_news: true, updates: true }
 */
 router.get('/query', (req, res) => {
-  const { username, rating } = req.query;
-  queries.getAllByParam({username, rating}).then(users => {
-    res.json(users)
-    res.send(200)
+  const { username, rating, email } = req.query;
+  queries.getAllByParam({username, rating, email}).then(users => {
+    res.status(200).json(users)
   }).catch(error => {
     console.log(error)
-    res.send(500)
+    res.status(500)
   })
 })
 
@@ -119,10 +118,10 @@ function validUser(user) {
 
 /**
  * @swagger
- * /api/v1/users/create:
+ * /api/v1/users/create-dev-account:
  *   post:
- *     summary: Create a new user
- *     description: Create a new user
+ *     summary: Create a new dev user account
+ *     description: Create a new dev user account
  *     tags: [{ 'name': 'Users'}]
  *     responses:
  *       200:
@@ -164,11 +163,11 @@ function validUser(user) {
  *                     type: object
  *                     example: { featured_projects: true, weekly_news: true, updates: true }
 */
-router.post('/create', (req, res, next) => {
-  if (validUser(req.body)) {
-    queries.createUser(req.body).then(user => {
-      res.status(201).send(user);
-    })
+router.post('/create-dev-account', (req, res, next) => {
+  if (validUser(req.body.newUserInfo)) {
+    queries.createDevUser(req.body).then(user => {
+      res.status(201).json(user);
+    }).catch(err => console.log(err))
   } else {
     next(new Error('Invalid User Data'));
   }
