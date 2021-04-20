@@ -96,7 +96,7 @@
               <font-awesome-icon :icon="['fas','tasks']" class="task-icon"></font-awesome-icon>
               <h2>{{task.message}}</h2>
             </div>
-            <p class="expand-section" @click="updateView('tasks')">See More Tasks</p>
+            <p class="expand-section" @click="updateView('tasks')">View All</p>
           </div>
           <div class="home_sections_section notifications">
             <h2>Nofitications</h2>
@@ -108,7 +108,7 @@
                 <font-awesome-icon :icon="['fas','trash']" class="trash-icon" @click="deleteNotification(notification)"></font-awesome-icon>
               </div>
             </div>
-            <p class="expand-section">View All</p>
+            <p class="expand-section notification_view-all">View All</p>
           </div>
         </div>
 
