@@ -12,6 +12,7 @@
       @button-click="handleUserModalButton"
       @close-modal="closeModal"
     />
+    <project-collapsible />
   </div>
 </template>
 
