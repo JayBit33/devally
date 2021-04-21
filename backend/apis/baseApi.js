@@ -1,5 +1,6 @@
 // (c) Waveybits Inc. <2021>
 // ALL RIGHTS RESERVED
+const bcrypt = require('bcrypt');
 const express = require('express');
 const knexfile = require('../knexfile')
 const queries = require('../db/queries/baseApi-queries');
@@ -59,6 +60,16 @@ router.get('/dev-options', (_, res) => {
   const categories = ['Website', 'Mobile App', 'Ecommerce', 'SAAS'];
   const hiring_options = ['Shares', 'Flat Rate'];
   res.json({ roles, categories, hiring_options });
+})
+
+router.post('/compare-hash-string', (req, res) => {
+  bcrypt.compare(req.body.unhashed_string, req.body.hashed_string)
+  .then(result => {
+    if (result) res.status(200).json({ match: true, message: 'String and Hash match' })
+    else res.json({ match: false, message: 'String and Hash match do not match' })
+  }).catch(err => {
+    console.log('error comparing password');
+  })
 })
 
 /**

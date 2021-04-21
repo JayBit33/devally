@@ -1,6 +1,7 @@
 // (c) Waveybits Inc. <2021>
 // ALL RIGHTS RESERVED
 
+const bcrypt = require('bcrypt');
 const knex = require('../knex');
 
 module.exports = {
@@ -55,7 +56,13 @@ module.exports = {
   },
   updateUserById(id, userInfo) {
     const { updates, table } = userInfo
-    let id_column = (table != 'users') ? 'user_id' : 'id'
+    const id_column = (table != 'users') ? 'user_id' : 'id'
+
+    // When a user updates the password, hash it before storing the password in the db
+    if (updates.password) {
+      updates.password = bcrypt.hashSync(updates.password, 10)
+    }
+
     return knex(table).where(id_column, id).update(updates, '*').then(user => user[0]);
   },
   deleteUserById(id) {

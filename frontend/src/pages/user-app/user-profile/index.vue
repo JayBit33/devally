@@ -3,7 +3,6 @@
 <template>
   <div class="user-profile">
     <slot>
-      <font-awesome-icon :icon="['fas','id-card']" class="view-icon"></font-awesome-icon>
     </slot>
 
     <div class="profile-content-container">

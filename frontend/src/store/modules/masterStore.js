@@ -189,6 +189,16 @@ Vue.use(Vuex)
                         reject(error)
                     })
             })
+        },
+        compareTextToHash({ commit }, payload) {
+            let { unhashed_string, hashed_string } = payload
+            return new Promise((resolve, reject) => {
+                baseAPI.post('/compare-hash-string', { unhashed_string, hashed_string})
+                    .then(res => {
+                        console.log(commit)
+                        resolve(res.data)
+                    }).catch(error => reject(error));
+            })
         }
     }
 
