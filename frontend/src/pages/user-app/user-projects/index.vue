@@ -4,7 +4,7 @@
   <div class="user-projects">
     <user-modal
       v-if="isUserModalOpen"
-      title="Put your project in the spotlight"
+      title="Get Your Idea In The Spotlight"
       btnTxt="Get Featured"
       :btnIcon="['fas','clipboard-check']"
       :imageName="'spotlight.png'"
