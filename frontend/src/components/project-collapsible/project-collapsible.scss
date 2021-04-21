@@ -1,0 +1,85 @@
+
+.project-collapsible {
+  width: 78vw;
+  margin: 0 auto;
+  margin-top: 3rem;
+  .project-collabsable_header {
+    background-color: $mute-red;
+    padding: .5rem 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    position: relative;
+    cursor: pointer;
+
+    .icon {
+      position: absolute;
+      left: .5rem;
+      font-size: 1.5rem;
+    }
+
+    h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: white;
+      margin: 0;
+    }
+  }
+
+  &_sections {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    grid-gap: 2rem;
+    background-color: $devs-page-section-bg;
+    padding: 1.5rem;
+
+      > div {
+        padding: 0 2rem 2rem 2rem;
+
+        h2 {
+          font-family: 'Open Sans';
+          font-weight: 600;
+          font-size: 1.25rem;
+          text-align: center;
+        }
+      }
+
+      .general-info_section{
+        background-color: white;
+      }
+
+      .current-tasks_section {
+        background-color: white;
+
+        .current-tasks {
+          .task {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin: 1rem 0 0 .25rem;
+            h2 {
+              font-size: .825rem;
+            }
+            .task-icon {
+              font-size: 2.25rem;
+              margin-right: .75rem;
+            }
+          }
+        }
+
+      }
+
+      .members_section {
+        grid-column: 2;
+        grid-row-start: 1;
+        grid-row-end: 3;
+        background-color: white;
+
+      }
+
+  }
+
+}
