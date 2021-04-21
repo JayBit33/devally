@@ -71,7 +71,7 @@
 
         <div class="home_sections">
           <div class="home_sections_section active-projects">
-            <h2>Active Projects</h2>
+            <h2 class="section_title">Active Projects</h2>
             <project-info-collapsable v-for="project in projects.filter((p, i) => i <= 1)" :key="project.id" :project="project"></project-info-collapsable>
             <div v-if="projects.length == 0" class="no-projects">
               <h2>You have no projects!</h2>
@@ -80,7 +80,7 @@
             <p class="expand-section" @click="updateView('projects')">View All</p>
           </div>
           <div class="home_sections_section recent-messages">
-            <h2>Recent Messages</h2>
+            <h2 class="section_title">Recent Messages</h2>
             <div class="message" v-for="message in messages" :key="message.message">
               <img class="image-icon" :src="message.image_source" alt="image">
               <h2>{{message.message}}</h2>
@@ -91,7 +91,7 @@
             <p class="expand-section" @click="updateView('messages')">Read More</p>
           </div>
           <div class="home_sections_section current-tasks">
-            <h2 class="title">Current Tasks</h2>
+            <h2 class="title section_title">Current Tasks</h2>
             <div class="task" v-for="task in user.tasks" :key="task.message">
               <font-awesome-icon :icon="['fas','tasks']" class="task-icon"></font-awesome-icon>
               <h2>{{task.message}}</h2>
@@ -99,7 +99,7 @@
             <p class="expand-section" @click="updateView('tasks')">View All</p>
           </div>
           <div class="home_sections_section notifications">
-            <h2>Nofitications</h2>
+            <h2 class="section_title">Nofitications</h2>
             <div class="notifications-container">
               <div class="notification" v-for="notification in user.notifications" :key="notification.message">
                 <img class="image-icon" v-if="notification.senderId && !notification.projectId" :src="notification.image_source" alt="image" @click="updateView('connections')">
