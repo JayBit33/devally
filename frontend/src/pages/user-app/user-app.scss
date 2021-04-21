@@ -153,6 +153,8 @@
     left: 15rem;
     width: calc(100% - 15rem);
     min-height: 100vh;
+    min-width: 1280px;
+    max-width: 1796px;
     display: flex;
     justify-content: center;
   }
