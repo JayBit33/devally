@@ -81,7 +81,7 @@ function isValidId(req, res, next) {
 */
 router.get('/', (_, res) => {
   queries.getProjects().then(projects => {
-    res.json(projects);
+    res.status(200).json(projects);
   })
 })
 
@@ -147,7 +147,7 @@ router.get('/', (_, res) => {
 */
 router.get('/:id', (req, res) => {
   queries.getProject(req.params.id).then(project => {
-    res.json(project);
+    res.status(200).json(project);
   })
 })
 

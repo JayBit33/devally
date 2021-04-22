@@ -441,12 +441,6 @@ router.put('/revoke/:id', (req, res) => {
   })
 })
 
-// router.get('/', (req, res) => {
-//   queries.getAllUsers().then(users => {
-//     res.json(users);
-//   })
-// })
-
 // Any route below this point will error out "Invalid Id"
 
 module.exports = router;
