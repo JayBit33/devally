@@ -17,7 +17,10 @@
       <h2>Active Projects</h2>
       <font-awesome-icon class="add-icon" :icon="['fas','plus-square']" @click="$emit('create-project')"></font-awesome-icon>
     </div>
-    <project-collapsible />
+
+    <div class="projects-container">
+      <project-collapsible class="projects-container_project" v-for="project in projects" :key="project.id" :project="project" />
+    </div>
   </div>
 </template>
 

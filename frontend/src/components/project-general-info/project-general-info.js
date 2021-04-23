@@ -1,14 +1,8 @@
-import ProjectGeneralInfo from '@/components/project-general-info'
-
 export default {
-  name: 'project-info-collapsable',
-  props: ['project'],
-  components: {
-    ProjectGeneralInfo
-  },
+  name: 'project-general-info',
+  props: ['project', 'extraInformation'],
   data() {
     return {
-      collapsed: false
     }
   },
   methods: {
@@ -20,8 +14,9 @@ export default {
       let dayDifference = timeDifference / (1000 * 3600 * 24);
       return Math.ceil(dayDifference)
     },
-    toggleCollapsed() {
-      this.collapsed = !this.collapsed
+    getDateFormat(date) {
+      let currDate = new Date(date)
+      return `${currDate.getMonth()}-${currDate.getDate()}-${currDate.getFullYear()}`
     }
   }
 }

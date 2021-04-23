@@ -1,12 +1,12 @@
 <template>
   <div class="project-collapsible">
-    <div class="project-collabsable_header">
+    <div class="project-collapsible_header" @click="toggleCollapsed">
       <font-awesome-icon :icon="collapsed ? ['fas','chevron-circle-down'] : ['fas','chevron-circle-up']" class="icon"></font-awesome-icon>
-      <h2>DevAlly</h2>
+      <h2>{{project.name}}</h2>
     </div>
-    <div class="project-collapsible_sections">
+    <div v-if="!collapsed" class="project-collapsible_sections">
       <div class="general-info_section">
-        <h2>General Info</h2>
+        <project-general-info :project="project" :extraInformation="true" />
       </div>
       <div class="current-tasks_section">
         <h2>Current Tasks</h2>

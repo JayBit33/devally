@@ -2,7 +2,8 @@
 .project-collapsible {
   width: calc(100% - 10rem);
   margin: 0 auto;
-  .project-collabsable_header {
+  
+  .project-collapsible_header {
     background-color: $mute-red;
     padding: .5rem 0;
     width: 100%;
@@ -79,6 +80,19 @@
 
       }
 
+  }
+
+  &:nth-child(even) {
+    .project-collapsible_header {
+      background-color: $mute-sky-blue;
+    }
+    .project-collapsible_sections {
+      .project-general-info__information {
+        .info .icon {
+          color: $mute-sky-blue;
+        }
+      }
+    }
   }
 
 }

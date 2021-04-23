@@ -1,0 +1,60 @@
+.project-general-info {
+  margin: 0;
+  h2 {
+    font-family: 'Open Sans';
+    font-size: 1.25rem;
+    font-weight: 400;
+    margin: 1rem 0 .75rem 0;
+  }
+  .info-total {
+    font-weight: bold;
+  }
+  &__information {
+    .default_information, .extra_information {
+      margin: .75rem auto;
+      // width: 80%;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      text-align: center;
+    }
+    
+    .extra_information {
+      .info-total {
+        margin: 0;
+        font-size: 1rem;
+        font-weight: 400;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Montserrat';
+        &-with-circle {
+          font-weight: 700;
+          color: $mute-green;
+        }
+        &-circle {
+          display: block;
+          width: .5rem;
+          height: .5rem;
+          margin-right: .5rem;
+          border-radius: 50%;
+          background-color: $mute-green;
+        }
+      }
+    }
+
+    .info {
+      margin: 0 .75rem;
+      h4 {
+        margin: .5rem 0;
+        text-transform: uppercase;
+      }
+      .icon {
+        font-size: 1.75rem;
+        color: $mute-red;
+      }
+      &-total {
+        margin: 0;
+      }
+    }
+  }
+}

@@ -24,3 +24,9 @@
     cursor: pointer;
   }
 }
+
+.projects-container {
+  &_project {
+    margin: 1rem auto;
+  }
+}

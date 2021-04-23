@@ -1,0 +1,44 @@
+<template>
+  <div class="project-general-info">
+    <h2>General Information</h2>
+    <div class="project-general-info__information">
+
+      <div class="extra_information">
+        <div v-if="extraInformation" class="info created">
+          <h4>Created</h4>
+          <h2 class="info-total">{{getDateFormat(project.date_created)}}</h2>
+        </div>
+        <div v-if="extraInformation" class="info status">
+          <h4>Status</h4>
+          <h2 class="info-total info-total-with-circle"><span class="info-total-circle"></span>{{project.is_active ? 'Active' : 'Inactive'}}</h2>
+        </div>
+        <div v-if="extraInformation" class="info viewable">
+          <h4>Viewable</h4>
+          <h2 class="info-total info-total-with-circle"><span class="info-total-circle"></span>{{project.is_public ? 'Public' : 'Private'}}</h2>
+        </div>
+      </div>
+
+      <div class="default_information">
+        <div class="info days-active">
+          <h4>Days Active</h4>
+          <font-awesome-icon :icon="['fas','clock']" class="icon"></font-awesome-icon>
+          <h2 class="info-total">{{getDayCount(project.date_created)}}</h2>
+        </div>
+        <div class="info tasks">
+          <h4>Tasks Complete</h4>
+          <font-awesome-icon :icon="['fas','tasks']" class="icon"></font-awesome-icon>
+          <h2 class="info-total">{{ project.tasks_completed ? project.tasks_completed : 0 }}</h2>
+        </div>
+        <div class="info members">
+          <h4>Members</h4>
+          <font-awesome-icon :icon="['fas','users']" class="icon"></font-awesome-icon>
+          <h2 class="info-total">{{project.team_member_ids.length}}</h2>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</template>
+
+<script src="./project-general-info.js"></script>
+<style src="./project-general-info.scss" lang="scss"></style>

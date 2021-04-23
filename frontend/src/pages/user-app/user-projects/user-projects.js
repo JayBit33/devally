@@ -3,6 +3,7 @@
 
 import ProjectCollapsible from '@/components/project-collapsible';
 import UserModal from '@/components/user-modal';
+import { mapActions } from 'vuex';
 
 export default {
   name: 'UserProjects',
@@ -12,10 +13,15 @@ export default {
   },
   data() {
     return {
-      isUserModalOpen: true
+      isUserModalOpen: true,
+      projects: []
     }
   },
+  async created() {
+    this.projects = await this.fetchProjects()
+  },
   methods: {
+    ...mapActions(['fetchProjects']),
     closeModal() {
       this.isUserModalOpen = false
     },
