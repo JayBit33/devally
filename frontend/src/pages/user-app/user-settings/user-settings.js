@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     ...mapMutations(['updateLoggedInUser']),
-    ...mapActions(['updateUser', 'compareTextToHash']),
+    ...mapActions(['updateUser', 'compareTextToHash', 'fetchToast']),
     updateNotifyMessageReceived() {
       this.notify_message_received = !this.notify_message_received;
     },
@@ -68,14 +68,14 @@ export default {
           // Check that new password and current password are different
           if (this.current_password == this.new_password) {
             message = [{ text: 'Your current and new passwords are', emphasis: false }, { text: 'matching.', emphasis: true }, { text: 'Password has not been changed', emphasis: false }]
-            toast = this.setToast('info', message)
+            toast = await this.fetchToast({type: 'info', message})
           } else {
             // Call updateUserById with new password in updates payload
             let response = await this.updateUser({ id: this.getLoggedInUser.id, updates: {password: this.new_password} })
             this.updateLoggedInUser(response)
   
             message = [{ text: 'You have', emphasis: false },{ text: 'successfully', emphasis: true },{ text: 'updated your password', emphasis: false }]
-            toast = this.setToast('success', message)
+            toast = await this.fetchToast({type: 'success', message})
           }
 
           // Reset input fields
@@ -85,12 +85,12 @@ export default {
         } else {
           if (this.notMatchingNewPassword) message = [{ text: 'Your new password fields', emphasis: false }, { text: 'do not', emphasis: true }, { text: 'match', emphasis: false }]
           else if (this.isNewPasswordEmpty) message = [{ text: 'You', emphasis: false }, { text: 'cannot', emphasis: true }, { text: 'set an empty password', emphasis: false }]
-          toast = this.setToast('error', message)
+          toast = await this.fetchToast({type: 'error', message})
         }
 
       } else {
         message = [{ text: 'You typed in the', emphasis: false },{ text: 'incorrect', emphasis: true },{ text: 'current password', emphasis: false }]
-        toast = this.setToast('error', message)
+        toast = await this.fetchToast({type: 'error', message})
       }
 
       this.$emit('toast-update', toast)
@@ -109,32 +109,14 @@ export default {
 
       if (response && user) {
         message = [{text: 'You have', emphasis: false},{text: 'successfully', emphasis: true},{text: 'saved your settings', emphasis: false }]
-        toast = this.setToast('success', message)
+        toast = await this.fetchToast({type: 'success', message})
         this.updateLoggedInUser(response)
       } else {
         message = [{ text: 'You have', emphasis: false }, { text: 'unsuccessfully', emphasis: true}, {text: 'saved your settings', emphasis: false }]
-        toast = this.setToast('error', message)
+        toast = await this.fetchToast({type: 'error', message})
       }
 
       this.$emit('toast-update', toast)
-    },
-    setToast(type, message) {
-      let toast = {
-        type: '',
-        message: [{ text: '', emphasis: false }],
-        hasAction: false,
-        actionRedirect: '',
-        isShown: false,
-        duration: 0
-      }
-
-      toast.message = message
-      toast.type = type
-
-      toast.duration = 5000
-      toast.isShown = true
-
-      return toast
     }
   }
 }

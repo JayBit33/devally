@@ -12,6 +12,11 @@
       @button-click="handleUserModalButton"
       @close-modal="closeModal"
     />
+
+    <div class="projects-header">
+      <h2>Active Projects</h2>
+      <font-awesome-icon class="add-icon" :icon="['fas','plus-square']" @click="$emit('create-project')"></font-awesome-icon>
+    </div>
     <project-collapsible />
   </div>
 </template>

@@ -62,6 +62,16 @@ router.get('/dev-options', (_, res) => {
   res.status(200).json({ roles, categories, hiring_options });
 })
 
+router.get('/regions', (_, res) => {
+  const regions = ['US', 'South America', 'Africa', 'Asia', 'Europe'];
+  res.status(200).json({ regions });
+})
+
+router.get('/funding-types', (_, res) => {
+  const funding_types = ['Bootstrapped', 'Venture Capital', 'Crowdfunding', 'Friends & Family', 'Debt Capital']
+  res.status(200).json({ funding_types });
+})
+
 router.post('/compare-hash-string', (req, res) => {
   bcrypt.compare(req.body.unhashed_string, req.body.hashed_string)
   .then(result => {

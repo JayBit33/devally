@@ -1,6 +1,6 @@
 // (c) Waveybits Inc. <2021>
 // ALL RIGHTS RESERVED
-
+import CreateProject from '@/pages/user-app/user-projects/create-project'
 import MessageNotifier from '@/components/message-notifier';
 import ProjectInfoCollapsable from '@/components/project-info-collapsable';
 import Toast from '@/components/toast'
@@ -43,6 +43,7 @@ export default {
     };
   },
   components: {
+    CreateProject,
     FontAwesomeIcon,
     MessageNotifier,
     ProjectInfoCollapsable,

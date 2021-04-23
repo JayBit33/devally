@@ -165,7 +165,7 @@
       </div>
 
       <div class="save_settings_container">
-          <button class="save_settings" @click="saveSettings">Save Settings</button>
+        <button class="save_settings" @click="saveSettings">Save Settings</button>
       </div>
   </div>
 </template>

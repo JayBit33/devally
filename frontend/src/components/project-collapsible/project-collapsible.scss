@@ -1,8 +1,7 @@
 
 .project-collapsible {
-  width: 78vw;
+  width: calc(100% - 10rem);
   margin: 0 auto;
-  margin-top: 3rem;
   .project-collabsable_header {
     background-color: $mute-red;
     padding: .5rem 0;

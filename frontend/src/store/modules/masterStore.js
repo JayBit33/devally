@@ -51,6 +51,25 @@ Vue.use(Vuex)
     };
 
     const actions = {
+        compareTextToHash({ commit }, payload) {
+            let { unhashed_string, hashed_string } = payload
+            return new Promise((resolve, reject) => {
+                baseAPI.post('/compare-hash-string', { unhashed_string, hashed_string })
+                    .then(res => {
+                        console.log(commit)
+                        resolve(res.data)
+                    }).catch(error => reject(error));
+            })
+        },
+        createProject({ commit }, project) {
+            return new Promise((resolve, reject) => {
+                projectsAPI.post(`/`, { project })
+                    .then(res => {
+                        console.log(commit)
+                        resolve(res.data);
+                    }).catch(error => reject(error));
+            })
+        },
         fetchDevUsers({commit}) {
             return new Promise((resolve, reject) => {
                 usersAPI.get(`/devs`)
@@ -90,11 +109,43 @@ Vue.use(Vuex)
                     }).catch(error => reject(error));
             })
         },
+        fetchToast(_, payload) {
+            let toast = {
+                type: 'info',
+                message: [{ text: 'Default Toast Message', emphasis: false }],
+                hasAction: false,
+                actionRedirect: '',
+                isShown: false,
+                duration: 0,
+                ...payload
+            }
+
+            toast.duration = payload.duration ? payload.duration : 5000
+            toast.isShown = true
+
+            return toast
+        },
         getDevOptions() {
             return new Promise((resolve, reject) => {
                 baseAPI.get('/dev-options')
                     .then(res => {
                         // TODO
+                        resolve(res.data)
+                    }).catch(error => reject(error));
+            })
+        },
+        getRegions() {
+            return new Promise((resolve, reject) => {
+                baseAPI.get('/regions')
+                    .then(res => {
+                        resolve(res.data)
+                    }).catch(error => reject(error));
+            })
+        },
+        getFundingTypes() {
+            return new Promise((resolve, reject) => {
+                baseAPI.get('/funding-types')
+                    .then(res => {
                         resolve(res.data)
                     }).catch(error => reject(error));
             })
@@ -190,16 +241,6 @@ Vue.use(Vuex)
                     })
             })
         },
-        compareTextToHash({ commit }, payload) {
-            let { unhashed_string, hashed_string } = payload
-            return new Promise((resolve, reject) => {
-                baseAPI.post('/compare-hash-string', { unhashed_string, hashed_string})
-                    .then(res => {
-                        console.log(commit)
-                        resolve(res.data)
-                    }).catch(error => reject(error));
-            })
-        }
     }
 
 export default {
