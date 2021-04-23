@@ -22,7 +22,7 @@
               class="field_dropdown regions-dropdown"
               :items="allRegions"
               :isMultiSelect="true"
-              :selectedItems="selectedRegions"
+              :selectedItems="project_regions"
               @item-selection="handleRegionsSelection"
             >
             </dropdown>
@@ -35,7 +35,7 @@
             <dropdown
               class="field_dropdown category-dropdown"
               :items="allCategories"
-              :selectedItems="selectedCategory"
+              :selectedItems="project_category"
               @item-selection="handleCategoriesSelection"
             >
             </dropdown>
@@ -46,7 +46,7 @@
               class="field_dropdown hiring-options-dropdown"
               :items="allHiringOptions"
               :isMultiSelect="true"
-              :selectedItems="selectedHiringOptions"
+              :selectedItems="project_options"
               @item-selection="handleHiringOptionsSelection"
             >
             </dropdown>
@@ -57,14 +57,28 @@
               class="field_dropdown hiring-options-dropdown"
               :items="allFundingTypes"
               :isMultiSelect="true"
-              :selectedItems="selectedFundingTypes"
+              :selectedItems="project_funding"
               @item-selection="handleFundingTypesSelection"
             >
             </dropdown>
           </div>
-          <div class="field public">
-            <h3>Is Public</h3>
-            <el-switch class="field_switch" v-model="project_is_public" active-color="#6BA487" inactive-color="#A9AFB5"></el-switch>
+          <div class="switches">
+            <div class="field public">
+              <h3>Is Public</h3>
+              <el-switch class="field_switch" v-model="project_is_public" active-color="#6BA487" inactive-color="#A9AFB5"></el-switch>
+            </div>
+            <div class="field active">
+              <h3>Is Active</h3>
+              <el-switch class="field_switch" v-model="project_is_active" active-color="#6BA487" inactive-color="#A9AFB5"></el-switch>
+            </div>
+            <div class="field featured" v-if="isFeaturePossible">
+              <h3>Is Featured</h3>
+              <el-switch class="field_switch" v-model="project_is_featured" active-color="#6BA487" inactive-color="#A9AFB5"></el-switch>
+            </div>
+            <div class="field allys">
+              <h3>Is Seeking Allys</h3>
+              <el-switch class="field_switch" v-model="project_is_seeking" active-color="#6BA487" inactive-color="#A9AFB5"></el-switch>
+            </div>
           </div>
         </div>
 

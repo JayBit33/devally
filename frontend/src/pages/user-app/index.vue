@@ -145,7 +145,7 @@
       <div v-if="$route.params.view == 'create-project'" class="views">
         <font-awesome-icon :icon="['fas','folder-open']" class="icon"></font-awesome-icon>
         <h1 class="title">New Project</h1>
-        <create-project />
+        <create-project @toast-update="toast = $event" />
       </div>
       <div v-if="$route.params.view == 'connections'" class="views">
         <font-awesome-icon :icon="['fas','users']" class="icon"></font-awesome-icon>

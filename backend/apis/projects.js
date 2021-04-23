@@ -6,7 +6,7 @@ const queries = require('../db/queries/project-queries');
 const authChecker = require('./middelware/auth-checker');
 
 function validProject(project) {
-  const hasCreator = typeof project.creator_id == 'number' && project.creator_id.trim() != '';
+  const hasCreator = typeof project.creator_id == 'number' && project.creator_id.toString().trim() != '';
   const hasName = typeof project.name == 'string' && project.name.trim() != '';
   const hasCategory = typeof project.category == 'string' &&  project.category.trim() != '';
   const hasDescription = typeof project.description == 'string' &&  project.description.trim() != '';

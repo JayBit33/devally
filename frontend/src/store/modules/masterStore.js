@@ -61,11 +61,11 @@ Vue.use(Vuex)
                     }).catch(error => reject(error));
             })
         },
-        createProject({ commit }, project) {
+        createProject({ getters }, project) {
+            projectsAPI.defaults.headers.common['Authorization'] = `Bearer ${getters.getAccessToken}`;
             return new Promise((resolve, reject) => {
                 projectsAPI.post(`/`, { project })
                     .then(res => {
-                        console.log(commit)
                         resolve(res.data);
                     }).catch(error => reject(error));
             })
