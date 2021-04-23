@@ -39,7 +39,7 @@ export default {
     this.allCategories = res.categories
     this.allRoles = res.roles
     this.allHiringOptions = res.hiring_options
-    this.isDevUser = (this.user.user_type_id == "1" || this.user.user_type_id == "3")
+    this.isDevUser = this.user.user_type_id == "1"
   },
   computed: {
     ...mapGetters(['getLoggedInUser'])
@@ -48,7 +48,6 @@ export default {
     ...mapMutations(['updateLoggedInUser']),
     ...mapActions(['updateUser', 'fetchUserById', 'getDevOptions', 'updateUserProfileImg']),
     changeAccountType(type) {
-      if (!(this.user.user_type_id == "3")) return
       this.isDevUser = (type === 'developer')
     },
     handleCategoriesSelection(e) {
