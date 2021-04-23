@@ -8,16 +8,10 @@ const chaiHttp = require('chai-http');
 const knex = require('../db/knex');
 const fixtures = require('./fixtures');
 
-chai.use(chaiHttp);
 const expect = chai.expect;
+chai.use(chaiHttp);
 
-describe('CRUD projects', () => {
-  before((done) => {
-    knex.migrate.latest()
-     .then(() => {
-       return knex.seed.run()
-     }).then(() => done());
-  });
+describe('Test projects routes', () => {
 
   it('Lists all Projects', (done) => {
     chai.request(app)

@@ -11,17 +11,7 @@ const fixtures = require('./fixtures');
 chai.use(chaiHttp);
 const expect = chai.expect;
 
-describe('CRUD users', () => {
-  // before((done) => {
-  //   knex.migrate.latest()
-  //    .then(() => {
-  //      return knex.seed.run()
-  //    }).then(() => done());
-  // });
-
-  it('its working', (done) => {
-    done();
-  })
+describe('Test users routes', () => {
 
   it('Lists all Dev User Records', (done) => {
     chai.request(app)
@@ -86,7 +76,6 @@ describe('CRUD users', () => {
         fixtures.newDevUserInfoReturned.id = user.id
         fixtures.newDevUserInfoReturned.user_id = user.user_id;
         expect(user).to.deep.equal(fixtures.newDevUserInfoReturned);
-        console.log('error', err)
         done();
       })
   });

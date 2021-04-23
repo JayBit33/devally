@@ -299,7 +299,7 @@ router.post('/', authChecker, (req, res, next) => {
  *                     type: boolean
  *                     example: false
 */
-router.post('/:id', authChecker, (req, res, next) => {
+router.put('/:id', authChecker, (req, res, next) => {
   queries.updateProject(req.params.id, req.body).then(project => {
     if (project) {
       res.json(project);

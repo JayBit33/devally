@@ -59,7 +59,7 @@ router.get('/dev-options', (_, res) => {
   const roles = ['Frontend', 'Backend', 'Graphic Designer', 'UX/UI', 'Devops', 'Project Manager'];
   const categories = ['Website', 'Mobile App', 'Ecommerce', 'SAAS'];
   const hiring_options = ['Shares', 'Flat Rate'];
-  res.json({ roles, categories, hiring_options });
+  res.status(200).json({ roles, categories, hiring_options });
 })
 
 router.post('/compare-hash-string', (req, res) => {
