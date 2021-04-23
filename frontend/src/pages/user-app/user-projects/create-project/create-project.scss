@@ -1,0 +1,107 @@
+.create-project {
+
+  &_content {
+    width: 80%;
+    background-color: $content-background;
+    border: 1px solid $border-default;
+    padding: 1rem 0;
+    border-radius: .3rem;
+    position: relative;
+    margin: 0 auto 2rem;
+    text-align: center;
+    padding: 4rem 0;
+
+    &_icon {
+      position: absolute;
+      top: -4.5rem;
+      left: 2%;
+      z-index: 2;
+      font-size: 5rem;
+      opacity: .8;
+      color: $btn-default;
+      padding: 1.5rem;
+      border-radius: 50%;
+    }
+
+    &-grid {
+      display: grid;
+      width: 80%;
+      margin: 1rem auto;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 6rem;
+
+      .fields {
+        width: 100%;
+        .field {
+          width: 100%;
+          height: max-content;
+          margin: 2rem 0;
+          text-align: left;
+          label, h3 {
+            font-family: inherit;
+            color: $text;
+            font-size: 1rem;
+            font-weight: 400;
+            margin: 0;
+          }
+          &_input, textarea {
+            width: calc(100% - 1rem);
+            display: block;
+            margin: .5rem 0;
+            border: 1px solid #DCDFE6;
+            border-radius: .25rem;
+            padding: .5rem;
+            outline:none;
+            transition: .3s;
+            &:focus {
+              border: 1px solid lighten($button-tri, 30);
+            }
+          }
+          
+          &_dropdown, &_switch {
+            width: 100%;
+            margin: .5rem 0;
+            input {
+              // border: 1px solid $button-tri;
+              border-radius: .25rem;
+              height: 2.125rem !important;
+              padding: .5rem;
+              &:focus {
+                border: 1px solid lighten($button-tri, 30);
+              }
+            }
+          }
+
+          textarea {
+            resize: vertical;
+          }
+
+        }
+      }
+    }
+  }
+
+  .create-button {
+
+    &_container {
+      width: 80%;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    font-family: 'Montserrat';
+    font-size: 1rem;
+    font-weight: 500;
+    background-color: $button-tri;
+    color: white;
+    border-radius: .25rem;
+    border: none;
+    outline: none;
+    padding: .5rem 1.5rem;
+    width: max-content;
+    margin-bottom: 1rem;
+    cursor: pointer;
+  }
+}
