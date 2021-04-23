@@ -143,8 +143,8 @@
         <user-projects />
       </div>
       <div v-if="$route.params.view == 'connections'" class="views">
-        <font-awesome-icon :icon="['fas','user-friends']" class="icon"></font-awesome-icon>
-        <h1 class="title">User Connections</h1>
+        <font-awesome-icon :icon="['fas','users']" class="icon"></font-awesome-icon>
+        <h1 class="title">Connections</h1>
         <user-connections v-if="user.connections && user.connections.length > 0" :connectionIds="user.connections" />
       </div>
       <div v-if="$route.params.view == 'settings'" class="views">
