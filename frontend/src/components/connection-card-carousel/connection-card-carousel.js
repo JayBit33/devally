@@ -37,18 +37,14 @@ export default {
     ...mapActions(['fetchUserById', 'updateUser']),
     ...mapMutations(['updateLoggedInUser']),
     goRight() {
-      if (this.numberOfCardsDisplayed > this.connections.length - this.endIdx) {
         this.startIdx += 1;
         this.endIdx += 1;
         this.movingRight = true;
-      }
     },
     goLeft() {
-      if (this.numberOfCardsDisplayed > this.connections.length - this.endIdx) {
         this.startIdx -= 1;
         this.endIdx -= 1;
         this.movingLeft = true;
-      }
     },
     async removeConnection(connectionToRemove) {
       let user = await this.getLoggedInUser
