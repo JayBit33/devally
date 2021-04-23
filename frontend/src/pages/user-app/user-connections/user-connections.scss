@@ -8,14 +8,24 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    margin: 0;
+    margin: .5rem 0;
   }
-
-  .connection_title {
-    font-family: 'Open Sans';
-    font-size: 1.25rem;
-    font-weight: 500;
-    margin: 2rem 0 0rem 6rem;
+  .connection-section_title {
+    display: flex;
+    align-items: baseline;
+    .connection_title {
+      font-family: 'Open Sans';
+      font-size: 1.25rem;
+      font-weight: 500;
+      margin: 2rem 0 0rem 6rem;
+    }
+    .icon {
+      margin-left: 1rem;
+      font-size: 1.125rem;
+      color: black;
+      position: relative;
+      top: .125rem
+    }
   }
 
   // #pagination {

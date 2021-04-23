@@ -23,11 +23,17 @@
       @close-modal="closeModal"
     />
     <!-- <filter-search  style="position: relative; left: 615px; top: -1px;" /> -->
-    <h2 class="connection_title">All Connections</h2>
+    <div class="connection-section_title">
+      <h2 class="connection_title">All Connections</h2>
+      <font-awesome-icon :icon="['fas','chevron-circle-up']" class="icon" />
+    </div>
     <div class="connections all-connections">
       <connection-card-carousel :connections="connections" @delete-click="removeConnection(connection)" />
     </div>
-    <h2 class="connection_title">Most Talked To Connections</h2>
+    <div class="connection-section_title">
+      <h2 class="connection_title">Most Talked To Connections</h2>
+      <font-awesome-icon :icon="['fas','chevron-circle-up']" class="icon" />
+    </div>
     <div class="connections">
       <connection-card-carousel :connections="connections" @delete-click="removeConnection(connection)" />
     </div>
