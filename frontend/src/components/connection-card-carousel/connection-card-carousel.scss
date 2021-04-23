@@ -1,0 +1,22 @@
+// (c) Waveybits Inc. <2021>
+// ALL RIGHTS RESERVED
+
+.connection-card-carousel {
+  display: flex;
+  align-items: center;
+
+  .connections {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: .5rem 0;
+  }
+
+  .arrow-icon {
+    font-size: 2rem;
+    color: black;
+    margin: 0 1rem;
+
+  }
+
+}
