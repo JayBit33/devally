@@ -6,9 +6,9 @@
     <img class="connection-card-avatar" :src="getImage(connection.profile_image)" />
     <h4 class="connection-card-fullname">{{ fullName }}</h4>
     <h5 class="connection-card-accountType">{{ accountType }}</h5>
-    <ul class="roles" v-if="this.connection.user_type_id === '1'">
+    <!-- <ul class="roles" v-if="this.connection.user_type_id === '1'">
       <li v-for="(role,i) in roles" :key="i">{{role}}</li>
-    </ul>
+    </ul> -->
     <div class="actions">
       <div class="msg-container btn">
         <h4>Message</h4>
