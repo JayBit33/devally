@@ -1,7 +1,7 @@
 // (c) Waveybits Inc. <2021>
 // ALL RIGHTS RESERVED
 
-import ConnectionCard from '@/components/connection-card';
+import ConnectionCardCarousel from '@/components/connection-card-carousel';
 import FilterSearch from '@/components/filter-search';
 import PaginationMixin from '../../../mixins/paginationMixin';
 import Toast from '@/components/toast'
@@ -27,7 +27,7 @@ export default {
     }
   },
   components: {
-    ConnectionCard,
+    ConnectionCardCarousel,
     FilterSearch,
     Toast,
     UserModal

@@ -8,11 +8,18 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    margin: 4rem 0;
+    margin: 0;
   }
 
-  #pagination {
-    display: flex;
-    justify-content: center;
+  .connection_title {
+    font-family: 'Open Sans';
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin: 2rem 0 0rem 6rem;
   }
+
+  // #pagination {
+  //   display: flex;
+  //   justify-content: center;
+  // }
 }

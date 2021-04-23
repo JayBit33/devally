@@ -23,11 +23,16 @@
       @close-modal="closeModal"
     />
     <!-- <filter-search  style="position: relative; left: 615px; top: -1px;" /> -->
+    <h2 class="connection_title">All Connections</h2>
+    <div class="connections all-connections">
+      <connection-card-carousel :connections="connections" @delete-click="removeConnection(connection)" />
+    </div>
+    <h2 class="connection_title">Most Talked To Connections</h2>
     <div class="connections">
-      <connection-card v-for="connection in connectionsShown" :connection="connection" :key="connection.id" @delete-click="removeConnection(connection)" />
+      <connection-card-carousel :connections="connections" @delete-click="removeConnection(connection)" />
     </div>
 
-    <el-pagination
+    <!-- <el-pagination
       v-if="!isLoading"
       id="pagination"
       background
@@ -36,7 +41,7 @@
       :total="connections ? connections.length : 0"
       @current-change="updateDisplayedUsers"
     >
-    </el-pagination>
+    </el-pagination> -->
   </div>
 </template>
 
