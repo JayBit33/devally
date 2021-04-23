@@ -150,7 +150,8 @@
   &_content {
     position: absolute;
     top: 0;
-    left: 15rem;
+    left: calc(50% + 15rem);
+    transform: translate(calc(-50% - 7.5rem), 0);
     width: calc(100% - 15rem);
     min-height: 100vh;
     min-width: 1280px;
