@@ -19,7 +19,7 @@
     </div>
 
     <div class="projects-container">
-      <project-collapsible class="projects-container_project" v-for="project in projects" :key="project.id" :project="project" />
+      <project-collapsible class="projects-container_project" v-for="project in projects" :key="project.id" :project="project" @edit-project="$emit('edit-project', $event)" />
     </div>
   </div>
 </template>

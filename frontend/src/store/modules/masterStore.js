@@ -70,6 +70,15 @@ Vue.use(Vuex)
                     }).catch(error => reject(error));
             })
         },
+        fetchProjectById({commit}, id) {
+            return new Promise((resolve, reject) => {
+                projectsAPI.get(`/${id}`)
+                    .then(res => {
+                        console.log(commit)
+                        resolve(res.data);
+                    }).catch(error => reject(error));
+            })
+        },
         fetchDevUsers({commit}) {
             return new Promise((resolve, reject) => {
                 usersAPI.get(`/devs`)
@@ -170,6 +179,16 @@ Vue.use(Vuex)
                             );
                             resolve(res.data);
                         }
+                    }).catch(error => reject(error));
+            })
+        },
+        updateProjectById({ getters }, payload) {
+            const {id, project} = payload
+            projectsAPI.defaults.headers.common['Authorization'] = `Bearer ${getters.getAccessToken}`;
+            return new Promise((resolve, reject) => {
+                projectsAPI.put(`/${id}`, project)
+                    .then(res => {
+                        resolve(res.data);
                     }).catch(error => reject(error));
             })
         },

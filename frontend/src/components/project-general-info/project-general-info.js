@@ -16,7 +16,7 @@ export default {
     },
     getDateFormat(date) {
       let currDate = new Date(date)
-      return `${currDate.getMonth()}-${currDate.getDate()}-${currDate.getFullYear()}`
+      return `${currDate.getMonth() + 1}-${currDate.getDate()}-${currDate.getFullYear()}`
     }
   }
 }

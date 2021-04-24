@@ -41,7 +41,7 @@
         }
       }
     }
-
+    
     .info {
       margin: 0 .75rem;
       h4 {
@@ -54,6 +54,27 @@
       }
       &-total {
         margin: 0;
+      }
+      
+      &.positive_info {
+        .info-total {
+          &-with-circle {
+            color: $mute-green;
+          }
+          &-circle {
+            background-color: $mute-green;
+          }
+        }
+      }
+      &.negative_info {
+        .info-total {
+          &-with-circle {
+            color: $negative-red;
+          }
+          &-circle {
+            background-color: $negative-red;
+          }
+        }
       }
     }
   }

@@ -72,7 +72,6 @@ export default {
       if (!this.isAllProjectFieldsFilled) {
         message = [{ text: 'Please fill out', emphasis: false }, { text: 'all', emphasis: true }, { text: 'the necessary fields', emphasis: false }]
         toast = await this.fetchToast({ type: 'error', message })
-        console.log(toast)
       } else {
         const project = {
           creator_id: this.getLoggedInUser.id,

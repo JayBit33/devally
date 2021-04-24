@@ -8,16 +8,29 @@
     padding: .5rem 0;
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     color: white;
     position: relative;
     cursor: pointer;
 
+    &_left {
+      display: flex;
+      justify-content: flex-start;
+      margin-left: 1rem;
+    }
+
     .icon {
-      position: absolute;
-      left: .5rem;
       font-size: 1.5rem;
+      margin-right: 1rem;
+    }
+
+    .ellipse-icon {
+      cursor: pointer;
+      transition: .3s;
+      &:hover {
+        color: $button-secondary;
+      }
     }
 
     h2 {
