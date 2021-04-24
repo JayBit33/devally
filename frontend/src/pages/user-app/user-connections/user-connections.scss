@@ -18,13 +18,20 @@
       font-size: 1.25rem;
       font-weight: 500;
       margin: 2rem 0 0rem 6rem;
+      user-select: none;
     }
     .icon {
+      cursor: pointer;
       margin-left: 1rem;
       font-size: 1.125rem;
       color: black;
       position: relative;
-      top: .125rem
+      top: .125rem;
+
+      &:hover {
+        color: lighten(black, 40%);
+        transition: .3s;
+      }
     }
   }
 

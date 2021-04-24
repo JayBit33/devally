@@ -4,7 +4,7 @@
   &_area {
     display: flex;
     margin-top: 2rem;
-    margin-left: 5rem; // remove just styled for testing
+    margin-left: 5.5rem; // remove just styled for testing
     .messages {
       max-height: 70vh;
       max-width: 22rem;
@@ -16,20 +16,8 @@
       width: 78%;
 
       &_area {
-        width: 90%;
-        margin-bottom: 1rem;
-      }
-      .write-message {
-        width: 85%;
-        height: 8rem;
-        margin: 0 2rem;
-        padding: 1rem;
-        padding-left: 3rem;
-        border-radius: 3rem;
-        border-color: #b8b1b1;
-        &:focus {
-          outline: none;
-        }
+        width: 92%;
+        margin-bottom: 0rem;
       }
     }
   }
