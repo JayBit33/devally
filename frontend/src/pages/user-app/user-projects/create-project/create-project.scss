@@ -1,5 +1,5 @@
 .create-project {
-
+  margin-top: 4rem;
   &_content {
     width: 80%;
     background-color: $content-background;
@@ -60,7 +60,7 @@
               border: 1px solid lighten($button-tri, 30);
             }
           }
-          
+
           &_dropdown, &_switch {
             width: 100%;
             margin: .5rem 0;
@@ -96,7 +96,7 @@
             &:last-child {
               margin-right: 0;
             }
-            
+
             &_switch {
               width: auto;
               margin: 0 0 0 .5rem;

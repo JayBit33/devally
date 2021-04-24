@@ -24,7 +24,6 @@
       </div>
       <div class="conversation">
         <conversation class="conversation_area"/>
-        <textarea class="write-message" rows="11" />
       </div>
     </div>
   </div>

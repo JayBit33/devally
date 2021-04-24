@@ -20,6 +20,7 @@
       <p class="conversation-content_text">Hey, be interested in joining your team. 3 years as a UI/UX designer.</p>
       <p class="conversation-content_text even">Hey, be interested in joining your team. 3 years as a UI/UX designer.</p>
     </div>
+    <textarea class="write-message" rows="11" />
   </div>
 </template>
 
