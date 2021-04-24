@@ -1,0 +1,60 @@
+
+// (c) Waveybits Inc. <2021>
+// ALL RIGHTS RESERVED
+.message {
+  width: 18rem;
+  padding: 1rem;
+  .message-header {
+    display: flex;
+    align-items: center;
+    .profile-img {
+      width: 4rem;
+      height: 4rem;
+      border-radius: 50%;
+      border: none;
+      margin-right: 1rem;
+    }
+    .is-online {
+      font-family: 'Montserrat';
+      font-size: .875rem;
+      font-weight: 700;
+      color: #6BA487;
+    }
+    .is-offline {
+      font-family: 'Montserrat';
+      font-size: .875rem;
+      font-weight: 700;
+      color: rgb(236, 143, 143);
+    }
+  }
+
+  &-content {
+    font-family: 'Montserrat';
+    &_namedate {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      h4 {
+        font-size: 1rem;
+        font-weight: bold;
+        margin-bottom: .5rem;
+      }
+      p {
+        font-size: .5rem;
+        font-weight: 400;
+        color: black;
+      }
+    }
+
+    &_text {
+      font-size: .75rem;
+      line-height: 1rem;
+      text-align: center;
+      margin-top: 0;
+    }
+  }
+}
+
+.active {
+  background-color: #dff0fd;
+}

@@ -13,6 +13,9 @@ export default {
   props: ['connectionIds'],
   data() {
     return {
+      allCollapsed: false,
+      mostCollapsed: false,
+      newCollapsed: false,
       connections: [],
       isUserModalOpen: true,
       isLoading: false,
@@ -89,6 +92,15 @@ export default {
       }
       this.toast.duration = 5000
       this.toast.isShown = true
+    },
+    toggleAllCollapsed() {
+      this.allCollapsed = !this.allCollapsed;
+    },
+    toggleMostCollapsed() {
+      this.mostCollapsed = !this.mostCollapsed;
+    },
+    toggleNewestCollapsed() {
+      this.newCollapsed = !this.newCollapsed;
     }
   },
   mounted() {

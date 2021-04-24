@@ -26,6 +26,8 @@
       <div class="members_section">
         <h2>Team Members</h2>
         <connection-card-carousel class="members" :connections="teamMembers" :numberOfCardsDisplayed="2" />
+        <h2 class='tofill-heading'>Positions To Fill</h2>
+        <connection-card-carousel class="members" :connections="teamMembers" :numberOfCardsDisplayed="2" />
       </div>
 
     </div>

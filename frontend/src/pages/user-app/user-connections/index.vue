@@ -25,23 +25,23 @@
     <!-- <filter-search  style="position: relative; left: 615px; top: -1px;" /> -->
     <div class="connection-section_title">
       <h2 class="connection_title">All Connections</h2>
-      <font-awesome-icon :icon="['fas','chevron-circle-up']" class="icon" />
+      <font-awesome-icon :icon="allCollapsed ? ['fas','chevron-circle-down'] : ['fas','chevron-circle-up']" class="icon" @click="toggleAllCollapsed" />
     </div>
-    <div class="connections all-connections">
+    <div v-if="!allCollapsed" class="connections all-connections">
       <connection-card-carousel :connections="connections" @delete-click="removeConnection(connection)" />
     </div>
     <div class="connection-section_title">
       <h2 class="connection_title">Most Talked To Connections</h2>
-      <font-awesome-icon :icon="['fas','chevron-circle-up']" class="icon" />
+      <font-awesome-icon :icon="mostCollapsed ? ['fas','chevron-circle-down'] : ['fas','chevron-circle-up']" class="icon" @click="toggleMostCollapsed"/>
     </div>
-    <div class="connections">
+    <div v-if="!mostCollapsed" class="connections">
       <connection-card-carousel :connections="connections" @delete-click="removeConnection(connection)" />
     </div>
     <div class="connection-section_title">
       <h2 class="connection_title">Newest Connections</h2>
-      <font-awesome-icon :icon="['fas','chevron-circle-up']" class="icon" />
+      <font-awesome-icon :icon="newCollapsed ? ['fas','chevron-circle-down'] : ['fas','chevron-circle-up']" class="icon" @click="toggleNewestCollapsed"/>
     </div>
-    <div class="connections">
+    <div v-if="!newCollapsed" class="connections">
       <connection-card-carousel :connections="connections" @delete-click="removeConnection(connection)" />
     </div>
 
