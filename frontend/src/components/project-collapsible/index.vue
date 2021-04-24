@@ -25,7 +25,7 @@
       </div>
       <div class="members_section">
         <h2>Team Members</h2>
-        <connection-card-carousel class="members" :connections="getTeamMembers()" :numberOfCardsDisplayed="2" />
+        <connection-card-carousel class="members" :connections="teamMembers" :numberOfCardsDisplayed="2" />
       </div>
 
     </div>

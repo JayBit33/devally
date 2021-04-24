@@ -35,7 +35,7 @@ module.exports = [
   },
   {
     creator_id: 5,
-    team_member_ids: JSON.stringify([11,8,0]),
+    team_member_ids: JSON.stringify([11,8,1]),
     name: 'Task Manager',
     category: categories[3],
     description: 'Collaborate with team by assigning tasks to each member and tracking progress.',
