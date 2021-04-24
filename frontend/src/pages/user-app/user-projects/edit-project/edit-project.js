@@ -1,9 +1,12 @@
+
+import ConnectionCard from '@/components/connection-card'
 import Dropdown from '@/components/dropdown'
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'edit-project',
   components: {
+    ConnectionCard,
     Dropdown
   },
   data() {
@@ -22,7 +25,11 @@ export default {
       allCategories: [],
       allHiringOptions: [],
       allFundingTypes: [],
-      allRegions: []
+      allRegions: [],
+      connections: [],
+      startIdx: 0,
+      endIdx: 4,
+      pageSize: 4
     }
   },
   computed: {
@@ -45,6 +52,12 @@ export default {
     },
     projectId() {
       return this.$route.params.projectId
+    },
+    checkedConnectionsIds() {
+      return this.connections.filter(c => c.isChecked).map(c => c.id)
+    },
+    connectionsShown() {
+      return this.connections ? this.connections.slice(this.startIdx, this.endIdx) : [];
     }
   },
   async created() {
@@ -60,9 +73,18 @@ export default {
     this.project = await this.fetchProjectById(this.projectId)
     this.setFields()
 
+    this.connections = await Promise.all(this.getLoggedInUser.connections.map(async id => {
+      let user = await this.fetchUserById(id)
+      return { ...user, isChecked: false }
+    }))
+    this.connections = this.connections.filter(c => !this.project.team_member_ids.includes(c.id))
+
+    this.updatePageSize()
+    window.addEventListener('resize', this.updatePageSize)
+
   },
   methods: {
-    ...mapActions(['getDevOptions', 'getRegions', 'getFundingTypes', 'fetchToast', 'fetchProjectById', 'updateProjectById']),
+    ...mapActions(['getDevOptions', 'getRegions', 'getFundingTypes', 'fetchToast', 'fetchProjectById', 'fetchUserById', 'updateProjectById']),
     handleCategoriesSelection(e) {
       this.project_category = e
     },
@@ -104,6 +126,9 @@ export default {
 
       this.$emit('toast-update', toast)
     },
+    notifyConnections() {
+      // TODO
+    },
     setFields() {
       this.project_name = this.project.name
       this.project_category = this.project.category
@@ -115,6 +140,19 @@ export default {
       this.project_is_seeking = this.project.is_seeking_allys
       this.project_is_active = this.project.is_active
       this.project_is_featured = this.isFeaturePossible ? this.project.is_featured : false
+    },
+    updateConnections(pageNumber) {
+      this.endIdx = this.pageSize * pageNumber
+      this.startIdx = this.pageSize * pageNumber - this.pageSize
+    },
+    updatePageSize() {
+      const cardWidth = 225
+      const { width } = this.$refs.cards.getBoundingClientRect()
+      this.pageSize = Math.floor(width / cardWidth)
+      this.endIdx = this.startIdx + this.pageSize
     }
+  },
+  destroyed() {
+    window.removeEventListener('resize', this.updatePageSize)
   }
 }

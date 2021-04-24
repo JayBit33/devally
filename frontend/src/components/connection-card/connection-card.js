@@ -3,7 +3,7 @@
 
 export default {
   name: "ConnectionCard",
-  props: ['connection'],
+  props: ['connection', 'isMinimized', 'isChecked'],
   data() {
     return {
 

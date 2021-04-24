@@ -19,9 +19,35 @@
   width: 225px;
   margin: .5rem;
   padding: .5rem 0;
+  outline: 1px solid transparent;
+  
+  &.isChecked {
+    outline: 1px solid $btn-default;
+  }
+  &.minimized {
+    cursor: pointer;
+    margin: .5rem 0;
+    .connection-card-fullname {
+      font-size: 1.1rem;
+    }
+  }
 
   &:hover {
     box-shadow: 0 .5rem 1rem 0 rgba(0,0,0,0.2);
+  }
+
+  &-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    opacity: .6;
+    transition: .3s;
+    &.hidden {
+      opacity: 0;
+    }
   }
 
   &-avatar {
@@ -80,6 +106,21 @@
     right: 0.5rem;
     transition: .3s;
     color: black;
+
+    &:hover {
+      color: $pag-bg;
+    }
+  }
+
+  .check-icon {
+    font-size: 1.25rem;
+    cursor: pointer;
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    transition: .3s;
+    z-index: 4;
+    color: $btn-default;
 
     &:hover {
       color: $pag-bg;
