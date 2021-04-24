@@ -53,65 +53,7 @@
 
     <div class="user-app_content">
 
-      <div class="home" v-if="!$route.params.view">
-
-        <div class="greeting">
-          <div class="greeting__text">
-            <h2 class="fade-in">Welcome Back</h2>
-            <h2 class="fade-in greeting__text__name">{{user.firstname}}</h2>
-          </div>
-          <div class="greeting__image">
-            <img src="@/assets/programmer-man.png" alt="programmer-man">
-          </div>
-          <div class="greeting__quote">
-            <h3 class="fade-in"> "I'm always doing things I can't do; that's how I get to do them." -Pablo Picasso</h3>
-          </div>
-        </div>
-
-        <div class="home_sections">
-          <div class="home_sections_section active-projects">
-            <h2 class="section_title">Active Projects</h2>
-            <project-info-collapsable v-for="project in projects.filter((p, i) => i <= 1)" :key="project.id" :project="project"></project-info-collapsable>
-            <div v-if="projects.length == 0" class="no-projects">
-              <h2>You have no projects!</h2>
-              <p @click="$router.push('/projects')">Browse projects</p>
-            </div>
-            <p class="expand-section" @click="updateView('projects')">View All</p>
-          </div>
-          <div class="home_sections_section recent-messages">
-            <h2 class="section_title">Recent Messages</h2>
-            <div class="message" v-for="message in messages" :key="message.message">
-              <img class="image-icon" :src="message.image_source" alt="image">
-              <h2>{{message.message}}</h2>
-            </div>
-            <div v-if="messages.length == 0" class="no-messages">
-              <h2>You have no new messages.</h2>
-            </div>
-            <p class="expand-section" @click="updateView('messages')">Read More</p>
-          </div>
-          <div class="home_sections_section current-tasks">
-            <h2 class="title section_title">Current Tasks</h2>
-            <div class="task" v-for="task in user.tasks" :key="task.message">
-              <font-awesome-icon :icon="['fas','tasks']" class="task-icon"></font-awesome-icon>
-              <h2>{{task.message}}</h2>
-            </div>
-            <p class="expand-section" @click="updateView('tasks')">View All</p>
-          </div>
-          <div class="home_sections_section notifications">
-            <h2 class="section_title">Nofitications</h2>
-            <div class="notifications-container">
-              <div class="notification" v-for="notification in user.notifications" :key="notification.message">
-                <img class="image-icon" v-if="notification.senderId && !notification.projectId" :src="notification.image_source" alt="image" @click="updateView('connections')">
-                <font-awesome-icon v-else-if="notification.projectId" :icon="['fas','clipboard']" class="clipboard-icon" @click="updateView('projects')"></font-awesome-icon>
-                <h2>{{notification.message}}</h2>
-                <font-awesome-icon :icon="['fas','trash']" class="trash-icon" @click="deleteNotification(notification)"></font-awesome-icon>
-              </div>
-            </div>
-            <p class="expand-section notification_view-all">View All</p>
-          </div>
-        </div>
-
-      </div>
+      
 
       <div class="nav" v-if="$route.params.view">
         <div class="home-link">
@@ -124,6 +66,9 @@
         </div>
       </div>
 
+      <div v-if="!$route.params.view" class="views">
+        <user-home :user="user" :projects="projects" :messages="messages" />
+      </div>
       <div v-if="$route.params.view == 'profile'" class="views">
         <font-awesome-icon :icon="['fas','id-card']" class="icon"></font-awesome-icon>
         <h1 class="title">User Profile</h1>

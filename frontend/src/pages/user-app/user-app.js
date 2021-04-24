@@ -3,9 +3,9 @@
 import CreateProject from '@/pages/user-app/user-projects/create-project'
 import EditProject from '@/pages/user-app/user-projects/edit-project'
 import MessageNotifier from '@/components/message-notifier';
-import ProjectInfoCollapsable from '@/components/project-info-collapsable';
 import Toast from '@/components/toast'
 import UserConnections from '@/pages/user-app/user-connections';
+import UserHome from '@/pages/user-app/user-home';
 import UserMessages from '@/pages/user-app/user-messages';
 import UserProfile from '@/pages/user-app/user-profile';
 import UserProjects from '@/pages/user-app/user-projects';
@@ -48,10 +48,10 @@ export default {
     EditProject,
     FontAwesomeIcon,
     MessageNotifier,
-    ProjectInfoCollapsable,
     SidebarButton,
     Toast,
     UserConnections,
+    UserHome,
     UserMessages,
     UserProfile,
     UserProjects,
@@ -72,9 +72,6 @@ export default {
     categoriesFormatted() {
       return this.user.categories.join(", ");
     }
-  },
-  mounted() {
-
   },
   async created() {
     setTimeout(() => {
@@ -142,12 +139,6 @@ export default {
     ...mapMutations(['updateIsLoggedIn']),
     closeToast() {
       this.toast.isShown = false
-    },
-    async deleteNotification(notification) {
-      let newNotifications = this.user.notifications
-                              .filter(n => !(n.senderId == notification.senderId && n.projectId == notification.projectId && n.message == notification.message))
-      this.user.notifications = newNotifications
-      await this.updateUser({id: this.user.id, updates: { notifications: JSON.stringify(newNotifications) }});
     },
     handleToastAction() {
       this.$router.push(this.toast.actionRedirect)

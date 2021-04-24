@@ -6,6 +6,12 @@ const password = 'password';
 const hash = bcrypt.hashSync(password, 10);
 
 const categories = ['Website', 'Mobile App', 'Ecommerce', 'SAAS'];
+const notifications = [
+  { senderId: 4, projectId: null, message: 'wants to add you as a connection', type: 'received' },
+  { senderId: 12, projectId: 4, message: 'Project Invitation:', type: 'received' },
+  { senderId: 4, projectId: null, message: 'is now one of your connections', type: 'accepted' },
+  { senderId: 12, projectId: 4, message: 'has joined', type: 'accepted' }
+]
 
 module.exports = [
   {
@@ -20,7 +26,7 @@ module.exports = [
     visionary_categories: JSON.stringify([categories[0], categories[2], categories[3]]),
     profile_image: 'uploads/profile19.jpg',
     connections: JSON.stringify([1,7,12]),
-    notifications: JSON.stringify([{ senderId: 4, projectId: null, message: 'Added you as a connection'},{ senderId: 12, projectId: 4, message: 'Recieved a project invitation'}]),
+    notifications: JSON.stringify([...notifications]),
     tasks: JSON.stringify([{ projectId: 3, message: 'Find a front-end developer that has experience with VueJS' },{ projectId: 11, message: 'Create designs. Jen should have them completed by noon today' },{ projectId: 21, message: 'Determine where to host application. Azure, Google Cloud and AWS are some viable options.'}]),
     notification_settings: JSON.stringify({ messages: true, added_connection: true, project_invitation: true }),
     subscription_settings: JSON.stringify({ featured_projects: true, weekly_news: true, updates: true })
@@ -37,7 +43,7 @@ module.exports = [
     visionary_categories: JSON.stringify([...categories]),
     profile_image: 'uploads/profile15.jpg',
     connections: JSON.stringify([2,8,13]),
-    notifications: JSON.stringify([{ senderId: 4, projectId: null, message: 'Added you as a connection'},{ senderId: 12, projectId: 4, message: 'Recieved a project invitation'}]),
+    notifications: JSON.stringify([...notifications]),
     tasks: JSON.stringify([{ projectId: 3, message: 'Find a front-end developer that has experience with VueJS' },{ projectId: 11, message: 'Create designs. Jen should have them completed by noon today' },{ projectId: 21, message: 'Determine where to host application. Azure, Google Cloud and AWS are some viable options.'}]),
     notification_settings: JSON.stringify({ messages: true, added_connection: true, project_invitation: true }),
     subscription_settings: JSON.stringify({ featured_projects: true, weekly_news: true, updates: true })
@@ -54,7 +60,7 @@ module.exports = [
     visionary_categories: JSON.stringify([...categories]),
     profile_image: 'uploads/profile14.jpg',
     connections: JSON.stringify([4,9,14]),
-    notifications: JSON.stringify([{ senderId: 4, projectId: null, message: 'Added you as a connection'},{ senderId: 12, projectId: 4, message: 'Recieved a project invitation'}]),
+    notifications: JSON.stringify([...notifications]),
     tasks: JSON.stringify([{ projectId: 3, message: 'Find a front-end developer that has experience with VueJS' },{ projectId: 11, message: 'Create designs. Jen should have them completed by noon today' },{ projectId: 21, message: 'Determine where to host application. Azure, Google Cloud and AWS are some viable options.'}]),
     notification_settings: JSON.stringify({ messages: true, added_connection: true, project_invitation: true }),
     subscription_settings: JSON.stringify({ featured_projects: true, weekly_news: true, updates: true })
@@ -71,7 +77,7 @@ module.exports = [
     visionary_categories: JSON.stringify([...categories]),
     profile_image: 'uploads/profile13.jpg',
     connections: null,
-    notifications: JSON.stringify([{ senderId: 4, projectId: null, message: 'Added you as a connection'},{ senderId: 12, projectId: 4, message: 'Recieved a project invitation'}]),
+    notifications: JSON.stringify([...notifications]),
     tasks: JSON.stringify([{ projectId: 3, message: 'Find a front-end developer that has experience with VueJS' },{ projectId: 11, message: 'Create designs. Jen should have them completed by noon today' },{ projectId: 21, message: 'Determine where to host application. Azure, Google Cloud and AWS are some viable options.'}]),
     notification_settings: JSON.stringify({ messages: true, added_connection: true, project_invitation: true }),
     subscription_settings: JSON.stringify({ featured_projects: true, weekly_news: true, updates: true })
@@ -88,7 +94,7 @@ module.exports = [
     visionary_categories: JSON.stringify([categories[1]]),
     profile_image: 'uploads/profile12.jpg',
     connections: JSON.stringify([3,4,9,10,11,12,13,14,15]),
-    notifications: JSON.stringify([{ senderId: 4, projectId: null, message: 'Added you as a connection'},{ senderId: 12, projectId: 4, message: 'Recieved a project invitation'}]),
+    notifications: JSON.stringify([...notifications]),
     tasks: JSON.stringify([{ projectId: 3, message: 'Find a front-end developer that has experience with VueJS' },{ projectId: 11, message: 'Create designs. Jen should have them completed by noon today' },{ projectId: 21, message: 'Determine where to host application. Azure, Google Cloud and AWS are some viable options.'}]),
     notification_settings: JSON.stringify({ messages: true, added_connection: true, project_invitation: true }),
     subscription_settings: JSON.stringify({ featured_projects: true, weekly_news: true, updates: true })
@@ -105,7 +111,7 @@ module.exports = [
     visionary_categories: JSON.stringify([categories[0], categories[1], categories[2]]),
     profile_image: 'uploads/profile6.jpg',
     connections: JSON.stringify([7,11,4]),
-    notifications: JSON.stringify([{ senderId: 4, projectId: null, message: 'Added you as a connection'},{ senderId: 12, projectId: 4, message: 'Recieved a project invitation'}]),
+    notifications: JSON.stringify([...notifications]),
     tasks: JSON.stringify([{ projectId: 3, message: 'Find a front-end developer that has experience with VueJS' },{ projectId: 11, message: 'Create designs. Jen should have them completed by noon today' },{ projectId: 21, message: 'Determine where to host application. Azure, Google Cloud and AWS are some viable options.'}]),
     notification_settings: JSON.stringify({ messages: true, added_connection: true, project_invitation: true }),
     subscription_settings: JSON.stringify({ featured_projects: true, weekly_news: true, updates: true })
@@ -122,7 +128,7 @@ module.exports = [
     visionary_categories: JSON.stringify([...categories]),
     profile_image: 'uploads/profile10.jpg',
     connections: null,
-    notifications: JSON.stringify([{ senderId: 4, projectId: null, message: 'Added you as a connection'},{ senderId: 12, projectId: 4, message: 'Recieved a project invitation'}]),
+    notifications: JSON.stringify([...notifications]),
     tasks: JSON.stringify([{ projectId: 3, message: 'Find a front-end developer that has experience with VueJS' },{ projectId: 11, message: 'Create designs. Jen should have them completed by noon today' },{ projectId: 21, message: 'Determine where to host application. Azure, Google Cloud and AWS are some viable options.'}]),
     notification_settings: JSON.stringify({ messages: true, added_connection: true, project_invitation: true }),
     subscription_settings: JSON.stringify({ featured_projects: true, weekly_news: true, updates: true })
@@ -139,7 +145,7 @@ module.exports = [
     visionary_categories: JSON.stringify([...categories]),
     profile_image: 'uploads/profile9.jpg',
     connections: null,
-    notifications: JSON.stringify([{ senderId: 4, projectId: null, message: 'Added you as a connection'},{ senderId: 12, projectId: 4, message: 'Recieved a project invitation'}]),
+    notifications: JSON.stringify([...notifications]),
     tasks: JSON.stringify([{ projectId: 3, message: 'Find a front-end developer that has experience with VueJS' },{ projectId: 11, message: 'Create designs. Jen should have them completed by noon today' },{ projectId: 21, message: 'Determine where to host application. Azure, Google Cloud and AWS are some viable options.'}]),
     notification_settings: JSON.stringify({ messages: true, added_connection: true, project_invitation: true }),
     subscription_settings: JSON.stringify({ featured_projects: true, weekly_news: false, updates: true })
@@ -155,7 +161,7 @@ module.exports = [
     visionary_categories: JSON.stringify([categories[2]]),
     profile_image: 'uploads/profile8.jpg',
     connections: null,
-    notifications: JSON.stringify([{ senderId: 4, projectId: null, message: 'Added you as a connection'},{ senderId: 12, projectId: 4, message: 'Recieved a project invitation'}]),
+    notifications: JSON.stringify([...notifications]),
     tasks: JSON.stringify([{ projectId: 3, message: 'Find a front-end developer that has experience with VueJS' },{ projectId: 11, message: 'Create designs. Jen should have them completed by noon today' },{ projectId: 21, message: 'Determine where to host application. Azure, Google Cloud and AWS are some viable options.'}]),
     notification_settings: JSON.stringify({ messages: true, added_connection: true, project_invitation: true }),
     subscription_settings: JSON.stringify({ featured_projects: true, weekly_news: false, updates: true })
@@ -172,7 +178,7 @@ module.exports = [
     visionary_categories: JSON.stringify([categories[0]]),
     profile_image: 'uploads/profile7.jpg',
     connections: null,
-    notifications: JSON.stringify([{ senderId: 4, projectId: null, message: 'Added you as a connection'},{ senderId: 12, projectId: 4, message: 'Recieved a project invitation'}]),
+    notifications: JSON.stringify([...notifications]),
     tasks: JSON.stringify([{ projectId: 3, message: 'Find a front-end developer that has experience with VueJS' },{ projectId: 11, message: 'Create designs. Jen should have them completed by noon today' },{ projectId: 21, message: 'Determine where to host application. Azure, Google Cloud and AWS are some viable options.'}]),
     notification_settings: JSON.stringify({ messages: true, added_connection: true, project_invitation: true }),
     subscription_settings: JSON.stringify({ featured_projects: true, weekly_news: false, updates: true })
@@ -188,7 +194,7 @@ module.exports = [
     visionary_categories: JSON.stringify([categories[0], categories[1], categories[2]]),
     profile_image: 'uploads/profile3.jpg',
     connections: null,
-    notifications: JSON.stringify([{ senderId: 4, projectId: null, message: 'Added you as a connection'},{ senderId: 12, projectId: 4, message: 'Recieved a project invitation'}]),
+    notifications: JSON.stringify([...notifications]),
     tasks: JSON.stringify([{ projectId: 3, message: 'Find a front-end developer that has experience with VueJS' },{ projectId: 11, message: 'Create designs. Jen should have them completed by noon today' },{ projectId: 21, message: 'Determine where to host application. Azure, Google Cloud and AWS are some viable options.'}]),
     notification_settings: JSON.stringify({ messages: true, added_connection: true, project_invitation: true }),
     subscription_settings: JSON.stringify({ featured_projects: true, weekly_news: false, updates: true })
@@ -205,7 +211,7 @@ module.exports = [
     visionary_categories: JSON.stringify([...categories]),
     profile_image: 'uploads/profile2.jpg',
     connections: null,
-    notifications: JSON.stringify([{ senderId: 4, projectId: null, message: 'Added you as a connection'},{ senderId: 12, projectId: 4, message: 'Recieved a project invitation'}]),
+    notifications: JSON.stringify([...notifications]),
     tasks: JSON.stringify([{ projectId: 3, message: 'Find a front-end developer that has experience with VueJS' },{ projectId: 11, message: 'Create designs. Jen should have them completed by noon today' },{ projectId: 21, message: 'Determine where to host application. Azure, Google Cloud and AWS are some viable options.'}]),
     notification_settings: JSON.stringify({ messages: true, added_connection: true, project_invitation: true }),
     subscription_settings: JSON.stringify({ featured_projects: true, weekly_news: false, updates: true })
@@ -221,7 +227,7 @@ module.exports = [
     visionary_categories: JSON.stringify([...categories]),
     profile_image: 'uploads/profile4.jpg',
     connections: null,
-    notifications: JSON.stringify([{ senderId: 4, projectId: null, message: 'Added you as a connection'},{ senderId: 12, projectId: 4, message: 'Recieved a project invitation'}]),
+    notifications: JSON.stringify([...notifications]),
     tasks: JSON.stringify([{ projectId: 3, message: 'Find a front-end developer that has experience with VueJS' },{ projectId: 11, message: 'Create designs. Jen should have them completed by noon today' },{ projectId: 21, message: 'Determine where to host application. Azure, Google Cloud and AWS are some viable options.'}]),
     notification_settings: JSON.stringify({ messages: true, added_connection: true, project_invitation: true }),
     subscription_settings: JSON.stringify({ featured_projects: true, weekly_news: false, updates: true })
@@ -237,7 +243,7 @@ module.exports = [
     visionary_categories: JSON.stringify([...categories]),
     profile_image: 'uploads/profile11.jpg',
     connections: null,
-    notifications: JSON.stringify([{ senderId: 4, projectId: null, message: 'Added you as a connection'},{ senderId: 12, projectId: 4, message: 'Recieved a project invitation'}]),
+    notifications: JSON.stringify([...notifications]),
     tasks: JSON.stringify([{ projectId: 3, message: 'Find a front-end developer that has experience with VueJS' },{ projectId: 11, message: 'Create designs. Jen should have them completed by noon today' },{ projectId: 21, message: 'Determine where to host application. Azure, Google Cloud and AWS are some viable options.'}]),
     notification_settings: JSON.stringify({ messages: true, added_connection: true, project_invitation: true }),
     subscription_settings: JSON.stringify({ featured_projects: true, weekly_news: false, updates: true })
@@ -253,7 +259,7 @@ module.exports = [
     visionary_categories: JSON.stringify([categories[1], categories[2]]),
     profile_image: 'uploads/profile5.jpg',
     connections: null,
-    notifications: JSON.stringify([{ senderId: 4, projectId: null, message: 'Added you as a connection'},{ senderId: 12, projectId: 4, message: 'Recieved a project invitation'}]),
+    notifications: JSON.stringify([...notifications]),
     tasks: JSON.stringify([{ projectId: 3, message: 'Find a front-end developer that has experience with VueJS' },{ projectId: 11, message: 'Create designs. Jen should have them completed by noon today' },{ projectId: 21, message: 'Determine where to host application. Azure, Google Cloud and AWS are some viable options.'}]),
     notification_settings: JSON.stringify({ messages: true, added_connection: true, project_invitation: true }),
     subscription_settings: JSON.stringify({ featured_projects: true, weekly_news: false, updates: true })
@@ -269,7 +275,7 @@ module.exports = [
     visionary_categories: JSON.stringify([categories[2]]),
     profile_image: 'uploads/profile2.jpg',
     connections: null,
-    notifications: JSON.stringify([{ senderId: 4, projectId: null, message: 'Added you as a connection'},{ senderId: 12, projectId: 4, message: 'Recieved a project invitation'}]),
+    notifications: JSON.stringify([...notifications]),
     tasks: JSON.stringify([{ projectId: 3, message: 'Find a front-end developer that has experience with VueJS' },{ projectId: 11, message: 'Create designs. Jen should have them completed by noon today' },{ projectId: 21, message: 'Determine where to host application. Azure, Google Cloud and AWS are some viable options.'}]),
     notification_settings: JSON.stringify({ messages: true, added_connection: true, project_invitation: true }),
     subscription_settings: JSON.stringify({ featured_projects: true, weekly_news: false, updates: true })
@@ -285,7 +291,7 @@ module.exports = [
     visionary_categories: JSON.stringify([categories[3]]),
     profile_image: 'uploads/profile8.jpg',
     connections: null,
-    notifications: JSON.stringify([{ senderId: 4, projectId: null, message: 'Added you as a connection'},{ senderId: 12, projectId: 4, message: 'Recieved a project invitation'}]),
+    notifications: JSON.stringify([...notifications]),
     tasks: JSON.stringify([{ projectId: 3, message: 'Find a front-end developer that has experience with VueJS' },{ projectId: 11, message: 'Create designs. Jen should have them completed by noon today' },{ projectId: 21, message: 'Determine where to host application. Azure, Google Cloud and AWS are some viable options.'}]),
     notification_settings: JSON.stringify({ messages: true, added_connection: true, project_invitation: true }),
     subscription_settings: JSON.stringify({ featured_projects: true, weekly_news: false, updates: true })
@@ -301,7 +307,7 @@ module.exports = [
     visionary_categories: JSON.stringify([...categories]),
     profile_image: 'uploads/profile10.jpg',
     connections: null,
-    notifications: JSON.stringify([{ senderId: 4, projectId: null, message: 'Added you as a connection'},{ senderId: 12, projectId: 4, message: 'Recieved a project invitation'}]),
+    notifications: JSON.stringify([...notifications]),
     tasks: JSON.stringify([{ projectId: 3, message: 'Find a front-end developer that has experience with VueJS' },{ projectId: 11, message: 'Create designs. Jen should have them completed by noon today' },{ projectId: 21, message: 'Determine where to host application. Azure, Google Cloud and AWS are some viable options.'}]),
     notification_settings: JSON.stringify({ messages: true, added_connection: true, project_invitation: true }),
     subscription_settings: JSON.stringify({ featured_projects: true, weekly_news: false, updates: true })
@@ -317,7 +323,7 @@ module.exports = [
     visionary_categories: JSON.stringify([...categories]),
     profile_image: 'uploads/profile10.jpg',
     connections: null,
-    notifications: JSON.stringify([{ senderId: 4, projectId: null, message: 'Added you as a connection'},{ senderId: 12, projectId: 4, message: 'Recieved a project invitation'}]),
+    notifications: JSON.stringify([...notifications]),
     tasks: JSON.stringify([{ projectId: 3, message: 'Find a front-end developer that has experience with VueJS' },{ projectId: 11, message: 'Create designs. Jen should have them completed by noon today' },{ projectId: 21, message: 'Determine where to host application. Azure, Google Cloud and AWS are some viable options.'}]),
     notification_settings: JSON.stringify({ messages: true, added_connection: true, project_invitation: true }),
     subscription_settings: JSON.stringify({ featured_projects: true, weekly_news: false, updates: true })
@@ -333,7 +339,7 @@ module.exports = [
     visionary_categories: JSON.stringify([...categories]),
     profile_image: 'uploads/profile12.jpg',
     connections: null,
-    notifications: JSON.stringify([{ senderId: 4, projectId: null, message: 'Added you as a connection'},{ senderId: 12, projectId: 4, message: 'Recieved a project invitation'}]),
+    notifications: JSON.stringify([...notifications]),
     tasks: JSON.stringify([{ projectId: 3, message: 'Find a front-end developer that has experience with VueJS' },{ projectId: 11, message: 'Create designs. Jen should have them completed by noon today' },{ projectId: 21, message: 'Determine where to host application. Azure, Google Cloud and AWS are some viable options.'}]),
     notification_settings: JSON.stringify({ messages: true, added_connection: true, project_invitation: true }),
     subscription_settings: JSON.stringify({ featured_projects: true, weekly_news: false, updates: true })
@@ -349,7 +355,7 @@ module.exports = [
     visionary_categories: JSON.stringify([categories[0], categories[3]]),
     profile_image: 'uploads/profile3.jpg',
     connections: null,
-    notifications: JSON.stringify([{ senderId: 4, projectId: null, message: 'Added you as a connection'},{ senderId: 12, projectId: 4, message: 'Recieved a project invitation'}]),
+    notifications: JSON.stringify([...notifications]),
     tasks: JSON.stringify([{ projectId: 3, message: 'Find a front-end developer that has experience with VueJS' },{ projectId: 11, message: 'Create designs. Jen should have them completed by noon today' },{ projectId: 21, message: 'Determine where to host application. Azure, Google Cloud and AWS are some viable options.'}]),
     notification_settings: JSON.stringify({ messages: true, added_connection: true, project_invitation: true }),
     subscription_settings: JSON.stringify({ featured_projects: true, weekly_news: false, updates: true })
@@ -365,7 +371,7 @@ module.exports = [
     visionary_categories: JSON.stringify([categories[2]]),
     profile_image: 'uploads/profile12.jpg',
     connections: null,
-    notifications: JSON.stringify([{ senderId: 4, projectId: null, message: 'Added you as a connection'},{ senderId: 12, projectId: 4, message: 'Recieved a project invitation'}]),
+    notifications: JSON.stringify([...notifications]),
     tasks: JSON.stringify([{ projectId: 3, message: 'Find a front-end developer that has experience with VueJS' },{ projectId: 11, message: 'Create designs. Jen should have them completed by noon today' },{ projectId: 21, message: 'Determine where to host application. Azure, Google Cloud and AWS are some viable options.'}]),
     notification_settings: JSON.stringify({ messages: true, added_connection: true, project_invitation: true }),
     subscription_settings: JSON.stringify({ featured_projects: true, weekly_news: false, updates: true })
@@ -381,7 +387,7 @@ module.exports = [
     visionary_categories: JSON.stringify([categories[1], categories[3]]),
     profile_image: 'uploads/profile4.jpg',
     connections: null,
-    notifications: JSON.stringify([{ senderId: 4, projectId: null, message: 'Added you as a connection'},{ senderId: 12, projectId: 4, message: 'Recieved a project invitation'}]),
+    notifications: JSON.stringify([...notifications]),
     tasks: JSON.stringify([{ projectId: 3, message: 'Find a front-end developer that has experience with VueJS' },{ projectId: 11, message: 'Create designs. Jen should have them completed by noon today' },{ projectId: 21, message: 'Determine where to host application. Azure, Google Cloud and AWS are some viable options.'}]),
     notification_settings: JSON.stringify({ messages: true, added_connection: true, project_invitation: true }),
     subscription_settings: JSON.stringify({ featured_projects: true, weekly_news: false, updates: false })
@@ -398,16 +404,7 @@ module.exports = [
     visionary_categories: JSON.stringify([categories[0], categories[3]]),
     profile_image: 'uploads/profile14.jpg',
     connections: null,
-    notifications: JSON.stringify([{
-      senderId: 4,
-      projectId: null,
-      message: 'Added you as a connection'
-    },
-    {
-      senderId: 12,
-      projectId: 4,
-      message: 'Recieved a project invitation'
-    }]),
+    notifications: JSON.stringify([...notifications]),
     tasks: JSON.stringify([{
       projectId: 3,
       message: 'Find a front-end developer that has experience with VueJS'
