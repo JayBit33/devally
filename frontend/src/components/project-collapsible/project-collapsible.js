@@ -1,10 +1,13 @@
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import ProjectGeneralInfo from '@/components/project-general-info'
+import ConnectionCardCarousel from '@/components/connection-card-carousel'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'project-collapsible',
   props: ['project'],
   components: {
+    ConnectionCardCarousel,
     FontAwesomeIcon,
     ProjectGeneralInfo
   },
@@ -17,6 +20,11 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['fetchUserById']),
+   getTeamMembers() {
+      let teamMembers = this.project.team_member_ids.map(async id => { await this.fetchUserById(id).then(res => res) })
+      return teamMembers;
+    },
     toggleCollapsed() {
       this.collapsed = !this.collapsed
     }

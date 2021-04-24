@@ -3,6 +3,7 @@
 
 .user-settings {
   font-family: 'Montserrat';
+  margin-top: 6rem;
   // margin: 2rem 7rem;
   // margin-left: 7rem;
   &_icon {
@@ -56,13 +57,13 @@
       padding: 0;
       font-weight: 600;
     }
-    
+
     p {
       margin: 0;
       padding: 0;
       font-weight: 400;
     }
-    
+
     .options {
       .option1, .option2, .option3 {
         display: flex;
@@ -85,7 +86,7 @@
       padding: 0;
       font-weight: 600;
     }
-    
+
     p {
       margin: 0;
       padding: 0;
@@ -109,7 +110,7 @@
           margin-bottom: 1rem;
           font-weight: 600;
         }
-        
+
         .row {
           display: flex;
           justify-content: center;
@@ -150,7 +151,7 @@
       }
     }
 
-    
+
   }
 
   &_password {

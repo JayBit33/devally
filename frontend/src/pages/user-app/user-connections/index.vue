@@ -37,6 +37,13 @@
     <div class="connections">
       <connection-card-carousel :connections="connections" @delete-click="removeConnection(connection)" />
     </div>
+    <div class="connection-section_title">
+      <h2 class="connection_title">Newest Connections</h2>
+      <font-awesome-icon :icon="['fas','chevron-circle-up']" class="icon" />
+    </div>
+    <div class="connections">
+      <connection-card-carousel :connections="connections" @delete-click="removeConnection(connection)" />
+    </div>
 
     <!-- <el-pagination
       v-if="!isLoading"
