@@ -24,25 +24,25 @@
       </sidebar-button>
 
       <ul class="user-app_sidebar-nav">
-        <li @click="updateView('messages')" :class="{'active': $route.params.view == 'messages'}">
-          <font-awesome-icon class="sidebar-icon" :icon="['fas','comment-alt']" ></font-awesome-icon>
-          <h4>Messages</h4>
-        </li>
         <li @click="updateView('projects')" :class="{'active': $route.params.view == 'projects' || $route.params.view == 'create-project' || $route.params.view == 'edit-project'}">
           <font-awesome-icon class="sidebar-icon" :icon="['fas','clipboard']" ></font-awesome-icon>
           <h4>Projects</h4>
+        </li>
+        <li @click="updateView('messages')" :class="{'active': $route.params.view == 'messages'}">
+          <font-awesome-icon class="sidebar-icon" :icon="['fas','comment-alt']" ></font-awesome-icon>
+          <h4>Messages</h4>
         </li>
         <li @click="updateView('connections')" :class="{'active': $route.params.view == 'connections'}">
           <font-awesome-icon class="sidebar-icon" :icon="['fas','users']" ></font-awesome-icon> <!-- user-friends -->
           <h4>Connections</h4>
         </li>
-        <li @click="updateView('settings')" :class="{'active': $route.params.view == 'settings'}">
-          <font-awesome-icon class="sidebar-icon" :icon="['fas','cog']" ></font-awesome-icon>
-          <h4>Settings</h4>
-        </li>
         <li @click="updateView('tasks')" :class="{'active': $route.params.view == 'tasks'}">
           <font-awesome-icon class="sidebar-icon" :icon="['fas','tasks']" ></font-awesome-icon>
           <h4>Tasks</h4>
+        </li>
+        <li @click="updateView('settings')" :class="{'active': $route.params.view == 'settings'}">
+          <font-awesome-icon class="sidebar-icon" :icon="['fas','cog']" ></font-awesome-icon>
+          <h4>Settings</h4>
         </li>
       </ul>
       <sidebar-button
