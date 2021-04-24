@@ -3,7 +3,7 @@
 // ALL RIGHTS RESERVED
 .conversation {
   width: 18rem;
-  height: 680px;
+  height: 46vh;
   padding: 0rem;
 
   .conversation-header {
@@ -11,7 +11,7 @@
     align-items: flex-end;
     padding: 1rem 0 0 1rem;
     border-top: 1px solid lightgrey;
-    border-left: 1px solid lightgrey;
+    // border-left: 1px solid lightgrey;
     border-right: 1px solid lightgrey;
     border-bottom: 1px solid lightgrey;
     padding-bottom: 1rem;
@@ -44,7 +44,7 @@
     margin-top: 0rem;
     overflow-y: scroll;
     // border-top: 1px solid lightgrey;
-    border-left: 1px solid lightgrey;
+    // border-left: 1px solid lightgrey;
     p {
       margin: 4rem;
       line-height: 1.5rem;
@@ -58,10 +58,12 @@
   .write-message {
     width: 97%;
     height: 8rem;
+    resize: none;
     margin: 0;
     padding: 1rem;
     border-radius: 0rem;
     border-color: #b8b1b1;
+    border-left: none;
     &:focus {
       outline: none;
     }

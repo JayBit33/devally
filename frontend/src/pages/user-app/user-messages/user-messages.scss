@@ -4,7 +4,7 @@
   &_area {
     display: flex;
     margin-top: 2rem;
-    margin-left: 5.5rem; // remove just styled for testing
+    margin-left: 6.5rem; // remove just styled for testing
     .messages {
       max-height: 70vh;
       max-width: 22rem;
@@ -12,7 +12,7 @@
       overflow-x: hidden;
     }
     .conversation {
-      margin-left: 1rem;
+      margin-left: 0rem;
       width: 78%;
 
       &_area {
