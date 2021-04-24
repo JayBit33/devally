@@ -18,7 +18,6 @@
       <h5 class="user-app_sidebar-accountType">{{ accountType }}</h5>
       <sidebar-button
         displayText="update profile"
-        :class="{'active': $route.params.view == 'profile'}"
         @clicked="updateView('profile')"
       >
       </sidebar-button>

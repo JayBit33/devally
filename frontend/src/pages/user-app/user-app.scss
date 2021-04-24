@@ -51,33 +51,6 @@
       margin-bottom: 1rem;
     }
 
-    &-updateProfile {
-      font-size: 1rem;
-      color: white;
-      padding: .5rem 1rem;
-      background-color: $btn-default;
-      border-radius: .5rem;
-      outline: none;
-      border: none;
-      display: block;
-      margin: 0 auto;
-      margin-bottom: 0rem;
-      transition: .3s;
-
-      &.active {
-        background-color: $sidebar_secondary;
-        color: white;
-      }
-
-      &:focus, &:hover, &:active {
-        background-color: $sidebar_secondary;
-        color: $sidebar_bg;
-        cursor: pointer;
-        border-color: $sidebar_secondary;
-        outline: none;
-      }
-    }
-
     &-nav {
       text-decoration: none;
       list-style-type: none;
@@ -125,6 +98,33 @@
       }
     }
 
+    &-updateProfile {
+      font-size: 1rem;
+      color: white;
+      padding: .5rem 1rem;
+      background-color: $btn-default;
+      border-radius: .5rem;
+      outline: none;
+      border: none;
+      display: block;
+      margin: 0 auto;
+      margin-bottom: 0rem;
+      transition: .3s;
+
+      &.active {
+        background-color: $sidebar_secondary;
+        color: white;
+      }
+
+      &:focus, &:hover, &:active {
+        background-color: $sidebar_secondary;
+        color: $sidebar_bg;
+        cursor: pointer;
+        border-color: $sidebar_secondary;
+        outline: none;
+      }
+    }
+    
     .signout-btn {
       margin-bottom: 4rem;
     }
