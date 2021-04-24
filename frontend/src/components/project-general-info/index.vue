@@ -8,11 +8,11 @@
           <h4>Created</h4>
           <h2 class="info-total">{{getDateFormat(project.date_created)}}</h2>
         </div>
-        <div v-if="extraInformation" class="info status">
+        <div v-if="extraInformation" class="info status" :class="project.is_active ? 'positive_info' : 'negative_info'">
           <h4>Status</h4>
           <h2 class="info-total info-total-with-circle"><span class="info-total-circle"></span>{{project.is_active ? 'Active' : 'Inactive'}}</h2>
         </div>
-        <div v-if="extraInformation" class="info viewable">
+        <div v-if="extraInformation" class="info viewable" :class="project.is_public ? 'positive_info' : 'negative_info'">
           <h4>Viewable</h4>
           <h2 class="info-total info-total-with-circle"><span class="info-total-circle"></span>{{project.is_public ? 'Public' : 'Private'}}</h2>
         </div>

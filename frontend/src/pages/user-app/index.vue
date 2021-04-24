@@ -28,7 +28,7 @@
           <font-awesome-icon class="sidebar-icon" :icon="['fas','comment-alt']" ></font-awesome-icon>
           <h4>Messages</h4>
         </li>
-        <li @click="updateView('projects')" :class="{'active': $route.params.view == 'projects' || $route.params.view == 'create-project'}">
+        <li @click="updateView('projects')" :class="{'active': $route.params.view == 'projects' || $route.params.view == 'create-project' || $route.params.view == 'edit-project'}">
           <font-awesome-icon class="sidebar-icon" :icon="['fas','clipboard']" ></font-awesome-icon>
           <h4>Projects</h4>
         </li>
@@ -140,12 +140,17 @@
       <div v-if="$route.params.view == 'projects'" class="views">
         <font-awesome-icon :icon="['fas','clipboard']" class="icon"></font-awesome-icon>
         <h1 class="title">User Projects</h1>
-        <user-projects @create-project="updateView('create-project')" />
+        <user-projects @create-project="updateView('create-project')" @edit-project="updateView(`edit-project/${$event.id}`)" />
       </div>
       <div v-if="$route.params.view == 'create-project'" class="views">
         <font-awesome-icon :icon="['fas','folder-open']" class="icon"></font-awesome-icon>
         <h1 class="title">New Project</h1>
         <create-project @toast-update="toast = $event" />
+      </div>
+      <div v-if="$route.params.view == 'edit-project'" class="views">
+        <font-awesome-icon :icon="['fas','folder-open']" class="icon"></font-awesome-icon>
+        <h1 class="title">Edit Project</h1>
+        <edit-project @toast-update="toast = $event" />
       </div>
       <div v-if="$route.params.view == 'connections'" class="views">
         <font-awesome-icon :icon="['fas','users']" class="icon"></font-awesome-icon>
