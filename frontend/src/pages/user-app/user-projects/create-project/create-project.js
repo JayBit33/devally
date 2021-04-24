@@ -1,9 +1,11 @@
+import ConnectionCard from '@/components/connection-card'
 import Dropdown from '@/components/dropdown'
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'create-project',
   components: {
+    ConnectionCard,
     Dropdown
   },
   data() {
@@ -21,7 +23,11 @@ export default {
       allCategories: [],
       allHiringOptions: [],
       allFundingTypes: [],
-      allRegions: []
+      allRegions: [],
+      connections: [],
+      startIdx: 0,
+      endIdx: 4,
+      pageSize: 4
     }
   },
   computed: {
@@ -41,6 +47,12 @@ export default {
         return this.getLoggedInUser.subscription_settings.featured_projects
       } 
       return false
+    },
+    checkedConnectionsIds() {
+      return this.connections.filter(c => c.isChecked).map(c => c.id)
+    },
+    connectionsShown() {
+      return this.connections ? this.connections.slice(this.startIdx, this.endIdx) : [];
     }
   },
   async created() {
@@ -52,9 +64,17 @@ export default {
     this.allHiringOptions = hiring_options
     this.allRegions = regions
     this.allFundingTypes = funding_types
+    
+    this.connections = await Promise.all(this.getLoggedInUser.connections.map(async id => {
+      let user = await this.fetchUserById(id)
+      return {...user, isChecked: false }
+    }))
+
+    this.updatePageSize()
+    window.addEventListener('resize', this.updatePageSize)
   },
   methods: {
-    ...mapActions(['getDevOptions', 'getRegions', 'getFundingTypes', 'createProject', 'fetchToast']),
+    ...mapActions(['getDevOptions', 'getRegions', 'getFundingTypes', 'createProject', 'fetchToast', 'fetchUserById']),
     handleCategoriesSelection(e) {
       this.project_category = e
     },
@@ -92,12 +112,16 @@ export default {
         if (res) {
           message = [{ text: 'Your project has been', emphasis: false }, { text: 'successfully', emphasis: true }, { text: 'created', emphasis: false }]
           toast = await this.fetchToast({ type: 'success', message, hasAction: true, actionRedirect: `/profile/${this.getLoggedInUser.id}/projects` })
-
           this.resetFields()
         }
+
+        if (this.checkedConnectionsIds.length > 0) this.notifyConnections()
       }
 
       this.$emit('toast-update', toast)
+    },
+    notifyConnections() {
+      // TODO
     },
     resetFields() {
       this.project_name = ''
@@ -110,6 +134,19 @@ export default {
       this.project_is_seeking = true
       this.project_is_active = true
       this.project_is_featured = this.isFeaturePossible
+    },
+    updateConnections(pageNumber) {
+      this.endIdx = this.pageSize * pageNumber
+      this.startIdx = this.pageSize * pageNumber - this.pageSize
+    },
+    updatePageSize() {
+      const cardWidth = 225
+      const { width } = this.$refs.cards.getBoundingClientRect()
+      this.pageSize = Math.floor(width / cardWidth)
+      this.endIdx = this.startIdx + this.pageSize
     }
+  },
+  destroyed() {
+    window.removeEventListener('resize', this.updatePageSize)
   }
 }

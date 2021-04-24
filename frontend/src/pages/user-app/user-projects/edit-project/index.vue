@@ -83,6 +83,35 @@
         </div>
 
       </div>
+
+      <div class="edit-project_content-block">
+        <div class="fields">
+          <div class="field">
+            <h3>Invite some of your connections</h3>
+            <div v-if="checkedConnectionsIds.length > 0" class="total-cards-checked"><span>{{checkedConnectionsIds.length}}</span></div>
+            <div class="cards" ref="cards" :style="{'grid-template-columns': 'repeat(' + pageSize + ', 1fr)'}">
+              <connection-card
+                v-for="connection in connectionsShown"
+                :key="connection.id"
+                :connection="connection"
+                :isMinimized="true"
+                :isChecked="connection.isChecked"
+                @check-click="connection.isChecked = !connection.isChecked"
+              >
+              </connection-card>
+            </div>
+            <el-pagination
+              class="cards-pagination"
+              layout="prev, pager, next"
+              :pageSize="pageSize"
+              :total="connections ? connections.length : 0"
+              @current-change="updateConnections"
+            >
+            </el-pagination>
+          </div>
+        </div>
+      </div>
+
     </div>
     <div class="edit-button_container">
       <button class="edit-button" @click="handleEditProject">Update</button>

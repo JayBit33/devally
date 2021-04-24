@@ -23,7 +23,7 @@
       border-radius: 50%;
     }
 
-    &-grid {
+    &-grid, &-block {
       display: grid;
       width: 80%;
       margin: 1rem auto;
@@ -109,6 +109,39 @@
             }
           }
         }
+      }
+    }
+
+    &-block {
+      display: block;
+      text-align: left;
+      h3 {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: 1.5rem;
+      }
+      .total-cards-checked {
+        display: inline-block;
+        vertical-align: middle;
+        text-align: center;
+        margin-left: .5rem;
+        background-color: $btn-default;
+        height: 1.5rem;
+        width: 1.5rem;
+        border-radius: 50%;
+        span {
+          margin: 0;
+          line-height: 1.5rem;
+          color: white
+        }
+      }
+      .cards {
+        display: grid;
+        margin: .5rem 0;
+      }
+      .cards-pagination {
+        width: max-content;
+        margin: 1rem auto 0 auto;
       }
     }
   }
