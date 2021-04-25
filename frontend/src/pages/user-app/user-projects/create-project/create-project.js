@@ -74,7 +74,7 @@ export default {
     window.addEventListener('resize', this.updatePageSize)
   },
   methods: {
-    ...mapActions(['getDevOptions', 'getRegions', 'getFundingTypes', 'createProject', 'fetchToast', 'fetchUserById']),
+    ...mapActions(['getDevOptions', 'getRegions', 'getFundingTypes', 'createProject', 'fetchToast', 'fetchUserById', 'sendNotificationToUser']),
     handleCategoriesSelection(e) {
       this.project_category = e
     },
@@ -108,20 +108,23 @@ export default {
           is_featured: this.isFeaturePossible ? this.project_is_featured : false
         }
   
-        let res = await this.createProject(project)
+        let { project: res } = await this.createProject(project)
         if (res) {
           message = [{ text: 'Your project has been', emphasis: false }, { text: 'successfully', emphasis: true }, { text: 'created', emphasis: false }]
           toast = await this.fetchToast({ type: 'success', message, hasAction: true, actionRedirect: `/profile/${this.getLoggedInUser.id}/projects` })
           this.resetFields()
         }
 
-        if (this.checkedConnectionsIds.length > 0) this.notifyConnections()
+        if (this.checkedConnectionsIds.length > 0 && res) await this.notifyConnections(res.id)
       }
 
       this.$emit('toast-update', toast)
     },
-    notifyConnections() {
-      // TODO
+    async notifyConnections(projectId) {
+      let acceptedNotification = { senderId: this.getLoggedInUser.id, projectId: projectId ? projectId : null, message: 'Project Invitation:', type: 'received' }
+      this.checkedConnectionsIds.forEach(async (id) => {
+        await this.sendNotificationToUser({ id, notification: acceptedNotification })
+      })
     },
     resetFields() {
       this.project_name = ''

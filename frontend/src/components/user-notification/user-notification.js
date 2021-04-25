@@ -31,26 +31,25 @@ export default {
       
   },
   methods: {
-    ...mapActions(['fetchUserById', 'fetchProjectById', 'updateProjectById', 'updateUser']),
+    ...mapActions(['fetchUserById', 'fetchProjectById', 'updateProjectById', 'updateUser', 'sendNotificationToUser']),
     ...mapMutations(['updateLoggedInUser']),
     async notificationAccept() {
-
       if (this.notification.type == 'received') {
         if (this.isProjectNotification) {
           // Update project and put users Id in team_members_ids
           let { team_member_ids } = await this.fetchProjectById(this.notification.projectId)
-          let { notifications } = await this.fetchUserById(this.notification.senderId)
+          
           // Check if user is already apart of project
           if (!(team_member_ids.includes(this.getLoggedInUser.id))) {
             team_member_ids = JSON.stringify([...team_member_ids, this.getLoggedInUser.id])
             await this.updateProjectById({ id: this.notification.projectId, project: {team_member_ids} })
             // Send notification to senderId user saying we have joined
             let acceptedNotification = { senderId: this.getLoggedInUser.id, projectId: this.notification.projectId, message: 'has joined', type: 'accepted' }
-            await this.updateUser({ id: this.notification.senderId, updates: {notifications: JSON.stringify([acceptedNotification, ...notifications])} })
+            await this.sendNotificationToUser({ id: this.notification.senderId, notification: acceptedNotification })
           }
         } else {
           // Update user and put users Id in connections
-          let { notifications, connections: senderConnections } = await this.fetchUserById(this.notification.senderId)
+          let { connections: senderConnections } = await this.fetchUserById(this.notification.senderId)
           let { connections: loggedInConnections } = await this.fetchUserById(this.getLoggedInUser.id)
   
           // Update logged in user connections
@@ -69,8 +68,8 @@ export default {
   
             // Send notification to senderId user saying we have joined
             let acceptedNotification = { senderId: this.getLoggedInUser.id, projectId: null, message: 'is now one of your connections', type: 'accepted' }
-            
-            await this.updateUser({ id: this.notification.senderId, updates: { notifications: JSON.stringify([acceptedNotification, ...notifications]), connections: senderConnections } })
+
+            await this.sendNotificationToUser({ id: this.notification.senderId, notification: acceptedNotification})
           }
         }
       } else {

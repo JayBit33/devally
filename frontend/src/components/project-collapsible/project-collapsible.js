@@ -22,6 +22,8 @@ export default {
   },
   async created() {
     this.teamMembers = await Promise.all(this.project.team_member_ids.map(async id => await this.fetchUserById(id)))
+    const creator = await this.fetchUserById(this.project.creator_id)
+    this.teamMembers = [creator, ...this.teamMembers]
   },
   methods: {
     ...mapActions(['fetchUserById']),

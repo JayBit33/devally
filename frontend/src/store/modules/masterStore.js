@@ -51,12 +51,11 @@ Vue.use(Vuex)
     };
 
     const actions = {
-        compareTextToHash({ commit }, payload) {
+        compareTextToHash(_, payload) {
             let { unhashed_string, hashed_string } = payload
             return new Promise((resolve, reject) => {
                 baseAPI.post('/compare-hash-string', { unhashed_string, hashed_string })
                     .then(res => {
-                        console.log(commit)
                         resolve(res.data)
                     }).catch(error => reject(error));
             })
@@ -70,11 +69,10 @@ Vue.use(Vuex)
                     }).catch(error => reject(error));
             })
         },
-        fetchProjectById({commit}, id) {
+        fetchProjectById(_, id) {
             return new Promise((resolve, reject) => {
                 projectsAPI.get(`/${id}`)
                     .then(res => {
-                        console.log(commit)
                         resolve(res.data);
                     }).catch(error => reject(error));
             })
@@ -89,20 +87,18 @@ Vue.use(Vuex)
                     }).catch(error => reject(error));
             })
         },
-        fetchUserById({commit}, id) {
+        fetchUserById(_, id) {
             return new Promise((resolve, reject) => {
                 usersAPI.get(`/${id}`)
                     .then(res => {
-                        console.log(commit);
                         resolve(res.data);
                     }).catch(error => reject(error));
             })
         },
-        fetchMessages({commit}) {
+        fetchMessages() {
             return new Promise((resolve, reject) => {
                 chatAPI.get('/newest-messages')
                     .then(res => {
-                        console.log(commit);
                         console.log('res', res.data);
                         resolve(res.data);
                     }).catch(error => reject(error));
@@ -192,13 +188,12 @@ Vue.use(Vuex)
                     }).catch(error => reject(error));
             })
         },
-        updateUser({ commit }, payload) {
+        updateUser(_, payload) {
             let {id, updates, table} = payload
             table = table ? table : 'users'
             return new Promise((resolve, reject) => {
                 usersAPI.put(`/${id}`, {updates, table})
                     .then(res => {
-                        console.log(commit);
                         console.log('res', res.data);
                         resolve(res.data);
                     }).catch(error => {
@@ -207,7 +202,7 @@ Vue.use(Vuex)
                     });
             })
         },
-        updateUserProfileImg({ commit }, payload) {
+        updateUserProfileImg(_, payload) {
             const { id, form } = payload
             return new Promise((resolve, reject) => {
                 // console.log('masterStore form', ...form)
@@ -217,7 +212,6 @@ Vue.use(Vuex)
                     }
                 })
                 .then(res => {
-                    console.log(commit);
                     console.log('res', res.data);
                     resolve(res.data);
                 }).catch(error => {
@@ -246,6 +240,22 @@ Vue.use(Vuex)
             return new Promise((resolve, reject) => {
                 authAPI.get('/logout').then(res => resolve(res.data)).catch(err => reject(err));
             })
+        },
+        async sendNotificationToUser({dispatch}, payload) {
+            const { notification, id } = payload
+            const { notifications } = await dispatch('fetchUserById', id)
+            let hasNotification = false
+            notifications.forEach(({senderId, projectId, message, type}) => {
+              if (senderId == notification.senderId && projectId == notification.projectId && message == notification.message && type == notification.type) {
+                hasNotification = true
+              }
+            })
+            if (!(hasNotification)) {
+              const res = await dispatch('updateUser', { id, updates: { notifications: JSON.stringify([notification, ...notifications]) } })
+              return res
+            } else {
+              return { message: 'user already has notification', success: false }
+            }
         },
         testToken({getters}) {
             usersAPI.defaults.headers.common['Authorization'] = `Bearer ${getters.getAccessToken}`;

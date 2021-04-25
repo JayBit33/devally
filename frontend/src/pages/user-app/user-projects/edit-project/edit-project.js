@@ -84,7 +84,7 @@ export default {
 
   },
   methods: {
-    ...mapActions(['getDevOptions', 'getRegions', 'getFundingTypes', 'fetchToast', 'fetchProjectById', 'fetchUserById', 'updateProjectById']),
+    ...mapActions(['getDevOptions', 'getRegions', 'getFundingTypes', 'fetchToast', 'fetchProjectById', 'fetchUserById', 'updateProjectById', 'sendNotificationToUser']),
     handleCategoriesSelection(e) {
       this.project_category = e
     },
@@ -122,12 +122,19 @@ export default {
           toast = await this.fetchToast({ type: 'success', message, hasAction: true, actionRedirect: `/profile/${this.getLoggedInUser.id}/projects` })
           this.setFields()
         }
+
+        if (this.checkedConnectionsIds.length > 0 && this.project) await this.notifyConnections()
       }
 
       this.$emit('toast-update', toast)
     },
-    notifyConnections() {
-      // TODO
+    async notifyConnections() {
+      let acceptedNotification = { senderId: this.getLoggedInUser.id, projectId: this.projectId ? this.projectId : null, message: 'Project Invitation:', type: 'received' }
+      
+      this.checkedConnectionsIds.forEach(async id => {
+        let res = await this.sendNotificationToUser({ id, notification: acceptedNotification })
+        console.log(res)
+      })
     },
     setFields() {
       this.project_name = this.project.name

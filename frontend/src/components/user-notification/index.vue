@@ -9,12 +9,12 @@
       </div>
 
       <div v-if="notification.type == 'received'" class="notification_container_received">
-        <div class="notification_container_button button-accept" @click="notificationAccept">Accept</div>
-        <div class="notification_container_button button-deny" @click="notificationDeny">Deny</div>
+        <div class="notification_container_button button-accept" @click.stop="notificationAccept">Accept</div>
+        <div class="notification_container_button button-deny" @click.stop="notificationDeny">Deny</div>
       </div>
       <div v-if="notification.type == 'accepted'" class="notification_container_accepted">
-        <font-awesome-icon :icon="['fas','trash']" class="trash-icon" @click="$emit('delete-notification', notification)"></font-awesome-icon>
-        <div class="notification_container_button button-accept" @click="notificationAccept">Say Hi...</div>
+        <font-awesome-icon :icon="['fas','trash']" class="trash-icon" @click.stop="$emit('delete-notification', notification)"></font-awesome-icon>
+        <div class="notification_container_button button-accept" @click.stop="notificationAccept">Say Hi...</div>
       </div>
 
     </div>
@@ -27,12 +27,12 @@
       </div>
 
       <div v-if="notification.type == 'received'" class="notification_container_received">
-        <div class="notification_container_button button-accept" @click="notificationAccept">Accept</div>
-        <div class="notification_container_button button-deny" @click="notificationDeny">Deny</div>
+        <div class="notification_container_button button-accept" @click.stop="notificationAccept">Accept</div>
+        <div class="notification_container_button button-deny" @click.stop="notificationDeny">Deny</div>
       </div>
       <div v-if="notification.type == 'accepted'" class="notification_container_accepted">
-        <font-awesome-icon :icon="['fas','trash']" class="trash-icon" @click="$emit('delete-notification', notification)"></font-awesome-icon>
-        <div class="notification_container_button button-accept" @click="notificationAccept">Say Hi...</div>
+        <font-awesome-icon :icon="['fas','trash']" class="trash-icon" @click.stop="$emit('delete-notification', notification)"></font-awesome-icon>
+        <div class="notification_container_button button-accept" @click.stop="notificationAccept">Say Hi...</div>
       </div>
     </div>
     

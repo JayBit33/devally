@@ -40,18 +40,24 @@
           <font-awesome-icon :icon="['fas','tasks']" class="task-icon"></font-awesome-icon>
           <h2>{{task.message}}</h2>
         </div>
+        <div v-if="user.tasks.length == 0" class="no-tasks">
+          <h2>You have no tasks.</h2>
+        </div>
         <p class="expand-section" @click="updateView('tasks')">View All</p>
       </div>
       <div class="home_sections_section notifications">
         <h2 class="section_title">Nofitications</h2>
         <div class="notifications-container">
           <user-notification
-            v-for="notification in user.notifications"
-            :key="notification.message + notification.senderId + notification.type"
+            v-for="(notification, i) in user.notifications"
+            :key="notification.message + notification.senderId + notification.type + i"
             :notification="notification"
             @delete-notification="deleteNotification"
             @update-view="updateView"
           />
+        </div>
+        <div v-if="user.notifications.length == 0" class="no-notifications">
+          <h2>You have no notifications.</h2>
         </div>
         <p class="expand-section notification_view-all">View All</p>
       </div>
