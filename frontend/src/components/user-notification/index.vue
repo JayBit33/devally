@@ -1,5 +1,6 @@
 <template>
   <div class="notification">
+    <div class="notification_background-overlay" :style="{'background-image': `url(${getImage('bg1.jpg')})`}"></div>
 
     <div v-if="isConnectionNotification && !isProjectNotification" class="notification_connection notification_container">
       <img class="image-icon"  :src="notification.image_source" alt="image" @click="$emit('update-view', 'connections')">
@@ -35,8 +36,6 @@
         <div class="notification_container_button button-accept" @click.stop="notificationAccept">Say Hi...</div>
       </div>
     </div>
-    
-    
 
   </div>
 </template>
