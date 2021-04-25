@@ -13,7 +13,7 @@
         <div class="notification_container_button button-deny" @click.stop="notificationDeny">Deny</div>
       </div>
       <div v-if="notification.type == 'accepted'" class="notification_container_accepted">
-        <font-awesome-icon :icon="['fas','trash']" class="trash-icon" @click.stop="$emit('delete-notification', notification)"></font-awesome-icon>
+        <font-awesome-icon :icon="['fas','trash']" class="trash-icon" @click.stop="notificationDeny"></font-awesome-icon>
         <div class="notification_container_button button-accept" @click.stop="notificationAccept">Say Hi...</div>
       </div>
 
@@ -31,7 +31,7 @@
         <div class="notification_container_button button-deny" @click.stop="notificationDeny">Deny</div>
       </div>
       <div v-if="notification.type == 'accepted'" class="notification_container_accepted">
-        <font-awesome-icon :icon="['fas','trash']" class="trash-icon" @click.stop="$emit('delete-notification', notification)"></font-awesome-icon>
+        <font-awesome-icon :icon="['fas','trash']" class="trash-icon" @click.stop="notificationDeny"></font-awesome-icon>
         <div class="notification_container_button button-accept" @click.stop="notificationAccept">Say Hi...</div>
       </div>
     </div>

@@ -11,6 +11,25 @@ export default {
     ProjectInfoCollapsable,
     UserNotification
   },
+  data() {
+    return {
+      all_notifications_override: false
+    }
+  },
+  computed: {
+    notificationsShown() {
+      if (!this.user || !this.user.notifications) return []
+      if (this.all_notifications_override) return this.user.notifications
+
+      if (this.user.notifications.length >= 2) {
+        return [this.user.notifications[0], this.user.notifications[1]]
+      } else if (this.user.notifications.length == 1) {
+        return [this.user.notifications[0]]
+      }
+
+      return []
+    }
+  },
   methods: {
     ...mapActions(['updateUser']),
     async deleteNotification(notification) {
@@ -24,6 +43,9 @@ export default {
       if (view != this.$route.params.view) {
         this.$router.push(`/profile/${id}/${view}`)
       }
+    },
+    toggleNotificationsOverride() {
+      this.all_notifications_override = !this.all_notifications_override
     }
   }
 }
