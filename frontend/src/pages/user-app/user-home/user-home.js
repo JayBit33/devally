@@ -21,13 +21,7 @@ export default {
       if (!this.user || !this.user.notifications) return []
       if (this.all_notifications_override) return this.user.notifications
 
-      if (this.user.notifications.length >= 2) {
-        return [this.user.notifications[0], this.user.notifications[1]]
-      } else if (this.user.notifications.length == 1) {
-        return [this.user.notifications[0]]
-      }
-
-      return []
+      return this.user.notifications.filter((n, i) => i < 2)
     }
   },
   methods: {
