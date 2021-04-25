@@ -1,5 +1,6 @@
 .home {
   width: 100%;
+
   .greeting {
     background-color: $mute-yellow;
     border-radius: 1rem;
@@ -54,15 +55,19 @@
   &_sections {
     width: 80%;
     margin: 4rem auto;
+    margin-left: 9%;
     display: grid;
     grid-template-columns: 2fr 1fr;
-    grid-template-rows: auto auto auto auto;
-    grid-column-gap: 9rem;
-    grid-row-gap: 3rem;
+    grid-column-gap: 5rem;
+    grid-row-gap: 2.75rem;
     &_section {
       width: 100%;
       min-height: 10rem;
       height: max-content;
+      border: 1px solid rgb(199, 197, 197);
+      padding: .25rem 1rem;
+      border-radius: 1rem;
+      background-color: white;
       &_title {
         color: $font-dark;
         font-family: 'Open Sans';

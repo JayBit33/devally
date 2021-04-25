@@ -46,12 +46,18 @@
     // border-top: 1px solid lightgrey;
     // border-left: 1px solid lightgrey;
     p {
-      margin: 4rem;
+      font-family: 'Open Sans';
+      font-size: 1rem;
+      margin: 4rem 1rem;
       line-height: 1.5rem;
       float: left;
     }
-    .even {
+    p:nth-child(even) {
+      background-color: #d2eafd;
+      padding: 1rem;
+      border-radius: 1rem;
       float: right;
+
     }
   }
 
