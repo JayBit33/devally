@@ -32,6 +32,13 @@
       </div>
     </div>
 
+    <div v-if="isReportAction" class="user_report">
+      <report-user-modal :user="user" @report-modal-close="toggleReportUser" />
+    </div>
+    <div v-if="isRateAction" class="user_rate">
+      <rate-user-modal :user="user" @rate-modal-close="toggleRateUser" />
+    </div>
+
     <div class="user_profile">
 
       <div class="user_profile_stars">

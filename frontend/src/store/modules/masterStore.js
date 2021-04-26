@@ -154,6 +154,14 @@ Vue.use(Vuex)
                     }).catch(error => reject(error));
             })
         },
+        getReportOptions() {
+            return new Promise((resolve, reject) => {
+                baseAPI.get('/report-options')
+                    .then(res => {
+                        resolve(res.data)
+                    }).catch(error => reject(error));
+            })
+        },
         login({commit}, userLoginInfo) {
             return new Promise((resolve, reject) => {
                 authAPI.post(`/login`, userLoginInfo)

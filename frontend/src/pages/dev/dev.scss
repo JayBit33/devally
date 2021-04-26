@@ -10,6 +10,16 @@
   padding-bottom: 7rem;
   position: relative;
   
+  .user_report, .user_rate {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba($devs-page-grey, .5);
+    z-index: 4;
+  }
+
   .user_actions {
     position: absolute;
     top: .5rem;

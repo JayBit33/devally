@@ -2,6 +2,8 @@
 // ALL RIGHTS RESERVED
 
 import MessageBox from '../../components/message-box';
+import RateUserModal from '@/components/rate-user-modal'
+import ReportUserModal from '@/components/report-user-modal'
 import Toast from '@/components/toast'
 // import COMETCHAT_CONSTANTS from '@/chat/constants.js';
 import { CometChat } from "@cometchat-pro/chat";
@@ -26,6 +28,8 @@ export default {
         'project.png',
         'project.png'
       ],
+      isReportAction: false,
+      isRateAction: false,
       toast: {
         type: '',
         message: [{ text: '', emphasis: false }],
@@ -39,6 +43,8 @@ export default {
   components: {
     FontAwesomeIcon,
     MessageBox,
+    RateUserModal,
+    ReportUserModal,
     Toast
   },
   computed: {
@@ -143,12 +149,26 @@ export default {
       // TODO
     },
     rateUser() {
-      // TODO
       this.toggleActions()
+      this.toggleRateUser()
+      document.querySelector('html').style.overflowY = 'hidden'
     },
     reportUser() {
-      // TODO
       this.toggleActions()
+      this.toggleReportUser()
+      document.querySelector('html').style.overflowY = 'hidden'
+    },
+    toggleRateUser() {
+      this.isRateAction = !this.isRateAction
+      if (!(this.isRateAction)) {
+        document.querySelector('html').style.overflowY = 'scroll'
+      }
+    },
+    toggleReportUser() {
+      this.isReportAction = !this.isReportAction
+      if (!(this.isReportAction)) {
+        document.querySelector('html').style.overflowY = 'scroll'
+      }
     },
     toggleActions() {
       this.isActionsOpen = !this.isActionsOpen
