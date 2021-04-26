@@ -1,7 +1,7 @@
 <!-- (c) Waveybits Inc. <2021> -->
 <!-- ALL RIGHTS RESERVED -->
 <template>
-  <div class="dev" :style="{'background-image': 'url(' + getImage('devs_bg.png') + ')'}">
+  <div class="dev">
     <Toast
       v-if="toast && toast.isShown"
       :type="toast.type"
@@ -12,43 +12,81 @@
       @toast-close="closeToast"
     >
     </Toast>
-    <div class="user-profile">
-      <img v-if="user && user.profile_image" :src="getImage(user.profile_image)" />
-      <h4>{{ fullName }}</h4>
-      <button class="btn" @click="addContact">Add Contact</button>
-      <button class="btn" @click="openMessageBox">Message</button>
-    </div>
-    <div class="user-info">
-      <div class="user-info_accounttype">
-        <h3>Roles:</h3>
-        <h4>{{ user.dev_roles.join(", ") }}</h4>
-      </div>
-      <div class="user-info_hiringoptions">
-        <h3>Hiring Options:</h3>
-        <h4>{{ user.hiring_options.join(", ") }}</h4>
-      </div>
-      <div class="user-info_rating">
-        <h3>Rating:</h3>
-        <ul>
-          <li v-for="rate in user.rating" :key="rate"><font-awesome-icon style="color: #F0DB4F; font-size: 18px;" :icon="['fas', 'star']" /></li>
-        </ul>
-      </div>
-      <div class="user-info_skills">
-        <h3>Categories:</h3>
-        <h4>{{ skillsFormatted }}</h4>
-      </div>
-      <div class="user-bio">
-        <h3>Bio</h3>
-        <p>{{ user.dev_bio }}</p>
-      </div>
 
-      <div class="user-portfolio">
-        <h3>Portfolio</h3>
-        <div class="user-portfolio_images">
-          <img v-for="(image, index) in portfolioImages" :key="image + index" :src="getImage(image)" />
+    <div class="user_actions">
+      <font-awesome-icon class="action-icon-main" :icon="['fas', 'ellipsis-h']" @click="toggleActions" />
+
+      <div v-if="isActionsOpen" class="user_actions_content">
+        <div class="user_actions_content-action action-rate" @click="rateUser">
+          <div class="action-icon">
+            <font-awesome-icon :icon="['fas', 'star-half-alt']" />
+          </div>
+          <h4>Rate User</h4>
+        </div>
+        <div class="user_actions_content-action action-report" @click="reportUser">
+          <div class="action-icon">
+            <font-awesome-icon :icon="['fas', 'exclamation']" />
+          </div>
+          <h4>Report User</h4>
         </div>
       </div>
     </div>
+
+    <div class="user_profile">
+
+      <div class="user_profile_stars">
+        <div v-for="i in 5" :key="'star-' + i" class="star" :class="{'star-s': i == 1 || i == 5, 'star-m': i == 2 || i == 4, 'star-b': i == 3,}">
+          <font-awesome-icon v-if="user.rating || user.dev_rating >= i" :icon="['fas', 'star']" />
+          <font-awesome-icon v-else :icon="['far', 'star']" />
+        </div>
+      </div>
+
+      <div class="user_profile_identity">
+        <img class="user_profile_identity-image" v-if="user && user.profile_image" :src="getImage(user.profile_image, true)" />
+        <h2 class="user_profile_identity-name">{{user.firstname}} {{user.lastname}}</h2>
+        <h2 class="user_profile_identity-type">{{user.user_type_id == '1' ? 'Developer & Visionary' : 'Visionary'}}</h2>
+      </div>
+
+      <div class="user_profile_buttons" :class="{'disabled-buttons': !isLoggedIn}">
+        <div class="user_profile_buttons-button message-button" @click="openMessageBox">
+          <h4>Message</h4>
+        </div>
+        <div class="user_profile_buttons-button connection-button" @click="addConnection">
+          <h4>Add connection</h4>
+        </div>
+        <div class="user_profile_buttons-button invite-button" @click="inviteToProject">
+          <h4>Invite to project</h4>
+        </div>
+      </div>
+
+      <div v-if="user" class="user_profile_info">
+        <div v-if="user.bio" class="user_profile_info-field bio-field">
+          <h2>Bio</h2>
+          <h4>{{user.bio}}</h4>
+        </div>
+        <div v-if="user.hiring_options" class="user_profile_info-field hiring-options-field">
+          <h2>Hiring Options</h2>
+          <h4>{{user.hiring_options.join(' & ')}}</h4>
+        </div>
+        <div v-if="user.dev_categories" class="user_profile_info-field categories-field">
+          <h2>Interested Categories</h2>
+          <h4>{{user.dev_categories.join(' | ')}}</h4>
+        </div>
+        <div v-if="user.dev_roles" class="user_profile_info-field skills-field">
+          <h2>Skills</h2>
+          <h4>{{user.dev_roles.join(' | ')}}</h4>
+        </div>
+      </div>
+
+      <div class="user_profile_portfolio" @click="portfolioRedirect">
+        <h4>View my portfolio</h4>
+        <div class="arrow">
+          <font-awesome-icon :icon="['fas', 'arrow-right']" />
+        </div>
+      </div>
+
+    </div>
+    
     <message-box v-if="messageBoxOpen" @messageSent="messageUser" @close="toggleMessageBox"></message-box>
   </div>
 </template>

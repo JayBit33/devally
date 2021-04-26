@@ -67,15 +67,16 @@ export default {
             let u = await this.updateUser({ id: this.getLoggedInUser.id, updates: { connections: loggedInConnections } })
             this.updateLoggedInUser(u)
           }
-  
+          
           // Update sender user connections
           if (!senderConnections || !(senderConnections.includes(this.getLoggedInUser.id))) {
             if (senderConnections) senderConnections = JSON.stringify([...senderConnections, this.getLoggedInUser.id])
             else senderConnections = JSON.stringify([this.getLoggedInUser.id])
-  
+            
             // Send notification to senderId user saying we have joined
             let acceptedNotification = { senderId: this.getLoggedInUser.id, projectId: null, message: 'is now one of your connections', type: 'accepted' }
-
+            
+            await this.updateUser({ id: this.notification.senderId, updates: { connections: senderConnections } })
             await this.sendNotificationToUser({ id: this.notification.senderId, notification: acceptedNotification})
           }
         }

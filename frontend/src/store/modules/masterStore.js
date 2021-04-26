@@ -37,7 +37,7 @@ Vue.use(Vuex)
         },
         updateIsLoggedIn(state, isLoggedIn) {
             state.loggedIn = isLoggedIn;
-            state.loggedInUser = null;
+            if (!isLoggedIn) state.loggedInUser = null;
         },
         updateUserId(state, id) {
             state.loggedInUserId = id;
@@ -121,11 +121,10 @@ Vue.use(Vuex)
                 hasAction: false,
                 actionRedirect: '',
                 isShown: false,
-                duration: 0,
+                duration: 5000,
                 ...payload
             }
 
-            toast.duration = payload.duration ? payload.duration : 5000
             toast.isShown = true
 
             return toast
@@ -252,7 +251,7 @@ Vue.use(Vuex)
             })
             if (!(hasNotification)) {
               const res = await dispatch('updateUser', { id, updates: { notifications: JSON.stringify([notification, ...notifications]) } })
-              return res
+              return {...res, success: true}
             } else {
               return { message: 'user already has notification', success: false }
             }
