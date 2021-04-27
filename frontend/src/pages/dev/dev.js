@@ -79,10 +79,9 @@ export default {
     async addConnection() {
       let message
       
-      if (this.user.connections.some(connection => connection == this.id)) {
+      if (this.user.connections && this.user.connections.some(connection => connection == this.id)) {
         message = [{ text: 'You already have', emphasis: false }, { text: this.user.firstname + " " + this.user.lastname, emphasis: true }, { text: 'added to your connections', emphasis: false }]
         this.toast = await this.fetchToast({type: 'info', message});
-        console.log(this.toast)
         return
       }
 
