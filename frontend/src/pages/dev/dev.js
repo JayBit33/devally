@@ -79,10 +79,9 @@ export default {
     async addConnection() {
       let message
       
-      if (this.user.connections.some(connection => connection == this.id)) {
+      if (this.user.connections && this.user.connections.some(connection => connection == this.id)) {
         message = [{ text: 'You already have', emphasis: false }, { text: this.user.firstname + " " + this.user.lastname, emphasis: true }, { text: 'added to your connections', emphasis: false }]
         this.toast = await this.fetchToast({type: 'info', message});
-        console.log(this.toast)
         return
       }
 
@@ -102,6 +101,9 @@ export default {
         ]
         this.toast = await this.fetchToast({type: 'warning', message});
       }
+    },
+    clickOutsideCheck(e) {
+      if (!(e.path.includes(this.$refs.user_actions_content))) this.isActionsOpen = false
     },
     closeToast() {
       this.toast.isShown = false
@@ -171,10 +173,20 @@ export default {
       }
     },
     toggleActions() {
-      this.isActionsOpen = !this.isActionsOpen
+      setTimeout(() => {
+        this.isActionsOpen = !this.isActionsOpen
+        if (this.isActionsOpen) {
+          document.addEventListener('click', this.clickOutsideCheck)
+        } else {
+          document.removeEventListener('click', this.clickOutsideCheck)
+        }
+      }, 1)
     },
     toggleMessageBox() {
       this.messageBoxOpen = !this.messageBoxOpen;
     }
+  },
+  destroyed() {
+    document.removeEventListener('click', this.clickOutsideCheck)
   }
 };

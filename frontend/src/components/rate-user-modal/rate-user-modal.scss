@@ -51,10 +51,17 @@
       transition: .3s;
       cursor: pointer;
 
-      &:hover {
-        color: $btn-light;
+      &-not-filled {
+        color: $btn-grey;
+        &:hover {
+          color: $btn-default;
+        }
       }
-
+      
+      &:hover {
+        color: $btn-default;
+      }
+      
       &-s {
         font-size: 1.5rem;
       }
@@ -64,6 +71,8 @@
       &-b {
         font-size: 3rem;
       }
+      
+      
     }
   }
 

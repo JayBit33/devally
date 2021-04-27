@@ -2,7 +2,7 @@
 // ALL RIGHTS RESERVED
 import ConnectionCard from '@/components/connection-card';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { mapActions, mapMutations } from 'vuex'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 
 export default {
   name: "ConnectionCardCarousel",
@@ -29,12 +29,13 @@ export default {
     FontAwesomeIcon
   },
   computed: {
+    ...mapGetters(['getLoggedInUser']),
     connectionsShown() {
       return this.connections ? this.connections.slice(this.startIdx, this.endIdx) : [];
     }
   },
   methods: {
-    ...mapActions(['fetchUserById', 'updateUser']),
+    ...mapActions(['fetchUserById', 'updateUser', 'fetchToast']),
     ...mapMutations(['updateLoggedInUser']),
     goRight() {
         this.startIdx += 1;
@@ -48,38 +49,43 @@ export default {
     },
     async removeConnection(connectionToRemove) {
       let user = await this.getLoggedInUser
-      let id, response, updates
-      let newConnections = this.connections.map((connection) => connection.id).filter(connectionId => connectionId != connectionToRemove.id)
-      if (user) {
-        id = user.id
-        updates = {
-          connections: JSON.stringify(newConnections)
-        }
-        response = await this.updateUser({ id, updates })
-      }
+      let updates, toast, message
+      
+      let loggedInUserId = user.id
+      let connectionId = connectionToRemove.id
 
-      if (response && user) {
-        this.toast.message = [
+      let newLoggedInUserConnections = this.connections.map((connection) => connection.id).filter(c_id => c_id != connectionToRemove.id)
+      let newConnectionToRemoveConnections = this.connections.map((connection) => connection.id).filter(connectionId => connectionId != connectionToRemove.id)
+
+      updates = { connections: JSON.stringify(newLoggedInUserConnections) }
+      let user1Response = await this.updateUser({ id: loggedInUserId, updates })
+
+      updates = { connections: JSON.stringify(newConnectionToRemoveConnections) }
+      let user2Response = await this.updateUser({ id: connectionId, updates })
+
+      if (user1Response && user2Response && user) {
+        message = [
           { text: 'You have successfully removed', emphasis: false },
           { text: connectionToRemove.firstname + " " + connectionToRemove.lastname, emphasis: true },
           { text: 'from your connections', emphasis: false }
         ]
-        this.toast.type = 'success'
-        this.connections = this.connections.filter(connection => connection.id != connectionToRemove.id)
-        user.connections = newConnections
+        toast = await this.fetchToast({ type: 'success', message });
+        
+        this.$emit('connections-update', this.connections.filter(connection => connection.id != connectionToRemove.id))
+        user.connections = newLoggedInUserConnections
         this.updateLoggedInUser(user)
       } else {
-        this.toast.message = [
+        message = [
           { text: 'You have', emphasis: false },
           { text: 'unsuccessfully', emphasis: true },
           { text: 'removed', emphasis: false },
           { text: connectionToRemove.firstname + " " + connectionToRemove.lastname, emphasis: true },
           { text: 'from your connections', emphasis: false }
         ]
-        this.toast.type = 'error'
+        toast = await this.fetchToast({ type: 'error', message });
       }
-      this.toast.duration = 5000
-      this.toast.isShown = true
+      
+      if (toast) this.$emit('toast-update', toast)
     }
   }
 }

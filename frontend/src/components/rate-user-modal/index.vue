@@ -1,5 +1,5 @@
 <template>
-  <div class="rate-user-modal">
+  <div class="rate-user-modal" ref="rate_user_modal">
     
     <div class="rate-user-modal_close" @click="$emit('rate-modal-close')">
       <font-awesome-icon :icon="['fas', 'times']" />
@@ -12,8 +12,7 @@
 
     <div class="rate-user-modal_stars">
       <div v-for="i in 5" :key="'star-' + i" class="star" :class="{'star-s': i == 1 || i == 5, 'star-m': i == 2 || i == 4, 'star-b': i == 3,}">
-        <font-awesome-icon v-if="rating >= i" :icon="['fas', 'star']" @click="setRating(i)" />
-        <font-awesome-icon v-else :icon="['far', 'star']" @click="setRating(i)" />
+        <font-awesome-icon :class="{'star-not-filled': i > rating}" :icon="['fas', 'star']" @click="setRating(i)" />
       </div>
     </div>
 
