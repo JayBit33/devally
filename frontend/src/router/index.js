@@ -11,7 +11,7 @@ import Works from '../pages/Works'
 import Resources from '../pages/Resources'
 import About from '../pages/About'
 import SigninSignup from '../pages/signin-signup'
-// import SignIn from '../pages/signin'
+import PageNotFound from '../pages/PageNotFound'
 import CreateAccount from '../pages/create-account'
 
 Vue.use(VueRouter)
@@ -29,6 +29,7 @@ const router = new VueRouter({
     { path: '/about',  name: 'About', component: About, meta: { breadcrumb: []} },
     { path: '/signin',  name: 'SignIn', component: SigninSignup, meta: { breadcrumb: [] }},
     { path: '/create-account',  name: 'CreateAccount', component: CreateAccount, meta: { breadcrumb: []} },
+    { path: '/:pathMatch(.*)*',  name: 'NotFound', component: PageNotFound, meta: { breadcrumb: []} },
   ],
   scrollBehavior() {
     window.scrollTo({ top: 0, left: 0, behavior: 'auto'})
