@@ -1,7 +1,7 @@
 <!-- (c) Waveybits Inc. <2021> -->
 <!-- ALL RIGHTS RESERVED -->
 <template>
-  <div id="main-component">
+  <div id="main-component" :class="{'offwhite-background': $route.name == 'Dev' }">
     <div v-if="showHeaderFooter" class="header">
       <nav>
         <router-link to="/" class="logo link">DevAlly</router-link>
@@ -50,6 +50,7 @@ export default {
   created() {
     this.retrieveRefreshToken().then(res => {
       console.log('token refreshed', res);
+      if (res.ok) this.updateIsLoggedIn(true);
     })
   },
   computed: {
@@ -104,6 +105,13 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+
+  &.offwhite-background {
+    background-color: $sidebar_bg;
+    .page-content {
+      background-color: unset;
+    }
+  }
 }
 
 .link { text-decoration: none; color: black; }

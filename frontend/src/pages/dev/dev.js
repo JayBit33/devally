@@ -2,6 +2,8 @@
 // ALL RIGHTS RESERVED
 
 import MessageBox from '../../components/message-box';
+import RateUserModal from '@/components/rate-user-modal'
+import ReportUserModal from '@/components/report-user-modal'
 import Toast from '@/components/toast'
 // import COMETCHAT_CONSTANTS from '@/chat/constants.js';
 import { CometChat } from "@cometchat-pro/chat";
@@ -13,6 +15,7 @@ export default {
     return {
       user: {},
       id: this.$route.params.id,
+      isActionsOpen: false,
       messageBoxOpen: false,
       messageSentSuccessful: false,
       portfolioImages: [
@@ -25,6 +28,8 @@ export default {
         'project.png',
         'project.png'
       ],
+      isReportAction: false,
+      isRateAction: false,
       toast: {
         type: '',
         message: [{ text: '', emphasis: false }],
@@ -38,6 +43,8 @@ export default {
   components: {
     FontAwesomeIcon,
     MessageBox,
+    RateUserModal,
+    ReportUserModal,
     Toast
   },
   computed: {
@@ -46,70 +53,55 @@ export default {
       return `${this.user.firstname} ${this.user.lastname}`;
     },
     skillsFormatted() {
-      return this.user.dev_categories.join(", ");
+      if (this.user && this.user.dev_categories) return this.user.dev_categories.join(", ");
+      else return ''
     },
     username() {
       return this.getLoggedInUser.username;
     }
   },
   async created() {
-    await this.fetchDevUsers().then(() => this.user = this.getDevUser(this.$route.params.id));
+    await this.fetchDevUsers()
+    this.user = this.getDevUser(this.$route.params.id)
+
     if (!this.isLoggedIn) {
-      this.toast.type = 'info'
-      this.toast.message = [
+      let message = [
         { text: 'Sign in', emphasis: true },
         { text: 'or', emphasis: false },
         { text: 'Sign up', emphasis: true },
         { text: 'to collaborate with developers', emphasis: false }
       ]
-      this.toast.hasAction = true
-      this.toast.actionRedirect = '/signin'
-      this.toast.duration = 5000
-      this.toast.isShown = true
+      this.toast = await this.fetchToast({ type: 'info', message, hasAction: true, actionRedirect: '/signin'});
     }
   },
   methods: {
-    ...mapActions(['fetchDevUsers', 'updateUser']),
-    async addContact() {
-      let user = await this.getLoggedInUser
-      let id, response
-
-      if (user.connections.some(connection => connection == this.id)) {
-        this.toast.message = [
-          { text: 'You already have', emphasis: false },
-          { text: this.user.firstname + " " + this.user.lastname, emphasis: true },
-          { text: 'added to your connections', emphasis: false }
-        ]
-        this.toast.type = 'warning'
-      } else {
-        if (user) {
-          id = user.id
-          let updates = {
-            connections: JSON.stringify([...user.connections, this.id])
-          }
-          response = await this.updateUser({ id, updates })
-        }
-
-        if (response && user) {
-          this.toast.message = [
-            { text: 'You have successfully added', emphasis: false },
-            { text: this.user.firstname + " " + this.user.lastname, emphasis: true },
-            { text: 'to your connections', emphasis: false }
-          ]
-          this.toast.type = 'success'
-        } else {
-          this.toast.message = [
-            { text: 'You have', emphasis: false },
-            { text: 'unsuccessfully', emphasis: true },
-            { text: 'added', emphasis: false },
-            { text: this.user.firstname + " " + this.user.lastname, emphasis: true },
-            { text: 'to your connections', emphasis: false }
-          ]
-          this.toast.type = 'error'
-        }
+    ...mapActions(['fetchDevUsers', 'updateUser', 'fetchToast', 'sendNotificationToUser']),
+    async addConnection() {
+      let message
+      
+      if (this.user.connections.some(connection => connection == this.id)) {
+        message = [{ text: 'You already have', emphasis: false }, { text: this.user.firstname + " " + this.user.lastname, emphasis: true }, { text: 'added to your connections', emphasis: false }]
+        this.toast = await this.fetchToast({type: 'info', message});
+        console.log(this.toast)
+        return
       }
-      this.toast.duration = 5000
-      this.toast.isShown = true
+
+      let notification = { senderId: this.getLoggedInUser.id, projectId: null, message: 'wants to add you as a connection', type: 'received' }
+      let res = await this.sendNotificationToUser({ id: this.user.id, notification })
+      
+      if (res.success) {
+        message = [{ text: 'You have successfully requested', emphasis: false }, { text: this.user.firstname + " " + this.user.lastname, emphasis: true }, { text: 'to join your connections', emphasis: false }]
+        this.toast = await this.fetchToast({type: 'success', message});
+      } else {
+        message = [
+          { text: 'You have', emphasis: false },
+          { text: 'already', emphasis: true },
+          { text: 'requested', emphasis: false },
+          { text: this.user.firstname + " " + this.user.lastname, emphasis: true },
+          { text: 'to join your connections', emphasis: false }
+        ]
+        this.toast = await this.fetchToast({type: 'warning', message});
+      }
     },
     closeToast() {
       this.toast.isShown = false
@@ -118,8 +110,8 @@ export default {
       this.$router.push(this.toast.actionRedirect)
       this.toast.isShown = false
     },
-    getImage(imageName) {
-      return require(`@/assets/${imageName}`)
+    getImage(filePath) {
+      return `http://localhost:3000/${filePath}`;
     },
     messageUser(messageText) {
       this.messageBoxOpen = true;
@@ -142,6 +134,9 @@ export default {
       );
         this.toggleMessageBox();
     },
+    inviteToProject() {
+      // TODO
+    },
     openMessageBox() {
       this.toggleMessageBox();
       if (this.messageBoxOpen) {
@@ -149,6 +144,34 @@ export default {
           document.querySelector('.message-box_textarea').focus();
         }, 1000);
       }
+    },
+    portfolioRedirect() {
+      // TODO
+    },
+    rateUser() {
+      this.toggleActions()
+      this.toggleRateUser()
+      document.querySelector('html').style.overflowY = 'hidden'
+    },
+    reportUser() {
+      this.toggleActions()
+      this.toggleReportUser()
+      document.querySelector('html').style.overflowY = 'hidden'
+    },
+    toggleRateUser() {
+      this.isRateAction = !this.isRateAction
+      if (!(this.isRateAction)) {
+        document.querySelector('html').style.overflowY = 'scroll'
+      }
+    },
+    toggleReportUser() {
+      this.isReportAction = !this.isReportAction
+      if (!(this.isReportAction)) {
+        document.querySelector('html').style.overflowY = 'scroll'
+      }
+    },
+    toggleActions() {
+      this.isActionsOpen = !this.isActionsOpen
     },
     toggleMessageBox() {
       this.messageBoxOpen = !this.messageBoxOpen;

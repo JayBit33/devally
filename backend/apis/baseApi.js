@@ -72,6 +72,24 @@ router.get('/funding-types', (_, res) => {
   res.status(200).json({ funding_types });
 })
 
+router.get('/report-options', (_, res) => {
+  const report_options = [
+    'Unauthorized trademark use',
+    'Unauthorized use of copyrighted material',
+    'Sale or promotion of counterfeit goods',
+    'Privacy policy towards children',
+    'Child sexual exploitation',
+    'Pornography',
+    'Impersonation of an individual or brand',
+    'Private information posted on DevAlly',
+    'Abusive behavior and violent threats',
+    'Spam and system abuse',
+    'Violation of DevAlly Ads policy',
+    'Other'
+  ]
+  res.status(200).json({ report_options });
+})
+
 router.post('/compare-hash-string', (req, res) => {
   bcrypt.compare(req.body.unhashed_string, req.body.hashed_string)
   .then(result => {
