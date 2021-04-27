@@ -17,12 +17,22 @@ export default {
   async created() {
     const { report_options } = await this.getReportOptions()
     this.allReportOptions = report_options
+
+    setTimeout(() => {
+      document.addEventListener('click', this.clickOutsideCheck)
+    }, 1)
   },
   methods: {
     ...mapActions(['getReportOptions']),
+    clickOutsideCheck(e) {
+      if (!(e.path.includes(this.$refs.report_user_modal))) this.$emit('report-modal-close')
+    },
     sendReport() {
       // TODO
       this.$emit('report-modal-close')
     }
+  },
+  destroyed() {
+    document.removeEventListener('click', this.clickOutsideCheck)
   }
 }

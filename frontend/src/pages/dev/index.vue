@@ -13,7 +13,7 @@
     >
     </Toast>
 
-    <div class="user_actions">
+    <div v-if="isLoggedIn" class="user_actions">
       <font-awesome-icon class="action-icon-main" :icon="['fas', 'ellipsis-h']" @click="toggleActions" />
 
       <div v-if="isActionsOpen" class="user_actions_content">
