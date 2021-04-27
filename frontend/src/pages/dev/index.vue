@@ -16,7 +16,7 @@
     <div v-if="isLoggedIn" class="user_actions">
       <font-awesome-icon class="action-icon-main" :icon="['fas', 'ellipsis-h']" @click="toggleActions" />
 
-      <div v-if="isActionsOpen" class="user_actions_content">
+      <div v-if="isActionsOpen" class="user_actions_content" ref="user_actions_content">
         <div class="user_actions_content-action action-rate" @click="rateUser">
           <div class="action-icon">
             <font-awesome-icon :icon="['fas', 'star-half-alt']" />

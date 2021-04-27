@@ -28,21 +28,21 @@
       <font-awesome-icon :icon="allCollapsed ? ['fas','chevron-circle-down'] : ['fas','chevron-circle-up']" class="icon" @click="toggleAllCollapsed" />
     </div>
     <div v-if="!allCollapsed" class="connections all-connections">
-      <connection-card-carousel :connections="connections" @delete-click="removeConnection(connection)" />
+      <connection-card-carousel :connections="connections" @connections-update="connections = $event" @toast-update="toast = $event" />
     </div>
     <div class="connection-section_title">
       <h2 class="connection_title">Most Talked To Connections</h2>
       <font-awesome-icon :icon="mostCollapsed ? ['fas','chevron-circle-down'] : ['fas','chevron-circle-up']" class="icon" @click="toggleMostCollapsed"/>
     </div>
     <div v-if="!mostCollapsed" class="connections">
-      <connection-card-carousel :connections="connections" @delete-click="removeConnection(connection)" />
+      <connection-card-carousel :connections="connections" @connections-update="connections = $event" @toast-update="toast = $event" />
     </div>
     <div class="connection-section_title">
       <h2 class="connection_title">Newest Connections</h2>
       <font-awesome-icon :icon="newCollapsed ? ['fas','chevron-circle-down'] : ['fas','chevron-circle-up']" class="icon" @click="toggleNewestCollapsed"/>
     </div>
     <div v-if="!newCollapsed" class="connections">
-      <connection-card-carousel :connections="connections" @delete-click="removeConnection(connection)" />
+      <connection-card-carousel :connections="connections" @connections-update="connections = $event" @toast-update="toast = $event" />
     </div>
 
     <!-- <el-pagination

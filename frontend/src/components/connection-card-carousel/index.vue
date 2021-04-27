@@ -4,7 +4,13 @@
   <div class="connection-card-carousel">
      <font-awesome-icon :icon="['fas','arrow-alt-circle-left']" class="arrow-icon" @click="goLeft"/>
      <div class="connections">
-      <connection-card v-for="connection in connectionsShown" :class="{'movingRight': movingRight, 'movingLeft': movingLeft}" :connection="connection" :key="connection.id" @delete-click="removeConnection(connection)" />
+      <connection-card
+        v-for="connection in connectionsShown"
+        :class="{'movingRight': movingRight, 'movingLeft': movingLeft}"
+        :connection="connection"
+        :key="connection.id"
+        @delete-click="removeConnection(connection)"
+      />
     </div>
     <font-awesome-icon :icon="['fas','arrow-alt-circle-right']" class="arrow-icon" @click="goRight"/>
   </div>

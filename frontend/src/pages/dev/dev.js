@@ -102,6 +102,9 @@ export default {
         this.toast = await this.fetchToast({type: 'warning', message});
       }
     },
+    clickOutsideCheck(e) {
+      if (!(e.path.includes(this.$refs.user_actions_content))) this.isActionsOpen = false
+    },
     closeToast() {
       this.toast.isShown = false
     },
@@ -170,10 +173,20 @@ export default {
       }
     },
     toggleActions() {
-      this.isActionsOpen = !this.isActionsOpen
+      setTimeout(() => {
+        this.isActionsOpen = !this.isActionsOpen
+        if (this.isActionsOpen) {
+          document.addEventListener('click', this.clickOutsideCheck)
+        } else {
+          document.removeEventListener('click', this.clickOutsideCheck)
+        }
+      }, 1)
     },
     toggleMessageBox() {
       this.messageBoxOpen = !this.messageBoxOpen;
     }
+  },
+  destroyed() {
+    document.removeEventListener('click', this.clickOutsideCheck)
   }
 };
