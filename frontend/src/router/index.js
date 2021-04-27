@@ -10,7 +10,8 @@ import Projects from '../pages/projects'
 import Works from '../pages/Works'
 import Resources from '../pages/Resources'
 import About from '../pages/About'
-import SignIn from '../pages/signin'
+import SigninSignup from '../pages/signin-signup'
+// import SignIn from '../pages/signin'
 import CreateAccount from '../pages/create-account'
 
 Vue.use(VueRouter)
@@ -26,7 +27,7 @@ const router = new VueRouter({
     { path: '/works',  name: 'Works', component: Works, meta: { breadcrumb: []} },
     { path: '/resources',  name: 'Resources', component: Resources, meta: { breadcrumb: []} },
     { path: '/about',  name: 'About', component: About, meta: { breadcrumb: []} },
-    { path: '/signin',  name: 'SignIn', component: SignIn, meta: { breadcrumb: [] }},
+    { path: '/signin',  name: 'SignIn', component: SigninSignup, meta: { breadcrumb: [] }},
     { path: '/create-account',  name: 'CreateAccount', component: CreateAccount, meta: { breadcrumb: []} },
   ],
   scrollBehavior() {
