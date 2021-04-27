@@ -62,7 +62,7 @@ export default {
       return this.getLoggedInUser.username;
     },
     showHeaderFooter() {
-      return this.$route.name === 'Profile' ? false : true
+      return this.$route.name === 'Profile' || this.$route.name === 'SignIn' ? false : true
     }
   },
   methods: {

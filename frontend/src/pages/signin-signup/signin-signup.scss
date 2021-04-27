@@ -8,7 +8,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: flex-end;
-    margin-top: 11vh;
+    margin-top: 18vh;
     &_image {
       margin-bottom: 6rem;
       img {
@@ -94,19 +94,37 @@
           padding: .5rem;
           margin: 1rem 0;
           border: none;
+
+          &:focus {
+            outline: none;
+            border: none;
+            background-color: $button-signup-active;
+            transition: .3s;
+          }
         }
       }
     }
 
     button:hover {
-      cursor: pointer
+      cursor: pointer;
+      background-color: $button-signup-active;
+      transition: .3s;
+
+      &:focus {
+        outline: none;
+        border: none;
+        background-color: $button-signup-active;
+        transition: .3s;
+      }
     }
   }
 
   .create-account {
-    margin-top: 2rem;
+    margin-top: 10vh;
     button:hover {
-      cursor: pointer
+      cursor: pointer;
+      background-color: $button-signup-active;
+      transition: .3s;
     }
     &_heading {
       display: flex;
@@ -139,6 +157,8 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      margin-bottom: 10vh;
+
       .account-options {
         display: flex;
         text-align: center;
@@ -152,7 +172,9 @@
           &:hover, &:active {
             cursor: pointer;
             background-color: $account-type-bg-active;
+            transition: .3s;
           }
+
           h3 {
             font-family: 'Open Sans';
             font-size: 1.25rem;
@@ -208,6 +230,17 @@
           padding: .5rem;
           margin: 1rem 0;
           border: none;
+
+          &:hover {
+            background-color: $button-signup-active;
+            transition: .3s;
+          }
+          &:focus {
+            outline: none;
+            border: none;
+            background-color: $button-signup-active;
+            transition: .3s;
+          }
         }
         .confirm {
           display: flex;
