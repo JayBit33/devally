@@ -19,7 +19,15 @@
     </div>
 
     <div class="projects-container">
-      <project-collapsible class="projects-container_project" v-for="project in projects" :key="project.id" :project="project" @edit-project="$emit('edit-project', $event)" />
+      <project-collapsible
+        class="projects-container_project"
+        v-for="project in projects"
+        :key="project.id"
+        :project="project"
+        @edit-project="$emit('edit-project', $event)"
+        @team-member-remove="updateProjects"
+        @toast-update="$emit('toast-update', $event)"
+      />
     </div>
   </div>
 </template>

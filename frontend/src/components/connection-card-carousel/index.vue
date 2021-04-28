@@ -9,7 +9,7 @@
         :class="{'movingRight': movingRight, 'movingLeft': movingLeft}"
         :connection="connection"
         :key="connection.id"
-        @delete-click="removeConnection(connection)"
+        @delete-click="$emit('delete-click', connection)"
       />
     </div>
     <font-awesome-icon :icon="['fas','arrow-alt-circle-right']" class="arrow-icon" @click="goRight"/>

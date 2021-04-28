@@ -27,6 +27,12 @@ export default {
     },
     handleUserModalButton() {
       this.$router.push({ name: 'Projects' })
+    },
+    updateProjects(project) {
+      this.projects = this.projects.map(p => {
+        if (p.id == project.id) return project
+        else return p
+      })
     }
   }
 }

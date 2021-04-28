@@ -32,7 +32,7 @@
         <div class="info members">
           <h4>Members</h4>
           <font-awesome-icon :icon="['fas','users']" class="icon"></font-awesome-icon>
-          <h2 class="info-total">{{project.team_member_ids.length}}</h2>
+          <h2 class="info-total">{{project.team_member_ids.length + 1}}</h2>
         </div>
       </div>
 

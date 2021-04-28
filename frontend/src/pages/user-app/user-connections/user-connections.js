@@ -43,7 +43,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['fetchUserById', 'updateUser']),
+    ...mapActions(['fetchUserById', 'updateUser', 'fetchToast']),
     ...mapMutations(['updateLoggedInUser']),
     closeModal() {
       this.isUserModalOpen = false
@@ -57,6 +57,46 @@ export default {
     },
     handleUserModalButton() {
       this.$router.push({name: 'Devs'})
+    },
+    async removeConnection(connectionToRemove) {
+      let user = await this.getLoggedInUser
+      let updates, toast, message
+
+      let loggedInUserId = user.id
+      let connectionId = connectionToRemove.id
+
+      let newLoggedInUserConnections = this.connections.map((connection) => connection.id).filter(c_id => c_id != connectionToRemove.id)
+      let newConnectionToRemoveConnections = this.connections.map((connection) => connection.id).filter(connectionId => connectionId != connectionToRemove.id)
+
+      updates = { connections: JSON.stringify(newLoggedInUserConnections) }
+      let user1Response = await this.updateUser({ id: loggedInUserId, updates })
+
+      updates = { connections: JSON.stringify(newConnectionToRemoveConnections) }
+      let user2Response = await this.updateUser({ id: connectionId, updates })
+
+      if (user1Response && user2Response && user) {
+        message = [
+          { text: 'You have successfully removed', emphasis: false },
+          { text: connectionToRemove.firstname + " " + connectionToRemove.lastname, emphasis: true },
+          { text: 'from your connections', emphasis: false }
+        ]
+        toast = await this.fetchToast({ type: 'success', message });
+
+        this.connections = this.connections.filter(connection => connection.id != connectionToRemove.id)
+        user.connections = newLoggedInUserConnections
+        this.updateLoggedInUser(user)
+      } else {
+        message = [
+          { text: 'You have', emphasis: false },
+          { text: 'unsuccessfully', emphasis: true },
+          { text: 'removed', emphasis: false },
+          { text: connectionToRemove.firstname + " " + connectionToRemove.lastname, emphasis: true },
+          { text: 'from your connections', emphasis: false }
+        ]
+        toast = await this.fetchToast({ type: 'error', message });
+      }
+
+      this.toast = toast
     },
     toggleAllCollapsed() {
       this.allCollapsed = !this.allCollapsed;
