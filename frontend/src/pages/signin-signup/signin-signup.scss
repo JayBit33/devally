@@ -36,6 +36,10 @@
           padding-left: 1rem;
           color: $secondary;
           text-decoration: underline;
+
+          &:hover {
+            cursor: pointer;
+          }
         }
       }
       form {
@@ -54,12 +58,17 @@
         }
         .input {
           font-family: 'Open Sans';
+          font-size: .875rem;
           width: 24rem;
           border: 1px solid $light-grey;
           border-radius: .5rem;
-          padding: 1rem;
+          padding: .875rem;
           margin-bottom: 0rem;
 
+          &:focus {
+            outline: none;
+            border: 1px solid $button-primary;
+          }
         }
         #forgot_pw {
           font-family: 'Open Sans';
@@ -75,6 +84,7 @@
           flex-direction: row;
           align-items: baseline;
           margin-top: .5rem;
+
           #checkbox {
           }
           p {
@@ -219,6 +229,11 @@
           padding: .75rem;
           margin-top: .5rem;
           margin-bottom: 2rem;
+
+          &:focus {
+            outline: none;
+            border: 1px solid $button-primary;
+          }
         }
         .login, .signup {
           font-family: 'Open Sans';

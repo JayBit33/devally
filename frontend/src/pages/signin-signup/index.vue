@@ -43,7 +43,7 @@
         <div class="account-options">
           <div class="account-options_visionary" :class="{'active': visionaryAccount}" @click="selectVisAccountType">
             <h3>visionary account</h3>
-            <p> You have ideas and want to find technical co-founders</p>
+            <p> You have an idea and want to find technical co-founders or developers for hire.</p>
           </div>
           <div class="account-options_developer" :class="{'active': developerAccount}" @click="selectDevAccountType">
             <h3>developer account</h3>

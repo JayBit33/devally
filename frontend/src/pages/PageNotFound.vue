@@ -3,7 +3,7 @@
 <template>
   <div class="page-not-found">
     <img src="../assets/404_Avatar.png" class="avatar" />
-    <h2>Your in the wilderness all alone!</h2><h2> Don't worry, we will get you back to safety</h2>
+    <h2>You're in the wilderness all alone!</h2><h2> Don't worry, we will get you back to safety</h2>
     <router-link to="/" class="link"><button>Go Home</button></router-link>
   </div>
 </template>
