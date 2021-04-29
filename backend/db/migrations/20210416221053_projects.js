@@ -6,6 +6,7 @@ exports.up = function(knex) {
     table.increments('id').primary();
     table.bigInteger('creator_id').unsigned().references('id').inTable('users').onDelete('CASCADE') // foreign key links creater by user id
     table.json('team_member_ids').nullable(); // must use JSON.stringify(arraydata) when setting value
+    table.json('members_needed').nullable(); // must use JSON.stringify(arraydata) when setting value
     table.string('name');
     table.string('category');
     table.string('description');

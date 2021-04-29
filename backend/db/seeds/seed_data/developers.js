@@ -1,7 +1,7 @@
 // (c) Waveybits Inc. <2021>
 // ALL RIGHTS RESERVED
 
-const roles = ['Frontend', 'Backend', 'Graphic Designer', 'UX/UI', 'Devops', 'Project Manager'];
+const roles = ['Frontend', 'Backend', 'Graphic Designer', 'UX/UI', 'Devops', 'Project Manager', 'Dev Agency'];
 const categories = ['Website', 'Mobile App', 'Ecommerce', 'SAAS'];
 const skills = ['JavaScript', 'React', 'VueJs', 'Android Developement', 'Photoshop', 'Zeplin', 'Python']
 const hiring_options = ['Shares', 'Flat Rate'];

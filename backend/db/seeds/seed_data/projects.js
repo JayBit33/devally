@@ -2,14 +2,16 @@
 // ALL RIGHTS RESERVED
 
 const hiring_options = ['Shares', 'Flat Rate'];
-const categories = ['Website', 'Mobile App', 'Ecommerce', 'SAAS'];
+const categories = ['Website', 'Mobile App', 'Ecommerce', 'SAAS', 'Other'];
 const regions = ['US','South America','Africa','Asia','Europe'];
 const funding_types = ['Bootstrapped', 'Venture Capital', 'Crowdfunding', 'Friends & Family', 'Debt Capital']
+const members_needed = ['Frontend', 'Backend', 'Graphic Designer', 'UX/UI', 'Devops', 'Project Manager', 'Dev Agency']
 
 module.exports = [
   {
     creator_id: 1,
     team_member_ids: JSON.stringify([2,4,6]),
+    members_needed: JSON.stringify([members_needed[6]]),
     name: 'StrayCat Saver',
     category: categories[0],
     description: 'Helps find homes for stray cats',
@@ -23,6 +25,7 @@ module.exports = [
   {
     creator_id: 3,
     team_member_ids: JSON.stringify([12,5,7]),
+    members_needed: JSON.stringify([members_needed[0], members_needed[1]]),
     name: 'Cash App',
     category: categories[1],
     description: 'Send money to anyone anywhere anytime.',
@@ -36,6 +39,7 @@ module.exports = [
   {
     creator_id: 5,
     team_member_ids: JSON.stringify([11,8,1]),
+    members_needed: JSON.stringify([members_needed[0], members_needed[1]]),
     name: 'Task Manager',
     category: categories[3],
     description: 'Collaborate with team by assigning tasks to each member and tracking progress.',
@@ -50,6 +54,7 @@ module.exports = [
   {
     creator_id: 6,
     team_member_ids: JSON.stringify([9,10,13]),
+    members_needed: JSON.stringify([members_needed[0], members_needed[1]]),
     name: 'Get It Now',
     category: categories[2],
     description: 'Buy any product and have it at your door tomorrow',
@@ -63,6 +68,7 @@ module.exports = [
   {
     creator_id: 16,
     team_member_ids: JSON.stringify([15,1,13]),
+    members_needed: JSON.stringify([members_needed[0], members_needed[1]]),
     name: 'MediaTree',
     category: categories[0],
     description: 'Find all your favorite movies, music and entertainment in one place.',
