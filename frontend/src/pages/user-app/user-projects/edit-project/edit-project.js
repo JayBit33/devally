@@ -71,6 +71,7 @@ export default {
     this.allFundingTypes = funding_types
 
     this.project = await this.fetchProjectById(this.projectId)
+    if (this.project.creator_id != this.getLoggedInUser.id) this.$router.push(`/profile/${this.getLoggedInUser.id}/projects`)
     this.setFields()
 
     this.connections = await Promise.all(this.getLoggedInUser.connections.map(async id => {
