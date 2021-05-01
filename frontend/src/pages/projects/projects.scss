@@ -7,7 +7,8 @@
   justify-content: center;
   grid-column-gap: 2rem;
   background-color: #3c7cbb;
-  padding: 3rem;
+  padding: 0 8%;
+  // margin-left: 5%;
 
   .filters {
     height: max-content;
@@ -18,6 +19,7 @@
     padding: .75rem;
     padding-bottom: 1rem;
     background-color: white;
+    border: 1px solid lightgrey;
     h2 {
       font-family: 'Open Sans';
       font-size: 1.125rem;
@@ -31,6 +33,8 @@
     }
 
     .search {
+      padding-left: .5rem;
+
       input {
         width: 60%;
         border: 1px solid lightgrey;
@@ -60,7 +64,10 @@
     }
     .payment-types {
       font-family: 'Open Sans';
+      font-size: .875rem;
+      font-weight: 300;
       margin-top: 2rem;
+      padding-left: .5rem;
       input {
         margin-bottom: 1rem;
       }
@@ -70,6 +77,9 @@
     }
     .categories {
       font-family: 'Open Sans';
+      font-size: .875rem;
+      font-weight: 300;
+      padding-left: .5rem;
       input {
         margin-bottom: 1rem;
       }
@@ -96,6 +106,8 @@
       margin-top: 1rem;
       label {
         font-family: 'Open Sans';
+        font-size: .875rem;
+        font-weight: 300;
         padding-left: .25rem;
       }
     }
@@ -125,3 +137,14 @@
     }
   }
 }
+
+// .breadcrumbs {
+//   background-color: #3c7cbb;
+//   color: white;
+//   margin-left: 0;
+
+//   padding: 1rem 11rem;
+//   h4 .crumb {
+//     color: white !important;
+//   }
+// }
