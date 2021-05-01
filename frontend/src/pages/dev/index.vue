@@ -52,6 +52,7 @@
         <img class="user_profile_identity-image" v-if="user && user.profile_image" :src="getImage(user.profile_image, true)" />
         <h2 class="user_profile_identity-name">{{user.firstname}} {{user.lastname}}</h2>
         <h2 class="user_profile_identity-type">{{user.user_type_id == '1' ? 'Developer & Visionary' : 'Visionary'}}</h2>
+        <font-awesome-icon v-if="user.dev_github_link" class="user_profile_identity-github" :icon="['fab', 'github']" @click="openLink(user.dev_github_link)" />
       </div>
 
       <div class="user_profile_buttons" :class="{'disabled-buttons': !isLoggedIn}">
@@ -85,7 +86,7 @@
         </div>
       </div>
 
-      <div class="user_profile_portfolio" @click="portfolioRedirect">
+      <div v-if="user.dev_portfolio_link" class="user_profile_portfolio" @click="openLink(user.dev_portfolio_link)">
         <h4>View my portfolio</h4>
         <div class="arrow">
           <font-awesome-icon :icon="['fas', 'arrow-right']" />

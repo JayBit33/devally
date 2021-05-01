@@ -20,6 +20,8 @@ export default {
       selectedRoles: [],
       selectedHiringOptions: [],
       bio: "",
+      githubLink: '',
+      portfolioLink: '',
       user: {},
       isDevUser: false
     }
@@ -34,6 +36,8 @@ export default {
     this.selectedRoles = this.user.dev_roles
     this.selectedHiringOptions = this.user.hiring_options
     this.bio = this.user.bio
+    this.githubLink = this.user.dev_github_link
+    this.portfolioLink = this.user.dev_portfolio_link
 
     const res = await this.getDevOptions()
     this.allCategories = res.categories
@@ -46,7 +50,7 @@ export default {
   },
   methods: {
     ...mapMutations(['updateLoggedInUser']),
-    ...mapActions(['updateUser', 'fetchUserById', 'getDevOptions', 'updateUserProfileImg']),
+    ...mapActions(['updateUser', 'fetchUserById', 'getDevOptions', 'updateUserProfileImg', 'fetchToast']),
     changeAccountType(type) {
       this.isDevUser = (type === 'developer')
     },
@@ -79,7 +83,9 @@ export default {
           dev_categories: JSON.stringify(this.selectedCategories),
           dev_roles: JSON.stringify(this.selectedRoles),
           hiring_options: JSON.stringify(this.selectedHiringOptions),
-          dev_bio: this.bio
+          dev_bio: this.bio,
+          dev_github_link: this.githubLink,
+          dev_portfolio_link: this.portfolioLink
         }
         devResponse = await this.updateUser({ id, updates, table: 'developers'})
       } else {
@@ -95,15 +101,6 @@ export default {
         profileResponse = await this.updateProfileImage()
       }
 
-      let toast = {
-        type: '',
-        message: [{ text: '', emphasis: false }],
-        hasAction: false,
-        actionRedirect: '',
-        isShown: false,
-        duration: 0
-      }
-
       let successfullUserResponses = false
       if (this.isDevUser) {
         if (devResponse) successfullUserResponses = true
@@ -112,16 +109,15 @@ export default {
         if (visionaryResponse) successfullUserResponses = true
         else successfullUserResponses = false
       }
-      
+      let message, toast
       if (successfullUserResponses && bioResponse && profileResponse) {
-        toast.message = [{ text: 'You have', emphasis: false }, { text: 'successfully', emphasis: true }, { text: 'updated your profile', emphasis: false }],
-        toast.type = 'success'
+        message = [{ text: 'You have', emphasis: false }, { text: 'successfully', emphasis: true }, { text: 'updated your profile', emphasis: false }],
+        toast = await this.fetchToast({type: 'success', message})
       } else {
-        toast.message = [{ text: 'You have', emphasis: false }, { text: 'unsuccessfully', emphasis: true }, { text: 'updated your profile', emphasis: false }]
-        toast.type = 'error'
+        message = [{ text: 'You have', emphasis: false }, { text: 'unsuccessfully', emphasis: true }, { text: 'updated your profile', emphasis: false }]
+        toast = await this.fetchToast({type: 'error', message})
       }
-      toast.duration = 5000
-      toast.isShown = true
+
       this.selectedFile = null
       this.$emit('toast-update', toast)
 

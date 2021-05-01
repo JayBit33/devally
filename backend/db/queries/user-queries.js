@@ -10,18 +10,18 @@ module.exports = {
     if (param.username) {
       query.where('username', 'like', `%${param.username}%`)
       .leftJoin('developers', 'users.id', 'developers.user_id')
-      .select(['users.id','users.username','users.email','users.password', 'users.firstname','users.lastname', 'users.bio', 'users.visionary_categories','users.ratings','users.profile_image', 'users.user_type_id', 'users.connections', 'users.notifications', 'users.notification_settings','users.subscription_settings','users.token_version',  'developers.dev_roles', 'developers.dev_categories', 'developers.dev_skills', 'developers.hiring_options', 'developers.portfolio', 'developers.dev_bio'])
+      .select(['users.id','users.username','users.email','users.password', 'users.firstname','users.lastname', 'users.bio', 'users.visionary_categories','users.ratings','users.profile_image', 'users.user_type_id', 'users.connections', 'users.notifications', 'users.notification_settings','users.subscription_settings','users.token_version',  'developers.dev_roles', 'developers.dev_categories', 'developers.dev_skills', 'developers.hiring_options', 'developers.dev_bio', 'developers.dev_portfolio_link', 'developers.dev_github_link'])
       .first();
     }
     if (param.rating) {
       query.where('rating', param.rating)
       .leftJoin('developers', 'users.id', 'developers.user_id')
-      .select(['users.id','users.username','users.email','users.password', 'users.firstname','users.lastname', 'users.bio', 'users.visionary_categories','users.ratings','users.profile_image', 'users.user_type_id', 'users.connections', 'users.notifications', 'users.notification_settings','users.subscription_settings','users.token_version',  'developers.dev_roles', 'developers.dev_categories', 'developers.dev_skills', 'developers.hiring_options', 'developers.portfolio', 'developers.dev_bio'])
+      .select(['users.id','users.username','users.email','users.password', 'users.firstname','users.lastname', 'users.bio', 'users.visionary_categories','users.ratings','users.profile_image', 'users.user_type_id', 'users.connections', 'users.notifications', 'users.notification_settings','users.subscription_settings','users.token_version',  'developers.dev_roles', 'developers.dev_categories', 'developers.dev_skills', 'developers.hiring_options', 'developers.dev_bio', 'developers.dev_portfolio_link', 'developers.dev_github_link'])
     }
     if (param.email) {
       query.where('email', param.email)
       .leftJoin('developers', 'users.id', 'developers.user_id')
-      .select(['users.id','users.username','users.email','users.password', 'users.firstname','users.lastname', 'users.bio', 'users.visionary_categories','users.ratings','users.profile_image', 'users.user_type_id', 'users.connections', 'users.notifications', 'users.notification_settings','users.subscription_settings','users.token_version',  'developers.dev_roles', 'developers.dev_categories', 'developers.dev_skills', 'developers.hiring_options', 'developers.portfolio', 'developers.dev_bio'])
+      .select(['users.id','users.username','users.email','users.password', 'users.firstname','users.lastname', 'users.bio', 'users.visionary_categories','users.ratings','users.profile_image', 'users.user_type_id', 'users.connections', 'users.notifications', 'users.notification_settings','users.subscription_settings','users.token_version',  'developers.dev_roles', 'developers.dev_categories', 'developers.dev_skills', 'developers.hiring_options', 'developers.dev_bio', 'developers.dev_portfolio_link', 'developers.dev_github_link'])
       .first();
     }
     return query;
@@ -30,14 +30,14 @@ module.exports = {
     return knex('users')
           .where('users.id', id)
           .leftJoin('developers', 'users.id', 'developers.user_id')
-          .select(['users.id', 'users.username', 'users.email', 'users.password','users.firstname','users.lastname', 'users.bio', 'users.visionary_categories','users.ratings','users.profile_image', 'users.user_type_id', 'users.connections', 'users.notifications', 'users.notification_settings','users.subscription_settings','users.token_version',  'developers.dev_roles', 'developers.dev_categories', 'developers.dev_skills', 'developers.hiring_options', 'developers.portfolio', 'developers.dev_bio'])
+          .select(['users.id', 'users.username', 'users.email', 'users.password','users.firstname','users.lastname', 'users.bio', 'users.visionary_categories','users.ratings','users.profile_image', 'users.user_type_id', 'users.connections', 'users.notifications', 'users.notification_settings','users.subscription_settings','users.token_version',  'developers.dev_roles', 'developers.dev_categories', 'developers.dev_skills', 'developers.hiring_options', 'developers.dev_bio', 'developers.dev_portfolio_link', 'developers.dev_github_link'])
           .first();
   },
   getDevUsers() {
     return knex('users')
             .where('user_type_id', 1)
             .join('developers', 'users.id', '=', 'developers.user_id')
-            .select(['users.id','users.username','users.email','users.password','users.firstname','users.lastname', 'users.bio', 'users.visionary_categories','users.ratings','users.profile_image', 'users.user_type_id', 'users.connections', 'users.notifications',  'users.notification_settings','users.subscription_settings','users.token_version', 'developers.dev_roles', 'developers.dev_categories', 'developers.dev_skills', 'developers.hiring_options', 'developers.portfolio', 'developers.dev_bio'])
+            .select(['users.id','users.username','users.email','users.password','users.firstname','users.lastname', 'users.bio', 'users.visionary_categories','users.ratings','users.profile_image', 'users.user_type_id', 'users.connections', 'users.notifications',  'users.notification_settings','users.subscription_settings','users.token_version', 'developers.dev_roles', 'developers.dev_categories', 'developers.dev_skills', 'developers.hiring_options', 'developers.dev_bio', 'developers.dev_portfolio_link', 'developers.dev_github_link'])
   },
   getVisionaryUsers() {
     return knex('users')

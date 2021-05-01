@@ -154,6 +154,17 @@
         font-size: 1rem;
         color: $devs-page-grey;
       }
+      &-github {
+        margin: 1rem 0 0 0;
+        font-size: 2rem;
+        cursor: pointer;
+        color: $btn-default;
+        transition: .3s;
+
+        &:hover {
+          color: $btn-light;
+        }
+      }
     }
 
     &_buttons {

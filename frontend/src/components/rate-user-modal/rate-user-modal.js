@@ -61,7 +61,7 @@ export default {
           message = [
             { text: 'You have', emphasis: false },
             { text: 'successfully', emphasis: true },
-            { text: 'rating', emphasis: false },
+            { text: 'rated', emphasis: false },
             { text: this.user.firstname + " " + this.user.lastname, emphasis: true }
           ]
           toast = await this.fetchToast({ type: 'success', message });
@@ -70,7 +70,7 @@ export default {
         message = [
           { text: 'You have', emphasis: false },
           { text: 'unsuccessfully', emphasis: true },
-          { text: 'rating', emphasis: false },
+          { text: 'rated', emphasis: false },
           { text: this.user.firstname + " " + this.user.lastname, emphasis: true }
         ]
         toast = await this.fetchToast({ type: 'error', message });

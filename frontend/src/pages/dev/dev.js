@@ -142,6 +142,10 @@ export default {
     inviteToProject() {
       // TODO
     },
+    openLink(link) {
+      if (link.includes('http')) window.open(link, "_blank");
+      else window.open("http://" + link, "_blank");
+    },
     openMessageBox() {
       this.toggleMessageBox();
       if (this.messageBoxOpen) {
@@ -149,9 +153,6 @@ export default {
           document.querySelector('.message-box_textarea').focus();
         }, 1000);
       }
-    },
-    portfolioRedirect() {
-      // TODO
     },
     rateUser() {
       this.toggleActions()

@@ -16,6 +16,8 @@ import { fas } from '@fortawesome/free-solid-svg-icons'
 library.add(fas)
 import { far } from '@fortawesome/free-regular-svg-icons'
 library.add(far)
+import { fab } from '@fortawesome/free-brands-svg-icons'
+library.add(fab)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.config.productionTip = false

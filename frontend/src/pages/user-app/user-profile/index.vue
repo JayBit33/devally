@@ -54,6 +54,14 @@
           >
           </dropdown>
         </div>
+        <div v-if="isDevUser" class="github-link">
+          <h4>Github Link</h4>
+          <input v-model="githubLink" />
+        </div>
+        <div v-if="isDevUser" class="portfolio-link">
+          <h4>Portfolio Link</h4>
+          <input v-model="portfolioLink" />
+        </div>
 
         <div class="bio">
           <h4>Bio</h4>
