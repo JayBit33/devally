@@ -163,10 +163,13 @@ export default {
       this.toggleReportUser()
       document.querySelector('html').style.overflowY = 'hidden'
     },
-    toggleRateUser() {
+    async toggleRateUser() {
       this.isRateAction = !this.isRateAction
       if (!(this.isRateAction)) {
         document.querySelector('html').style.overflowY = 'scroll'
+        await this.fetchDevUsers()
+        this.user = this.getDevUser(this.$route.params.id)
+        this.rating = await this.computeRating(this.user.ratings)
       }
     },
     toggleReportUser() {

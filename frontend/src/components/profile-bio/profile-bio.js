@@ -35,5 +35,10 @@ export default {
         return require(`@/assets/${imageName}`)
       }
     }
+  },
+  watch: {
+    async user() {
+      this.rating = await this.computeRating(this.user.ratings)
+    }
   }
 };
