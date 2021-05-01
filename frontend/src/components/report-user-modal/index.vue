@@ -1,6 +1,8 @@
+<!-- (c) Waveybits Inc. <2021> -->
+<!-- ALL RIGHTS RESERVED -->
 <template>
   <div class="report-user-modal" ref="report_user_modal">
-    
+
     <div class="report-user-modal_close" @click="$emit('report-modal-close')">
       <font-awesome-icon :icon="['fas', 'times']" />
     </div>

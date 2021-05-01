@@ -1,3 +1,5 @@
+// (c) Waveybits Inc. <2021>
+// ALL RIGHTS RESERVED
 import ProjectGeneralInfo from '@/components/project-general-info'
 
 export default {

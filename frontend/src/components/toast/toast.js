@@ -1,3 +1,6 @@
+// (c) Waveybits Inc. <2021>
+// ALL RIGHTS RESERVED
+
 export default {
   name: 'toast',
   props: ['type', 'hasAction', 'message', 'duration'],

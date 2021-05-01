@@ -1,3 +1,5 @@
+<!-- (c) Waveybits Inc. <2021> -->
+<!-- ALL RIGHTS RESERVED -->
 <template>
   <div class="toast-container">
     <div class="toast" :class="type">

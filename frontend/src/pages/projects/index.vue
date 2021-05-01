@@ -1,7 +1,11 @@
 <!-- (c) Waveybits Inc. <2021> -->
 <!-- ALL RIGHTS RESERVED -->
 <template>
-  <h1>Projects</h1>
+  <div class="projects">
+    <div v-for="project in projects" :key="project.id" >
+      <project-card  :project="project" ></project-card>
+    </div>
+  </div>
 </template>
 
 <script src="./projects.js"></script>

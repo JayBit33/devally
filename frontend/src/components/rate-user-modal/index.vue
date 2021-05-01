@@ -1,6 +1,8 @@
+<!-- (c) Waveybits Inc. <2021> -->
+<!-- ALL RIGHTS RESERVED -->
 <template>
   <div class="rate-user-modal" ref="rate_user_modal">
-    
+
     <div class="rate-user-modal_close" @click="$emit('rate-modal-close')">
       <font-awesome-icon :icon="['fas', 'times']" />
     </div>

@@ -1,3 +1,5 @@
+<!-- (c) Waveybits Inc. <2021> -->
+<!-- ALL RIGHTS RESERVED -->
 <template>
   <div class="user-modal" :style="styles ? {'background-color': styles.backgroundColor, 'color': styles.color} : {}">
 

@@ -1,3 +1,5 @@
+<!-- (c) Waveybits Inc. <2021> -->
+<!-- ALL RIGHTS RESERVED -->
 <template>
   <div class="notification">
     <div class="notification_background-overlay" :style="{'background-image': `url(${getImage('bg1.jpg')})`}"></div>

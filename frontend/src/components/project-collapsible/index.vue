@@ -1,3 +1,5 @@
+<!-- (c) Waveybits Inc. <2021> -->
+<!-- ALL RIGHTS RESERVED -->
 <template>
   <div class="project-collapsible">
     <div class="project-collapsible_header" @click="toggleCollapsed">

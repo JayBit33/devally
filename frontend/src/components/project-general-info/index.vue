@@ -1,3 +1,5 @@
+<!-- (c) Waveybits Inc. <2021> -->
+<!-- ALL RIGHTS RESERVED -->
 <template>
   <div class="project-general-info">
     <h2>General Information</h2>

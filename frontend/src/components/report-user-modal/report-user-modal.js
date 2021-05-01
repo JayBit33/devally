@@ -1,3 +1,6 @@
+// (c) Waveybits Inc. <2021>
+// ALL RIGHTS RESERVED
+
 import Dropdown from '@/components/dropdown';
 import { mapActions } from 'vuex';
 

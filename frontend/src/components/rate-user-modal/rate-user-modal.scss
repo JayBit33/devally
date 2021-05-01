@@ -1,3 +1,6 @@
+// (c) Waveybits Inc. <2021>
+// ALL RIGHTS RESERVED
+
 .rate-user-modal {
   position: absolute;
   top: 50%;
@@ -57,11 +60,11 @@
           color: $btn-default;
         }
       }
-      
+
       &:hover {
         color: $btn-default;
       }
-      
+
       &-s {
         font-size: 1.5rem;
       }
@@ -71,8 +74,8 @@
       &-b {
         font-size: 3rem;
       }
-      
-      
+
+
     }
   }
 
@@ -95,7 +98,7 @@
       transition: .3s;
 
     }
-    
+
     .report-button-send {
       background-color: $btn-default;
       &:hover {

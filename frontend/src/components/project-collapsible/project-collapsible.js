@@ -1,3 +1,5 @@
+// (c) Waveybits Inc. <2021>
+// ALL RIGHTS RESERVED
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import ProjectGeneralInfo from '@/components/project-general-info'
 import ConnectionCardCarousel from '@/components/connection-card-carousel'
@@ -44,7 +46,7 @@ export default {
         if (!(hasOneMember)) {
           newCreatorId = this.project.team_member_ids[0]
           newTeamMemberIds = JSON.stringify(this.project.team_member_ids.filter((_, i) => i > 0))
-  
+
           project = await this.updateProjectById({ id: this.project.id, project: { creator_id: newCreatorId, team_member_ids: newTeamMemberIds } })
         }
       }

@@ -14,6 +14,7 @@ exports.up = function(knex) {
     table.boolean('is_active').defaultTo(true);
     table.boolean('is_featured');
     table.boolean('is_seeking_allys').defaultTo(true);
+    table.json('tasks').nullable(); // must use JSON.stringify(arraydata) when setting value
     table.json('hiring_options') // must use JSON.stringify(arraydata) when setting value
     table.json('viewable_regions'); // must use JSON.stringify(arraydata) when setting value
     table.json('funding_types'); // must use JSON.stringify(arraydata) when setting value
