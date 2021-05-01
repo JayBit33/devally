@@ -3,7 +3,7 @@
 
 import ProjectCollapsible from '@/components/project-collapsible';
 import UserModal from '@/components/user-modal';
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
   name: 'UserProjects',
@@ -18,10 +18,13 @@ export default {
     }
   },
   async created() {
-    this.projects = await this.fetchProjects()
+    this.projects = await Promise.all(this.getLoggedInUser.project_ids.map(async id => await this.fetchProjectById(id)))
+  },
+  computed: {
+    ...mapGetters(['getLoggedInUser'])
   },
   methods: {
-    ...mapActions(['fetchProjects']),
+    ...mapActions(['fetchProjects', 'fetchProjectById']),
     closeModal() {
       this.isUserModalOpen = false
     },

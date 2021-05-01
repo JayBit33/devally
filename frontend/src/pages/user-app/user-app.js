@@ -125,17 +125,11 @@ export default {
         image_source: imgSrc
       }
     }))
-
-    this.projects = await this.fetchProjects();
-    this.projects = this.projects.map(project => {
-      return {
-        ...project,
-        tasks_completed: this.user.tasks.filter(task => task.projectId === project.id).length
-      }
-    })
+    
+    this.projects = await Promise.all(this.user.project_ids.map(async id => await this.fetchProjectById(id)))
   },
   methods: {
-    ...mapActions(['logout', 'retrieveRefreshToken', 'fetchDevUsers', 'fetchUserById', 'fetchMessages', 'fetchProjects', 'updateUser']),
+    ...mapActions(['logout', 'retrieveRefreshToken', 'fetchDevUsers', 'fetchUserById', 'fetchMessages', 'fetchProjects', 'fetchProjectById', 'updateUser']),
     ...mapMutations(['updateIsLoggedIn']),
     closeToast() {
       this.toast.isShown = false
