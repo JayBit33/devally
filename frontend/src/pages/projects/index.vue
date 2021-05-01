@@ -34,10 +34,11 @@
         <input placeholder="roles" />
         <input placeholder="skills" />
       </div>
-      <div class="radios">
-        <input type="radio" />
-        <label>projects seeking allys</label><br>
-        <input type="radio" />
+      <div class="other">
+        <h3>Other</h3>
+        <input type="checkbox" />
+        <label>projects seeking allys</label><br><br>
+        <input type="checkbox" />
         <label>mathcing your skills</label>
       </div>
       <div class="actions">

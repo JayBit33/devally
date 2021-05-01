@@ -68,6 +68,14 @@
       font-size: .75rem;
       border-radius: .25rem;
       margin-left: .75rem;
+
+      &:focus, &:hover {
+        cursor: pointer;
+        outline: none;
+        border: none;
+        background-color: darken($account-type-bg-active, 20%);
+        transition: .3s;
+      }
     }
   }
 
@@ -80,8 +88,13 @@
     padding: .5rem;
     border: none;
     border-radius: .5rem;
-    // display: block;
-    // margin: 0 auto;
+    &:focus, &:hover {
+      cursor: pointer;
+      outline: none;
+      border: none;
+      background-color: darken($account-type-bg-active, 20%);
+      transition: .3s;
+    }
   }
 
   .learn_more {
