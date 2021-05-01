@@ -2,6 +2,110 @@
 // ALL RIGHTS RESERVED
 
 .projects {
-  background-color: #EBF0F5;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  justify-content: center;
+  grid-column-gap: 2rem;
+  background-color: #3c7cbb;
   padding: 3rem;
+
+  .filters {
+    height: max-content;
+    max-width: 18rem;
+    min-width: 18rem;
+    margin: 3.5rem;
+    margin-top: 5rem;
+    padding: .75rem;
+    padding-bottom: 1rem;
+    background-color: white;
+    h2 {
+      font-family: 'Open Sans';
+      font-size: 1.125rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: black;
+    }
+    h3 {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .search {
+      input {
+        width: 60%;
+        border: 1px solid lightgrey;
+        border-radius: .25rem;
+        padding: .5rem;
+        margin-top: 1rem;
+      }
+      button {
+        font-family: 'Open Sans';
+        font-size: .825rem;
+        font-weight: 700;
+        background-color: $account-type-bg-active;
+        color: white;
+        margin: 0 .5rem;
+        border: none;
+        border-radius: .25rem;
+        padding: .5rem 1rem;
+      }
+    }
+    .payment-types {
+      font-family: 'Open Sans';
+      margin-top: 2rem;
+      input {
+        margin-bottom: 1rem;
+      }
+      label {
+        padding-left: .5rem;
+      }
+    }
+    .categories {
+      font-family: 'Open Sans';
+      input {
+        margin-bottom: 1rem;
+      }
+      label {
+        padding-left: .5rem;
+      }
+    }
+    .dropdowns {
+      font-family: 'Open Sans';
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+      input {
+        width: 80%;
+        border: 1px solid lightgrey;
+        border-radius: .25rem;
+        padding: .5rem;
+        margin-top: 1rem;
+        margin-left: .75rem;
+      }
+
+    }
+    .radios {
+      padding-left: .5rem;
+      margin-top: 1rem;
+      label {
+        font-family: 'Open Sans';
+        padding-left: .25rem;
+      }
+    }
+    .actions {
+      display: flex;
+      justify-content: center;
+      margin-top: 3rem;
+      button {
+        font-family: 'Open Sans';
+        font-size: .875rem;
+        font-weight: 700;
+        background-color: $account-type-bg-active;
+        color: white;
+        margin: 0 .5rem;
+        border: none;
+        border-radius: .25rem;
+        padding: .5rem 1rem;;
+      }
+    }
+  }
 }

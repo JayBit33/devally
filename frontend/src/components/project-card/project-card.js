@@ -17,15 +17,20 @@ export default {
         return displayOptions
       }
     },
+    featured() {
+      return this.project.is_featured
+    },
     openPositions() {
-      let display = ""
-      this.project.members_needed.map((member,idx) => {
-        display += member
-        if (idx < this.project.members_needed.length-1) {
-          display += ',  '
+      return (position) => {
+        let display = ''
+        if (position.skills.length) {
+          position.skills.map((skill, idx) => {
+            display +=  skill
+            if (idx < position.skills.length-1) display += ',  '
+          })
         }
-      })
-      return display
+        return display
+      }
     }
   }
 }

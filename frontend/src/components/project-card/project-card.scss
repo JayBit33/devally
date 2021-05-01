@@ -10,22 +10,29 @@
   padding-right: 0;
   padding-top: 0;
   display: block;
-  margin: 7rem auto;
+  margin: 5rem 0;
 
   .featured {
-    width: 50%;
-    max-width: 500px;
-    min-width: 340px;
-    float: right;
-    margin-top: -80px;
+    width: 5%;
+    max-width: 225px;
+    min-width: 225px;
+    // float: right;
+    margin-top: -60px;
+    margin-right: 1rem;
+  }
+  .featured_name {
+    padding-top: 0;
   }
   h2 {
     padding-top: 2rem;
+    padding-left: .5rem;
   }
 
   .project-card_info {
     display: flex;
     flex-direction: column;
+    padding-left: .5rem;
+    padding-right: 1rem;
 
     div {
       display: flex;
@@ -43,18 +50,45 @@
         padding-right: 2rem;
       }
     }
+
+    #needed {
+      text-decoration: underline;
+      text-underline-offset: .125rem;
+      margin-bottom: 0;
+    }
+  }
+
+  .position {
+    p {
+      padding-left: 0 !important;
+    }
+
+    button {
+      display: inline-block;
+      font-size: .75rem;
+      border-radius: .25rem;
+      margin-left: .75rem;
+    }
   }
 
   button {
     font-family: 'Open Sans';
-    font-size: 1rem;
+    font-size: .875rem;
     font-weight: 700;
     background-color: $account-type-bg-active;
     color: white;
     padding: .5rem;
     border: none;
-    display: block;
-    margin: 0 auto;
+    border-radius: .5rem;
+    // display: block;
+    // margin: 0 auto;
+  }
+
+  .learn_more {
+    float: right;
+    margin-top: -1rem;
+    margin-right: 1rem;
+
   }
 
 }
