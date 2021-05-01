@@ -8,7 +8,7 @@
         <h2>{{project.name}}</h2>
       </div>
       <div class="project-collapsible_header_right">
-        <font-awesome-icon @click.stop="$emit('edit-project', project)" :icon="['fas','ellipsis-h']" class="icon ellipse-icon"></font-awesome-icon>
+        <font-awesome-icon v-if="isEditable" @click.stop="$emit('edit-project', project)" :icon="['fas','ellipsis-h']" class="icon ellipse-icon"></font-awesome-icon>
       </div>
     </div>
     <div v-if="!collapsed" class="project-collapsible_sections">

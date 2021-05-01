@@ -7,7 +7,7 @@ import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'project-collapsible',
-  props: ['project'],
+  props: ['project', 'isEditable'],
   components: {
     ConnectionCardCarousel,
     FontAwesomeIcon,

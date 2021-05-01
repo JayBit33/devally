@@ -24,6 +24,7 @@
         v-for="project in projects"
         :key="project.id"
         :project="project"
+        :isEditable="project.creator_id == getLoggedInUser.id"
         @edit-project="$emit('edit-project', $event)"
         @team-member-remove="updateProjects"
         @toast-update="$emit('toast-update', $event)"
