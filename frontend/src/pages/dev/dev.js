@@ -28,6 +28,7 @@ export default {
         'project.png',
         'project.png'
       ],
+      rating: 0,
       isReportAction: false,
       isRateAction: false,
       toast: {
@@ -73,9 +74,11 @@ export default {
       ]
       this.toast = await this.fetchToast({ type: 'info', message, hasAction: true, actionRedirect: '/signin'});
     }
+
+    this.rating = await this.computeRating(this.user.ratings)
   },
   methods: {
-    ...mapActions(['fetchDevUsers', 'updateUser', 'fetchToast', 'sendNotificationToUser']),
+    ...mapActions(['fetchDevUsers', 'updateUser', 'fetchToast', 'sendNotificationToUser', 'computeRating']),
     async addConnection() {
       let message
       

@@ -36,14 +36,14 @@
       <report-user-modal :user="user" @report-modal-close="toggleReportUser" />
     </div>
     <div v-if="isRateAction" class="user_rate">
-      <rate-user-modal :user="user" @rate-modal-close="toggleRateUser" />
+      <rate-user-modal :user="user" @rate-modal-close="toggleRateUser" @toast-update="toast = $event" />
     </div>
 
     <div class="user_profile">
 
       <div class="user_profile_stars">
         <div v-for="i in 5" :key="'star-' + i" class="star" :class="{'star-s': i == 1 || i == 5, 'star-m': i == 2 || i == 4, 'star-b': i == 3,}">
-          <font-awesome-icon v-if="user.rating >= i || user.dev_rating >= i" :icon="['fas', 'star']" />
+          <font-awesome-icon v-if="rating >= i" :icon="['fas', 'star']" />
           <font-awesome-icon v-else :icon="['far', 'star']" />
         </div>
       </div>

@@ -10,7 +10,7 @@
       <h3>{{ user.user_type_id === '1' ? 'Developer / Visionary' : 'Visionary' }}</h3>
       <div class="rating">
         <div class="icon" v-for="i in 5" :key="i">
-          <font-awesome-icon v-if="user.rating >= i || user.dev_rating >= i" :icon="['fas', 'star']" />
+          <font-awesome-icon v-if="rating >= i" :icon="['fas', 'star']" />
           <font-awesome-icon v-else :icon="['far', 'star']" />
         </div>
       </div>

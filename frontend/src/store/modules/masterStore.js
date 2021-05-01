@@ -60,6 +60,13 @@ Vue.use(Vuex)
                     }).catch(error => reject(error));
             })
         },
+        computeRating(_, ratings) {
+            if (ratings.length == 0) return 0
+            
+            let sum = 0
+            ratings.forEach(r => sum += r.rating)
+            return Math.round(sum / ratings.length)
+        },
         createProject({ getters }, project) {
             projectsAPI.defaults.headers.common['Authorization'] = `Bearer ${getters.getAccessToken}`;
             return new Promise((resolve, reject) => {

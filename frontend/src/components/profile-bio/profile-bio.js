@@ -2,17 +2,21 @@
 // ALL RIGHTS RESERVED
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { mapActions } from 'vuex';
 
 export default {
   name: "ProfileBio",
   props: ['user'],
   data() {
     return {
-
+      rating: 0
     };
   },
   components: {
     FontAwesomeIcon
+  },
+  async created() {
+    this.rating = await this.computeRating(this.user.ratings)
   },
   computed: {
     accountType() {
@@ -23,6 +27,7 @@ export default {
     },
   },
   methods: {
+    ...mapActions(['computeRating']),
     getImage(imageName, fromBE = false) {
       if (fromBE) {
         return `http://localhost:3000/${imageName}`;
