@@ -19,8 +19,8 @@
     </div>
 
     <div class="rate-user-modal_buttons">
-      <button class="report-button-send" @click="sendRate">Send Rating</button>
-      <button class="report-button-cancel" @click="$emit('rate-modal-close')">Cancel</button>
+      <button class="rate-button-send" @click="sendRate">Send Rating</button>
+      <button class="rate-button-cancel" @click="$emit('rate-modal-close')">Cancel</button>
     </div>
 
   </div>

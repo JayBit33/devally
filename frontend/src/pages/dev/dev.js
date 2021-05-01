@@ -4,6 +4,7 @@
 import MessageBox from '../../components/message-box';
 import RateUserModal from '@/components/rate-user-modal'
 import ReportUserModal from '@/components/report-user-modal'
+import InviteToProjectModal from '@/components/invite-to-project-modal'
 import Toast from '@/components/toast'
 // import COMETCHAT_CONSTANTS from '@/chat/constants.js';
 import { CometChat } from "@cometchat-pro/chat";
@@ -31,6 +32,8 @@ export default {
       rating: 0,
       isReportAction: false,
       isRateAction: false,
+      isInviteAction: false,
+      inviteProjects: [],
       toast: {
         type: '',
         message: [{ text: '', emphasis: false }],
@@ -46,6 +49,7 @@ export default {
     MessageBox,
     RateUserModal,
     ReportUserModal,
+    InviteToProjectModal,
     Toast
   },
   computed: {
@@ -78,7 +82,7 @@ export default {
     this.rating = await this.computeRating(this.user.ratings)
   },
   methods: {
-    ...mapActions(['fetchDevUsers', 'updateUser', 'fetchToast', 'sendNotificationToUser', 'computeRating']),
+    ...mapActions(['fetchDevUsers', 'updateUser', 'fetchToast', 'sendNotificationToUser', 'computeRating', 'fetchProjectById']),
     async addConnection() {
       let message
       
@@ -139,8 +143,22 @@ export default {
       );
         this.toggleMessageBox();
     },
-    inviteToProject() {
-      // TODO
+    async inviteToProject() {
+      this.toggleInviteUser()
+      document.querySelector('html').style.overflowY = 'hidden'
+
+      
+      if (this.getLoggedInUser.project_ids && this.getLoggedInUser.project_ids.length > 0) {
+        this.inviteProjects = await Promise.all(this.getLoggedInUser.project_ids.map(async id => await this.fetchProjectById(id)))
+      }
+
+      // Filter inviteProjects to only have ones with creator id as our logged in user
+      this.inviteProjects = this.inviteProjects.filter(p => p.creator_id == this.getLoggedInUser.id)
+
+      // Filter inviteProjects to only have projects where user to be invited isnt already a member
+
+
+      console.log(this.inviteProjects)
     },
     openLink(link) {
       if (link.includes('http')) window.open(link, "_blank");
@@ -164,6 +182,10 @@ export default {
       this.toggleReportUser()
       document.querySelector('html').style.overflowY = 'hidden'
     },
+    toggleInviteUser() {
+      this.isInviteAction = !this.isInviteAction
+      if (!(this.isInviteAction)) document.querySelector('html').style.overflowY = 'scroll'
+    },
     async toggleRateUser() {
       this.isRateAction = !this.isRateAction
       if (!(this.isRateAction)) {
@@ -175,9 +197,7 @@ export default {
     },
     toggleReportUser() {
       this.isReportAction = !this.isReportAction
-      if (!(this.isReportAction)) {
-        document.querySelector('html').style.overflowY = 'scroll'
-      }
+      if (!(this.isReportAction)) document.querySelector('html').style.overflowY = 'scroll'
     },
     toggleActions() {
       setTimeout(() => {

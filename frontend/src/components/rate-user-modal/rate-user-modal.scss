@@ -99,13 +99,13 @@
 
     }
 
-    .report-button-send {
+    .rate-button-send {
       background-color: $btn-default;
       &:hover {
         background-color: darken($btn-default, 10);
       }
     }
-    .report-button-cancel {
+    .rate-button-cancel {
       background-color: $btn-grey;
       &:hover {
         background-color: darken($btn-grey, 10);

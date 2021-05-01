@@ -56,6 +56,12 @@ export default {
             let acceptedNotification = { senderId: this.getLoggedInUser.id, projectId: this.notification.projectId, message: 'has joined', type: 'accepted' }
             await this.sendNotificationToUser({ id: this.notification.senderId, notification: acceptedNotification })
           }
+
+          // Check if user has project in there project_ids
+          if (!(this.getLoggedInUser.project_ids.includes(this.notification.projectId))) {
+            await this.updateUser({ id: this.getLoggedInUser.id, updates: { project_ids: JSON.stringify([...this.getLoggedInUser.project_ids, this.notification.projectId]) } })
+          }
+
         } else {
           // Update user and put users Id in connections
           let { connections: senderConnections } = await this.fetchUserById(this.notification.senderId)

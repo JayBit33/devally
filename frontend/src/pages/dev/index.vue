@@ -38,6 +38,9 @@
     <div v-if="isRateAction" class="user_rate">
       <rate-user-modal :user="user" @rate-modal-close="toggleRateUser" @toast-update="toast = $event" />
     </div>
+    <div v-if="isInviteAction" class="user_invite">
+      <invite-to-project-modal :user="user" :projects="inviteProjects" @modal-close="toggleInviteUser" @toast-update="toast = $event" />
+    </div>
 
     <div class="user_profile">
 

@@ -266,7 +266,8 @@ Vue.use(Vuex)
             })
             if (!(hasNotification)) {
               const res = await dispatch('updateUser', { id, updates: { notifications: JSON.stringify([notification, ...notifications]) } })
-              return {...res, success: true}
+              if (res) return {...res, success: true}
+              else return {...res, success: false}
             } else {
               return { message: 'user already has notification', success: false }
             }
