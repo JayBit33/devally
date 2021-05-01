@@ -154,8 +154,15 @@ export default {
 
       // Filter inviteProjects to only have ones with creator id as our logged in user
       this.inviteProjects = this.inviteProjects.filter(p => p.creator_id == this.getLoggedInUser.id)
-
+      
       // Filter inviteProjects to only have projects where user to be invited isnt already a member
+      this.inviteProjects = this.inviteProjects.filter(p => {
+        let notAlreadyInProject = true
+        p.team_member_ids.forEach(id => {
+          if (id == this.user.id) notAlreadyInProject = false
+        })
+        return notAlreadyInProject
+      })
 
 
       console.log(this.inviteProjects)

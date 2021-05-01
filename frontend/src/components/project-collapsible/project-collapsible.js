@@ -31,27 +31,26 @@ export default {
     this.teamMembers = [creator, ...this.teamMembers]
   },
   methods: {
-    ...mapActions(['fetchUserById', 'fetchToast', 'updateProjectById']),
+    ...mapActions(['fetchUserById', 'fetchToast', 'updateProjectById', 'updateUser']),
     async removeTeamMember(memberToRemove) {
-      let toast, message, newTeamMemberIds, newCreatorId, project, hasOneMember
+      let toast, message, newTeamMemberIds, newCreatorId, project, hasOneMember, user
 
       let isTeamMember = this.project.team_member_ids.includes(memberToRemove.id)
       if (isTeamMember) {
         newTeamMemberIds = JSON.stringify(this.project.team_member_ids.filter(t_id => t_id != memberToRemove.id))
-
         project = await this.updateProjectById({ id: this.project.id, project: { team_member_ids: newTeamMemberIds } })
+        user = await this.updateUser({ id: this.project.id, updates: { project_ids: JSON.stringify(memberToRemove.project_ids.filter(p => p.id == this.project.id)) } })
       } else {
         hasOneMember = this.project.team_member_ids.length == 0
 
         if (!(hasOneMember)) {
           newCreatorId = this.project.team_member_ids[0]
           newTeamMemberIds = JSON.stringify(this.project.team_member_ids.filter((_, i) => i > 0))
-
           project = await this.updateProjectById({ id: this.project.id, project: { creator_id: newCreatorId, team_member_ids: newTeamMemberIds } })
         }
       }
 
-      if (project) {
+      if (project && user) {
         message = [
           { text: 'You have successfully removed', emphasis: false },
           { text: memberToRemove.firstname + " " + memberToRemove.lastname, emphasis: true },
