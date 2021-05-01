@@ -1,10 +1,11 @@
 // (c) Waveybits Inc. <2021>
 // ALL RIGHTS RESERVED
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { mapGetters } from 'vuex';
 
 export default {
   name: "ConnectionCard",
-  props: ['connection', 'isMinimized', 'isChecked'],
+  props: ['connection', 'isMinimized', 'isChecked', 'hasDeleteIcon'],
   data() {
     return {
 
@@ -14,6 +15,7 @@ export default {
     FontAwesomeIcon,
   },
   computed: {
+    ...mapGetters(['getLoggedInUser']),
     accountType() {
       return this.connection.user_type_id === "1"
       ? 'developer | visionary'

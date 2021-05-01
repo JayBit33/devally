@@ -9,6 +9,7 @@
         :class="{'movingRight': movingRight, 'movingLeft': movingLeft}"
         :connection="connection"
         :key="connection.id"
+        :hasDeleteIcon="hasDeleteIcon"
         @delete-click="$emit('delete-click', connection)"
       />
     </div>

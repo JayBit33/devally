@@ -14,6 +14,10 @@ export default {
     numberOfCardsDisplayed: {
       type: Number,
       default: 5
+    },
+    hasDeleteIcon: {
+      type: Boolean,
+      default: true
     }
   },
   data() {
