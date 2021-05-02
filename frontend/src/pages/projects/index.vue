@@ -5,59 +5,59 @@
     <div class="filters">
       <h2>Filter Projects</h2>
       <div class="search">
-        <input type="text" v-model="searchTerm" class="search-box" placeholder="Search by name" />
-        <button class="search">Search</button>
+        <input type="text" v-model="filters.searchTerm" class="search-box" placeholder="Search by name" />
+        <button class="search" @click="searchByName">Search</button>
       </div>
       <div class="payment-types">
         <h3>Payment Types</h3>
-        <input type="checkbox" v-model="equity" />
+        <input type="checkbox" v-model="filters.equity" />
         <label>Equity (Shares)</label><br/>
-        <input type="checkbox" v-model="flatRate" />
+        <input type="checkbox" v-model="filters.flatRate" />
         <label>Flat Rate</label>
       </div>
       <div class="categories">
         <h3>Categories</h3>
-        <input type="checkbox" v-model="website" />
+        <input type="checkbox" v-model="filters.website" />
         <label>Website</label><br/>
-        <input type="checkbox" v-model="ecom" />
+        <input type="checkbox" v-model="filters.ecom" />
         <label>Ecommerce</label><br/>
-        <input type="checkbox" v-model="mobile" />
+        <input type="checkbox" v-model="filters.mobile" />
         <label>Mobile Application</label><br/>
-        <input type="checkbox" v-model="saas" />
+        <input type="checkbox" v-model="filters.saas" />
         <label>SAAS</label><br/>
-        <input type="checkbox" v-model="software" />
+        <input type="checkbox" v-model="filters.software" />
         <label>Software</label><br/>
-        <input type="checkbox" v-model="other" />
+        <input type="checkbox" v-model="filters.other" />
         <label>Other</label>
       </div>
       <div class="funding-types">
         <h3>Funding Types</h3>
-        <input type="checkbox" v-model="bootrapped" />
+        <input type="checkbox" v-model="filters.bootrapped" />
         <label>Bootsrapped</label><br/>
-        <input type="checkbox" v-model="crowdFunding" />
+        <input type="checkbox" v-model="filters.crowdFunding" />
         <label>Crowd Funding</label><br/>
-        <input type="checkbox" v-model="fandf" />
+        <input type="checkbox" v-model="filters.fandf" />
         <label>Friends & Family</label><br/>
-        <input type="checkbox" v-model="debtCapital" />
+        <input type="checkbox" v-model="filters.debtCapital" />
         <label>Debt Capital</label><br/>
-        <input type="checkbox" v-model="ventureCapital" />
+        <input type="checkbox" v-model="filters.ventureCapital" />
         <label>Venture Capital</label>
       </div>
       <div class="dropdowns">
         <h3>Developer Options</h3>
-        <input placeholder="roles" />
-        <input placeholder="skills" />
+        <input placeholder="roles" v-model="filters.roles" />
+        <input placeholder="skills" v-model="filters.skills" />
       </div>
       <div class="other">
         <h3>Other</h3>
-        <input type="checkbox" />
+        <input type="checkbox" v-model="filters.seekingAllys" />
         <label>seeking allys</label><br/><br/>
-        <input type="checkbox" />
+        <input type="checkbox" v-model="filters.matchingSkills" />
         <label>mathcing your skills</label>
       </div>
       <div class="actions">
-        <button>Apply</button>
-        <button>Clear</button>
+        <button @click="applyFilters">Apply</button>
+        <button @click="clearFilters">Reset</button>
       </div>
     </div>
     <div class="right-side">
@@ -79,10 +79,10 @@
         </el-pagination>
         <h4>1 - 25 out of 2048</h4>
       </div>
-      <div v-for="project in projects" :key="project.id" >
+      <div v-for="project in projectsShown" :key="project.id" >
         <project-card class="card" :project="project" ></project-card>
       </div>
-      <div class="pagination">
+      <div v-if="projectsShown.length > 0" class="pagination">
         <h4>Results per page</h4>
         <el-select class="dropdown" size="small" v-model="itemsPerPage" placeholder="25">
           <el-option label="25" value="25"></el-option>
