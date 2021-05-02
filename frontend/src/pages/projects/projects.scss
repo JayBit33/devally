@@ -9,7 +9,6 @@
   background-color: #3c7cbb;
   padding: 0 8%;
   padding-top: 2rem;
-  // margin-left: 5%;
 
   .filters {
     height: max-content;
@@ -24,10 +23,9 @@
     h2 {
       font-family: 'Open Sans';
       font-size: 1.125rem;
-      font-weight: 800;
-      text-transform: uppercase;
+      font-weight: 700;
       color: black;
-      padding-bottom: .5rem;
+      padding-left: .5rem;
     }
     h3 {
       font-size: 1rem;
@@ -36,7 +34,7 @@
 
     .search {
       padding-left: .5rem;
-
+      margin-bottom: 2rem;
       input {
         width: 60%;
         border: 1px solid lightgrey;
@@ -64,12 +62,13 @@
         }
       }
     }
-    .payment-types {
+    .payment-types, .funding-types {
       font-family: 'Open Sans';
       font-size: .875rem;
       font-weight: 300;
-      margin-top: 2rem;
+      margin-top: 1rem;
       padding-left: .5rem;
+      border-bottom: 1px solid lightgrey;
       input {
         margin-bottom: 1rem;
       }
@@ -82,6 +81,7 @@
       font-size: .875rem;
       font-weight: 300;
       padding-left: .5rem;
+      border-bottom: 1px solid lightgrey;
       input {
         margin-bottom: 1rem;
       }
@@ -91,21 +91,22 @@
     }
     .dropdowns {
       font-family: 'Open Sans';
-      margin-top: 1rem;
-      margin-bottom: 2rem;
+      margin-bottom: 1rem;
+      padding-left: .5rem;
+      border-bottom: 1px solid lightgrey;
       input {
         width: 80%;
         border: 1px solid lightgrey;
         border-radius: .25rem;
         padding: .5rem;
-        margin-top: 1rem;
-        margin-left: .75rem;
+        &:last-of-type {
+          margin: 1rem 0;
+        }
       }
 
     }
     .other {
       padding-left: .5rem;
-      margin-top: 1rem;
       label {
         font-family: 'Open Sans';
         font-size: .875rem;
@@ -116,7 +117,7 @@
     .actions {
       display: flex;
       justify-content: center;
-      margin-top: 3rem;
+      margin-top: 1.5rem;
       button {
         font-family: 'Open Sans';
         font-size: .875rem;
@@ -143,7 +144,8 @@
       display: flex;
       // justify-content: center;
       align-items: center;
-      margin: 2rem 0;
+      margin: 2rem;
+      margin-left: 1rem;
 
       .dropdown {
         width: 5rem;
@@ -156,5 +158,9 @@
         margin: 0 1.5rem;
       }
     }
+  }
+
+  .card:last-of-type {
+    margin-bottom: 1rem;
   }
 }

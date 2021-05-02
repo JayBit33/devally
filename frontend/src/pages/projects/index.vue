@@ -9,7 +9,7 @@
         <button class="search">Search</button>
       </div>
       <div class="payment-types">
-        <h3>Payment Type</h3>
+        <h3>Payment Types</h3>
         <input type="checkbox" v-model="equity" />
         <label>Equity (Shares)</label><br/>
         <input type="checkbox" v-model="flatRate" />
@@ -30,14 +30,28 @@
         <input type="checkbox" v-model="other" />
         <label>Other</label>
       </div>
+      <div class="funding-types">
+        <h3>Funding Types</h3>
+        <input type="checkbox" v-model="bootrapped" />
+        <label>Bootsrapped</label><br/>
+        <input type="checkbox" v-model="crowdFunding" />
+        <label>Crowd Funding</label><br/>
+        <input type="checkbox" v-model="fandf" />
+        <label>Friends & Family</label><br/>
+        <input type="checkbox" v-model="debtCapital" />
+        <label>Debt Capital</label><br/>
+        <input type="checkbox" v-model="ventureCapital" />
+        <label>Venture Capital</label>
+      </div>
       <div class="dropdowns">
+        <h3>Developer Options</h3>
         <input placeholder="roles" />
         <input placeholder="skills" />
       </div>
       <div class="other">
         <h3>Other</h3>
         <input type="checkbox" />
-        <label>projects seeking allys</label><br><br>
+        <label>seeking allys</label><br/><br/>
         <input type="checkbox" />
         <label>mathcing your skills</label>
       </div>
@@ -66,7 +80,7 @@
         <h4>1 - 25 out of 2048</h4>
       </div>
       <div v-for="project in projects" :key="project.id" >
-        <project-card  :project="project" ></project-card>
+        <project-card class="card" :project="project" ></project-card>
       </div>
       <div class="pagination">
         <h4>Results per page</h4>
