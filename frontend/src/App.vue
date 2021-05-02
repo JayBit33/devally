@@ -19,7 +19,7 @@
     <user-options-dropdown v-if="optionsViewable" @optionSelected="closeOptions" />
 
     <div class="page-content">
-      <breadcrumbs v-if="showHeaderFooter" />
+      <breadcrumbs v-if="showHeaderFooter && this.$route.name !== 'Projects'" />
       <router-view />
     </div>
 

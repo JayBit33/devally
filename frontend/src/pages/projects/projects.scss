@@ -8,6 +8,7 @@
   grid-column-gap: 2rem;
   background-color: #3c7cbb;
   padding: 0 8%;
+  padding-top: 2rem;
   // margin-left: 5%;
 
   .filters {
@@ -15,7 +16,7 @@
     max-width: 18rem;
     min-width: 18rem;
     margin: 3.5rem;
-    margin-top: 5rem;
+    margin-top: 9rem;
     padding: .75rem;
     padding-bottom: 1rem;
     background-color: white;
@@ -26,6 +27,7 @@
       font-weight: 800;
       text-transform: uppercase;
       color: black;
+      padding-bottom: .5rem;
     }
     h3 {
       font-size: 1rem;
@@ -136,15 +138,23 @@
       }
     }
   }
+  .right-side {
+    .pagination {
+      display: flex;
+      // justify-content: center;
+      align-items: center;
+      margin: 2rem 0;
+
+      .dropdown {
+        width: 5rem;
+        margin-right: 1.5rem;
+      }
+      h4 {
+        font-family: 'Open Sans';
+        font-weight: 500;
+        color: white;
+        margin: 0 1.5rem;
+      }
+    }
+  }
 }
-
-// .breadcrumbs {
-//   background-color: #3c7cbb;
-//   color: white;
-//   margin-left: 0;
-
-//   padding: 1rem 11rem;
-//   h4 .crumb {
-//     color: white !important;
-//   }
-// }

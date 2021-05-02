@@ -46,9 +46,45 @@
         <button>Clear</button>
       </div>
     </div>
-    <div>
+    <div class="right-side">
+      <div class="pagination">
+        <h4>Results per page</h4>
+        <el-select class="dropdown" size="small" v-model="itemsPerPage" placeholder="25">
+          <el-option label="25" value="25"></el-option>
+          <el-option label="50" value="50"></el-option>
+          <el-option label="100" value="100"></el-option>
+        </el-select>
+        <el-pagination
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+          :current-page.sync="currentPage1"
+          :page-size="100"
+          layout="prev, pager, next"
+          :total="1000"
+        >
+        </el-pagination>
+        <h4>1 - 25 out of 2048</h4>
+      </div>
       <div v-for="project in projects" :key="project.id" >
         <project-card  :project="project" ></project-card>
+      </div>
+      <div class="pagination">
+        <h4>Results per page</h4>
+        <el-select class="dropdown" size="small" v-model="itemsPerPage" placeholder="25">
+          <el-option label="25" value="25"></el-option>
+          <el-option label="50" value="50"></el-option>
+          <el-option label="100" value="100"></el-option>
+        </el-select>
+        <el-pagination
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+          :current-page.sync="currentPage1"
+          :page-size="100"
+          layout="prev, pager, next"
+          :total="1000"
+        >
+        </el-pagination>
+        <h4>1 - 25 out of 2048</h4>
       </div>
     </div>
   </div>

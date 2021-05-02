@@ -9,6 +9,7 @@ export default {
     return {
       equity: false,
       flatRate: false,
+      itemsPerPage: 25,
       projects: [],
       searchTerm: null,
     }
