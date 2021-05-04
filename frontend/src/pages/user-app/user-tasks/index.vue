@@ -35,31 +35,35 @@
       <div v-if="!collapsed" class="user-tasks_body">
         <div class="task">
           <div class="task_left">
-            <font-awesome-icon :icon="['fas','check']" class="check"></font-awesome-icon>
+            <font-awesome-icon :icon="['fas','check']" class="check" :class="{'isChecked' : isChecked}"></font-awesome-icon>
             <p class="task-description">Find a frontend developer.</p>
           </div>
           <font-awesome-icon :icon="['fas','trash']" class="trash"></font-awesome-icon>
         </div>
         <div class="task">
           <div class="task_left">
-            <font-awesome-icon :icon="['fas','check']" class="check"></font-awesome-icon>
+            <font-awesome-icon :icon="['fas','check']" class="check" :class="{'isChecked' : isChecked}"></font-awesome-icon>
             <p class="task-description">Find a graphic designer with UI/UX background.</p>
           </div>
           <font-awesome-icon :icon="['fas','trash']" class="trash"></font-awesome-icon>
         </div>
         <div class="task">
           <div class="task_left">
-            <font-awesome-icon :icon="['fas','check']" class="check"></font-awesome-icon>
+            <font-awesome-icon :icon="['fas','check']" class="check" :class="{'isChecked' : isChecked}"></font-awesome-icon>
             <p class="task-description">Create a GitHub account.</p>
           </div>
           <font-awesome-icon :icon="['fas','trash']" class="trash"></font-awesome-icon>
         </div>
         <div class="task">
           <div class="task_left">
-            <font-awesome-icon :icon="['fas','check']" class="check"></font-awesome-icon>
+            <font-awesome-icon :icon="['fas','check']" class="check" ></font-awesome-icon>
             <p class="task-description">Open a Business checking account.</p>
           </div>
-          <font-awesome-icon :icon="['fas','trash']" class="trash"></font-awesome-icon>
+          <div class="actions">
+            <button>mark complete</button>
+            <font-awesome-icon :icon="['fas','trash']" class="trash"></font-awesome-icon>
+          </div>
+
         </div>
 
       </div>

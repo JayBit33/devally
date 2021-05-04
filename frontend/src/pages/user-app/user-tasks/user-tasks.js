@@ -10,6 +10,7 @@ export default {
   data() {
     return {
       collapsed: false,
+      isChecked: true,
       connections: [],
       isUserModalOpen: true,
       isLoading: false,
