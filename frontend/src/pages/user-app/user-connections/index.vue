@@ -52,7 +52,7 @@
       layout="prev, pager, next"
       :pageSize="pageSize"
       :total="connections ? connections.length : 0"
-      @current-change="updateDisplayedUsers"
+      @current-change="updateItemsDisplayed"
     >
     </el-pagination> -->
   </div>

@@ -57,7 +57,7 @@ const upload = multer({
  */
 router.get('/dev-options', (_, res) => {
   const roles = ['Frontend', 'Backend', 'Full Stack', 'Graphic Designer', 'UX/UI', 'Devops', 'Project Manager', 'Dev Agency'];
-  const categories = ['Website', 'Mobile App', 'Ecommerce', 'SAAS', 'Other'];
+  const categories = ['Website', 'Mobile App', 'Ecommerce', 'SAAS', 'Software', 'Other'];
   const hiring_options = ['Equity (Shares)', 'Flat Rate'];
   res.status(200).json({ roles, categories, hiring_options });
 })

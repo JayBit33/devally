@@ -5,14 +5,14 @@
 export default {
   data() {
     return {
-      pageSize: 5,
+      pageSize: 2,
       currentPageIdx: 1,
       startIdx: 0,
       endIdx: 5,
     }
   },
   methods: {
-    updateDisplayedUsers(page) {
+    updateItemsDisplayed(page) {
       if (page === 1) {
         this.startIdx = 0;
         this.currentPageIdx = 1

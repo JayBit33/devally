@@ -51,9 +51,7 @@
       <div class="other">
         <h3>Other</h3>
         <input type="checkbox" v-model="filters.seekingAllys" />
-        <label>seeking allys</label><br/><br/>
-        <input type="checkbox" v-model="filters.matchingSkills" />
-        <label>mathcing your skills</label>
+        <label>seeking allys</label>
       </div>
       <div class="actions">
         <button @click="applyFilters">Apply</button>
@@ -63,42 +61,42 @@
     <div class="right-side">
       <div class="pagination">
         <h4>Results per page</h4>
-        <el-select class="dropdown" size="small" v-model="itemsPerPage" placeholder="25">
+        <el-select class="dropdown" size="small" v-model="pageSize" placeholder="25">
           <el-option label="25" value="25"></el-option>
           <el-option label="50" value="50"></el-option>
           <el-option label="100" value="100"></el-option>
         </el-select>
         <el-pagination
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-          :current-page.sync="currentPage1"
-          :page-size="100"
+          :current-page.sync="currentPageIdx"
+          :page-size="pageSize"
+          :total="projectsShown.length"
           layout="prev, pager, next"
-          :total="1000"
+          @current-change="updateItemsDisplayed"
+          @size-change="handleSizeChange"
         >
         </el-pagination>
-        <h4>1 - 25 out of 2048</h4>
+        <h4>{{ startIdx + 1 }} - {{ endIdx }} out of {{ projects.length }}</h4>
       </div>
       <div v-for="project in projectsShown" :key="project.id" >
         <project-card class="card" :project="project" ></project-card>
       </div>
       <div v-if="projectsShown.length > 0" class="pagination">
         <h4>Results per page</h4>
-        <el-select class="dropdown" size="small" v-model="itemsPerPage" placeholder="25">
+        <el-select class="dropdown" size="small" v-model="pageSize" placeholder="25">
           <el-option label="25" value="25"></el-option>
           <el-option label="50" value="50"></el-option>
           <el-option label="100" value="100"></el-option>
         </el-select>
         <el-pagination
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-          :current-page.sync="currentPage1"
-          :page-size="100"
+          :current-page.sync="currentPageIdx"
+          :page-size="pageSize"
+          :total="projectsShown.length"
           layout="prev, pager, next"
-          :total="1000"
+          @current-change="updateItemsDisplayed"
+          @size-change="handleSizeChange"
         >
         </el-pagination>
-        <h4>1 - 25 out of 2048</h4>
+        <h4>{{ startIdx + 1 }} - {{ endIdx }} out of {{ projects.length }}</h4>
       </div>
     </div>
   </div>

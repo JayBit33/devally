@@ -1,8 +1,8 @@
 // (c) Waveybits Inc. <2021>
 // ALL RIGHTS RESERVED
 
-const hiring_options = ['Shares', 'Flat Rate'];
-const categories = ['Website', 'Mobile App', 'Ecommerce', 'SAAS', 'Other'];
+const hiring_options = ['Equity (Shares)', 'Flat Rate'];
+const categories = ['Website', 'Mobile App', 'Ecommerce', 'SAAS', 'Software', 'Other'];
 const regions = ['US','South America','Africa','Asia','Europe'];
 const funding_types = ['Bootstrapped', 'Venture Capital', 'Crowdfunding', 'Friends & Family', 'Debt Capital']
 const roles = ['Frontend', 'Backend', 'Graphic Designer', 'UX/UI', 'Devops', 'Project Manager', 'Dev Agency']

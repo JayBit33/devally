@@ -7,7 +7,7 @@ TODO
 FEATURES
   X breadcrumbs
   X filter - devs
-  search - devs
+  X search - devs
   X pagination
   X click outside for dropdown and modals
   Chat
@@ -16,25 +16,22 @@ FEATURES
 
 PAGES
   X create account page - devs
-  create account page - entrepreneurs
+  X create account page - entrepreneurs
   X sign in page
-  profile page - entrepreneurs
-  user profile page - entrepreneurs
-  project page
-  about page
+  X profile page - entrepreneurs
+  X user profile page - entrepreneurs
+  X project page
 
 BACKEND
-  design data domains (db)
-  continue building node API
+  X design data domains (db)
+  X continue building node API
   X Users API
   X Auth API
   Chat API
-  Projects API
+  X Projects API
 
 
 LOOK INTO!
-X  breadcrumbs disapear on page refresh.
-X  dev user not showing up on refresh
 
 QUESTIONS?
   X should I use bootstrap? Using Element

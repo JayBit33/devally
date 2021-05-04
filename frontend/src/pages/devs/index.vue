@@ -26,7 +26,7 @@
           layout="prev, pager, next"
           :pageSize="pageSize"
           :total="users ? users.length : 0"
-          @current-change="updateDisplayedUsers"
+          @current-change="updateItemsDisplayed"
         >
         </el-pagination>
     </div>

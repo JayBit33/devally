@@ -70,7 +70,7 @@ export default {
   },
   methods: {
     ...mapActions(['fetchDevUsers', 'getDevOptions']),
-    // updateDisplayedUsers(page) {
+    // updateItemsDisplayed(page) {
     //   if (page === 1) {
     //     this.startIdx = 0;
     //     this.currentPageIdx = 1
@@ -90,7 +90,7 @@ export default {
     searchInputChange(input) {
       this.filters = null;
       this.searchInput = input
-      this.updateDisplayedUsers(1);
+      this.updateItemsDisplayed(1);
       this.showRefresh()
     },
     updateUsersShown(filters) {
@@ -104,7 +104,7 @@ export default {
       if (this.filters.roles === null || this.filters.roles.length === 0) { this.filters.roles = this.allRoles; }
       if (this.filters.categories === null || this.filters.categories.length === 0) { this.filters.categories = this.allCategories; }
       if (this.filters.rating === null) { this.filters.rating = '>=1'; }
-      this.updateDisplayedUsers(1); // send pagination back to page 1 on filter
+      this.updateItemsDisplayed(1); // send pagination back to page 1 on filter
       this.showRefresh()
     },
   },
