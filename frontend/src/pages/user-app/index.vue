@@ -53,7 +53,7 @@
 
     <div class="user-app_content">
 
-      
+
 
       <div class="nav" v-if="$route.params.view">
         <div class="home-link">
@@ -109,6 +109,7 @@
       <div v-if="$route.params.view == 'tasks'" class="views">
         <font-awesome-icon class="icon" :icon="['fas','tasks']" ></font-awesome-icon>
         <h1 class="title">Tasks</h1>
+        <user-tasks @toast-update="toast = $event" />
       </div>
 
       <!--el-drawer

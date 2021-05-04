@@ -10,6 +10,7 @@ import UserMessages from '@/pages/user-app/user-messages';
 import UserProfile from '@/pages/user-app/user-profile';
 import UserProjects from '@/pages/user-app/user-projects';
 import UserSettings from '@/pages/user-app/user-settings';
+import UserTasks from '@/pages/user-app/user-tasks';
 import SidebarButton from '@/pages/user-app/controls/sidebar-btn';
 import { CometChat } from "@cometchat-pro/chat";
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -55,7 +56,8 @@ export default {
     UserMessages,
     UserProfile,
     UserProjects,
-    UserSettings
+    UserSettings,
+    UserTasks
   },
   computed: {
     ...mapGetters(['getDevUser', 'getDevUserByUsername', 'isLoggedIn', 'getCurrentUserId', 'getLoggedInUser']),
@@ -125,7 +127,7 @@ export default {
         image_source: imgSrc
       }
     }))
-    
+
     this.projects = await Promise.all(this.user.project_ids.map(async id => await this.fetchProjectById(id)))
   },
   methods: {

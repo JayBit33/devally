@@ -1,0 +1,82 @@
+// (c) Waveybits Inc. <2021>
+// ALL RIGHTS RESERVED
+
+.user-tasks {
+  .user-tasks {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 2rem;
+    width: 85%;
+    margin-left: 7rem;
+    background-color: $devs-page-section-bg;
+    .tasks-collapsible_header {
+      background-color: $mute-red;
+      padding: .5rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+      position: relative;
+      cursor: pointer;
+
+      &_left {
+        display: flex;
+        justify-content: flex-start;
+        margin-left: 1rem;
+      }
+
+      .icon {
+        font-size: 1.5rem;
+        margin-right: 1rem;
+      }
+
+      .ellipse-icon {
+        cursor: pointer;
+        transition: .3s;
+        &:hover {
+          color: $button-secondary;
+        }
+      }
+
+      h2 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: white;
+        margin: 0;
+      }
+    }
+
+    &_body {
+      .task {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem 3rem;
+        margin: 1rem 2rem;
+        background-color: white;
+        border: 1px solid lighgrey;
+        border-radius: 1rem;
+
+        &_left {
+
+          .check {
+            font-size: 1.5rem;
+            padding-right: 2rem;
+            color: #149D14;
+          }
+          .task-description {
+            display: inline;
+            font-family: 'Open Sans';
+            font-size: 1.25rem;
+            font-weight: 500;
+          }
+        }
+        .trash {
+          font-size: 1.25rem;
+
+        }
+      }
+    }
+  }
+}
