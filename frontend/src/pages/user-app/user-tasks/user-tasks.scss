@@ -57,9 +57,7 @@
         background-color: white;
         border: 1px solid lighgrey;
         border-radius: 1rem;
-
-
-          cursor: pointer;
+        cursor: grab;
 
 
         &:first-of-type {
@@ -99,6 +97,10 @@
             outline: none;
             border-radius: .5rem;
             margin-right: 1.5rem;
+
+            &:hover {
+              cursor: pointer;
+            }
           }
         }
       }
