@@ -111,16 +111,41 @@
           flex-direction: column;
           justify-content: center;
           align-items: center;
+          .task-header-container {
+            width: 95%;
+            .task-header {
+              display: flex;
+              align-items: center;
+              width: max-content;
+              h2 {
+                margin: 0;
+                transition: .3s;
+              }
+              .add-icon {
+                margin: 0 0 0 .75rem;
+                font-size: 1.5rem;
+                transition: .3s;
+              }
+              &:hover {
+                cursor: pointer;
+                color: $btn-default;
+              }
+            }
+
+          }
           .task-container {
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 0 1rem;
-            width: 100%;
+            width: 95%;
             .user-task {
               margin: .5rem 0;
             }
           }
+        }
+        .expand-section {
+          margin: .25rem 2.5%;
+          margin-left: auto;
         }
       }
       &.recent-messages {

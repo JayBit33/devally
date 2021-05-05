@@ -36,8 +36,13 @@
       </div>
       <div class="home_sections_section current-tasks">
         <h2 class="title section_title">Current Tasks</h2>
-        <div class="project-tasks-container" v-for="project in projects" :key="project.id">
-          <h2>{{project.name}}</h2>
+        <div class="project-tasks-container" v-for="project in projectsShown" :key="project.id">
+          <div class="task-header-container">
+            <div class="task-header">
+              <h2>{{project.name}}</h2>
+              <font-awesome-icon @click="addTask" :icon="['fas','plus-square']" class="add-icon"></font-awesome-icon>
+            </div>
+          </div>
           <div class="task-container" v-for="task in tasksShown(project)" :key="task.message">
             <user-task :task="task" :project="project" @complete-task="$emit('project-change')" @delete-task="$emit('project-change')" />
           </div>

@@ -2,7 +2,7 @@ import ProjectInfoCollapsable from '@/components/project-info-collapsable';
 import UserNotification from '@/components/user-notification'
 import UserTask from '@/components/user-task'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
   name: 'user-home',
@@ -21,11 +21,15 @@ export default {
     }
   },
   computed: {
+    ...mapGetters(['getLoggedInUser']),
     notificationsShown() {
       if (!this.user || !this.user.notifications) return []
       if (this.all_notifications_override) return this.user.notifications
 
       return this.user.notifications.filter((n, i) => i < 2)
+    },
+    projectsShown() {
+      return this.projects.filter(p => p.creator_id === this.getLoggedInUser.id.toString())
     },
     tasksShown() {
       return (project) => {
@@ -41,6 +45,9 @@ export default {
   },
   methods: {
     ...mapActions(['updateUser']),
+    addTask() {
+      // Todo
+    },
     async deleteNotification(notification) {
       let newNotifications = this.user.notifications
         .filter(n => !(n.senderId == notification.senderId && n.projectId == notification.projectId && n.message == notification.message))
