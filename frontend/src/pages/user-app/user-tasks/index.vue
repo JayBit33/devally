@@ -26,7 +26,7 @@
       <div class="tasks-collapsible_header" @click="toggleCollapsed">
         <div class="tasks-collapsible_header_left">
           <font-awesome-icon :icon="collapsed ? ['fas','chevron-circle-down'] : ['fas','chevron-circle-up']" class="icon"></font-awesome-icon>
-          <h2>Tasks</h2>
+          <h2>{{ project.name }}</h2>
         </div>
         <!-- <div class="tasks-collapsible_header_right">
           <font-awesome-icon v-if="isEditable" @click.stop="$emit('edit-project', project)" :icon="['fas','ellipsis-h']" class="icon ellipse-icon"></font-awesome-icon>
