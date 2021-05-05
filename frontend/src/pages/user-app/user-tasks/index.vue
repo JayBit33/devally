@@ -22,7 +22,7 @@
       @button-click="handleUserModalButton"
       @close-modal="closeModal"
     />
-    <div class="user-tasks">
+    <div v-for="project in projects" :key="project.id" class="project-tasks">
       <div class="tasks-collapsible_header" @click="toggleCollapsed">
         <div class="tasks-collapsible_header_left">
           <font-awesome-icon :icon="collapsed ? ['fas','chevron-circle-down'] : ['fas','chevron-circle-up']" class="icon"></font-awesome-icon>
@@ -32,40 +32,49 @@
           <font-awesome-icon v-if="isEditable" @click.stop="$emit('edit-project', project)" :icon="['fas','ellipsis-h']" class="icon ellipse-icon"></font-awesome-icon>
         </div> -->
       </div>
-      <div v-if="!collapsed" class="user-tasks_body">
-        <div class="task">
-          <div class="task_left">
-            <font-awesome-icon :icon="['fas','check']" class="check" :class="{'isChecked' : isChecked}"></font-awesome-icon>
-            <p class="task-description">Find a frontend developer.</p>
-          </div>
-          <font-awesome-icon :icon="['fas','trash']" class="trash"></font-awesome-icon>
-        </div>
-        <div class="task">
-          <div class="task_left">
-            <font-awesome-icon :icon="['fas','check']" class="check" :class="{'isChecked' : isChecked}"></font-awesome-icon>
-            <p class="task-description">Find a graphic designer with UI/UX background.</p>
-          </div>
-          <font-awesome-icon :icon="['fas','trash']" class="trash"></font-awesome-icon>
-        </div>
-        <div class="task">
-          <div class="task_left">
-            <font-awesome-icon :icon="['fas','check']" class="check" :class="{'isChecked' : isChecked}"></font-awesome-icon>
-            <p class="task-description">Create a GitHub account.</p>
-          </div>
-          <font-awesome-icon :icon="['fas','trash']" class="trash"></font-awesome-icon>
-        </div>
-        <div class="task">
-          <div class="task_left">
-            <font-awesome-icon :icon="['fas','check']" class="check" ></font-awesome-icon>
-            <p class="task-description">Open a Business checking account.</p>
-          </div>
-          <div class="actions">
-            <button>mark complete</button>
-            <font-awesome-icon :icon="['fas','trash']" class="trash"></font-awesome-icon>
-          </div>
-
-        </div>
-
+      <div v-if="!collapsed" class="project-tasks_body">
+        <draggable :list="project.tasks" @start="dragging = true" @end="dragging = false">
+          <transition-group>
+            <div v-for="task in project.tasks" :key="task.id" class="task">
+              <div class="task_left">
+                <font-awesome-icon :icon="['fas','check']" class="check" :class="{'isChecked' : task.status !== 'active'}"></font-awesome-icon>
+                <p class="task-description">{{ task.message }}</p>
+              </div>
+              <div class="actions">
+                <button v-if="task.status === 'active'">mark complete</button>
+                <font-awesome-icon :icon="['fas','trash']" class="trash"></font-awesome-icon>
+              </div>
+            </div>
+            <!-- <div class="task">
+              <div class="task_left">
+                <font-awesome-icon :icon="['fas','check']" class="check" :class="{'isChecked' : isChecked}"></font-awesome-icon>
+                <p class="task-description">Find a graphic designer with UI/UX background.</p>
+              </div>
+              <div class="actions">
+                <font-awesome-icon :icon="['fas','trash']" class="trash"></font-awesome-icon>
+              </div>
+            </div>
+            <div class="task">
+              <div class="task_left">
+                <font-awesome-icon :icon="['fas','check']" class="check" :class="{'isChecked' : isChecked}"></font-awesome-icon>
+                <p class="task-description">Create a GitHub account.</p>
+              </div>
+              <div class="actions">
+                <font-awesome-icon :icon="['fas','trash']" class="trash"></font-awesome-icon>
+              </div>
+            </div>
+            <div class="task">
+              <div class="task_left">
+                <font-awesome-icon :icon="['fas','check']" class="check" ></font-awesome-icon>
+                <p class="task-description">Open a Business checking account.</p>
+              </div>
+              <div class="actions">
+                <button>mark complete</button>
+                <font-awesome-icon :icon="['fas','trash']" class="trash"></font-awesome-icon>
+              </div> -->
+            <!-- </div> -->
+          </transition-group>
+        </draggable>
       </div>
     </div>
   </div>

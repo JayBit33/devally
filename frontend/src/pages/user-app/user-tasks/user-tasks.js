@@ -1,7 +1,8 @@
 // (c) Waveybits Inc. <2021>
 // ALL RIGHTS RESERVED
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import Toast from '@/components/toast'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import draggable from 'vuedraggable';
+import Toast from '@/components/toast';
 import UserModal from '@/components/user-modal';
 import { mapActions, mapGetters, mapMutations } from 'vuex'
 
@@ -10,8 +11,9 @@ export default {
   data() {
     return {
       collapsed: false,
+      dragging: false,
       isChecked: true,
-      connections: [],
+      projects: [],
       isUserModalOpen: true,
       isLoading: false,
       toast: {
@@ -25,15 +27,24 @@ export default {
     }
   },
   components: {
+    draggable,
     FontAwesomeIcon,
     Toast,
     UserModal
+  },
+  async created() {
+    let allProjects = await this.fetchProjects()
+    console.log('all projects', allProjects)
+    this.projects = allProjects.filter(p => p.creator_id === this.getLoggedInUser.id)
+    const user = this.getLoggedInUser
+    this.projects = allProjects.filter(p => p.creator_id === user.id.toString())
+    console.log(this.projects.tasks)
   },
   computed: {
     ...mapGetters(['getLoggedInUser']),
   },
   methods: {
-    ...mapActions(['fetchUserById', 'updateUser', 'fetchToast']),
+    ...mapActions(['fetchProjects', 'fetchUserById', 'updateUser', 'fetchToast']),
     ...mapMutations(['updateLoggedInUser']),
     closeModal() {
       this.isUserModalOpen = false
