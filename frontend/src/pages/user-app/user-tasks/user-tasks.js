@@ -8,6 +8,7 @@ import { mapActions, mapGetters, mapMutations } from 'vuex'
 
 export default {
   name: 'UserTasks',
+  props: ['projects'],
   data() {
     return {
       collapsed: false,
@@ -33,24 +34,23 @@ export default {
     UserModal
   },
   async created() {
-    let allProjects = await this.fetchProjects()
-    console.log('all projects', allProjects)
-    this.projects = allProjects.filter(p => p.creator_id === this.getLoggedInUser.id)
-    const user = this.getLoggedInUser
-    this.projects = allProjects.filter(p => p.creator_id === user.id.toString())
-    console.log(this.projects.tasks)
   },
   computed: {
     ...mapGetters(['getLoggedInUser']),
+    projectsShown() {
+      return this.projects.filter(p => p.creator_id === this.getLoggedInUser.id.toString())
+    }
   },
   methods: {
     ...mapActions(['fetchProjects', 'fetchProjectById', 'fetchUserById', 'updateUser', 'fetchToast', 'updateTask']),
     ...mapMutations(['updateLoggedInUser']),
     async completeTask(project, task) {
       await this.updateTask({ projectId: project.id, taskId: task.id, updates: { status: 'complete' } })
+      this.$emit('project-change')
     },
     async removeTask(project, task) {
       await this.updateTask({ projectId: project.id, taskId: task.id, isDelete: true })
+      this.$emit('project-change')
     },
     closeModal() {
       this.isUserModalOpen = false

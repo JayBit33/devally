@@ -109,7 +109,7 @@
       <div v-if="$route.params.view == 'tasks'" class="views">
         <font-awesome-icon class="icon" :icon="['fas','tasks']" ></font-awesome-icon>
         <h1 class="title">Tasks</h1>
-        <user-tasks @toast-update="toast = $event" />
+        <user-tasks @toast-update="toast = $event" :projects="projects" @project-change="updateProjects" />
       </div>
 
       <!--el-drawer

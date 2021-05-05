@@ -22,7 +22,7 @@
       @button-click="handleUserModalButton"
       @close-modal="closeModal"
     />
-    <div v-for="project in projects" :key="project.id" class="project-tasks">
+    <div v-for="project in projectsShown" :key="project.id" class="project-tasks">
       <div class="tasks-collapsible_header" @click="toggleCollapsed">
         <div class="tasks-collapsible_header_left">
           <font-awesome-icon :icon="collapsed ? ['fas','chevron-circle-down'] : ['fas','chevron-circle-up']" class="icon"></font-awesome-icon>
