@@ -1,5 +1,6 @@
 import ProjectInfoCollapsable from '@/components/project-info-collapsable';
 import UserNotification from '@/components/user-notification'
+import UserTask from '@/components/user-task'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { mapActions } from 'vuex';
 
@@ -9,11 +10,13 @@ export default {
   components: {
     FontAwesomeIcon,
     ProjectInfoCollapsable,
-    UserNotification
+    UserNotification,
+    UserTask
   },
   data() {
     return {
-      all_notifications_override: false
+      all_notifications_override: false,
+      showCompletedTasks: false
     }
   },
   computed: {
@@ -22,6 +25,15 @@ export default {
       if (this.all_notifications_override) return this.user.notifications
 
       return this.user.notifications.filter((n, i) => i < 2)
+    },
+    tasksShown() {
+      return (project) => {
+        if (this.showCompletedTasks) {
+          return project.tasks
+        } else {
+          return project.tasks.filter(t => t.status == 'active')
+        }
+      }
     }
   },
   methods: {

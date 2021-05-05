@@ -67,7 +67,7 @@
       </div>
 
       <div v-if="!$route.params.view" class="views">
-        <user-home :user="user" :projects="projects" :messages="messages" />
+        <user-home :user="user" :projects="projects" :messages="messages" @project-change="updateProjects" />
       </div>
       <div v-if="$route.params.view == 'profile'" class="views">
         <font-awesome-icon :icon="['fas','id-card']" class="icon"></font-awesome-icon>

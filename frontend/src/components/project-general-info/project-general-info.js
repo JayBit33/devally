@@ -7,6 +7,11 @@ export default {
     return {
     }
   },
+  computed: {
+    completedTasks() {
+      return this.project.tasks.filter(t => (t.status == 'complete'))
+    }
+  },
   methods: {
     getDayCount(date) {
       let currDate = new Date(Date.now());

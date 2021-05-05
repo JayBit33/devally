@@ -1,0 +1,111 @@
+// (c) Waveybits Inc. <2021>
+// ALL RIGHTS RESERVED
+.user-task {
+  background-color: $devs-page-section-bg;
+  border-radius: .5rem;
+  padding: 1rem 1rem;
+  height: auto;
+  width: 100%;
+  text-align: center;
+  position: relative;
+
+  &_background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 0;
+    opacity: .3;
+  }
+
+  &_container {
+    position: relative;
+    &_message {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: .5rem 0;
+      h6 {
+        margin: 0;
+        margin-left: .5rem;
+        font-weight: 400;
+        font-size: .9rem;
+        span {
+          margin: 0;
+          font-size: .9rem;
+          font-weight: 700;
+        }
+      }
+    }
+
+    &_received, &_accepted {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    &_accepted {
+      .trash-icon {
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 1.25rem;
+        cursor: pointer;
+        transition: .3s;
+
+        &:hover {
+          color: darken($button-secondary, 10)
+        }
+      }
+    }
+    &_button {
+      margin: 0 .5rem;
+      background-color: white;
+      padding: .5rem 1rem;
+      border-radius: .25rem;
+      cursor: pointer;
+      transition: .3s;
+      width: max-content;
+
+      &.button-deny {
+        color: $mute-red
+      }
+      &.button-accept {
+        color: $mute-green
+      }
+
+      &:hover {
+        &.button-deny {
+          color: darken($mute-red, 15)
+        }
+        &.button-accept {
+          color: darken($mute-green, 15)
+        }
+      }
+
+
+    }
+  }
+
+  h2 {
+    margin: 0;
+    font-size: 'Open Sans';
+    font-size: .825rem;
+    font-weight: bold;
+  }
+  .image-icon {
+    height: 3.125rem;
+    width: 3.125rem;
+    object-fit: cover;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  .clipboard-icon {
+    font-size: 2.5rem;
+    cursor: pointer;
+  }
+
+}

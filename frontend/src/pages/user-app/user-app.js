@@ -128,7 +128,7 @@ export default {
       }
     }))
 
-    this.projects = await Promise.all(this.user.project_ids.map(async id => await this.fetchProjectById(id)))
+    await this.updateProjects()
   },
   methods: {
     ...mapActions(['logout', 'retrieveRefreshToken', 'fetchDevUsers', 'fetchUserById', 'fetchMessages', 'fetchProjects', 'fetchProjectById', 'updateUser']),
@@ -195,6 +195,9 @@ export default {
       this.updateIsLoggedIn(false);
       this.logout();
       this.$router.push('/');
+    },
+    async updateProjects() {
+      this.projects = await Promise.all(this.user.project_ids.map(async id => await this.fetchProjectById(id)))
     },
     updateView(view) {
       let id = this.$route.params.id

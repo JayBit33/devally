@@ -29,7 +29,7 @@
         <div class="info tasks">
           <h4>Tasks Complete</h4>
           <font-awesome-icon :icon="['fas','tasks']" class="icon"></font-awesome-icon>
-          <h2 class="info-total">{{ project.tasks_completed ? project.tasks_completed : 0 }}</h2>
+          <h2 class="info-total">{{ completedTasks.length }}</h2>
         </div>
         <div class="info members">
           <h4>Members</h4>

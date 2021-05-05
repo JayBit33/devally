@@ -36,12 +36,14 @@
       </div>
       <div class="home_sections_section current-tasks">
         <h2 class="title section_title">Current Tasks</h2>
-        <div class="task" v-for="task in user.tasks" :key="task.message">
-          <font-awesome-icon :icon="['fas','tasks']" class="task-icon"></font-awesome-icon>
-          <h2>{{task.message}}</h2>
-        </div>
-        <div v-if="user && user.tasks && user.tasks.length == 0" class="no-tasks">
-          <h2>You have no tasks.</h2>
+        <div class="project-tasks-container" v-for="project in projects" :key="project.id">
+          <h2>{{project.name}}</h2>
+          <div class="task-container" v-for="task in tasksShown(project)" :key="task.message">
+            <user-task :task="task" :project="project" @complete-task="$emit('project-change')" @delete-task="$emit('project-change')" />
+          </div>
+          <div v-if="tasksShown(project).length == 0" class="no-task-container">
+            <p>No tasks for this project</p>
+          </div>
         </div>
         <p class="expand-section" @click="updateView('tasks')">View All</p>
       </div>

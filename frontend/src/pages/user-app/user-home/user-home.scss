@@ -106,19 +106,20 @@
         }
       }
       &.current-tasks {
-
-        .task {
+        .project-tasks-container {
           display: flex;
-          justify-content: flex-start;
+          flex-direction: column;
+          justify-content: center;
           align-items: center;
-          margin: 1rem 0 0 .25rem;
-          h2 {
-            font-size: .825rem;
-            font-weight: 400;
-          }
-          .task-icon {
-            font-size: 2.25rem;
-            margin-right: .75rem;
+          .task-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 1rem;
+            width: 100%;
+            .user-task {
+              margin: .5rem 0;
+            }
           }
         }
       }

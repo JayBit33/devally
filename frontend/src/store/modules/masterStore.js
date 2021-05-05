@@ -234,6 +234,24 @@ Vue.use(Vuex)
                 });
             })
         },
+        async updateTask({ dispatch }, payload) {
+          let { projectId, taskId, updates, isDelete } = payload
+          let project = await dispatch('fetchProjectById', projectId)
+          let tasks
+          if (isDelete) {
+            tasks = project.tasks.filter(t => t.id != taskId)
+          } else {
+            // overwrite the task with the new updates, but prevent id change
+            tasks = project.tasks.map(t => {
+              if (t.id == taskId) {
+                return { ...t, ...updates, id: taskId }
+              }
+              return t
+            })
+          }
+          // Update task in project
+          await dispatch('updateProjectById', {id: projectId, project: { tasks: JSON.stringify(tasks) }})
+        },
         retrieveRefreshToken({commit}) {
             return new Promise((resolve, reject) => {
                 authAPI.post('/refresh_token')
