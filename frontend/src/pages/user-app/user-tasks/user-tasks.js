@@ -44,8 +44,14 @@ export default {
     ...mapGetters(['getLoggedInUser']),
   },
   methods: {
-    ...mapActions(['fetchProjects', 'fetchUserById', 'updateUser', 'fetchToast']),
+    ...mapActions(['fetchProjects', 'fetchProjectById', 'fetchUserById', 'updateUser', 'fetchToast', 'updateTask']),
     ...mapMutations(['updateLoggedInUser']),
+    async completeTask(project, task) {
+      await this.updateTask({ projectId: project.id, taskId: task.id, updates: { status: 'complete' } })
+    },
+    async removeTask(project, task) {
+      await this.updateTask({ projectId: project.id, taskId: task.id, isDelete: true })
+    },
     closeModal() {
       this.isUserModalOpen = false
     },

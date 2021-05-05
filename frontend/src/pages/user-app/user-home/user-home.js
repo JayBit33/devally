@@ -16,6 +16,7 @@ export default {
   data() {
     return {
       all_notifications_override: false,
+      all_tasks_override: true,
       showCompletedTasks: false
     }
   },
@@ -29,9 +30,11 @@ export default {
     tasksShown() {
       return (project) => {
         if (this.showCompletedTasks) {
-          return project.tasks
+          if (this.all_tasks_override) return project.tasks
+          return project.tasks.filter((n, i) => i < 2)
         } else {
-          return project.tasks.filter(t => t.status == 'active')
+          if (this.all_tasks_override) return project.tasks.filter(t => t.status == 'active')
+          return project.tasks.filter(t => t.status == 'active').filter((n, i) => i < 2)
         }
       }
     }
