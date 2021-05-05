@@ -33,7 +33,12 @@
         </div> -->
       </div>
       <div v-if="!collapsed" class="project-tasks_body">
-        <draggable :list="project.tasks" @start="dragging = true" @end="dragging = false">
+        <draggable
+          :list="project.tasks"
+          ghost-class="ghost"
+          @start="dragging = true"
+          @end="dragging = false"
+        >
           <transition-group>
             <div v-for="task in project.tasks" :key="task.id" class="task">
               <div class="task_left">
@@ -41,7 +46,7 @@
                 <p class="task-description">{{ task.message }}</p>
               </div>
               <div class="actions">
-                <button v-if="task.status === 'active'">mark complete</button>
+                <button v-if="task.status === 'active'" >mark complete</button>
                 <font-awesome-icon :icon="['fas','trash']" class="trash"></font-awesome-icon>
               </div>
             </div>

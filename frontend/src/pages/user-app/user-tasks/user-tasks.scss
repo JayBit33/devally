@@ -86,6 +86,9 @@
         .actions {
           .trash {
             font-size: 1.25rem;
+            &:hover {
+              cursor: pointer;
+            }
           }
           button {
             font-family: 'Open Sans';
@@ -103,7 +106,12 @@
             }
           }
         }
+
       }
     }
   }
+}
+.ghost {
+  opacity: .5;
+  background: #c8ebfb;
 }
