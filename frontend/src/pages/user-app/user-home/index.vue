@@ -40,8 +40,11 @@
           <div class="task-header-container">
             <div class="task-header">
               <h2>{{project.name}}</h2>
-              <font-awesome-icon @click="addTask" :icon="['fas','plus-square']" class="add-icon"></font-awesome-icon>
+              <font-awesome-icon @click="addingTask = true" :icon="['fas','plus-square']" class="add-icon"></font-awesome-icon>
             </div>
+          </div>
+          <div v-if="addingTask" class="adding-task">
+            <user-task :isNewTask="true" :project="project" @new-task-save="newTaskSave($event, project)" @new-task-cancel="newTaskCancel" />
           </div>
           <div class="task-container" v-for="task in tasksShown(project)" :key="task.message">
             <user-task :task="task" :project="project" @complete-task="$emit('project-change')" @delete-task="$emit('project-change')" />

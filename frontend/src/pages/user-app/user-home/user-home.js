@@ -17,7 +17,8 @@ export default {
     return {
       all_notifications_override: false,
       all_tasks_override: true,
-      showCompletedTasks: false
+      showCompletedTasks: false,
+      addingTask: false
     }
   },
   computed: {
@@ -44,9 +45,14 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['updateUser']),
-    addTask() {
-      // Todo
+    ...mapActions(['updateUser', 'createTask']),
+    async newTaskSave(message, project) {
+      if (message) await this.createTask({ projectId: project.id, message })
+      this.addingTask = false
+      this.$emit('project-change')
+    },
+    newTaskCancel() {
+      this.addingTask = false
     },
     async deleteNotification(notification) {
       let newNotifications = this.user.notifications
