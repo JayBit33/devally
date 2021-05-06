@@ -48,9 +48,9 @@ export default {
       await this.updateTask({ projectId: project.id, taskId: task.id, updates: { status: 'complete' } })
       this.$emit('project-change')
     },
-    async editTask(project, task, updates) {
+    async editTask(project, task, updatedMessage) {
       this.editId = null
-      await this.updateTask({ projectId: project.id, taskId: task.id, updates, isDelete: false })
+      await this.updateTask({ projectId: project.id, taskId: task.id, updates: { message: updatedMessage}, isDelete: false })
     },
     makeEditable(task) {
       this.editId = task.id

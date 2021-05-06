@@ -54,7 +54,7 @@
                 <p v-else class="task-description">{{ task.message }}</p>
               </div>
               <div class="actions">
-                <button v-if="task.status === 'active'" @click="completeTask(project, task)">mark complete</button>
+                <button v-if="task.status === 'active'" @click="completeTask(project, task)">completed</button>
                 <font-awesome-icon :icon="['fas','pencil-alt']" class="icon" @click="makeEditable(task)"></font-awesome-icon>
                 <font-awesome-icon :icon="['fas','trash']" class="icon" @click="removeTask(project, task)"></font-awesome-icon>
               </div>
