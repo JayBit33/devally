@@ -81,6 +81,8 @@ export default {
     saveNewTask(project) {
       this.editId = null
       this.addingTask = false
+      // make post call to add task
+      this.addingTaskMessage = 'New Task'
       console.log(project, this.addingTaskMessage)
     },
     toggleCollapsed() {
