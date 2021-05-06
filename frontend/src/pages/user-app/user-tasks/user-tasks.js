@@ -12,7 +12,7 @@ export default {
   data() {
     return {
       addingTask: false,
-      addingTaskMessage: 'New Task',
+      addingTaskMessage: '',
       collapsed: false,
       dragging: false,
       editId: null,
@@ -44,7 +44,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['fetchProjects', 'fetchProjectById', 'fetchUserById', 'updateUser', 'fetchToast', 'updateTask']),
+    ...mapActions(['fetchProjects', 'fetchProjectById', 'fetchUserById', 'updateUser', 'fetchToast', 'updateTask', 'createTask']),
     ...mapMutations(['updateLoggedInUser']),
     addTask() {
       this.editId = 0
@@ -81,8 +81,11 @@ export default {
     async saveNewTask(project) {
       this.editId = null
       this.addingTask = false
-      await this.updateTask({ projectId: project.id, updates: { tasks: [ ...project.tasks, { message: this.addingTaskMessage, status: 'active'}]}, isDelete: true })
-      this.addingTaskMessage = 'New Task'
+      if (this.addingTaskMessage) {
+        await this.createTask({ projectId: project.id, message: this.addingTaskMessage})
+      }
+      this.addingTaskMessage = ''
+      this.$emit('project-change')
     },
     toggleCollapsed() {
       this.collapsed = !this.collapsed

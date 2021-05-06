@@ -29,7 +29,7 @@
           <h2>{{ project.name }}</h2>
         </div>
         <div class="tasks-collapsible_header_right">
-          <font-awesome-icon :icon="['fas','plus']" class="header-icon" @click="addTask(project)"></font-awesome-icon>
+          <font-awesome-icon :icon="['fas','plus']" class="header-icon" @click="addTask"></font-awesome-icon>
         </div>
       </div>
       <div v-if="!collapsed" class="project-tasks_body">
@@ -38,6 +38,7 @@
           <input
             v-if="editId === 0"
             v-model="addingTaskMessage"
+            placeholder="New Task"
             class="edit-message"
             @blur="saveNewTask(project)"
             @keyup.enter="saveNewTask(project)"

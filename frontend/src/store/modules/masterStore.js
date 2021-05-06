@@ -2,6 +2,7 @@
 // ALL RIGHTS RESERVED
 import Vue from 'vue';
 import Vuex from 'vuex';
+import { v4 as uuidv4 } from 'uuid';
 import { authAPI, baseAPI, usersAPI, projectsAPI, chatAPI } from '@/api/apis';
 import { CometChat } from "@cometchat-pro/chat";
 
@@ -76,6 +77,16 @@ Vue.use(Vuex)
                     }).catch(error => reject(error));
             })
         },
+        async createTask({dispatch}, payload) {
+            const { projectId, message } = payload
+            // Fetch projects preexisiting tasks
+            const project = await dispatch('fetchProjectById', projectId)
+            // Build new task and append it to projects tasks
+            const newTask = { id: uuidv4(), message, status: 'active' }
+            const tasks = [newTask, ...project.tasks ]
+            // Update tasks in project
+            await dispatch('updateProjectById', { id: projectId, project: { tasks: JSON.stringify(tasks) } })
+        },  
         fetchProjectById(_, id) {
             return new Promise((resolve, reject) => {
                 projectsAPI.get(`/${id}`)
