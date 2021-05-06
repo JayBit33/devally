@@ -11,6 +11,8 @@ export default {
   props: ['projects'],
   data() {
     return {
+      addingTask: false,
+      addingTaskMessage: 'New Task',
       collapsed: false,
       dragging: false,
       editId: null,
@@ -44,6 +46,10 @@ export default {
   methods: {
     ...mapActions(['fetchProjects', 'fetchProjectById', 'fetchUserById', 'updateUser', 'fetchToast', 'updateTask']),
     ...mapMutations(['updateLoggedInUser']),
+    addTask() {
+      this.editId = 0
+      this.addingTask = true
+    },
     async completeTask(project, task) {
       await this.updateTask({ projectId: project.id, taskId: task.id, updates: { status: 'complete' } })
       this.$emit('project-change')
@@ -71,6 +77,11 @@ export default {
     },
     handleUserModalButton() {
       this.$router.push({name: 'Devs'})
+    },
+    saveNewTask(project) {
+      this.editId = null
+      this.addingTask = false
+      console.log(project, this.addingTaskMessage)
     },
     toggleCollapsed() {
       this.collapsed = !this.collapsed

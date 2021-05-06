@@ -23,16 +23,28 @@
       @close-modal="closeModal"
     />
     <div v-for="project in projectsShown" :key="project.id" class="project-tasks">
-      <div class="tasks-collapsible_header" @click="toggleCollapsed">
+      <div class="tasks-collapsible_header" >
         <div class="tasks-collapsible_header_left">
-          <font-awesome-icon :icon="collapsed ? ['fas','chevron-circle-down'] : ['fas','chevron-circle-up']" class="icon"></font-awesome-icon>
+          <font-awesome-icon :icon="collapsed ? ['fas','chevron-circle-down'] : ['fas','chevron-circle-up']" class="icon" @click="toggleCollapsed"></font-awesome-icon>
           <h2>{{ project.name }}</h2>
         </div>
-        <!-- <div class="tasks-collapsible_header_right">
-          <font-awesome-icon v-if="isEditable" @click.stop="$emit('edit-project', project)" :icon="['fas','ellipsis-h']" class="icon ellipse-icon"></font-awesome-icon>
-        </div> -->
+        <div class="tasks-collapsible_header_right">
+          <font-awesome-icon :icon="['fas','plus']" class="header-icon" @click="addTask(project)"></font-awesome-icon>
+        </div>
       </div>
       <div v-if="!collapsed" class="project-tasks_body">
+        <div v-if="addingTask" class="task_new" style="margin-top: 2rem;">
+          <font-awesome-icon :icon="['fas','check']" class="check"></font-awesome-icon>
+          <input
+            v-if="editId === 0"
+            v-model="addingTaskMessage"
+            class="edit-message"
+            @blur="saveNewTask(project)"
+            @keyup.enter="saveNewTask(project)"
+            v-focus
+          >
+        </div>
+
         <draggable
           :list="project.tasks"
           ghost-class="ghost"
@@ -48,7 +60,7 @@
                   v-model="task.message"
                   class="edit-message"
                   @blur="editTask(project, task, task.message)"
-                  @keyup.enter="editId=null; $emit('update')"
+                  @keyup.enter="editTask(project, task, task.message)"
                   v-focus
                 >
                 <p v-else class="task-description">{{ task.message }}</p>
@@ -59,34 +71,6 @@
                 <font-awesome-icon :icon="['fas','trash']" class="icon" @click="removeTask(project, task)"></font-awesome-icon>
               </div>
             </div>
-            <!-- <div class="task">
-              <div class="task_left">
-                <font-awesome-icon :icon="['fas','check']" class="check" :class="{'isChecked' : isChecked}"></font-awesome-icon>
-                <p class="task-description">Find a graphic designer with UI/UX background.</p>
-              </div>
-              <div class="actions">
-                <font-awesome-icon :icon="['fas','trash']" class="trash"></font-awesome-icon>
-              </div>
-            </div>
-            <div class="task">
-              <div class="task_left">
-                <font-awesome-icon :icon="['fas','check']" class="check" :class="{'isChecked' : isChecked}"></font-awesome-icon>
-                <p class="task-description">Create a GitHub account.</p>
-              </div>
-              <div class="actions">
-                <font-awesome-icon :icon="['fas','trash']" class="trash"></font-awesome-icon>
-              </div>
-            </div>
-            <div class="task">
-              <div class="task_left">
-                <font-awesome-icon :icon="['fas','check']" class="check" ></font-awesome-icon>
-                <p class="task-description">Open a Business checking account.</p>
-              </div>
-              <div class="actions">
-                <button>mark complete</button>
-                <font-awesome-icon :icon="['fas','trash']" class="trash"></font-awesome-icon>
-              </div> -->
-            <!-- </div> -->
           </transition-group>
         </draggable>
       </div>

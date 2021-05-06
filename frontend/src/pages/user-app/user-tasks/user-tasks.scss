@@ -18,7 +18,6 @@
       align-items: center;
       color: white;
       position: relative;
-      cursor: pointer;
 
       &_left {
         display: flex;
@@ -26,9 +25,18 @@
         margin-left: 1rem;
       }
 
+      &_right {
+        .header-icon {
+          color: white;
+          margin-right: 2rem;
+          cursor: pointer;
+        }
+      }
+
       .icon {
         font-size: 1.5rem;
         margin-right: 1rem;
+        cursor: pointer;
       }
 
       .ellipse-icon {
@@ -48,11 +56,36 @@
     }
 
     &_body {
+      .task_new {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-wrap: nowrap;
+        padding: 1.5rem 3rem;
+        margin: 1rem 2rem;
+        background-color: white;
+        border: 1px solid lighgrey;
+        border-radius: 1rem;
+        .check {
+          font-size: 1.5rem;
+          padding-right: 1.5rem;
+          color: lightgrey;
+        }
+        .edit-message {
+          display: inline;
+          font-family: 'Open Sans';
+          font-size: 1.125rem;
+          font-weight: 500;
+          width: 800px;
+          padding: .5rem;
+          border: none;
+          outline: none;
+        }
+      }
       .task {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        flex-wrap: nowrap;
         padding: 1.5rem 3rem;
         margin: 1rem 2rem;
         background-color: white;
