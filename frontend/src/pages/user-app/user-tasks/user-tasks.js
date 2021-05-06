@@ -13,8 +13,8 @@ export default {
     return {
       collapsed: false,
       dragging: false,
+      editId: null,
       isChecked: true,
-      projects: [],
       isUserModalOpen: true,
       isLoading: false,
       toast: {
@@ -48,6 +48,13 @@ export default {
       await this.updateTask({ projectId: project.id, taskId: task.id, updates: { status: 'complete' } })
       this.$emit('project-change')
     },
+    async editTask(project, task, updates) {
+      this.editId = null
+      await this.updateTask({ projectId: project.id, taskId: task.id, updates, isDelete: false })
+    },
+    makeEditable(task) {
+      this.editId = task.id
+    },
     async removeTask(project, task) {
       await this.updateTask({ projectId: project.id, taskId: task.id, isDelete: true })
       this.$emit('project-change')
@@ -69,4 +76,11 @@ export default {
       this.collapsed = !this.collapsed
     }
   },
+  directives: {
+    focus: {
+      inserted (el) {
+        el.focus()
+      }
+    }
+  }
 }

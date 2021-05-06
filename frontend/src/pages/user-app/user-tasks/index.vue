@@ -42,12 +42,21 @@
           <transition-group>
             <div v-for="task in project.tasks" :key="task.id" class="task">
               <div class="task_left">
-                <font-awesome-icon :icon="['fas','check']" class="check" :class="{'isChecked' : task.status !== 'active'}"></font-awesome-icon>
-                <p class="task-description">{{ task.message }}</p>
+                <font-awesome-icon :icon="['fas','check']" class="check" :class="{'isChecked' : task.status === 'complete'}"></font-awesome-icon>
+                <input
+                  v-if="editId === task.id"
+                  v-model="task.message"
+                  class="edit-message"
+                  @blur="editTask(project, task, task.message)"
+                  @keyup.enter="editId=null; $emit('update')"
+                  v-focus
+                >
+                <p v-else class="task-description">{{ task.message }}</p>
               </div>
               <div class="actions">
                 <button v-if="task.status === 'active'" @click="completeTask(project, task)">mark complete</button>
-                <font-awesome-icon :icon="['fas','trash']" class="trash" @click="removeTask(project, task)"></font-awesome-icon>
+                <font-awesome-icon :icon="['fas','pencil-alt']" class="icon" @click="makeEditable(task)"></font-awesome-icon>
+                <font-awesome-icon :icon="['fas','trash']" class="icon" @click="removeTask(project, task)"></font-awesome-icon>
               </div>
             </div>
             <!-- <div class="task">

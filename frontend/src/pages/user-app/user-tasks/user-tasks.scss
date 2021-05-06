@@ -76,18 +76,28 @@
           .isChecked {
             color: #149D14;
           }
-          .task-description {
+          .task-description, .edit-message {
             display: inline;
             font-family: 'Open Sans';
             font-size: 1.125rem;
             font-weight: 500;
           }
+          .edit-message {
+            width: 800px;
+            padding: .5rem;
+            border: none;
+            outline: none;
+          }
         }
         .actions {
-          .trash {
+          .icon {
             font-size: 1.25rem;
+            color: black;
             &:hover {
               cursor: pointer;
+            }
+            &:last-of-type {
+              margin-left: 1.5rem;
             }
           }
           button {
@@ -99,7 +109,7 @@
             border: none;
             outline: none;
             border-radius: .5rem;
-            margin-right: 1.5rem;
+            margin-right: 1.75rem;
 
             &:hover {
               cursor: pointer;
