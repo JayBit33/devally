@@ -78,12 +78,11 @@ export default {
     handleUserModalButton() {
       this.$router.push({name: 'Devs'})
     },
-    saveNewTask(project) {
+    async saveNewTask(project) {
       this.editId = null
       this.addingTask = false
-      // make post call to add task
+      await this.updateTask({ projectId: project.id, updates: { tasks: [ ...project.tasks, { message: this.addingTaskMessage, status: 'active'}]}, isDelete: true })
       this.addingTaskMessage = 'New Task'
-      console.log(project, this.addingTaskMessage)
     },
     toggleCollapsed() {
       this.collapsed = !this.collapsed

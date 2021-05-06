@@ -1,6 +1,10 @@
 GOALS
   Once you sign in it should look like a software/web app experience!
 
+FUTURE FEATURES
+  add article section
+  add forum where visionaries can talk to each other about startups.
+
 TODO
   notify user that their message has been sent
 
