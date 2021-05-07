@@ -6,14 +6,21 @@
   height: 46vh;
   padding: 0rem;
 
-  .conversation-header {
+  &-header-outer {
+    background-color: $messages-header;
+    color: white;
+    font-family: 'Open Sans';
+    font-size: .75rem;
+    padding: .125rem;
+    padding-left: 1.5rem;
+    border-radius: 1rem 1rem 0 0;
+  }
+
+  &-header {
     display: flex;
     align-items: flex-end;
     padding: 1rem 0 0 1rem;
-    border-top: 1px solid lightgrey;
-    // border-left: 1px solid lightgrey;
-    border-right: 1px solid lightgrey;
-    border-bottom: 1px solid lightgrey;
+    background-color: white;
     padding-bottom: 1rem;
     .profile-img {
       width: 4rem;
@@ -43,17 +50,24 @@
     max-height: 96%;
     margin-top: 0rem;
     overflow-y: scroll;
+    background-color: white;
+
     // border-top: 1px solid lightgrey;
     // border-left: 1px solid lightgrey;
     p {
       font-family: 'Open Sans';
       font-size: 1rem;
-      margin: 4rem 1rem;
+      margin: 1.5rem 1rem;
       line-height: 1.5rem;
       float: left;
+      background-color: $recipient-bubble;
+      color: black;
+      padding: 1rem;
+      border-radius: 1rem;
     }
     p:nth-child(even) {
-      background-color: #d2eafd;
+      background-color: $user-bubble;
+      color: white;
       padding: 1rem;
       border-radius: 1rem;
       float: right;
@@ -61,17 +75,30 @@
     }
   }
 
-  .write-message {
-    width: 97%;
-    height: 8rem;
-    resize: none;
-    margin: 0;
-    padding: 1rem;
-    border-radius: 0rem;
-    border-color: #b8b1b1;
-    border-left: none;
-    &:focus {
-      outline: none;
+  .conversation-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 0 0 1rem 1rem;
+    background-color: $messages-header;
+    padding: 1rem 2rem;
+
+    .write-message {
+      width: 70%;
+      resize: none;
+      margin: 0;
+      padding: 1rem;
+      border-radius: 1rem;
+      border: none;
+      font: 400 .875em 'Open Sans';
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .icons {
+      font-size: 2rem;
+      color: white;
     }
   }
 }

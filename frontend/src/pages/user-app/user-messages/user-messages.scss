@@ -1,19 +1,40 @@
 // (c) Waveybits Inc. <2021>
 // ALL RIGHTS RESERVED
 .user-messages {
+  background-color: #f5f4f4;
+  padding-bottom: 9rem;
   &_area {
     display: flex;
     margin-top: 2rem;
     margin-left: 6.5rem; // remove just styled for testing
+
+    &-header {
+      background-color: $messages-header;
+      color: white;
+      font-family: 'Open Sans';
+      font-size: .75rem;
+      padding: .125rem;
+      padding-left: 1.5rem;
+      border-radius: 1rem 1rem 0 0;
+    }
+    &-footer {
+      background-color: $messages-header;
+      color: white;
+      font-family: 'Open Sans';
+      font-size: .75rem;
+      padding: 1.5rem;
+      padding-left: 1.5rem;
+      border-radius: 0 0 1rem 1rem;
+    }
     .messages {
-      max-height: 70vh;
+      max-height: 56vh;
       max-width: 22rem;
-      overflow-y: visible;
+      overflow-y: scroll;
       overflow-x: hidden;
     }
     .conversation {
-      margin-left: 0rem;
-      width: 78%;
+      margin-left: 2rem;
+      width: 68%;
 
       &_area {
         width: 92%;
@@ -21,4 +42,8 @@
       }
     }
   }
+}
+
+.views {
+  background-color: #FBFBFB;
 }

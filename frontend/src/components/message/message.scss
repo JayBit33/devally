@@ -5,14 +5,13 @@
   width: 18rem;
   padding: 1rem;
   border-bottom: 1px solid lightgrey;
-  border-left: 1px solid lightgrey;
-
+  background-color: white;
   &:first-of-type {
     border-top: 1px solid lightgrey;
   }
 
   &:hover {
-    background-color: #dff0fd;
+    background-color: $message-active;
     transition: .3s;
     cursor: pointer;
   }
@@ -69,5 +68,5 @@
 }
 
 .active {
-  background-color: #dff0fd;
+  background-color: $message-active;
 }

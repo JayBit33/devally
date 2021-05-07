@@ -8,19 +8,23 @@
       btnTxt="Get Featured"
       :btnIcon="['fas','clipboard-check']"
       :imageName="'spotlight.png'"
-      :styles="{'backgroundColor': '#00B6E4', 'color': 'white', 'buttonBackground': '#005399'}"
+      :styles="{'backgroundColor': '#6D6BA4', 'color': 'white', 'buttonBackground': 'black'}"
       @button-click="handleUserModalButton"
       @close-modal="closeModal"
     />
     <div class="user-messages_area">
-      <div class="messages">
-        <message :isOnline="true" />
-        <message  />
-        <message  />
-        <message :isActive="true" :isOnline="true" />
-        <message :isOnline="true" />
-        <message  :isOnline="true"/>
-        <message  />
+      <div class="messages-area">
+        <div class="user-messages_area-header"><h2>Chats</h2></div>
+        <div class="messages">
+          <message :isOnline="true" />
+          <message  />
+          <message  />
+          <message :isActive="true" :isOnline="true" />
+          <message :isOnline="true" />
+          <message  :isOnline="true"/>
+          <message  />
+        </div>
+        <div class="user-messages_area-footer"></div>
       </div>
       <div class="conversation">
         <conversation class="conversation_area"/>
