@@ -135,6 +135,7 @@ Vue.use(Vuex)
         async fetchQuote() {
             let quotes = await fetch("https://type.fit/api/quotes")
             quotes = await quotes.json()
+            quotes = quotes.filter(q => q.author && q.text)
             let index = Math.floor(Math.random() * (quotes.length - 0))
             return quotes[index]
         },
