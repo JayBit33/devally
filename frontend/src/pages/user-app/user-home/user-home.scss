@@ -54,18 +54,29 @@
 
   &_sections {
     width: 80%;
-    margin: 4rem auto;
-    margin-left: 9%;
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    grid-column-gap: 5rem;
-    grid-row-gap: 2.75rem;
+    margin: 2rem auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    .left {
+      width: calc(66% - 2rem);
+    }
+    .right {
+      width: calc(34% - 2rem);
+    }
+    .left, .right {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;  
+    }
     &_section {
       width: 100%;
       min-height: 10rem;
       height: max-content;
       border: 1px solid rgb(199, 197, 197);
       padding: .25rem 1rem;
+      margin: 1rem 0;
       border-radius: 1rem;
       background-color: white;
       &_title {
@@ -170,6 +181,10 @@
             line-height: 1.25rem;
           }
         }
+      }
+
+      &.active-projects &.recent-messages {
+        margin-top: 0;
       }
 
       .no-projects, .no-messages, .no-notifications, .no-tasks {
