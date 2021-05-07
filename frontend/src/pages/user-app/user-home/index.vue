@@ -9,12 +9,12 @@
         <img src="@/assets/programmer-man.png" alt="programmer-man">
       </div>
       <div class="greeting__quote">
-        <h3 class="fade-in"> "I'm always doing things I can't do; that's how I get to do them." -Pablo Picasso</h3>
+        <h3 class="fade-in"> "{{quote.text}}" -{{quote.author}}</h3>
       </div>
     </div>
 
     <div class="home_sections">
-      
+
       <div class="left">
         <div class="home_sections_section active-projects">
           <h2 class="section_title">Active Projects</h2>

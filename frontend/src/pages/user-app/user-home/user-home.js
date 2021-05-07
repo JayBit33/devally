@@ -18,7 +18,8 @@ export default {
       all_notifications_override: false,
       all_tasks_override: true,
       showCompletedTasks: false,
-      addingTask: false
+      addingTask: false,
+      quote: {}
     }
   },
   computed: {
@@ -44,8 +45,11 @@ export default {
       }
     }
   },
+  async created() {
+    this.quote = await this.fetchQuote()
+  },
   methods: {
-    ...mapActions(['updateUser', 'createTask']),
+    ...mapActions(['updateUser', 'createTask', 'fetchQuote']),
     async newTaskSave(message, project) {
       if (message) await this.createTask({ projectId: project.id, message })
       this.addingTask = false
