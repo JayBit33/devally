@@ -132,6 +132,12 @@ Vue.use(Vuex)
                     }).catch(error => reject(error));
             })
         },
+        async fetchQuote() {
+            let quotes = await fetch("https://type.fit/api/quotes")
+            quotes = await quotes.json()
+            let index = Math.floor(Math.random() * (quotes.length - 0))
+            return quotes[index]
+        },
         fetchToast(_, payload) {
             let toast = {
                 type: 'info',
