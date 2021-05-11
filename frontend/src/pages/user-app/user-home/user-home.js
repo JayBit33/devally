@@ -46,7 +46,7 @@ export default {
     }
   },
   async created() {
-    this.quote = await this.fetchQuote()
+    this.quote = await this.fetchQuote({limit: 1})
   },
   methods: {
     ...mapActions(['updateUser', 'createTask', 'fetchQuote']),

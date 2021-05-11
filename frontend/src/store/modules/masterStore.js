@@ -132,12 +132,32 @@ Vue.use(Vuex)
                     }).catch(error => reject(error));
             })
         },
-        async fetchQuote() {
-            let quotes = await fetch("https://type.fit/api/quotes")
-            quotes = await quotes.json()
-            quotes = quotes.filter(q => q.author && q.text)
-            let index = Math.floor(Math.random() * (quotes.length - 0))
-            return quotes[index]
+        async fetchQuote(_, payload) {
+             if (!payload) payload = {}
+            let {tag, limit} = payload
+
+            if (!limit) limit = 1
+
+            // All tags on api that would possibly fit our application
+            let tags = ['motivational', 'attitude', 'general', 'best']
+            if (!tag) {
+                tag = tags[Math.floor(Math.random() * tags.length)]
+            } else {
+                console.log('Payload Tag is not in curated list: ', tag)
+                const availableTagsResponse = await fetch('https://goquotes-api.herokuapp.com/api/v1/all/tags')
+                const availableTags = await availableTagsResponse.json()
+                if (!(availableTags.tags.map(t => t.name).includes(tag))) {
+                    console.log('Payload Tag is not an available tag: ', availableTags.tags.map(t => t.name))
+                    tag = tags[Math.floor(Math.random() * tags.length)]
+                }
+            }
+
+            const response = await fetch(`https://goquotes-api.herokuapp.com/api/v1/random/${limit}?type=tag&val=${tag}`)
+            const json = await response.json()
+            const { quotes } = json
+            
+            if (limit == 1) return quotes[0]
+            else  return quotes
         },
         fetchToast(_, payload) {
             let toast = {
