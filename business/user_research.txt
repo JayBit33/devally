@@ -1,0 +1,106 @@
+Curious how others would answer these questions? There are 2 points of view to answer these question from. 
+The person with the idea and the developer. Respond to the questions that apply to you with the question # 
+and your answer.
+
+1.As a founder what percentage would you offer a developer that could build your entire project.
+2.As a founder what percentage would you offer a developer that could perform one of the multiple roles you need? (frontend, backend, graphic designer)
+3.As a developer that could build the entire project yourself what percentage would you want to be a technical co-founder?
+4.As a developer that could build a part of a project (frontend, backend, graphic designer) what percentage would you want to be a technical co-founder?
+5.As a developer would you rather take a % of equity in a startup or charge a flat rate for your services?
+
+
+If the technical founder is literally building the product and the sales founder isn't contributing until the 
+product is at least functional, the only logical thing that makes sense is a 49/51 split at a minimum. An idea is 
+pretty worthless on its own without the ability to execute or raise money.
+
+Sales founder needs to do customer research pre-launch, VC prospecting, etc. I advocate for 50/50 unless sales 
+guy is so gun, he already have pre-existing network to tap into then he should get more.
+
+ever do 50/50, over has to have the ability to make the last call. even though it's already bad signal if you have 
+to make a last call
+
+The initial build isn't the biggest part of the work. It's the iteration and long term codebase and hopefully employees.
+
+If you want to own a high percentage of the resulting business but can't build the product yourself, you should look 
+into hiring a freelancer to build your whole product for you. I hope you have that kind of money.
+
+If you're not going to go that route, you need to bring a lot more to the table than an idea. The market value of an 
+is ~0. There will be a lot of hours of work that go into building your product. Your only hope to have a relatively 
+high (e.g. 50%) ownership of this business is if you can execute in other ways, e.g. sales and marketing, raising money, 
+something. A developer would probably put in 40 hrs/wk for months to build your product; you should ask yourself how you 
+would usefully put that kind of time into making the business successful yourself.
+
+Worth repeating: the idea itself is worth zero.
+
+Recommend listening to How I built This on NPR. Especially the Canva or Calendly episodes for this exact situation
+
+https://www.ycombinator.com/library/5x-how-to-split-equity-among-co-founders
+
+Coding is not worth anything more than symbolic shares.
+
+What you want is someone that will OWN and BE RESPONSIBLE for the success of the project. That person should get a high stake on a vested schedule that is tied to DELIVERING the project to specs, on time and on budget and keeping it alive going forward. If your technical co-founder is a software engineer that's great as that would be handy early on, but you should NOT value him/her based on his/her coding skills.
+And I'm a software engineer by training.
+
+Totally agree, being in co-founding/ founding position is the main driver factor of success. Personally, 
+I think this also should be applied for the first five employees.
+If you don't have that skill, you can learn in the process.
+Basically, a coder has to learn how to do business and build product. A business person has to learn how to code
+Are you willing to try new things to get task done or not?
+Are you willing to push through when there is no hope but only you faith or not?
+Are you willing to stay with the mission regarding countless rejections or not?
+It is not about skills, but core values. I learned to code at age 14 till my 30 y/o.
+
+you as a founder your idea alone not gonna give you half of the equity
+
+Have been on both sides: Technical Co-founders and Founder
+50/50 - Get them onboard and vested into the product and its success
+0% a Technical Co-founders is the potential CTO, so he is responsible with the technical part of the product. So he should be able to build it alone or with a team. If he can't and is part of a Technical Co-founders team, I would give him a cut from the 50%
+at least 50% - or more depending on the risk and the capabilities of the non Technical Co-founders and his achievements.
+Don't know - probably money.
+Similar to 3, depends on the risk. If I see the success of the Non Technical Co-founders, deals, contracts, customers and so on I would lean towards equity.
+As a Non Technical Co-founder if I have a customer, contracts for cash flow on finished product, I would try to pay for the dev instead of %. It's easy to get money and pay for the dev if you have customers that are committed.
+
+
+As a founder what percentage would you offer a developer that could build your entire project.
+50/50 would be where I'd start. You're splitting something of zero current value. And any deviation from that should be 
+based on the work being put into it. If you're both going to be dedicating similar time, experience and expertise to it, 
+then 50/50 is appropriate. Otherwise, adjust accordingly.
+As a developer that could build the entire project yourself what percentage would you want to be a technical co-founder?
+As a developer who has built multiple profitable projects entirely and is currently a solo founder, I wouldn't have 
+entertained anything other than an even split when I was considering what to work on next. I now regret not having a 
+non-tech founder from the start; there's value in what you are offering as a partner. But my enthusiasm for a particular 
+project and cofounder would have been far more about that person and their skills than it would have been about the 
+specific idea.
+
+If you find a developer who can build what you want, odds are they have a dozen ideas they could build up. You're not offering them a chunk of a valuable idea, you're offering them a partnership that could, with a lot of work and time, produce something intellectually and financially rewarding.
+
+Check out the book "Slicing Pie". I'll never start another venture again without using that system. 
+So easy and just makes sense
+
+Close to 50% if I'm responsible for building the entire product. The execution is everything.
+
+If they’re building it all, a few scenarios are possible. They’re also going to maintain it, in which case they get 
+roughly equal cut of ownership as the rest of the founding team. If they’re not, you pay them. Equity is offered as
+a way to keep someone around for the long haul so it doesn’t make sense for anyone as a payment for a temporary effort. 
+I’m technical myself, but if I’m not building it myself, I’m not likely to maintain it either. So equity is the short 
+answer. I wouldn’t offer any. If it’s a specialist role that we don’t keep around we hire a freelancer, if they are needed 
+to the team then they come out of the technical cofounders equity cut but likely a small part and we pay them anyways. 
+I don’t see a lot of logic in bringing on such a specialized development team before PMF.
+Equal with other cofounders. It’s likely the other founders bring complementary skills to the table (in an ideal world).
+This doesn’t describe a technical cofounder to me. It describes potentially an early employee. Equity is on the table but
+much lower and no cofounder title. If you can’t build the entire thing yourself you’re not the right person for the 
+founding team. The founding team needs to run lean. Depends on the startup. At this stage I need both unless 
+it’s my idea or one I’m crazy passionate about. Even then I have bills to pay, so either I find a bunch to invest $ 
+in it too so our founders get paid and there’s a defined runway, or we do it part time (I’m not a huge fan of this route).
+
+We had exact scenario. I act as a product owner who do following things
+Ideation, wireframing, feature roadmaps, market study and research
+Sit with design team and finish of the UI, userflows and prototypes
+Handover the prototypes to my co-founder who is a developer.
+Get some early users, functional testing etc.
+Design is done by paying to a 3rd party.
+Co-founder ROle
+To develop the product as given in prototype.
+To maintain the code, documentation and deployment
+Bug fixing. Technical support.
+We share 50:50
