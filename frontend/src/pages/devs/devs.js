@@ -43,17 +43,22 @@ export default {
                 filterBool = false
               }
             });
-          return filterBool
+            return filterBool
           })
         } else {
           return this.getDevUsers;
         }
       } else {
         return this.getDevUsers.filter(user => {
-          return user.hiring_options.some(option => this.filters.hiringOption.includes(option)) &&
+          let sum = 0
+          user.ratings.forEach(r => sum += r.rating)
+          let rating = Math.round(sum / user.ratings.length)
+          return (
+            user.hiring_options.some(option => this.filters.hiringOption.includes(option)) &&
             user.dev_roles.some(role => this.filters.roles.includes(role)) &&
             user.dev_categories.some(category => this.filters.categories.includes(category)) &&
-            Number(user.dev_rating) >= Number(this.filters.rating.split('')[2])
+            (rating >= Number(this.filters.rating.split('')[2]))
+          )
         })
       }
     },
