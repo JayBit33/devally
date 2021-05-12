@@ -2,8 +2,13 @@
 <!-- ALL RIGHTS RESERVED -->
 <template>
   <div class="connection-card-carousel">
-     <font-awesome-icon :icon="['fas','arrow-alt-circle-left']" class="arrow-icon" @click="goLeft"/>
-     <div class="connections">
+
+    <div class="arrows">
+      <font-awesome-icon :icon="['fas','arrow-alt-circle-left']" class="arrow-icon" @click="goLeft"/>
+      <font-awesome-icon :icon="['fas','arrow-alt-circle-right']" class="arrow-icon" @click="goRight"/>
+    </div>
+
+    <div class="connections">
       <connection-card
         v-for="connection in connectionsShown"
         :class="{'movingRight': movingRight, 'movingLeft': movingLeft}"
@@ -13,7 +18,6 @@
         @delete-click="$emit('delete-click', connection)"
       />
     </div>
-    <font-awesome-icon :icon="['fas','arrow-alt-circle-right']" class="arrow-icon" @click="goRight"/>
   </div>
 </template>
 

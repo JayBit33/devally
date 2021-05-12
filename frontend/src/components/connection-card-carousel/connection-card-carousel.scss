@@ -5,10 +5,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
+  width: 100%;
+  position: relative;
+  
   .connections {
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
     margin: .5rem 0;
 
@@ -18,15 +21,23 @@
     // }
   }
 
-  .arrow-icon {
-    font-size: 2rem;
-    color: black;
-    margin: 0 1rem;
-    cursor: pointer;
-
-    &:hover {
-      color: lighten(black, 40%);
-      transition: .3s;
+  .arrows {
+    width: 90%;
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 5;
+    .arrow-icon {
+      font-size: 2rem;
+      color: black;
+      margin: 0 1rem;
+      cursor: pointer;
+  
+      &:hover {
+        color: lighten(black, 40%);
+        transition: .3s;
+      }
     }
   }
 
