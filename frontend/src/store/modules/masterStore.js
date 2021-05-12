@@ -139,16 +139,16 @@ Vue.use(Vuex)
             if (!limit) limit = 1
 
             // All tags on api that would possibly fit our application
-            let tags = ['motivational', 'attitude', 'general', 'best']
+            let curatedTags = ['motivational', 'attitude', 'general', 'best']
             if (!tag) {
-                tag = tags[Math.floor(Math.random() * tags.length)]
+                tag = curatedTags[Math.floor(Math.random() * curatedTags.length)]
             } else {
                 console.log('Payload Tag is not in curated list: ', tag)
                 const availableTagsResponse = await fetch('https://goquotes-api.herokuapp.com/api/v1/all/tags')
                 const availableTags = await availableTagsResponse.json()
                 if (!(availableTags.tags.map(t => t.name).includes(tag))) {
                     console.log('Payload Tag is not an available tag: ', availableTags.tags.map(t => t.name))
-                    tag = tags[Math.floor(Math.random() * tags.length)]
+                    tag = curatedTags[Math.floor(Math.random() * curatedTags.length)]
                 }
             }
 
