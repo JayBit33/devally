@@ -25,29 +25,39 @@
     </div>
     <div v-if="!collapsed" class="project-collapsible_sections">
       <div class="general-info-section">
-        <div class="general-info-section_name section">
-          <h2>Name</h2>
-          <h3>{{ project.name }}</h3>
+        <div>
+          <font-awesome-icon
+            :icon="['fas', 'ellipsis-h']"
+            id="project-ellipsis"
+          ></font-awesome-icon>
         </div>
-        <div class="general-info-section_category section">
-          <h2>Category</h2>
-          <h3>{{ project.category }}</h3>
+        <div class="row2">
+          <div class="section">
+            <h2>Name</h2>
+            <h3>{{ project.name }}</h3>
+          </div>
+          <div class="section">
+            <h2>Category</h2>
+            <h3>{{ project.category }}</h3>
+          </div>
+          <div class="section">
+            <h2>Hiring Options</h2>
+            <h3>{{ project.hiring_options }}</h3>
+          </div>
+          <div class="section">
+            <h2>Funding Types</h2>
+            <h3>{{ project.funding_types }}</h3>
+          </div>
+          <div class="section">
+            <h2>Viewable Regions</h2>
+            <h3>{{ project.viewable_regions }}</h3>
+          </div>
         </div>
-        <div class="general-info-section_hiring section">
-          <h2>Hiring Options</h2>
-          <h3>{{ project.hiring_options }}</h3>
-        </div>
-        <div class="general-info-section_funding section">
-          <h2>Funding Types</h2>
-          <h3>{{ project.funding_types }}</h3>
-        </div>
-        <div class="general-info-section_regions section">
-          <h2>Viewable Regions</h2>
-          <h3>{{ project.viewable_regions }}</h3>
-        </div>
-        <div class="general-info-section_description section">
-          <h2>Description</h2>
-          <h3>{{ project.description }}</h3>
+        <div class="row3">
+          <div class="section">
+            <h2>Description</h2>
+            <h3>{{ project.description }}</h3>
+          </div>
         </div>
       </div>
       <div class="stats_section">
