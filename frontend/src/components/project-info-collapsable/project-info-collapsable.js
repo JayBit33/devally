@@ -1,12 +1,12 @@
 // (c) Waveybits Inc. <2021>
 // ALL RIGHTS RESERVED
-import ProjectGeneralInfo from '@/components/project-general-info'
+import ProjectStats from '@/components/project-stats'
 
 export default {
   name: 'project-info-collapsable',
   props: ['project'],
   components: {
-    ProjectGeneralInfo
+    ProjectStats
   },
   data() {
     return {

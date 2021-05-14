@@ -2,16 +2,21 @@
 <!-- ALL RIGHTS RESERVED -->
 <template>
   <div class="project-info-collapsable">
-
     <div class="project-info-collapsable__header" @click="toggleCollapsed()">
-      <font-awesome-icon :icon="collapsed ? ['fas','chevron-circle-down'] : ['fas','chevron-circle-up']" class="icon"></font-awesome-icon>
-      <h2>{{project.name}}</h2>
+      <font-awesome-icon
+        :icon="
+          collapsed
+            ? ['fas', 'chevron-circle-down']
+            : ['fas', 'chevron-circle-up']
+        "
+        class="icon"
+      ></font-awesome-icon>
+      <h2>{{ project.name }}</h2>
     </div>
 
     <div v-if="!collapsed" class="project-info-collapsable__content">
-      <project-general-info :project="project" />
+      <project-stats :project="project" />
     </div>
-
   </div>
 </template>
 

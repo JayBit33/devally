@@ -1,7 +1,7 @@
 // (c) Waveybits Inc. <2021>
 // ALL RIGHTS RESERVED
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import ProjectGeneralInfo from '@/components/project-general-info'
+import ProjectStats from '@/components/project-stats'
 import ConnectionCardCarousel from '@/components/connection-card-carousel'
 import { mapActions, mapGetters } from 'vuex'
 
@@ -11,12 +11,12 @@ export default {
   components: {
     ConnectionCardCarousel,
     FontAwesomeIcon,
-    ProjectGeneralInfo
+    ProjectStats
   },
   data() {
     return {
       user: {
-        tasks: [{ projectId: 3, message: 'Find a front-end developer that has experience with VueJS' },{ projectId: 11, message: 'Create designs. Jen should have them completed by noon today' },{ projectId: 21, message: 'Determine where to host application. Azure, Google Cloud and AWS are some viable options.'}],
+        tasks: [{ projectId: 3, message: 'Find a front-end developer that has experience with VueJS' }, { projectId: 11, message: 'Create designs. Jen should have them completed by noon today' }, { projectId: 21, message: 'Determine where to host application. Azure, Google Cloud and AWS are some viable options.' }],
       },
       collapsed: false,
       teamMembers: []

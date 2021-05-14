@@ -4,34 +4,88 @@
   <div class="project-collapsible">
     <div class="project-collapsible_header" @click="toggleCollapsed">
       <div class="project-collapsible_header_left">
-        <font-awesome-icon :icon="collapsed ? ['fas','chevron-circle-down'] : ['fas','chevron-circle-up']" class="icon"></font-awesome-icon>
-        <h2>{{project.name}}</h2>
+        <font-awesome-icon
+          :icon="
+            collapsed
+              ? ['fas', 'chevron-circle-down']
+              : ['fas', 'chevron-circle-up']
+          "
+          class="icon"
+        ></font-awesome-icon>
+        <h2>{{ project.name }}</h2>
       </div>
       <div class="project-collapsible_header_right">
-        <font-awesome-icon v-if="isEditable" @click.stop="$emit('edit-project', project)" :icon="['fas','ellipsis-h']" class="icon ellipse-icon"></font-awesome-icon>
+        <font-awesome-icon
+          v-if="isEditable"
+          @click.stop="$emit('edit-project', project)"
+          :icon="['fas', 'ellipsis-h']"
+          class="icon ellipse-icon"
+        ></font-awesome-icon>
       </div>
     </div>
     <div v-if="!collapsed" class="project-collapsible_sections">
-      <div class="general-info_section">
-        <project-general-info :project="project" :extraInformation="true" />
+      <div class="general-info-section">
+        <div class="general-info-section_name section">
+          <h2>Name</h2>
+          <h3>{{ project.name }}</h3>
+        </div>
+        <div class="general-info-section_category section">
+          <h2>Category</h2>
+          <h3>{{ project.category }}</h3>
+        </div>
+        <div class="general-info-section_hiring section">
+          <h2>Hiring Options</h2>
+          <h3>{{ project.hiring_options }}</h3>
+        </div>
+        <div class="general-info-section_funding section">
+          <h2>Funding Types</h2>
+          <h3>{{ project.funding_types }}</h3>
+        </div>
+        <div class="general-info-section_regions section">
+          <h2>Viewable Regions</h2>
+          <h3>{{ project.viewable_regions }}</h3>
+        </div>
+        <div class="general-info-section_description section">
+          <h2>Description</h2>
+          <h3>{{ project.description }}</h3>
+        </div>
+      </div>
+      <div class="stats_section">
+        <project-stats :project="project" :extraInformation="true" />
       </div>
       <div class="current-tasks_section">
         <h2>Current Tasks</h2>
         <div class="current-tasks">
           <div class="task" v-for="task in user.tasks" :key="task.message">
-            <font-awesome-icon :icon="['fas','tasks']" class="task-icon"></font-awesome-icon>
-            <h2>{{task.message}}</h2>
+            <font-awesome-icon
+              :icon="['fas', 'tasks']"
+              class="task-icon"
+            ></font-awesome-icon>
+            <h2>{{ task.message }}</h2>
           </div>
-          <p class="expand-section" @click="updateView('tasks')">See More Tasks</p>
+          <p class="expand-section" @click="updateView('tasks')">
+            See More Tasks
+          </p>
         </div>
       </div>
       <div class="members_section">
         <h2>Team Members</h2>
-        <connection-card-carousel class="members" :connections="teamMembers" :numberOfCardsDisplayed="2" :hasDeleteIcon="project.creator_id == getLoggedInUser.id" @delete-click="removeTeamMember" />
-        <h2 class='tofill-heading'>Positions To Fill</h2>
-        <connection-card-carousel class="members" :connections="teamMembers" :numberOfCardsDisplayed="2" :hasDeleteIcon="project.creator_id == getLoggedInUser.id" @delete-click="removeTeamMember" />
+        <connection-card-carousel
+          class="members"
+          :connections="teamMembers"
+          :numberOfCardsDisplayed="2"
+          :hasDeleteIcon="project.creator_id == getLoggedInUser.id"
+          @delete-click="removeTeamMember"
+        />
+        <h2 class="tofill-heading">Positions To Fill</h2>
+        <connection-card-carousel
+          class="members"
+          :connections="teamMembers"
+          :numberOfCardsDisplayed="2"
+          :hasDeleteIcon="project.creator_id == getLoggedInUser.id"
+          @delete-click="removeTeamMember"
+        />
       </div>
-
     </div>
   </div>
 </template>
