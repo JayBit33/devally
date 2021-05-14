@@ -32,6 +32,14 @@
       font-weight: 600;
     }
 
+    &_filter {
+      .checkbox-container {
+        input, label {
+          cursor: pointer;
+        }
+      }
+    }
+
     .search {
       padding-left: .5rem;
       margin-bottom: 2rem;
@@ -62,7 +70,7 @@
         }
       }
     }
-    .payment-types, .funding-types {
+    .payment-types, .funding-types, .roles {
       font-family: 'Open Sans';
       font-size: .875rem;
       font-weight: 300;
@@ -103,7 +111,7 @@
         border-radius: .25rem;
         padding: .5rem;
         &:last-of-type {
-          margin: 1rem 0;
+          margin: 0 0 1rem 0;
         }
       }
 
@@ -143,6 +151,21 @@
     }
   }
   .right-side {
+    .no-projects-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 20rem;
+      background-color: white;
+      margin-top: 9rem;
+      h2 {
+        font-size: 1.75rem;
+      }
+      .icon {
+        font-size: 1.5rem;
+        margin-left: 1rem;
+      }
+    }
     .pagination {
       display: flex;
       // justify-content: center;

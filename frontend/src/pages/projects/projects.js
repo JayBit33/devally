@@ -9,29 +9,19 @@ export default {
   data() {
     return {
       filters: {
-        bootrapped: false,
-        crowdFunding: false,
-        debtCapital: false,
-        ecom: false,
-        equity: false,
-        fandf: false,
-        flatRate: false,
-        itemsPerPage: 25,
-        mobile: false,
-        saas: false,
-        software: false,
-        other: false,
-        roles: null,
         searchTerm: null,
         seekingAllys: false,
         skills: null,
-        ventureCapital: false,
-        website: false,
+        roles: [],
+        paymentTypes: [],
+        categories: [],
+        fundingTypes: []
       },
-      currentPage1: null,
-      itemsPerPage: 25,
+      itemsPerPage: 5,
+      allProjects: [],
       projects: [],
-      projectsShown: [],
+      startIdx: 0,
+      endIdx: 5
     }
   },
   components: {
@@ -39,92 +29,157 @@ export default {
   },
   mixins: [PaginationMixin],
   async created() {
-    this.projects = await this.fetchProjects()
-    this.projectsShown = this.projects
+    this.allProjects = await this.fetchProjects()
+    this.projects = this.allProjects
+
+    // Fill in filter search panel
+    const { roles, hiring_options, categories } = await this.getDevOptions()
+    const { funding_types } = await this.getFundingTypes()
+
+    funding_types.forEach(f => {
+      this.filters.fundingTypes.push({
+        type: f,
+        isChecked: false
+      })
+    })
+    hiring_options.forEach(f => {
+      this.filters.paymentTypes.push({
+        type: f,
+        isChecked: false
+      })
+    })
+    categories.forEach(f => {
+      this.filters.categories.push({
+        type: f,
+        isChecked: false
+      })
+    })
+    roles.forEach(f => {
+      this.filters.roles.push({
+        type: f,
+        isChecked: false
+      })
+    })
+  },
+  computed: {
+    projectsShown() {
+      return this.projects ? this.projects.slice(this.startIdx, this.endIdx) : [];
+    }
   },
   methods: {
-    ...mapActions(['fetchProjects']),
+    ...mapActions(['fetchProjects', 'getFundingTypes', 'getDevOptions']),
     applyFilters() {
+      this.startIdx = 0
+      this.endIdx = this.itemsPerPage
       const filters = this.buildSelectedFilters()
-      console.log('not empty filters', filters)
+      if (filters == {}) return
 
-      let shiftFilters = (filters, key) => {
-        console.log('shifty', filters)
-        if (filters.length > 2) {
-          delete filters[key]
-          console.log(filters)
-          return filters
+      // If a filter is applied and a search filter was previously applied, apply search filter first then filter on new panel options
+      // Otherwise filter on all the projects from the initial fetchProjects call
+      let projectsToFilterOn = this.allProjects
+      if (this.filters.searchTerm) projectsToFilterOn = this.searchByName()
+
+      // Pull off type from the types/name from the options objects
+      const filterKeys = Object.keys(filters)
+      let filtersNames = {}
+      filterKeys.forEach(key => {
+        if (key == 'seeking_allys') {
+          filtersNames[key] = filters[key]
+        } else if (key == 'skills') {
+          filtersNames[key] = filters[key]
         } else {
-          return 'done'
+          if (key == 'hiring_options') filters[key].map(f => {
+            if (f.type == 'Equity (Shares)') f.type = 'Shares'
+            return f
+          })
+          filtersNames[key] = filters[key].map(f => f.type)
         }
-      }
-
-      let results = this.projects.filter(p => {
-        function filterProjects(filters) {
-          if (filters === 'done') return true
-          for (let [key,value] of Object.entries(filters)) {
-            console.log('value', key, value)
-            return p[key].some(o => filters[key].includes(o)) && filterProjects(shiftFilters(filters, key))
-          }
-        }
-         return filterProjects(filters)
       })
-      console.log('results', results)
-      this.projectsShown = Array.from(new Set(results))
+      // Filter out the projectsToFilter on with the options in the filter panel (excluding the search)
+      this.projects = projectsToFilterOn.filter(project => {
+        let unmatchingFilterKeys = filterKeys.filter(key => {
+          if (key == 'seeking_allys') { // String Keys on project
+            if (filtersNames[key] && !project['is_seeking_allys']) return true
+            return false
+          } else if (key == 'category') { // Boolean Keys on project
+            return !filtersNames[key].includes(project[key])
+          } else { // Array Keys on project
+            if (key == 'skills') {
+              return !project['members_needed'].reduce((acc, m) => [...acc, ...m.skills], []).some(value => filtersNames[key].includes(value))
+            } else if (key == 'roles') {
+              return !project['members_needed'].map(m => m.position).some(value => filtersNames[key].includes(value))
+            }
+            return !project[key].some(value => filtersNames[key].includes(value))
+          }
+        })
+        return (unmatchingFilterKeys.length === 0) // If the project does not match any one or more of the filters
+      })
     },
     buildSelectedFilters() {
       let selectedFilters = {}
 
-      // if one or more of the project properties exist create empty array to store values
-      if (this.filters.equity || this.filters.flatRate) selectedFilters['hiring_options'] = []
-      if (this.filters.ecom || this.filters.mobile || this.filters.other || this.filters.saas || this.filters.software || this.filters.website) selectedFilters['category'] = []
-      if (this.filters.bootrapped || this.filters.crowdFunding || this.filters.fandf || this.filters.debtCapital || this.filters.ventureCapital) selectedFilters['funding_types'] = []
-      if (this.filters.roles) selectedFilters['roles'] = []
-      if (this.filters.skills) selectedFilters['skills'] = []
-      if (this.filters.seekingAllys) selectedFilters['seeking_allys'] = []
-      if (this.filters.searchTerm) selectedFilters['name'] = []
-      // add all checked filter options to array's accordingly
-      if (this.filters.equity) selectedFilters['hiring_options'].push('Shares')
-      if (this.filters.flatRate) selectedFilters['hiring_options'].push('Flat Rate')
+      if (this.filters.paymentTypes.filter(o => o.isChecked).length > 0) selectedFilters['hiring_options'] = this.filters.paymentTypes.filter(o => o.isChecked)
+      if (this.filters.categories.filter(o => o.isChecked).length > 0) selectedFilters['category'] = this.filters.categories.filter(o => o.isChecked)
+      if (this.filters.fundingTypes.filter(o => o.isChecked).length > 0) selectedFilters['funding_types'] = this.filters.fundingTypes.filter(o => o.isChecked)
+      if (this.filters.roles.filter(o => o.isChecked).length > 0) selectedFilters['roles'] = this.filters.roles.filter(o => o.isChecked)
 
-      if (this.filters.ecom) selectedFilters['category'].push('Ecommerce')
-      if (this.filters.mobile) selectedFilters['category'].push('Mobile Application')
-      if (this.filters.other) selectedFilters['category'].push('Other')
-      if (this.filters.saas) selectedFilters['category'].push('SAAS')
-      if (this.filters.software) selectedFilters['category'].push('Software')
-      if (this.filters.website) selectedFilters['category'].push('Website')
+      if (this.filters.skills) selectedFilters['skills'] = this.filters.skills.split(', ')
 
-      if (this.filters.bootrapped) selectedFilters['funding_types'].push('Bootstrapped')
-      if (this.filters.crowdFunding) selectedFilters['funding_types'].push('CrowdFunding')
-      if (this.filters.fandf) selectedFilters['funding_types'].push('Friends & Family')
-      if (this.filters.debtCapital) selectedFilters['funding_types'].push('Debt Capital')
-      if (this.filters.ventureCapital) selectedFilters['funding_types'].push('Venture Capital')
-
-      if (this.filters.roles) selectedFilters['roles'] = this.filters.roles.split(',')
-      if (this.filters.skills) selectedFilters['skills'] = this.filters.skills.split(',')
-
-      if (this.filters.seekingAllys) selectedFilters['seeking_allys'].push(true)
-      if (this.filters.searchTerm) selectedFilters['name'].push(this.filters.searchTerm.toLowerCase())
+      if (this.filters.seekingAllys) selectedFilters['seeking_allys'] = true
 
       return selectedFilters
     },
     clearFilters() {
-      const keys = Object.keys(this.filters)
-      keys.forEach(key => {
-        this.filters[key] = false
+      const arrayFilters = ['paymentTypes', 'categories', 'fundingTypes']
+      arrayFilters.forEach(key => {
+        this.filters[key] = this.filters[key].map(o => {
+          return {
+            type: o.type,
+            isChecked: false
+          }
+        })
       })
+
       this.filters.roles = null
       this.filters.skills = null
       this.filters.searchTerm = null
+      this.filters.seekingAllys = false
 
-      this.projectsShown = this.projects
+      this.projects = this.allProjects
     },
-    handleSizeChange() {
-
+    updateItemsDisplayed(e) {
+      this.startIdx = (this.itemsPerPage * (e - 1))
+      this.endIdx = (this.itemsPerPage * e)
+    },
+    handleSizeChange(e) {
+      this.itemsPerPage = e
+    },
+    updateFilterCheckBox(section, option) {
+      if (section == 'seekingAllys') {
+        this.filters.seekingAllys = !this.filters.seekingAllys
+      } else {
+        this.filters[section] = this.filters[section].map(o => {
+          if (o.type == option.type) o.isChecked = !o.isChecked
+          return o
+        })
+      }
     },
     searchByName() {
-      if (this.filters.searchTerm)
-        this.projectsShown = this.projects.filter(project => project.name.toLowerCase() === this.filters.searchTerm.toLowerCase())
+      let searchFilterProjects = this.allProjects
+      if (this.filters.searchTerm) {
+        searchFilterProjects = searchFilterProjects.filter(project => {
+          let filterBool = true
+          let letters = [...this.filters.searchTerm]
+          letters.forEach((letter, i) => {
+            let projectName = project.name
+            if (letter.toLowerCase() != projectName[i].toLowerCase() && letter.toLowerCase() != projectName[i].toLowerCase()) {
+              filterBool = false
+            }
+          });
+          return filterBool
+        })
+      }
+      return searchFilterProjects
     }
   }
 }
