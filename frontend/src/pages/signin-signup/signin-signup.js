@@ -74,8 +74,6 @@ export default {
       this.loggingIn = !this.loggingIn
     },
     removeEmailError() {
-      // console.log(e)
-      // e.target.setAttribute("invalid", false)
       this.emailError = false
     },
     removePasswordError() {

@@ -14,11 +14,8 @@
     align-items: center;
     flex-wrap: wrap;
     margin: .5rem 0;
-
-    // .movingRight {
-    //   transition: 1s;
-    //   transform: translateX(-10px);
-    // }
+    height: 100%;
+    box-sizing: border-box;
   }
 
   .arrows {
