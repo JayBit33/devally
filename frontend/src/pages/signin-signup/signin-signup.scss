@@ -65,9 +65,14 @@
           padding: .875rem;
           margin-bottom: 0rem;
 
+          
           &:focus {
             outline: none;
             border: 1px solid $button-primary;
+          }
+
+          &.error {
+            border-color: $toast-error;
           }
         }
         #forgot_pw {

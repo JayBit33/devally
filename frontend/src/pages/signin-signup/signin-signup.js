@@ -17,14 +17,9 @@ export default {
           password: '',
           email: ''
       },
-      toast: {
-        type: '',
-        message: [{ text: '', emphasis: false }],
-        hasAction: false,
-        actionRedirect: '',
-        isShown: false,
-        duration: 5000
-      }
+      toast: {},
+      emailError: false,
+      passwordError: false
     }
   },
   components: {
@@ -32,7 +27,7 @@ export default {
     FontAwesomeIcon
   },
   methods: {
-    ...mapActions(['login']),
+    ...mapActions(['login' ,'fetchToast']),
     alertClosed() {
       console.log('closed alert')
       this.loginErrorMsg = '';
@@ -56,39 +51,47 @@ export default {
       }
       this.visionaryAccount = true
     },
-    submitForm() {
+    async submitForm() {
       this.toast.isShown = false
+      let errorMessage = [{ text: 'There was a problem logging you in. Try again.', emphasis: false }]
       const validFormData = this.validateEmail(this.signInForm.email) && this.validatePassword(this.signInForm.password)
-        if (validFormData) {
-          this.login({email: this.signInForm.email, password: this.signInForm.password }).then(res => {
-            this.loginErrorMsg = res.message != 'login successful' ? res.message : '';
-            this.$router.push({ name: 'Profile', params: { id: res.user.id }})
-          }).catch(err => {
-            console.log('login error 400. See FE', err)
-            this.toast.type = 'error'
-            this.toast.message = [{ text: 'There was a problem logging you in. Try again', emphasis: false }]
-            this.toast.isShown = true
-          })
-        } else {
-          console.log('error submit!!');
-          this.toast.type = 'error'
-          this.toast.message = [{text: 'There was a problem logging you in. Try again', emphasis: false}]
-          this.toast.isShown = true
-          return false;
-        }
+      if (validFormData) {
+        this.login({email: this.signInForm.email, password: this.signInForm.password }).then(res => {
+          this.loginErrorMsg = res.message != 'login successful' ? res.message : '';
+          this.$router.push({ name: 'Profile', params: { id: res.user.id }})
+        }).catch(async (err) => {
+          console.log('Login error 400. See FE', err)
+          errorMessage[0].text = 'No account matches this email and password.'
+          this.toast = await this.fetchToast({ type: 'error', message: errorMessage });
+        })
+      } else {
+        errorMessage[0].text = 'Invalid Email or Password! Please try again.'
+        this.toast = await this.fetchToast({ type: 'error', message: errorMessage });
+        return false;
+      }
     },
     toggleLogIn() {
       this.loggingIn = !this.loggingIn
     },
+    removeEmailError() {
+      // console.log(e)
+      // e.target.setAttribute("invalid", false)
+      this.emailError = false
+    },
+    removePasswordError() {
+      this.passwordError = false
+    },
     validateEmail(email) {
-      // TODO
-      return email.trim().length > 0;
+      if (!this.$refs.email_input.checkValidity()) this.emailError = true
+      return (this.$refs.email_input.checkValidity() && email.trim().length > 0)
     },
     validatePassword(password) {
-      if (password === '') {
+      if (password === '' || password == null) {
         new Error('Please input the password');
+        this.passwordError = true
       } else if (password.length < 6) {
         new Error('Password length must be 6 characters or more');
+        this.passwordError = true
       } else {
           return true
       }

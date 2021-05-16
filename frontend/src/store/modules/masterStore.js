@@ -211,7 +211,7 @@ Vue.use(Vuex)
             return new Promise((resolve, reject) => {
                 authAPI.post(`/login`, userLoginInfo)
                     .then(res => {
-                        if (res) {
+                        if (res.status == 200) {
                             console.log('res', res);
                             commit('updateUserId', res.data.user.id);
                             commit('updateIsLoggedIn', res.data.result);
@@ -226,6 +226,8 @@ Vue.use(Vuex)
                                 }
                             );
                             resolve(res.data);
+                        } else {
+                            throw 'Invalid Login'
                         }
                     }).catch(error => reject(error));
             })
@@ -294,12 +296,16 @@ Vue.use(Vuex)
             return new Promise((resolve, reject) => {
                 authAPI.post('/refresh_token')
                 .then(res => {
-                    console.log(res.data)
-                    commit('updateAccessToken', res.data.accessToken);
-                    commit('updateIsLoggedIn', !(res.data.accessToken === ""));
-                    commit('updateLoggedInUser', res.data.user);
-                    commit('updateUserId', res.data.user.id);
-                    resolve(res.data);
+                    if (res.data.ok) {
+                        console.log(res.data)
+                        commit('updateAccessToken', res.data.accessToken);
+                        commit('updateIsLoggedIn', !(res.data.accessToken === ""));
+                        commit('updateLoggedInUser', res.data.user);
+                        commit('updateUserId', res.data.user.id);
+                        resolve(res.data);
+                    } else {
+                        throw 'No refresh token'
+                    }
                 }).catch(error => {
                     reject(error)
                 });

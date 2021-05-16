@@ -2,6 +2,15 @@
 <!-- ALL RIGHTS RESERVED -->
 <template>
   <div class="signin-signup">
+    <Toast 
+      v-if="toast && toast.isShown"
+      :type="toast.type"
+      :message="toast.message"
+      :hasAction="toast.hasAction"
+      :duration="toast.duration"
+      @toast-action-click="handleToastAction"
+      @toast-close="closeToast"
+    />
     <div v-if="loggingIn" class="signin">
       <div class="signin_image">
         <img src="../../assets/signin.svg" />
@@ -11,9 +20,9 @@
         <h4>Don't have an account yet?<span id="signup" @click="loggingIn = false">Sign Up</span></h4>
         <form @submit.prevent>
           <label>Email Address</label>
-          <input type="email" v-model="signInForm.email" class="input" />
+          <input type="email" ref="email_input" v-model="signInForm.email" class="input" :class="{'error': emailError}" @input="removeEmailError"/>
           <label>Password<span id="forgot_pw">Forgot Password</span></label>
-          <input type="password" v-model="signInForm.password" class="input" />
+          <input type="password" v-model="signInForm.password" class="input" :class="{'error': passwordError}" @input="removePasswordError"/>
           <div id="remember">
             <input type="checkbox" id="checkbox" />
             <p>Remember me</p>
