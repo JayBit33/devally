@@ -54,6 +54,24 @@
           >
           </dropdown>
         </div>
+        <div v-if="isDevUser" class="skills">
+          <h4>Skills</h4>
+          <div class="add-skill">
+            <div class="icon" @click="addSkill">
+              <font-awesome-icon :icon="['fas', 'plus']" />
+            </div>
+            <input ref="add_skill_input" type="text" placeholder="Add a skill..." @keypress.enter.prevent="addSkill">
+          </div>
+          <div class="skills_container">
+            <div v-for="skill in skills" :key="skill" class="skill" @dblclick="removeSkill(skill)">
+              <p>{{skill}}</p>
+              <font-awesome-icon class="icon" :icon="['fas', 'trash']" @click="removeSkill(skill)" />
+            </div>
+            <div class="no-skills" v-if="skills.length == 0">
+              <p>You have no skills added. Add some to showcase your talents!</p>
+            </div>
+          </div>
+        </div>
         <div v-if="isDevUser" class="github-link">
           <h4>Github Link</h4>
           <input v-model="githubLink" />

@@ -23,7 +23,8 @@ export default {
       githubLink: '',
       portfolioLink: '',
       user: {},
-      isDevUser: false
+      isDevUser: false,
+      addedSkills: []
     }
   },
   async created() {
@@ -46,7 +47,10 @@ export default {
     this.isDevUser = this.user.user_type_id == "1"
   },
   computed: {
-    ...mapGetters(['getLoggedInUser'])
+    ...mapGetters(['getLoggedInUser']),
+    skills() {
+      return [...this.user.dev_skills, ...this.addedSkills]
+    }
   },
   methods: {
     ...mapMutations(['updateLoggedInUser']),
@@ -62,6 +66,21 @@ export default {
     },
     handleHiringOptionsSelection(e) {
       this.selectedHiringOptions = e
+    },
+    addSkill() {
+      let newSkill = this.$refs.add_skill_input.value
+      this.$refs.add_skill_input.value = ''
+
+      if (this.skills.includes(newSkill) || newSkill == '' || newSkill == null) return
+
+      this.addedSkills = [...this.addedSkills, newSkill]
+    },
+    removeSkill(skill) {
+      if (this.user.dev_skills.includes(skill)) {
+        this.user.dev_skills = this.user.dev_skills.filter(s => s != skill)
+      } else {
+        this.addedSkills = this.addedSkills.filter(s => s != skill)
+      }
     },
     async updateProfileImage() {
       let formData = new FormData(document.getElementById('upload-form'))
@@ -82,6 +101,7 @@ export default {
         let updates = {
           dev_categories: JSON.stringify(this.selectedCategories),
           dev_roles: JSON.stringify(this.selectedRoles),
+          dev_skills: JSON.stringify(this.skills),
           hiring_options: JSON.stringify(this.selectedHiringOptions),
           dev_bio: this.bio,
           dev_github_link: this.githubLink,

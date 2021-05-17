@@ -54,18 +54,95 @@
     h4 {
       margin: .25rem 0;
     }
-
+    
     .interested-categories, .roles, .hiring-options {
       margin: 2rem 0;
       .profile-dropdown {
         width: 100%;
       }
     }
+    
+    .skills {
+      margin: 0 0 2rem 0;
+      .add-skill {
+        display: flex;
+        align-items: center;
+        margin-right: 1rem;
+        margin-top: .25rem;
+        width: 100%;
+        border-radius: .25rem;
+        transition: .3s;
+        position: relative;
+        height: 40px;
+        input {
+          height: 100%;
+          width: 100%;
+          padding: 0 .5rem 0 3rem;
+          outline: none;
+          border: 1px solid $element-border;
+          border-radius: .25rem;
+          transition: .3s;
+        }
+        .icon {
+          position: absolute;
+          top: 50%;
+          transform: translate(0, -50%);
+          margin: 0 .5rem;
+          height: .5rem;
+          width:.5rem;
+          background-color: $button-secondary;
+          color: white;
+          padding: .5rem;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+        }
+      }
+      &_container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: center;
+        .skill, .no-skills {
+          margin-top: 1rem;
+          max-width: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-right: 1rem;
+          background-color: white;
+          padding: .5rem 1rem;
+          border-radius: .25rem;
+          p {
+            margin: 0;
+            padding: 0;
+            margin-right: .5rem;
+          }
+          .icon {
+            cursor: pointer;
+            transition: .3s;
+            &:hover {
+              color: darken($button-secondary, 15);
+            }
+          }
+        }
+        .no-skills {
+          width: 100%;
+          margin-top: 0;
+          background-color: transparent;
+          color: $button-tri;
+        }
+      }
+    }
 
     .github-link, .portfolio-link {
-      margin: 2rem 0;
+      margin: 0 0 4rem 0;
+      height: 40px;
       input {
-        padding: .5rem;
+        height: 100%;
+        padding: 0 .5rem;
         width: calc(100% - 1rem);
         outline: none;
         border: 1px solid $element-border;
