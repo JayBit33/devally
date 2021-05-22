@@ -27,15 +27,15 @@
           <div class="options_category">
             <h3>Category</h3>
             <p>{{ project.category }}</p>
-        </div>
-        <div class="options_hiring-options">
-          <h3>Hiring Options</h3>
-          <p>{{ project.hiring_options }}</p>
-        </div>
-        <div class="options_funding-types">
-          <h3>Funding Types</h3>
-          <p>{{ project.funding_types }}</p>
-        </div>
+          </div>
+          <div class="options_hiring-options">
+            <h3>Hiring Options</h3>
+            <p>{{ project.hiring_options }}</p>
+          </div>
+          <div class="options_funding-types">
+            <h3>Funding Types</h3>
+            <p>{{ project.funding_types }}</p>
+          </div>
         </div>
         <div class="options_positions">
           <h3>Positions Needed:</h3>
