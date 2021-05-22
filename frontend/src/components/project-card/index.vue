@@ -29,8 +29,10 @@
         <p>{{ position.position }} <span style="font-weight: 600; padding: 0 1rem;">Skills Needed:</span>{{ openPositions(position) }}  <button>Apply</button></p>
       </div>
     </div>
-
-    <button class="learn_more">Learn More</button>
+    
+     <router-link :to="{ name: 'Project', params: { id: project.id }}" class="link">
+      <button class="learn_more">Learn More</button>
+    </router-link>
   </div>
 </template>
 

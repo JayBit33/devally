@@ -67,7 +67,7 @@ export default {
   },
   async created() {
     await this.fetchDevUsers()
-    this.user = this.getDevUser(this.$route.params.id)
+    this.user = await this.getDevUser(this.$route.params.id)
 
     if (!this.isLoggedIn) {
       let message = [

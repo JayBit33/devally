@@ -7,6 +7,7 @@ import Devs from '../pages/devs'
 import Dev from '../pages/dev'
 import UserApp from '../pages/user-app'
 import Projects from '../pages/projects'
+import Project from '../pages/project'
 import Works from '../pages/Works'
 import Resources from '../pages/Resources'
 import About from '../pages/About'
@@ -23,6 +24,7 @@ const router = new VueRouter({
     { path: '/devs', name: 'Devs', component: Devs, meta: { breadcrumb: [ { name: 'home', to: '/' }, { name: 'developers', to: '/devs' }]} },
     { path: '/dev/:id?', name: 'Dev', component: Dev, meta: { breadcrumb: [ { name: 'home', to: '/' }, { name: 'developers', to: '/devs' }, { name: 'developer', to: '/dev' }]} },
     { path: '/projects', name: 'Projects', component: Projects, meta: { breadcrumb: [{ name: 'home', to: '/' }, { name: 'projects', to: '/projects' }]} },
+    { path: '/project/:id?', name: 'Project', component: Project, meta: { breadcrumb: [{ name: 'home', to: '/' }, { name: 'projects', to: '/projects' }, { name: 'project', to: '/project' }]} },
     { path: '/profile/:id?/:view?/:projectId?', name: 'Profile', component: UserApp, meta: { breadcrumb: [] } },
     { path: '/works',  name: 'Works', component: Works, meta: { breadcrumb: []} },
     { path: '/resources',  name: 'Resources', component: Resources, meta: { breadcrumb: []} },
