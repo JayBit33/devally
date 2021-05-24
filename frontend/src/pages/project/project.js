@@ -9,6 +9,8 @@ export default {
   data() {
     return {
       project: {},
+      visionary: null,
+      teamMembers: [],
     }
   },
   components: {
@@ -17,18 +19,36 @@ export default {
   },
   async created() {
     this.project = await this.fetchProjectById(this.$route.params.id)
+    let id = this.project.creator_id
+    this.visionary = await this.fetchUserById(id)  
+    this.project.team_member_ids.forEach(async id => await this.fetchUserById(id).then(user => this.teamMembers.push(user)))
   },
   computed: {
-    async visionary() {
-      let id = this.project.creator_id
-      return await this.fetchUserById(id)  
+    hiringOptions() {
+      return this.project.hiring_options.reduce((acc, option, idx, arr) => {
+        if (idx !== arr.length) return acc += ', ' + option
+        acc += option
+        return acc
+      })
     },
-    teamMembers() {
-      const members = this.project.team_member_ids.map(async id => await this.fetchUserById(id))
-      return members  
+    fundingTypes() {
+      return this.project.funding_types.reduce((acc, option, idx, arr) => {
+        if (idx !== arr.length) return acc += ', ' + option
+        acc += option
+        return acc
+      })
     },
-    async positionsNeeded() {
+    positionsNeeded() {
       return this.project.members_needed  
+    },
+    skills() {
+      return (position) => {
+        return position.skills.reduce((acc, option, idx, arr) => {
+          if (idx !== arr.length) return acc += ', ' + option
+          acc += option
+          return acc
+        })
+      } 
     }
   },
   methods: {

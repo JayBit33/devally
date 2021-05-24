@@ -2,13 +2,14 @@
 <!-- ALL RIGHTS RESERVED -->
 <template>
   <div class="project">
-    <div class="project_left">
+    <div class="project-info">
+    <div class="project-info_left">
       <h3>Visionary</h3>
       <connection-card 
         :connection="visionary">
       </connection-card>
     </div>
-    <div class="project_right">
+    <div class="project-info_right">
       <div class="col1">
         <h4>{{ project.date_created }}</h4>
         <h4>Status: <span class="status">{{ project.is_active ? 'Active' : 'Closed'}}</span></h4>
@@ -29,18 +30,18 @@
             <p>{{ project.category }}</p>
           </div>
           <div class="options_hiring-options">
-            <h3>Hiring Options</h3>
-            <p>{{ project.hiring_options }}</p>
+            <h3>Payment</h3>
+            <p>{{ hiringOptions }}</p>
           </div>
           <div class="options_funding-types">
-            <h3>Funding Types</h3>
-            <p>{{ project.funding_types }}</p>
+            <h3>Funding</h3>
+            <p>{{ fundingTypes }}</p>
           </div>
         </div>
         <div class="options_positions">
           <h3>Positions Needed:</h3>
-          <div v-for="position in project.members_needed" :key="position.position" class="position">
-            <p>{{ position.position }} Skills Required: {{ position.skills }}</p>
+          <div v-for="(position, idx) in project.members_needed" :key="idx" class="position">
+            <p>{{ position.position }} <b style="padding-left: 1rem;">Skills Required:</b> {{ skills(position) }}</p>
           </div>
         </div>
       </div>
@@ -49,6 +50,7 @@
           <h3>Team Members</h3>
           <connection-card-carousel
             :connections="teamMembers"
+            :hasDeleteIcon=false
             :numberOfCardsDisplayed=2
           >
           </connection-card-carousel>
@@ -62,6 +64,7 @@
           </connection-card>
         </div>
       </div>
+    </div>
     </div>
   </div>
 </template>
