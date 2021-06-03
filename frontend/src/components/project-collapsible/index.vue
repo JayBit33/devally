@@ -25,7 +25,8 @@
     </div>
     <div v-if="!collapsed" class="project-collapsible_sections">
       <div class="general-info-section">
-        <div>
+        <div class="general-info-section_heading">
+          <h2>General Information</h2>
           <font-awesome-icon
             :icon="['fas', 'ellipsis-h']"
             id="project-ellipsis"
@@ -64,7 +65,7 @@
         <project-stats :project="project" :extraInformation="true" />
       </div>
       <div class="current-tasks_section">
-        <h2>Current Tasks</h2>
+        <h2 class="current-tasks_section-heading">Current Tasks</h2>
         <div class="current-tasks">
           <div class="task" v-for="task in user.tasks" :key="task.message">
             <font-awesome-icon

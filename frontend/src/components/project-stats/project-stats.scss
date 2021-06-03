@@ -11,14 +11,13 @@
   }
   &__information {
     .default_information, .extra_information {
-      margin: .75rem auto;
-      // width: 80%;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       text-align: center;
     }
     
     .extra_information {
+      margin: 2rem 0 3rem 0;
       .info-total {
         margin: 0;
         font-size: 1rem;
