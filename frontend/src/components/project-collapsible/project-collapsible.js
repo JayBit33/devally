@@ -2,6 +2,7 @@
 // ALL RIGHTS RESERVED
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import ProjectStats from '@/components/project-stats'
+import ConnectionCard from '@/components/connection-card'
 import ConnectionCardCarousel from '@/components/connection-card-carousel'
 import { mapActions, mapGetters } from 'vuex'
 
@@ -9,6 +10,7 @@ export default {
   name: 'project-collapsible',
   props: ['project', 'isEditable'],
   components: {
+    ConnectionCard,
     ConnectionCardCarousel,
     FontAwesomeIcon,
     ProjectStats
@@ -19,7 +21,8 @@ export default {
         tasks: [{ projectId: 3, message: 'Find a front-end developer that has experience with VueJS' }, { projectId: 11, message: 'Create designs. Jen should have them completed by noon today' }, { projectId: 21, message: 'Determine where to host application. Azure, Google Cloud and AWS are some viable options.' }],
       },
       collapsed: false,
-      teamMembers: []
+      teamMembers: [],
+      visionary: null
     }
   },
   computed: {
@@ -28,7 +31,7 @@ export default {
   async created() {
     this.teamMembers = await Promise.all(this.project.team_member_ids.map(async id => await this.fetchUserById(id)))
     const creator = await this.fetchUserById(this.project.creator_id)
-    this.teamMembers = [creator, ...this.teamMembers]
+    this.visionary = creator
   },
   methods: {
     ...mapActions(['fetchUserById', 'fetchToast', 'updateProjectById', 'updateUser']),

@@ -48,7 +48,7 @@ TO FINISH FOR LAUNCH
     redesign dropdown for user avatar on website
     make route for projects go to user-app projects 
     add click event for edit on the user-app projects page
-    change view on user-app projects page if user is not the project creator
+    X change view on user-app projects page if user is not the project creator
     when creating & editing project need to be able to add positions to fill
     remove Is Featured radio and replace with a checkbox that displays the price to make their project featured
     Also add click event for modal at top of projects page for get featured to take user to payment and set project as featured upon payment verification
