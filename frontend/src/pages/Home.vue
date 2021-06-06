@@ -163,7 +163,6 @@ export default {
     margin-bottom: 0rem;
     margin-left: 9rem;
     margin-right: 7rem;
-    border-bottom: 1px solid #f2f2f2;
     background-color: white;
     .col-1 {
       margin-left: 2.5rem;
@@ -208,11 +207,16 @@ export default {
     button {
       background-color: white;
       color: black;
+      font-weight: bold;
       border: 1px solid lightgrey;
-      margin-top: .25rem;
+      margin-top: 0;
       width: 50%;
 
       &:hover {
+        color: $button-tri;
+      }
+
+      &:hover.active {
         background-color: $button-tri;
         color: white;
       }
