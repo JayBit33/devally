@@ -28,8 +28,10 @@
         <div class="general-info-section_heading">
           <h2>General Information</h2>
           <font-awesome-icon
-            :icon="['fas', 'ellipsis-h']"
+            v-if="isEditable"
             id="project-ellipsis"
+            :icon="['fas', 'ellipsis-h']"
+            @click.stop="$emit('edit-project', project)"
           ></font-awesome-icon>
         </div>
         <div class="row2">
@@ -61,10 +63,10 @@
           </div>
         </div>
       </div>
-      <div class="stats_section">
+      <div v-if="isEditable" class="stats_section">
         <project-stats :project="project" :extraInformation="true" />
       </div>
-      <div class="current-tasks_section">
+      <div v-if="isEditable" class="current-tasks_section">
         <h2 class="current-tasks_section-heading">Current Tasks</h2>
         <div class="current-tasks">
           <div class="task" v-for="task in user.tasks" :key="task.message">

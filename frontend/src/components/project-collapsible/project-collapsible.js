@@ -85,6 +85,12 @@ export default {
     },
     toggleCollapsed() {
       this.collapsed = !this.collapsed
+    },
+    updateView(view) {
+      let id = this.$route.params.id
+      if (view != this.$route.params.view) {
+        this.$router.push(`/profile/${id}/${view}`)
+      }
     }
   },
   watch: {
