@@ -105,6 +105,8 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+  max-width: $max-screen-width;
+  margin: 0 auto;
 
   &.offwhite-background {
     background-color: $sidebar_bg;
@@ -204,12 +206,13 @@ html {
   background-color: #3f5e75;
   color: white;
   position: absolute;
-  left: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
   width: 100%;
+  max-width: $max-screen-width;
+  margin: 0 auto;
   text-align: center;
   padding-top: 11rem;
-  margin-top: 0;
-  margin-bottom: 0;
   z-index: 3;
 }
 

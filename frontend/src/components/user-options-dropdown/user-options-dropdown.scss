@@ -2,6 +2,8 @@
 // ALL RIGHTS RESERVED
 
   .user-options-dropdown {
+    position: relative;
+    top: -3.25rem;
     ul {
       list-style-type: none;
       padding: 0;
@@ -9,7 +11,7 @@
       background-color: $secondary-darker;
       position: absolute;
       right: 2rem;
-      top: 4.25rem;
+      top: 0;
       z-index: 5;
       &:before {
         display: block;
