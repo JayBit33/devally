@@ -5,7 +5,7 @@
 export default {
   data() {
     return {
-      pageSize: 2,
+      pageSize: 5,
       currentPageIdx: 1,
       startIdx: 0,
       endIdx: 5,
