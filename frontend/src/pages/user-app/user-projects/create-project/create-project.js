@@ -61,7 +61,7 @@ export default {
     let { funding_types } = await this.getFundingTypes()
 
     this.allCategories = categories
-    this.allHiringOptions = hiring_options
+    this.allHiringOptions = hiring_options.filter(option => option !== 'Flat Rate') // disable Flat Rate option
     this.allRegions = regions
     this.allFundingTypes = funding_types
     

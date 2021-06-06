@@ -27,7 +27,7 @@ export default {
   },
   async created() {
     const {roles, hiring_options, categories} = await this.getDevOptions()
-    this.allHiringOption = hiring_options
+    this.allHiringOption = hiring_options.filter(option => option !== 'Flat Rate') // disable Flat Rate option
     this.allRoles = roles
     this.allCategories = categories
     this.allRating = ['>=1','>=2', '>=3','>=4','>=5']

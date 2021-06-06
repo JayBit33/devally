@@ -7,7 +7,7 @@
         <div class="user-settings_content_icon">
           <font-awesome-icon :icon="['fas','envelope']" class="view-icon"></font-awesome-icon>
         </div>
-        <h2>Notification and Subscriptions</h2>
+        <h2>Notifications and Subscriptions</h2>
         <p>Notify me by email when</p>
 
         <div class="options">

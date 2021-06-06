@@ -8,7 +8,7 @@
         <h4>{{title}}</h4>
       </div>
 
-      <div class="user-modal__button" :style="styles ? {'background-color': styles.buttonBackground} : {}" @click="$emit('button-click')">
+      <div class="user-modal__button" :style="styles ? {'background-color': styles.buttonBackground} : {}"  @click="$emit('button-click')">
         <font-awesome-icon :icon="btnIcon" class="icon"></font-awesome-icon>
         <h4>{{btnTxt}}</h4>
       </div>
