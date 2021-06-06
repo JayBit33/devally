@@ -41,6 +41,7 @@ Remember launch is only a big deal for you not for your users.
 TO FINISH FOR LAUNCH 
     handle background colors with the new max width for all pages
     if we are removing flat rate for time being. remove it from everywhere payment type is displayed
+    add hover styles for modals. example get featured button
     add click event for apply on projects & project page for positions needed
     add click event for message on connection-cards and on developer profile page
     complete visionary and developer homepage copy
@@ -48,13 +49,13 @@ TO FINISH FOR LAUNCH
     redesign dropdown for user avatar on website
     make route for projects go to user-app projects 
     add click event for edit on the user-app projects page
-    X change view on user-app projects page if user is not the project creator
+    X change view on user-app projects page if user is not the project creator. FIX COLLAPSIBLE
     when creating & editing project need to be able to add positions to fill
     remove Is Featured radio and replace with a checkbox that displays the price to make their project featured
     Also add click event for modal at top of projects page for get featured to take user to payment and set project as featured upon payment verification
     handle horizontal positioning on user-app messaging page
     implement messaging functionality both on the user-app messaging page and on the site. 
-    implement a payment provider (most likely stripe)\
+    implement a payment provider (most likely stripe)
 
 
 
