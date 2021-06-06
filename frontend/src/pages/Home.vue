@@ -200,34 +200,41 @@ export default {
   }
 
   .choose-account-type {
-    display: flex;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 0;
     // max-width: 22rem;
-    // margin: 0 auto;
+    margin: 0 auto;
 
     button {
       background-color: white;
       color: black;
       font-weight: bold;
       border: 1px solid lightgrey;
+      border-radius: 2rem 0 0 2rem;
       margin-top: 0;
-      width: 50%;
+      margin-right: 0;
+      width: 70%;
 
       &:hover {
-        color: $button-tri;
+        color: darken(#E34C4B,10%);
       }
 
       &:hover.active {
-        background-color: $button-tri;
+        background-color: #E34C4B;
         color: white;
       }
     }
 
     button:nth-of-type(2) {
       border-width: 1px 1px 1px 0;
+      border-radius: 0 2rem 2rem 0;
+      margin-left: 0;
     }
 
     .active {
-      background-color: $button-tri;
+      background-color: #E34C4B;
       color: white;
     }
 
