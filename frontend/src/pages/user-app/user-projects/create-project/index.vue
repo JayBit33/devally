@@ -89,7 +89,8 @@
           <div class="field">
             <h3>Invite some of your connections</h3>
             <div v-if="checkedConnectionsIds.length > 0" class="total-cards-checked"><span>{{checkedConnectionsIds.length}}</span></div>
-            <div class="cards" ref="cards" :style="{'grid-template-columns': 'repeat(' + pageSize + ', 1fr)'}">
+            <filter-search class="filter" :hasFilters="false" :placeholderText="'Search your connections'" @search-input="searchInputChange" />
+            <div class="cards" :class="{'no-cards': connectionsShown.length === 0}" ref="cards" :style="{'grid-template-columns': 'repeat(' + pageSize + ', 1fr)'}">
               <connection-card
                 v-for="connection in connectionsShown"
                 :key="connection.id"
@@ -99,8 +100,13 @@
                 @check-click="connection.isChecked = !connection.isChecked"
               >
               </connection-card>
+              <div v-if="connectionsShown.length === 0" class="no-cards_no-cards">
+                <h1>No connections</h1>
+                <font-awesome-icon class="icon" :icon="['fas', 'frown']"></font-awesome-icon>
+              </div>
             </div>
             <el-pagination
+              v-if="connectionsShown.length !== 0"
               class="cards-pagination"
               layout="prev, pager, next"
               :pageSize="pageSize"

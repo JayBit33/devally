@@ -6,10 +6,13 @@ import { mapActions } from 'vuex';
 
 export default {
   name: 'FilterSearch',
+  props: {
+    hasFilters: { type: Boolean, default: true },
+    placeholderText: { type: String, default: 'Search professionals by username or firstname' }
+  },
   data() {
     return {
       isFilterVisible: false,
-      placeholderText: 'Search professionals by username or firstname',
       inputText: null,
       allHiringOption: null,
       allRating: null,

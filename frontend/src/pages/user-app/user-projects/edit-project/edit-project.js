@@ -1,13 +1,15 @@
 
 import ConnectionCard from '@/components/connection-card'
 import Dropdown from '@/components/dropdown'
+import FilterSearch from '@/components/filter-search'
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'edit-project',
   components: {
     ConnectionCard,
-    Dropdown
+    Dropdown,
+    FilterSearch
   },
   data() {
     return {
@@ -29,7 +31,8 @@ export default {
       connections: [],
       startIdx: 0,
       endIdx: 4,
-      pageSize: 4
+      pageSize: 4,
+      searchValue: ''
     }
   },
   computed: {
@@ -57,7 +60,16 @@ export default {
       return this.connections.filter(c => c.isChecked).map(c => c.id)
     },
     connectionsShown() {
-      return this.connections ? this.connections.slice(this.startIdx, this.endIdx) : [];
+      if (!this.connections || this.connections.length === 0) return []
+
+      if (this.searchValue) {
+        return this.connections.filter(c => {
+          const name = c.firstname + ' ' + c.lastname
+          return (name.slice(0, this.searchValue.length).toLowerCase() === this.searchValue.toLowerCase())
+        }).slice(this.startIdx, this.endIdx)
+      } else {
+        return this.connections.slice(this.startIdx, this.endIdx)
+      }
     }
   },
   async created() {
@@ -136,6 +148,9 @@ export default {
         let res = await this.sendNotificationToUser({ id, notification: acceptedNotification })
         console.log(res)
       })
+    },
+    searchInputChange(e) {
+      this.searchValue = e
     },
     setFields() {
       this.project_name = this.project.name
