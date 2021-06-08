@@ -147,6 +147,11 @@
               margin-right: .75rem;
             }
           }
+
+
+          .expand-section {
+            cursor: pointer;
+          }
         }
 
       }
@@ -161,7 +166,108 @@
           margin-bottom: 0;
         }
       }
+  }
 
+  .not-creator_sections {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    grid-gap: 1rem;
+    background-color: $devs-page-section-bg;
+    padding: 1.5rem;
+
+    > div {
+      padding: 0 2rem 2rem 2rem;
+
+      h2 {
+        font-family: 'Open Sans';
+        font-weight: 600;
+        font-size: 1.25rem;
+        text-align: center;
+      }
+    }
+
+    .general-info-section {
+      grid-column-start: 1;
+      grid-column-end: 3;
+      background-color: white;
+      display: grid;
+      grid-template-columns: auto;
+      grid-template-rows: auto auto auto;
+      grid-gap: 1rem;
+      align-items: center;
+      padding: .5rem 0;
+      padding-left: 0;
+
+      &_heading {
+        h2 {
+          text-align: center;
+        }
+
+        #project-ellipsis {
+          position: relative;
+          bottom: 3.5rem;
+        }
+      }
+
+      .row2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        padding-right: 2.5rem;
+      }
+      .row3 {
+        padding-right: 2.5rem;
+      }
+
+      #project-ellipsis {
+        float: right;
+        cursor: pointer;
+        margin-right: 1rem;
+      }
+
+      .section {
+        h2 {
+          font-family: 'Open Sans';
+          font-size: 1.125rem;
+          font-weight: 700;
+          text-align: center;
+        }
+        h3 {
+          font-family: 'Open Sans';
+          font-size: 1rem;
+          font-weight: 500;
+          text-align: center;
+        }
+      }
+
+      &_description {
+        grid-column-start: 1;
+        grid-column-end: 6;
+      }
+    }
+
+    .project-creator {
+      grid-column: 1;
+      grid-row: 2;
+      margin: 0 auto;
+      padding: 0 17.5rem; // janky way of centering visionary card. I'm ashamed of myself!
+      background-color: white;
+      // tried centering card with styles below but the user image gets off-centered
+      // .visionary-card {
+      //   display: block;
+      //   margin: 0 auto;
+      // }
+    }
+    .members_section {
+      grid-column: 2;
+      grid-row-start: 2;
+      grid-row-end: 3;
+      background-color: white;
+
+      .tofill-heading {
+        margin-bottom: 0;
+      }
+    }
   }
 
   &:nth-child(even) {

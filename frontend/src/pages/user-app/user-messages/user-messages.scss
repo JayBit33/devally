@@ -1,12 +1,14 @@
 // (c) Waveybits Inc. <2021>
 // ALL RIGHTS RESERVED
 .user-messages {
-  background-color: #f5f4f4;
   padding-bottom: 9rem;
   &_area {
     display: flex;
     margin-top: 2rem;
-    margin-left: 6.5rem; // remove just styled for testing
+    margin-left: 6rem; // remove just styled for testing
+    width: 83.5%;
+    background-color: #f5f4f4;
+    padding:  3rem 0 3rem 7rem;
 
     &-header {
       background-color: $messages-header;
@@ -33,7 +35,7 @@
       overflow-x: hidden;
     }
     .conversation {
-      margin-left: 2rem;
+      margin-left: 3rem;
       width: 68%;
 
       &_area {

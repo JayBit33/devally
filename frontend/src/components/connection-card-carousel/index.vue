@@ -5,9 +5,7 @@
 
     <div class="arrows">
       <font-awesome-icon :icon="['fas','arrow-alt-circle-left']" class="arrow-icon" @click="goLeft"/>
-      <font-awesome-icon :icon="['fas','arrow-alt-circle-right']" class="arrow-icon" @click="goRight"/>
     </div>
-
     <div class="connections">
       <connection-card
         v-for="connection in connectionsShown"
@@ -17,6 +15,9 @@
         :hasDeleteIcon="hasDeleteIcon"
         @delete-click="$emit('delete-click', connection)"
       />
+    </div>
+    <div class="arrows">
+      <font-awesome-icon :icon="['fas','arrow-alt-circle-right']" class="arrow-icon" @click="goRight"/>
     </div>
   </div>
 </template>

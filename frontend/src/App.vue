@@ -109,7 +109,7 @@ html {
   margin: 0 auto;
 
   &.offwhite-background {
-    background-color: $sidebar_bg;
+    // background-color: $sidebar_bg;
     .page-content {
       background-color: unset;
     }
@@ -194,9 +194,6 @@ html {
   background-size: cover;
   min-height: 80vh;
   z-index: 3;
-  // margin-left: 7rem;
-  // margin-right: 7rem;
-  // max-width: 1960px;
   .breadcrumbs {
     z-index: 3;
   }

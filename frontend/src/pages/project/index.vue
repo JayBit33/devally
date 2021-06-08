@@ -3,68 +3,68 @@
 <template>
   <div class="project">
     <div class="project-info">
-    <div class="project-info_left">
-      <h3>Visionary</h3>
-      <connection-card 
-        :connection="visionary">
-      </connection-card>
-    </div>
-    <div class="project-info_right">
-      <div class="col1">
-        <h4>{{ project.date_created }}</h4>
-        <h4>Status: <span class="status">{{ project.is_active ? 'Active' : 'Closed'}}</span></h4>
-        <h4>Seeking Allys: <span class="seeking_allys">{{ project.is_seeking_allys  ? 'Yes' : 'No' }}</span></h4>
+      <div class="project-info_left">
+        <h3>Visionary</h3>
+        <connection-card 
+          :connection="visionary">
+        </connection-card>
       </div>
-      <div class="col2">
-        <div class="name">
-          <h3>Name</h3>
-          <p>{{ project.name }}</p>
+      <div class="project-info_right">
+        <div class="col1">
+          <h4>{{ project.date_created }}</h4>
+          <h4>Status: <span class="status">{{ project.is_active ? 'Active' : 'Closed'}}</span></h4>
+          <h4>Seeking Allys: <span class="seeking_allys">{{ project.is_seeking_allys  ? 'Yes' : 'No' }}</span></h4>
         </div>
-        <div class="description">
-          <h3>Description</h3>
-          <p>{{ project.description }}</p>
+        <div class="col2">
+          <div class="name">
+            <h3>Name</h3>
+            <p>{{ project.name }}</p>
+          </div>
+          <div class="description">
+            <h3>Description</h3>
+            <p>{{ project.description }}</p>
+          </div>
+          <div class="options">
+            <div class="options_category">
+              <h3>Category</h3>
+              <p>{{ project.category }}</p>
+            </div>
+            <div class="options_hiring-options">
+              <h3>Payment</h3>
+              <p>{{ hiringOptions }}</p>
+            </div>
+            <div class="options_funding-types">
+              <h3>Funding</h3>
+              <p>{{ fundingTypes }}</p>
+            </div>
+          </div>
+          <div class="options_positions">
+            <h3>Positions Needed:</h3>
+            <div v-for="(position, idx) in project.members_needed" :key="idx" class="position">
+              <p>{{ position.position }} <b style="padding-left: 1rem;">Skills Required:</b> {{ skills(position) }} <button class="apply">Apply</button></p>
+            </div>
+          </div>
         </div>
-        <div class="options">
-          <div class="options_category">
-            <h3>Category</h3>
-            <p>{{ project.category }}</p>
+        <div class="col3">
+          <div class="members">
+            <h3>Team Members</h3>
+            <connection-card-carousel
+              :connections="teamMembers"
+              :hasDeleteIcon=false
+              :numberOfCardsDisplayed=2
+            >
+            </connection-card-carousel>
           </div>
-          <div class="options_hiring-options">
-            <h3>Payment</h3>
-            <p>{{ hiringOptions }}</p>
-          </div>
-          <div class="options_funding-types">
-            <h3>Funding</h3>
-            <p>{{ fundingTypes }}</p>
-          </div>
-        </div>
-        <div class="options_positions">
-          <h3>Positions Needed:</h3>
-          <div v-for="(position, idx) in project.members_needed" :key="idx" class="position">
-            <p>{{ position.position }} <b style="padding-left: 1rem;">Skills Required:</b> {{ skills(position) }}</p>
-          </div>
+          <!-- <div class="members-needed">
+            <h3>Positions To Fill</h3>
+            <connection-card 
+              v-for="position in positionsNeeded"
+              :key="position.name"
+              :connection="position">
+            </connection-card>
+          </div> -->
         </div>
       </div>
-      <div class="col3">
-        <div class="members">
-          <h3>Team Members</h3>
-          <connection-card-carousel
-            :connections="teamMembers"
-            :hasDeleteIcon=false
-            :numberOfCardsDisplayed=2
-          >
-          </connection-card-carousel>
-        </div>
-        <div class="members-needed">
-          <h3>Positions To Fill</h3>
-          <connection-card 
-            v-for="position in positionsNeeded"
-            :key="position.name"
-            :connection="position">
-          </connection-card>
-        </div>
-      </div>
-    </div>
     </div>
   </div>
 </template>
