@@ -122,6 +122,10 @@
         vertical-align: middle;
         line-height: 1.5rem;
       }
+      .filter-search {
+        width: 100%;
+        margin: .5rem auto;
+      }
       .total-cards-checked {
         display: inline-block;
         vertical-align: middle;
@@ -140,6 +144,25 @@
       .cards {
         display: grid;
         margin: .5rem 0;
+        position: relative;
+      }
+      .no-cards {
+        padding-bottom: 4rem;
+        &_no-cards {
+          width: 100%;
+          position: absolute;
+          top: .25rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 1rem;
+          h1 {
+            margin-right: 1rem;
+          }
+          .icon {
+            font-size: 2rem;
+          }
+        }
       }
       .cards-pagination {
         width: max-content;

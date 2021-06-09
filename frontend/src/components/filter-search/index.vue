@@ -3,12 +3,12 @@
 <template>
   <div class="filter-search">
     <div class="filter-search_search">
-      <font-awesome-icon :icon="['fas','filter']" class="filter-search_search-filter" :class="{'active': isFilterVisible}" @click="toggleFilterOptions" />
+      <font-awesome-icon v-if="hasFilters" :icon="['fas','filter']" class="filter-search_search-filter" :class="{'active': isFilterVisible}" @click="toggleFilterOptions" />
       <font-awesome-icon :icon="['fas','search']" class="filter-search_search-search"  @click="$refs.devSearchInput.focus()"/>
       <input v-model="inputText" @keyup="$emit('search-input', inputText)" class="filter-search_search-input" ref="devSearchInput" :placeholder="placeholderText" />
     </div>
     <br>
-    <div v-if="isFilterVisible" class="filter-search_filterOptions" >
+    <div v-if="isFilterVisible && hasFilters" class="filter-search_filterOptions" >
       <!-- <dropdown optionTitle="Account Type" :items="['Entrepreneur','Professional']" />
       <dropdown optionTitle="Payment Type" :items="['Shares','Project Fee', 'Hourly']" />
       <dropdown optionTitle="Skills" :items="['Java','Sprint Boot']" />
