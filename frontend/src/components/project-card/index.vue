@@ -2,9 +2,8 @@
 <!-- ALL RIGHTS RESERVED -->
 
 <template>
-  <div class="project-card" >
-    <img v-if="project.is_featured" src="../../assets/spotlight.png" class="featured" />
-    <h2 :class="{'featured_name': featured }">{{ project.name }}</h2>
+    <el-card class="project-card">
+    <h2>{{ project.name }}</h2>
     <div class="project-card_info">
       <div>
         <h3>Description:</h3>
@@ -33,7 +32,13 @@
      <router-link :to="{ name: 'Project', params: { id: project.id }}" class="link">
       <button class="learn_more">Learn More</button>
     </router-link>
-  </div>
+     <!-- <router-link :to="{ name: 'Project', params: { id: project.id }}" class="learn-more">
+      <h4>Learn More</h4>
+      <div class="arrow">
+        <font-awesome-icon :icon="['fas', 'arrow-right']" />
+      </div>
+    </router-link> -->
+  </el-card>
 </template>
 
 <script src="./project-card.js" ></script>

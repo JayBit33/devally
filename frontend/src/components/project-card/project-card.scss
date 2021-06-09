@@ -4,28 +4,23 @@
 .project-card {
   width: 50vw;
   background-color: white;
-  border: 1px solid lightgrey;
   color: black;
   font-family: 'Open Sans';
-  padding: 2rem;
-  padding-right: 0;
-  padding-top: 0;
   display: block;
-  margin: 5rem 0;
+  margin: 2rem 0;
 
   .featured {
     width: 5%;
     max-width: 225px;
     min-width: 225px;
-    // float: right;
     margin-top: -60px;
     margin-right: 1rem;
+    z-index: 9;
   }
   .featured_name {
     padding-top: 0;
   }
   h2 {
-    padding-top: 2rem;
     padding-left: .5rem;
   }
 
@@ -87,6 +82,7 @@
     background-color: $account-type-bg-active;
     color: white;
     padding: .5rem;
+    margin-bottom: 1rem;
     border: none;
     border-radius: .5rem;
     &:focus, &:hover {
@@ -104,5 +100,46 @@
     margin-right: 1rem;
 
   }
+
+  // .learn-more {
+  //   bottom: 0.75rem;
+  //   right: 0.75rem;
+  //   display: flex;
+  //   justify-content: flex-end;
+  //   align-items: center;
+  //   text-decoration: none;
+  //   margin: 0;
+  //   z-index: 1;
+  //   h4 {
+  //     margin: 0;
+  //     color: black;
+  //     font-family: 'Montserrat';
+  //     font-weight: 400;
+  //     transition: .3s;
+  //   }
+  //   .arrow {
+  //     background-color: black;
+  //     color: white;
+  //     width: 1.5rem;
+  //     height: 1.5rem;
+  //     border-radius: 50%;
+  //     display: grid;
+  //     place-items: center;
+  //     color: $secondary;
+  //     margin-left: .5rem;
+  //     transition: .3s;
+  //   }
+    
+  //   &:hover {
+  //     h4 {
+  //       color: $message_bg;
+  //     }
+  //     .arrow {
+  //       background-color: $message_bg;
+  //       opacity: 1;
+  //     }
+  //   }
+  // }
+
 
 }

@@ -6,7 +6,7 @@
   grid-template-columns: 1fr 3fr;
   justify-content: center;
   grid-column-gap: 2rem;
-  background-color: $secondary;
+  // background-color: $secondary;
   padding: 0 8%;
   padding-top: 2rem;
 
@@ -14,8 +14,8 @@
     height: max-content;
     max-width: 18rem;
     min-width: 18rem;
-    margin: 3.5rem;
-    margin-top: 9rem;
+    margin-left: 8rem;
+    margin-top: 6rem;
     padding: .75rem;
     padding-bottom: 1rem;
     background-color: white;
@@ -151,6 +151,9 @@
     }
   }
   .right-side {
+    display: block;
+    margin: 0 auto;
+
     .no-projects-container {
       display: flex;
       justify-content: center;
@@ -168,9 +171,9 @@
     }
     .pagination {
       display: flex;
-      // justify-content: center;
+      justify-content: center;
       align-items: center;
-      margin: 2rem;
+      margin-top: 5rem;
       margin-left: 1rem;
 
       .dropdown {
@@ -180,12 +183,12 @@
       h4 {
         font-family: 'Open Sans';
         font-weight: 500;
-        color: white;
+        color: black;
         margin: 0 1.5rem;
       }
     }
   }
-
+  
   .card:last-of-type {
     margin-bottom: 1rem;
   }
