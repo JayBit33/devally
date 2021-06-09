@@ -207,17 +207,18 @@
     &_info {
       margin: 1rem 0;
       width: 60%;
+      text-align: center;
       &-field {
         margin: 1.25rem 0;
         h2 {
-          margin: 0;
-          font-size: 1.5rem;
+          margin: .5rem 0;
+          font-size: 1.25rem;
           font-weight: 700;
           font-family: 'Montserrat';
         }
         h4 {
           margin: 0;
-          font-size: 1.25rem;
+          font-size: 1.125rem;
           font-weight: 300;
           font-family: 'Montserrat';
         }
