@@ -1,12 +1,15 @@
 <!-- (c) Waveybits Inc. <2021> -->
 <!-- ALL RIGHTS RESERVED -->
 <template>
-  <div class="user-options-dropdown">
-    <ul>
-      <router-link :to="{ name: 'Profile', params: { id: userId }}" class="link" ><li @click="$emit('optionSelected', 'account')"><font-awesome-icon class="icon accountIcon" :icon="['fas','user']" />Account</li></router-link>
-      <router-link :to="{ path: 'profile/' + userId + '/projects' }" class="link" ><li @click="$emit('optionSelected', 'projects')"><font-awesome-icon class="icon" :icon="['fas','bookmark']" />Projects</li></router-link>
-      <router-link to="/" class="link" ><li @click="$emit('optionSelected', 'signout')"><font-awesome-icon class="icon signoutIcon" :icon="['fas','sign-out-alt']" />Sign Out</li></router-link>
-    </ul>
+  <div ref="user_options_dropdown" class="user-options-dropdown">
+    <div class="user-options-dropdown_arrow"></div>
+    <div class="user-options-dropdown_links">
+      <div v-for="link in links" :key="link.name" class="user-options-dropdown_links_link" @click="redirect(link)">
+        <font-awesome-icon class="icon" :icon="['fas', link.iconClass]" />
+        <p>{{link.text}}</p>
+      </div>
+    </div>
+
   </div>
 </template>
 
