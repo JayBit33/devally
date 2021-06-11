@@ -2,9 +2,35 @@
 <!-- ALL RIGHTS RESERVED -->
 <template>
   <div class="notification">
+    <div v-if="showingApplyModal" class="notification_apply-modal">
+      <apply-modal
+        :user="sender"
+        :project="project"
+        :position="{position: notification.info.position}"
+        :extraInfoOverride="notification.info.extraInfo"
+        :isSendingApplication="false"
+        @apply-modal-accept="notificationAccept"
+        @apply-modal-deny="notificationDeny"
+        @apply-modal-close="closeApplyModal"
+      />
+    </div>
+
     <div class="notification_background-overlay" :style="{'background-image': `url(${getImage('bg1.jpg')})`}"></div>
 
-    <div v-if="isConnectionNotification && !isProjectNotification" class="notification_connection notification_container">
+    <div v-if="isApplicationNotification" class="notification_application notification_container">
+      <img class="image-icon"  :src="notification.image_source" alt="image" @click="$emit('update-view', 'connections')">
+
+      <div class="notification_container_message">
+        <h6><span>{{senderName}}</span> would like to apply for a position</h6>
+      </div>
+
+      <div v-if="notification.info.sending" class="notification_container_received">
+        <font-awesome-icon :icon="['fas','trash']" class="trash-icon" @click.stop="notificationDeny"></font-awesome-icon>
+        <div class="notification_container_button button-view" @click.stop="notificationView">View</div>
+      </div>
+
+    </div>
+    <div v-else-if="isConnectionNotification && !isProjectNotification" class="notification_connection notification_container">
       <img class="image-icon"  :src="notification.image_source" alt="image" @click="$emit('update-view', 'connections')">
 
       <div class="notification_container_message">

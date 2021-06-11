@@ -45,7 +45,8 @@ export default {
           { text: this.user.firstname + " " + this.user.lastname, emphasis: true }
         ]
         toast = await this.fetchToast({ type: 'success', message });
-      } else {
+      } 
+      else {
         if (res.message && res.message == 'user already has notification') {
           message = [
             { text: 'You have', emphasis: false },
@@ -67,7 +68,6 @@ export default {
         }
       }
       
-
       this.$emit('toast-update', toast)
       this.$emit('modal-close')
     }

@@ -1,14 +1,21 @@
 // (c) Waveybits Inc. <2021>
 // ALL RIGHTS RESERVED
 import { mapActions, mapGetters, mapMutations } from "vuex"
+import ApplyModal from '@/components/apply-modal'
 
 export default {
   name: "user-notification",
   props: ['notification'],
+  components: {
+    ApplyModal
+  },
   data() {
     return {
       senderName: '',
-      projectName: ''
+      sender: '',
+      projectName: '',
+      project: '',
+      showingApplyModal: false
     }
   },
   computed: {
@@ -19,18 +26,20 @@ export default {
     isProjectNotification() {
       return this.notification.projectId != null
     },
+    isApplicationNotification() {
+      return this.notification.type == 'application'
+    }
   },
   async created() {
     if (this.isConnectionNotification) {
-      let user = await this.fetchUserById(this.notification.senderId)
-      this.senderName = user.firstname
+      this.sender = await this.fetchUserById(this.notification.senderId)
+      this.senderName = this.sender.firstname
     }
 
     if (this.isProjectNotification) {
-      let project = await this.fetchProjectById(this.notification.projectId)
-      this.projectName = project.name
+      this.project = await this.fetchProjectById(this.notification.projectId)
+      this.projectName = this.project.name
     }
-
   },
   methods: {
     ...mapActions(['fetchUserById', 'fetchProjectById', 'updateProjectById', 'updateUser', 'sendNotificationToUser']),
@@ -41,6 +50,9 @@ export default {
       } else {
         return require(`@/assets/${imageName}`)
       }
+    },
+    notificationView() {
+      this.showingApplyModal = true
     },
     async notificationAccept() {
       if (this.notification.type == 'received') {
@@ -61,7 +73,6 @@ export default {
           if (!(this.getLoggedInUser.project_ids.includes(this.notification.projectId))) {
             await this.updateUser({ id: this.getLoggedInUser.id, updates: { project_ids: JSON.stringify([...this.getLoggedInUser.project_ids, this.notification.projectId]) } })
           }
-
         } else {
           // Update user and put users Id in connections
           let { connections: senderConnections } = await this.fetchUserById(this.notification.senderId)
@@ -88,6 +99,26 @@ export default {
             await this.sendNotificationToUser({ id: this.notification.senderId, notification: acceptedNotification})
           }
         }
+      } else if (this.isApplicationNotification) {
+        if (this.isProjectNotification) {
+          // Update project and put users Id in team_members_ids
+          let { team_member_ids } = await this.fetchProjectById(this.notification.projectId)
+
+          // Check if user is already apart of project
+          if (!(team_member_ids.includes(this.notification.senderId))) {
+            team_member_ids = JSON.stringify([...team_member_ids, this.notification.senderId])
+            await this.updateProjectById({ id: this.notification.projectId, project: { team_member_ids } })
+            // Send notification to senderId user saying we have joined
+            let acceptedNotification = { senderId: this.notification.senderId, projectId: this.notification.projectId, message: 'has joined', type: 'accepted' }
+            await this.sendNotificationToUser({ id: this.notification.senderId, notification: acceptedNotification })
+          }
+
+          // Check if user has project in there project_ids
+          let sender = await this.fetchUserById(this.notification.senderId)
+          if (!(sender.project_ids.includes(this.notification.projectId))) {
+            await this.updateUser({ id: sender.id, updates: { project_ids: JSON.stringify([...sender.project_ids, this.notification.projectId]) } })
+          }
+        }
       } else {
         this.$emit('update-view', 'messages')
       }
@@ -96,6 +127,9 @@ export default {
     },
     async notificationDeny() {
       this.$emit('delete-notification', this.notification)
+    },
+    closeApplyModal() {
+      this.showingApplyModal = false
     }
   }
 }

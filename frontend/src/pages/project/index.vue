@@ -2,6 +2,10 @@
 <!-- ALL RIGHTS RESERVED -->
 <template>
   <div class="project">
+    <div v-if="showingApplyModal" class="project_apply-modal">
+      <apply-modal :user="getLoggedInUser" :project="project" :position="selectedPosition" :isSendingApplication="true" @apply-modal-close="closeApplyModal" />
+    </div>
+
     <div class="project-info">
       <div class="project-info_left">
         <h3>Visionary</h3>
@@ -41,7 +45,7 @@
           <div class="options_positions">
             <h3>Positions Needed:</h3>
             <div v-for="(position, idx) in project.members_needed" :key="idx" class="position">
-              <p>{{ position.position }} <b style="padding-left: 1rem;">Skills Required:</b> {{ skills(position) }} <button class="apply">Apply</button></p>
+              <p>{{ position.position }} <b style="padding-left: 1rem;">Skills Required:</b> {{ skills(position) }} <button class="apply" @click="applyToPosition(position)">Apply</button></p>
             </div>
           </div>
         </div>

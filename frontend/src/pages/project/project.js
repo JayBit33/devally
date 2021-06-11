@@ -1,8 +1,9 @@
 // (c) Waveybits Inc. <2021>
 // ALL RIGHTS RESERVED
+import ApplyModal from '@/components/apply-modal'
 import ConnectionCard from '@/components/connection-card'
 import ConnectionCardCarousel from '@/components/connection-card-carousel'
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'Project',
@@ -11,11 +12,14 @@ export default {
       project: {},
       visionary: null,
       teamMembers: [],
+      showingApplyModal: false,
+      selectedPosition: null
     }
   },
   components: {
+    ApplyModal,
     ConnectionCard,
-    ConnectionCardCarousel,
+    ConnectionCardCarousel
   },
   async created() {
     this.project = await this.fetchProjectById(this.$route.params.id)
@@ -24,6 +28,7 @@ export default {
     this.project.team_member_ids.forEach(async id => await this.fetchUserById(id).then(user => this.teamMembers.push(user)))
   },
   computed: {
+    ...mapGetters(['getLoggedInUser']),
     hiringOptions() {
       return this.project.hiring_options.reduce((acc, option, idx, arr) => {
         if (idx !== arr.length) return acc += ', ' + option
@@ -53,6 +58,12 @@ export default {
   },
   methods: {
     ...mapActions(['fetchProjectById', 'fetchUserById']),
-    
+    applyToPosition(position) {
+      this.showingApplyModal = true
+      this.selectedPosition = position
+    },
+    closeApplyModal() {
+      this.showingApplyModal = false
+    }
   }
 }

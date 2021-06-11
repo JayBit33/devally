@@ -8,6 +8,17 @@
   font-family: 'Open Sans';
   display: block;
   margin: 2rem 0;
+  position: relative;
+
+  &_apply-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba($devs-page-grey, .5);
+    z-index: 4;
+  }
 
   .featured {
     width: 5%;

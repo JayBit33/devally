@@ -2,7 +2,10 @@
 <!-- ALL RIGHTS RESERVED -->
 
 <template>
-    <el-card class="project-card">
+  <el-card class="project-card">
+    <div v-if="showingApplyModal" class="project-card_apply-modal">
+      <apply-modal :user="getLoggedInUser" :project="project" :position="selectedPosition" :isSendingApplication="true" @apply-modal-close="closeApplyModal" />
+    </div>
     <h2>{{ project.name }}</h2>
     <div class="project-card_info">
       <div>
@@ -25,7 +28,7 @@
         <h3 id="needed">Positions Needed</h3>
       </div>
       <div v-for="(position,i) in project.members_needed" :key="i" class="position">
-        <p>{{ position.position }} <span style="font-weight: 600; padding: 0 1rem;">Skills Needed:</span>{{ openPositions(position) }}  <button>Apply</button></p>
+        <p>{{ position.position }} <span style="font-weight: 600; padding: 0 1rem;">Skills Needed:</span>{{ openPositions(position) }}  <button @click="applyToPosition(position)">Apply</button></p>
       </div>
     </div>
     

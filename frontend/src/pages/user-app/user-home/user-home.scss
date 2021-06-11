@@ -1,5 +1,6 @@
 .home {
   width: 100%;
+  z-index: 500;
 
   .greeting {
     background-color: $mute-yellow;
@@ -58,11 +59,14 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    position: relative;
     .left {
       width: calc(66% - 2rem);
+      z-index: 2;
     }
     .right {
       width: calc(34% - 2rem);
+      z-index: 3;
     }
     .left, .right {
       display: flex;
@@ -79,6 +83,7 @@
       margin: 1rem 0;
       border-radius: 1rem;
       background-color: white;
+      z-index: 3;
       &_title {
         color: $font-dark;
         font-family: 'Open Sans';

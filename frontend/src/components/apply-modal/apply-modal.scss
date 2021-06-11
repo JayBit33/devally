@@ -1,0 +1,128 @@
+// (c) Waveybits Inc. <2021>
+// ALL RIGHTS RESERVED
+
+.apply-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  background-color: white;
+  width: 60%;
+  padding: 3rem 0;
+  max-width: 1280px;
+  border-radius: .75rem;
+
+  &_close {
+    position: absolute;
+    top: 1rem;
+    right: 1.25rem;
+    font-size: 1.25rem;
+    transition: .3s;
+    color: $btn-default;
+    cursor: pointer;
+    &:hover {
+      color: darken($btn-default, 10)
+    }
+  }
+
+  &_heading {
+    text-align: center;
+    font-family: 'Montserrat';
+    width: 60%;
+    margin: 2rem auto;
+    &_name {
+      font-weight: 700;
+      font-size: 1.5rem;
+      margin: 0;
+    }
+
+  }
+
+  &_project, &_position {
+    width: 60%;
+    margin: 3rem auto;
+    h2 {
+      margin: .25rem 0;
+    }
+    p {
+      font-size: 1.25rem;
+      color: $navy-blue;
+      margin: 0;
+      padding: .5rem .75rem;
+      border: 1px solid $border-default;
+    }
+  }
+
+  &_extra-info {
+    width: 60%;
+    margin: 3rem auto 0 auto;
+    h2 {
+      margin: .25rem 0;
+    }
+    textarea {
+      width: calc(100% - 1.5rem);
+      resize: vertical;
+      border: 1px solid $element-dropdown-border;
+      outline: none;
+      padding: .75rem;
+      border-radius: .25rem;
+    }
+  }
+
+  &_buttons {
+    width: 60%;
+    margin: 2rem auto;
+    text-align: center;
+    &-receiving, &-sending {
+      button {
+        outline: none;
+        border: none;
+        display: block;
+        width: max-content;
+        margin: 1rem auto;
+        font-family: 'Montserrat';
+        font-size: 1.25rem;
+        padding: .5rem 1.5rem;
+        border-radius: .25rem;
+        color: white;
+        cursor: pointer;
+        transition: .3s;
+  
+      }
+    }
+
+    &-sending {
+      .apply-button-send {
+        background-color: $btn-default;
+        &:hover {
+          background-color: darken($btn-default, 10);
+        }
+      }
+      .apply-button-cancel {
+        background-color: $btn-grey;
+        &:hover {
+          background-color: darken($btn-grey, 10);
+        }
+      }
+    }
+
+    &-receiving {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      button {
+        margin: 1rem 1rem;
+      }
+      .apply-button-view {
+        background-color: $btn-default;
+      }
+      .apply-button-accept {
+        background-color: $mute-green;
+      }
+      .apply-button-deny {
+        background-color: $mute-red;
+      }
+    }
+  }
+}
