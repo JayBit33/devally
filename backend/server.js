@@ -11,7 +11,7 @@ const messages = require('./apis/messages');
 const auth = require('./auth');
 require('dotenv').config()
 
-const port = process.env.PORT || 3030;
+const port = process.env.PORT || 3000;
 const app = express();
 
 // Middleware

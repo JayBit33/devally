@@ -35,12 +35,12 @@
         <div class="subscribe">
           <input type="email" id="email" placeholder="Email Address" />
           <button>Sign Up</button>
+        </div>
           <div class="social-icons">
             <font-awesome-icon :icon="['fab','facebook']" class="social-icon"></font-awesome-icon>
             <font-awesome-icon :icon="['fab','linkedin']" class="social-icon"></font-awesome-icon>
             <font-awesome-icon :icon="['fab','twitter-square']" class="social-icon"></font-awesome-icon>
           </div>
-        </div>
       </div>
       <div class="footer_mission">
         <h3>Mission</h3>
@@ -63,12 +63,13 @@
       </div>
       <div class="footer_policies">
         <p>Privacy Policy</p>
-        <p>@copy devally 2021</p>
+        <p>&copy; devally 2021</p>
         <p>Terms & Conditions</p>
       </div>
     </div>
   </div>
 </template>
+<style src="./App.scss" lang="scss"></style>
 
 <script>
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -129,266 +130,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss">
-
-* {
-  font-family: 'Montserrat';
-}
-
-body,
-html {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-}
-
-#main-component {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-  max-width: $max-screen-width;
-  margin: 0 auto;
-
-  &.offwhite-background {
-    // background-color: $sidebar_bg;
-    .page-content {
-      background-color: unset;
-    }
-  }
-}
-
-.link { text-decoration: none; color: black; }
-
-.header {
-  width: 100%;
-  padding: 3rem 1rem 2rem 3rem;
-  color: black;
-  display: flex;
-  align-items: flex-start;
-  justify-content:space-between;
-  position: relative;
-  top: 0;
-  left: 0;
-  z-index: 3;
-
-  .logo {
-    font: bold 1.5rem 'Montserrat';
-    margin-top: 0;
-    margin-right: 2rem;
-  }
-  nav {
-    overflow: hidden;
-    display: flex;
-    position: relative;
-
-    ul {
-      list-style-type: none;
-      margin-top: .425rem;
-      padding: 0;
-      li {
-        display: inline;
-        .link {
-          display: inline;
-          text-decoration: none;
-          padding: 1rem 1.5rem;
-          font: 400 1rem 'Montserrat';
-          color: #514E4E;
-          span {
-            padding-left: 1.5rem;
-          }
-        }
-      }
-    }
-  }
-
-  .nav-btns {
-    position: relative;
-    .signin {
-      text-decoration: unset;
-      font-family: 'Montserrat';
-      font-size: 1rem;
-      color: $navy-blue;
-    }
-
-    button {
-      margin-right: 7.5rem;
-      border: none;
-      outline: none;
-      background-color: white;
-      .user-icon {
-        color: $navy-blue;
-        font-size: 1.5rem;
-        cursor: pointer;
-      }
-      &.signin-button {
-        background-color: transparent;
-      }
-    }
-    .user-options-container {
-      position: absolute;
-      top: 2.25rem;
-      left: calc(50% + 2rem);
-      transform: translate(-100%, 0);
-      width: max-content;
-    }
-  }
-
-  #username {
-    font-size: .875rem;
-    font-weight: 700;
-    margin-right: 1rem;
-    color: $navy-blue;
-  }
-}
-
-.page-content {
-  // background-image: url('./assets/devs_bg.png');
-  background-color: white;
-  background-repeat: no-repeat;
-  background-size: cover;
-  min-height: 80vh;
-  z-index: 3;
-  .breadcrumbs {
-    z-index: 3;
-  }
-}
-
-.footer {
-  background-color: $footer-bg;
-  color: white;
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, 0);
-  width: 100%;
-  max-width: $max-screen-width;
-  margin: 0 auto;
-  padding: 3rem  0 1rem 0;
-  z-index: 3;
-  display: grid;
-  justify-content: space-between;
-  grid-template-rows: auto auto;
-  grid-template-columns: auto auto auto;
-
-  h3 {
-    font-family: 'Open Sans';
-    font-size: 1.25rem;
-    font-weight: 600;
-    text-align: left;
-    text-transform: uppercase;
-  }
-
-  p {
-    font-family: 'Open Sans';
-    text-align: center;
-  }
-
-  &_stay-connected {
-    margin: 0 7rem;
-    margin-right: 8rem;
-    p {
-      max-width: 20rem;
-      text-align: left;
-      line-height: 1.75rem;
-    }
-
-    #email {
-      width: 12.5rem;
-      padding: .6rem;
-    }
-
-    button {
-      background-color: #9794E1;
-      color: white;
-      font-family: 'Montserrat';
-      font-size: 1.125rem;
-      font-weight: 600;
-      border: none;
-      padding: .5rem;
-      margin-left: .5rem;
-    }
-
-    .social-icons {
-      .social-icon {
-       font-size: 2rem;
-       margin-top: 1rem;
-       margin-right: 1rem;
-      }
-    }
-  }
-
-  &_mission {
-    margin: 0 8rem;
-    p {
-      text-align: left;
-      max-width: 30rem;
-      line-height: 1.75rem;
-
-    }
-  }
-
-  &_nav {
-    margin: 0 0 0 8rem;
-    margin-right: 7rem;
-
-    .links {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-column-gap: 4rem;
-
-      p {
-        text-align: left;
-      }
-    }
-
-  }
-
-  &_policies {
-    display: flex;
-    justify-content: space-between;
-    grid-column-start: 1;
-    grid-column-end: 4;
-    padding-top: 7rem;
-    padding-left: 18rem;
-    padding-right: 18rem;
-    text-align: center;
-    p {
-      display: inline;
-    }
-  }
-
-}
-
-.fade-in {
-animation: fadeIn ease 7s;
--webkit-animation: fadeIn ease 7s;
--moz-animation: fadeIn ease 7s;
--o-animation: fadeIn ease 7s;
--ms-animation: fadeIn ease 7s;
-}
-@keyframes fadeIn {
-0% {opacity:0;}
-100% {opacity:1;}
-}
-
-@-moz-keyframes fadeIn {
-0% {opacity:0;}
-100% {opacity:1;}
-}
-
-@-webkit-keyframes fadeIn {
-0% {opacity:0;}
-100% {opacity:1;}
-}
-
-@-o-keyframes fadeIn {
-0% {opacity:0;}
-100% {opacity:1;}
-}
-
-@-ms-keyframes fadeIn {
-0% {opacity:0;}
-100% {opacity:1;}
-}
-</style>
