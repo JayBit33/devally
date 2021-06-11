@@ -24,12 +24,49 @@
     </div>
 
     <div v-if="showHeaderFooter" class="footer">
-      <p>&copy; DevAlly 2021</p>
+      <div class="footer_stay-connected">
+        <h3>Stay Connected</h3>
+        <p>Join our newsletter and get advice and tips on how to run a tech startup.</p>
+        <div class="subscribe">
+          <input type="email" id="email" placeholder="Email Address" />
+          <button>Sign Up</button>
+          <div class="social-icons">
+            <font-awesome-icon :icon="['fab','facebook']" class="social-icon"></font-awesome-icon>
+            <font-awesome-icon :icon="['fab','linkedin']" class="social-icon"></font-awesome-icon>
+            <font-awesome-icon :icon="['fab','twitter-square']" class="social-icon"></font-awesome-icon>
+          </div>
+        </div>
+      </div>
+      <div class="footer_mission">
+        <h3>Mission</h3>
+        <p>Help visionaries find technical co-founders so they can bring their ideas to life. Support our users in their journey as a startup.</p>
+      </div>
+      <div class="footer_nav">
+        <h3>Navigation</h3>
+        <div class="links">
+          <div class="links-col1">
+           <p>Search Developers</p>
+           <p>Search Projects</p>
+           <p>Read Articles</p>
+          </div>
+          <div class="links-col2">
+           <p>Support</p>
+           <p>Careers</p>
+           <p>Contact Us</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer_policies">
+        <p>Privacy Policy</p>
+        <p>@copy devally 2021</p>
+        <p>Terms & Conditions</p>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import UserOptionsDropdown from './components/user-options-dropdown/';
 import Breadcrumbs from './components/breadcrumbs/';
 import { mapActions, mapGetters, mapMutations } from 'vuex';
@@ -45,6 +82,7 @@ export default {
   },
   components: {
     Breadcrumbs,
+    FontAwesomeIcon,
     UserOptionsDropdown
   },
   created() {
@@ -200,7 +238,7 @@ html {
 }
 
 .footer {
-  background-color: #3f5e75;
+  background-color: $footer-bg;
   color: white;
   position: absolute;
   left: 50%;
@@ -208,9 +246,100 @@ html {
   width: 100%;
   max-width: $max-screen-width;
   margin: 0 auto;
-  text-align: center;
-  padding-top: 11rem;
+  padding: 3rem  0 1rem 0;
   z-index: 3;
+  display: grid;
+  justify-content: space-between;
+  grid-template-rows: auto auto;
+  grid-template-columns: auto auto auto;
+
+  h3 {
+    font-family: 'Open Sans';
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-align: left;
+    text-transform: uppercase;
+  }
+
+  p {
+    font-family: 'Open Sans';
+    text-align: center;
+  }
+
+  &_stay-connected {
+    margin: 0 7rem;
+    margin-right: 8rem;
+    p {
+      max-width: 20rem;
+      text-align: left;
+      line-height: 1.75rem;
+    }
+
+    #email {
+      width: 12.5rem;
+      padding: .6rem;
+    }
+
+    button {
+      background-color: #9794E1;
+      color: white;
+      font-family: 'Montserrat';
+      font-size: 1.125rem;
+      font-weight: 600;
+      border: none;
+      padding: .5rem;
+      margin-left: .5rem;
+    }
+
+    .social-icons {
+      .social-icon {
+       font-size: 2rem;
+       margin-top: 1rem;
+       margin-right: 1rem;
+      }
+    }
+  }
+
+  &_mission {
+    margin: 0 8rem;
+    p {
+      text-align: left;
+      max-width: 30rem;
+      line-height: 1.75rem;
+
+    }
+  }
+
+  &_nav {
+    margin: 0 0 0 8rem;
+    margin-right: 7rem;
+
+    .links {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-column-gap: 4rem;
+
+      p {
+        text-align: left;
+      }
+    }
+
+  }
+
+  &_policies {
+    display: flex;
+    justify-content: space-between;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    padding-top: 7rem;
+    padding-left: 18rem;
+    padding-right: 18rem;
+    text-align: center;
+    p {
+      display: inline;
+    }
+  }
+
 }
 
 .fade-in {

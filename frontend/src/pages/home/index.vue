@@ -72,11 +72,10 @@
           <img src="images/programmer-man.png" style="width: 500px" />
         </div>
         <div class="join-devs_col2">
-          <h2>Want To Build Something From the Ground Up?</h2>
+            <h2>Why DevAlly is Better than Hiring Freelancers.</h2>
           <p>
-            Are you a web, mobile or software developer, graphic designer or
-            project manager? Join DevAlly and find paid jobs or work for part
-            ownership in tech startups.
+            Freelancers are great for logos, single marketing campaign material and the occasional quick job. Building a product from the ground up
+            requires a permanant team. People that are invested in the project. That's why technical co-founders are the best option for any serious project.
           </p>
           <router-link to="/signin" class="link"
             ><button>Join Now</button></router-link
@@ -100,6 +99,22 @@
       </div>
     </div>
     <div v-else >
+      <div class="experienced-devs">
+        <div class="join-devs_col2">
+          <h2>Are You An Experienced Developer?</h2>
+          <p>
+            Are you a web, mobile or software developer, graphic designer or
+            project manager? Work for part ownership in tech startups.
+            Join DevAlly and find projects your passionate about and even start your own. 
+          </p>
+          <router-link to="/signin" class="link"
+            ><button>Join Now</button></router-link
+          >
+        </div>
+        <!-- <div>
+          <img src="images/programmer-man.png" style="width: 500px" />
+        </div> -->
+      </div>
       <div class="join-devs">
         <div>
           <img src="images/programmer-man.png" style="width: 500px" />
@@ -111,9 +126,22 @@
             project manager? Join DevAlly and find paid jobs or work for part
             ownership in tech startups.
           </p>
+        </div>
+      </div>
+      <div class="last-section">
+        <div class="join-devs_col2">
+          <h2>Want To Build Something From the Ground Up?</h2>
+          <p>
+            Are you a web, mobile or software developer, graphic designer or
+            project manager? Join DevAlly and find paid jobs or work for part
+            ownership in tech startups.
+          </p>
           <router-link to="/signin" class="link"
             ><button>Join Now</button></router-link
           >
+        </div>
+        <div>
+          <img src="images/201brain-knowledge.png" style="width: 500px" />
         </div>
       </div>
     </div>

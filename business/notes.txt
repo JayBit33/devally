@@ -65,3 +65,5 @@ TO FINISH FOR LAUNCH
 
 
 
+The average cost to build a web app is 55k, $140,000 to build a mobile app. This is why many people quit before they even get started. Find a technical
+co-founder/s to build your project. 
