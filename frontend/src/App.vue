@@ -13,10 +13,15 @@
           <!-- <li><router-link to="/about" class="link">about</router-link></li> -->
         </ul>
       </nav>
-      <button v-if="!signedIn" class="signin-button"><router-link to="/signin" class="signin">Sign In</router-link></button>
-      <button v-else class="signin-button"><span id="username">{{ username }}</span><font-awesome-icon class="user-icon" :icon="['fas','user']" @click="onOptionsClick" /></button>
+
+      <div class="nav-btns">
+        <button v-if="!signedIn" class="signin-button"><router-link to="/signin" class="signin">Sign In</router-link></button>
+        <button v-else class="signin-button"><span id="username">{{ username }}</span><font-awesome-icon class="user-icon" :icon="['fas','user']" @click="onOptionsClick" /></button>
+        <div class="user-options-container">
+          <user-options-dropdown v-if="optionsViewable" @optionSelected="closeOptions" />
+        </div>
+      </div>
     </div>
-    <user-options-dropdown v-if="optionsViewable" @optionSelected="closeOptions" />
 
     <div class="page-content">
       <breadcrumbs v-if="showHeaderFooter && this.$route.name !== 'Projects'" />
@@ -176,6 +181,7 @@ html {
   nav {
     overflow: hidden;
     display: flex;
+    position: relative;
 
     ul {
       list-style-type: none;
@@ -196,25 +202,36 @@ html {
       }
     }
   }
-  .signin {
-    text-decoration: unset;
-    font-family: 'Montserrat';
-    font-size: 1rem;
-    color: $button-secondary;
-  }
 
-  button {
-    margin-right: 7.5rem;
-    border: none;
-    outline: none;
-    background-color: white;
-    .user-icon {
-      color: $primary;
-      font-size: 1.5rem;
-      cursor: pointer;
+  .nav-btns {
+    position: relative;
+    .signin {
+      text-decoration: unset;
+      font-family: 'Montserrat';
+      font-size: 1rem;
+      color: $navy-blue;
     }
-    &.signin-button {
-      background-color: transparent;
+
+    button {
+      margin-right: 7.5rem;
+      border: none;
+      outline: none;
+      background-color: white;
+      .user-icon {
+        color: $navy-blue;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+      &.signin-button {
+        background-color: transparent;
+      }
+    }
+    .user-options-container {
+      position: absolute;
+      top: 2.25rem;
+      left: calc(50% + 2rem);
+      transform: translate(-100%, 0);
+      width: max-content;
     }
   }
 
@@ -222,6 +239,7 @@ html {
     font-size: .875rem;
     font-weight: 700;
     margin-right: 1rem;
+    color: $navy-blue;
   }
 }
 

@@ -101,7 +101,7 @@
         />
       </div>
     </div>
-    <div v-if="!isEditable" class="not-creator_sections">
+    <div v-if="!isEditable && !collapsed" class="not-creator_sections">
       <div class="general-info-section">
         <div class="general-info-section_heading">
           <h2>General Information</h2>

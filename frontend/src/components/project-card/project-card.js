@@ -1,15 +1,25 @@
 // (c) Waveybits Inc. <2021>
 // ALL RIGHTS RESERVED
+import ApplyModal from '@/components/apply-modal'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { mapGetters } from 'vuex'
 
 
 export default {
   name: 'ProjectCard',
   props: ['project'],
   components: {
+    ApplyModal,
     FontAwesomeIcon
   },
+  data() {
+    return {
+      selectedPosition: null,
+      showingApplyModal: false
+    }
+  },
   computed: {
+    ...mapGetters(['getLoggedInUser']),
     displayProjectOptions() {
       return (projectField) => {
         let displayOptions = ""
@@ -36,6 +46,15 @@ export default {
         }
         return display
       }
+    }
+  },
+  methods: {
+    applyToPosition(position) {
+      this.showingApplyModal = true
+      this.selectedPosition = position
+    },
+    closeApplyModal() {
+      this.showingApplyModal = false
     }
   }
 }

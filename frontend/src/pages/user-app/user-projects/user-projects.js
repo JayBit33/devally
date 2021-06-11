@@ -37,5 +37,12 @@ export default {
         else return p
       })
     }
+  },
+  watch: {
+    async getLoggedInUser() {
+      if (this.getLoggedInUser) {
+        this.projects = await Promise.all(this.getLoggedInUser.project_ids.map(async id => await this.fetchProjectById(id)))
+      }
+    }
   }
 }
