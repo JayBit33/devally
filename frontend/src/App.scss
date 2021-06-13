@@ -132,7 +132,7 @@
     min-width: 1600px;
     max-width: $max-screen-width;
     margin: 0 auto;
-    padding: 3rem  0 1rem 0;
+    padding: 1rem  0 1rem 0;
     z-index: 3;
     display: grid;
     justify-content: space-between;
@@ -192,7 +192,7 @@
       padding-top: 2rem;
       p {
         text-align: left;
-        max-width: 30rem;
+        max-width: 32rem;
         line-height: 1.75rem;
   
       }
@@ -227,7 +227,7 @@
       justify-content: space-between;
       grid-column-start: 1;
       grid-column-end: 4;
-      padding-top: 5rem;
+      padding-top: 3rem;
       padding-left: 18rem;
       padding-right: 18rem;
       text-align: center;
