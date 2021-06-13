@@ -11,6 +11,11 @@ import Project from '../pages/project'
 import Works from '../pages/Works'
 import Resources from '../pages/Resources'
 import About from '../pages/About'
+import Support from '../pages/Support'
+import Careers from '../pages/Careers'
+import Contact from '../pages/Contact'
+import Policy from '../pages/Policy'
+import Terms from '../pages/Terms'
 import SigninSignup from '../pages/signin-signup'
 import PageNotFound from '../pages/PageNotFound'
 import CreateAccount from '../pages/create-account'
@@ -29,6 +34,11 @@ const router = new VueRouter({
     { path: '/works',  name: 'Works', component: Works, meta: { breadcrumb: []} },
     { path: '/resources',  name: 'Resources', component: Resources, meta: { breadcrumb: []} },
     { path: '/about',  name: 'About', component: About, meta: { breadcrumb: []} },
+    { path: '/support',  name: 'Support', component: Support, meta: { breadcrumb: []} },
+    { path: '/careers',  name: 'Careers', component: Careers, meta: { breadcrumb: []} },
+    { path: '/contact',  name: 'Contact', component: Contact, meta: { breadcrumb: []} },
+    { path: '/policy',  name: 'Policy', component: Policy, meta: { breadcrumb: []} },
+    { path: '/terms',  name: 'Terms', component: Terms, meta: { breadcrumb: []} },
     { path: '/signin',  name: 'SignIn', component: SigninSignup, meta: { breadcrumb: [] }},
     { path: '/create-account',  name: 'CreateAccount', component: CreateAccount, meta: { breadcrumb: []} },
     { path: '/:pathMatch(.*)*',  name: 'NotFound', component: PageNotFound, meta: { breadcrumb: []} },

@@ -50,21 +50,21 @@
         <h3>Navigation</h3>
         <div class="links">
           <div class="links-col1">
-           <p>Search Developers</p>
-           <p>Search Projects</p>
-           <p>Read Articles</p>
+            <p><router-link to="/devs" class="link">Find Developers</router-link></p>
+            <p><router-link to="/projects" class="link">Search Projects</router-link></p>
+            <p><router-link to="/resources" class="link">Read Articles</router-link></p>
           </div>
           <div class="links-col2">
-           <p>Support</p>
-           <p>Careers</p>
-           <p>Contact Us</p>
+           <p><router-link to="/support" class="link">Support</router-link></p>
+           <p><router-link to="/careers" class="link">Careers</router-link></p>
+           <p><router-link to="/contact" class="link">Contact Us</router-link></p>
           </div>
         </div>
       </div>
       <div class="footer_policies">
-        <p>Privacy Policy</p>
+        <p><router-link to="/policy" class="link">Privacy Policy</router-link></p>
         <p>&copy; devally 2021</p>
-        <p>Terms & Conditions</p>
+        <p><router-link to="/terms" class="link">Terms & Conditions</router-link></p>
       </div>
     </div>
   </div>
