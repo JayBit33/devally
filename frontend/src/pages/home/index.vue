@@ -94,7 +94,7 @@
           >
         </div>
         <div>
-          <img :src="getImage('201brain-knowledge.png')" style="width: 350px" />
+          <img src="images/201brain-knowledge.png" style="width: 500px" />
         </div>
       </div>
     </div>
@@ -141,7 +141,7 @@
           >
         </div>
         <div>
-          <img src="images/201brain-knowledge.png" style="width: 500px" />
+          <img src="images/team.png" style="width: 400px" />
         </div>
       </div>
     </div>

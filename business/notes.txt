@@ -12,7 +12,6 @@ list repository
 walk customer through SDLM steps. How to manage and run a team
 Article section on how to develop site,saas, ecom etc.
 
-g
 Potential Issues
 
 quality of developers! Do we vet them?
@@ -67,3 +66,10 @@ TO FINISH FOR LAUNCH
 
 The average cost to build a web app is 55k, $140,000 to build a mobile app. This is why many people quit before they even get started. Find a technical
 co-founder/s to build your project. 
+
+COMETCHAT - ACCOUNT # 291794cd22b09dc
+
+EMAIL MARKETING
+mailjet 
+    username: jaybit email
+    password: Thesuniswarm#33
