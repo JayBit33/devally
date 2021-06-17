@@ -55,7 +55,7 @@
             <p><router-link to="/resources" class="link">Read Articles</router-link></p>
           </div>
           <div class="links-col2">
-           <p><router-link to="/support" class="link">Support</router-link></p>
+           <p><router-link to="/support" class="link">FAQ</router-link></p>
            <p><router-link to="/careers" class="link">Careers</router-link></p>
            <p><router-link to="/contact" class="link">Contact Us</router-link></p>
           </div>
