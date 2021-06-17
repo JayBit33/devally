@@ -251,6 +251,7 @@
           margin: 1rem auto;
           float: left;
           cursor: pointer;
+          transition: .3s;
   
           &:hover {
             background-color: lighten($button-secondary, 20%);

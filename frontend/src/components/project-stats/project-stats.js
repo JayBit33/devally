@@ -2,7 +2,7 @@
 // ALL RIGHTS RESERVED
 export default {
   name: 'project-stats',
-  props: ['project', 'extraInformation'],
+  props: ['project', 'editable', 'extraInformation'],
   data() {
     return {
     }

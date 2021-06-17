@@ -45,15 +45,15 @@
           </div>
           <div class="section">
             <h2>Hiring Options</h2>
-            <h3>{{ project.hiring_options }}</h3>
+            <h3>{{ hiringOptions }}</h3>
           </div>
           <div class="section">
             <h2>Funding Types</h2>
-            <h3>{{ project.funding_types }}</h3>
+            <h3>{{ fundingTypes }}</h3>
           </div>
           <div class="section">
             <h2>Viewable Regions</h2>
-            <h3>{{ project.viewable_regions }}</h3>
+            <h3>{{ viewableRegions }}</h3>
           </div>
         </div>
         <div class="row3">
@@ -64,7 +64,7 @@
         </div>
       </div>
       <div v-if="isEditable" class="stats_section">
-        <project-stats :project="project" :extraInformation="true" />
+        <project-stats :project="project" :extraInformation="true" :editable="true" />
       </div>
       <div v-if="isEditable" class="current-tasks_section">
         <h2 class="current-tasks_section-heading">Current Tasks</h2>
@@ -123,15 +123,15 @@
           </div>
           <div class="section">
             <h2>Hiring Options</h2>
-            <h3>{{ project.hiring_options }}</h3>
+            <h3>{{ hiringOptions }}</h3>
           </div>
           <div class="section">
             <h2>Funding Types</h2>
-            <h3>{{ project.funding_types }}</h3>
+            <h3>{{ fundingTypes }}</h3>
           </div>
           <div class="section">
             <h2>Viewable Regions</h2>
-            <h3>{{ project.viewable_regions }}</h3>
+            <h3>{{ viewableRegions }}</h3>
           </div>
         </div>
         <div class="row3">

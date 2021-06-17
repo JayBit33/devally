@@ -19,6 +19,7 @@
             <span class="info-total-circle"></span
             >{{ project.is_active ? "Active" : "Inactive" }}
           </h2>
+          <button v-if="editable" class="status-btn" @click="project.is_active = !project.is_active">{{ project.is_active ? 'make inactive' : 'make active' }}</button>
         </div>
         <div
           v-if="extraInformation"
@@ -30,6 +31,7 @@
             <span class="info-total-circle"></span
             >{{ project.is_public ? "Public" : "Private" }}
           </h2>
+          <button v-if="editable" class="status-btn" @click="project.is_public = !project.is_public">{{ project.is_public ? 'make private' : 'make public' }}</button>
         </div>
       </div>
 
