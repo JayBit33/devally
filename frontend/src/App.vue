@@ -34,7 +34,7 @@
         <p>Join our newsletter and get advice and tips on how to run a tech startup.</p>
         <div class="subscribe">
           <input type="email" id="email" placeholder="Email Address" />
-          <button>Sign Up</button>
+          <button>Subscribe</button>
         </div>
           <div class="social-icons">
             <font-awesome-icon :icon="['fab','facebook']" class="social-icon"></font-awesome-icon>

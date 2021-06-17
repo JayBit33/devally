@@ -168,14 +168,20 @@
       }
   
       button {
-        background-color: #9794E1;
-        color: white;
+        background-color: rgb(192, 190, 190);
+        color: black;
         font-family: 'Montserrat';
-        font-size: 1.125rem;
-        font-weight: 600;
+        font-size: 1rem;
+        font-weight: 500;
         border: none;
-        padding: .5rem;
+        padding: .6rem;
         margin-left: .5rem;
+        transition: .3s;
+
+        &:hover {
+          background-color: darken(rgb(192, 190, 190), 20%);
+          color: white;
+        }
       }
   
       .social-icons {
@@ -188,7 +194,7 @@
     }
   
     &_mission {
-      margin: 0 8rem;
+      margin: 0 7rem;
       padding-top: 2rem;
       p {
         text-align: left;
