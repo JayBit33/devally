@@ -11,6 +11,7 @@
         v-for="connection in connectionsShown"
         :class="{'movingRight': movingRight, 'movingLeft': movingLeft}"
         :connection="connection"
+        :isPositionToFill="isPositionToFill"
         :key="connection.id"
         :hasDeleteIcon="hasDeleteIcon"
         @delete-click="$emit('delete-click', connection)"

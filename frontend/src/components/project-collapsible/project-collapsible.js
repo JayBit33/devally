@@ -22,7 +22,8 @@ export default {
       },
       collapsed: false,
       teamMembers: [],
-      visionary: null
+      visionary: null,
+      positionsToFill: ['Graphic Designer', 'Full Stack Dev']
     }
   },
   computed: {

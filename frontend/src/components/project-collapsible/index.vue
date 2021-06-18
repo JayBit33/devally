@@ -94,7 +94,8 @@
         <connection-card-carousel
           v-if="isEditable"
           class="members"
-          :connections="teamMembers"
+          :connections="positionsToFill"
+          :isPositionToFill="true"
           :numberOfCardsDisplayed="2"
           :hasDeleteIcon="project.creator_id == getLoggedInUser.id"
           @delete-click="removeTeamMember"

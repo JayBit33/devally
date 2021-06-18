@@ -11,6 +11,9 @@ export default {
       type: Array,
       required: true
     },
+    isPositionToFill: {
+      type: Boolean
+    },
     numberOfCardsDisplayed: {
       type: Number,
       default: 5

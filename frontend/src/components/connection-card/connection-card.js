@@ -5,7 +5,7 @@ import { mapGetters } from 'vuex';
 
 export default {
   name: "ConnectionCard",
-  props: ['connection', 'isMinimized', 'isChecked', 'hasDeleteIcon'],
+  props: ['connection', 'hasDeleteIcon', 'isMinimized', 'isChecked', 'isPositionToFill'],
   data() {
     return {
 
