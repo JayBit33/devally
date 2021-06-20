@@ -23,7 +23,7 @@
         ></font-awesome-icon>
       </div>
     </div>
-    <div v-if="!collapsed" class="project-collapsible_sections">
+    <div v-if="!collapsed" :class="[ isEditable ? 'project-collapsible_sections' : 'project-collapsible-sections-no-edit']">
       <div v-if="isEditable"  class="general-info-section">
         <div class="general-info-section_heading">
           <h2>General Information</h2>
