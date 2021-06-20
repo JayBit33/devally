@@ -2,8 +2,22 @@
 <!-- ALL RIGHTS RESERVED -->
 <template>
   <div class="main">
-    <!-- <div class="background-overlay_pic" :style="{'background-image': 'url(' + require('@/assets/devs_bg.png') + ')'}"></div> -->
-    <div class="background-overlay_color"></div>
+    <div class="background-overlay_pic" :style="{'background-image': 'url(' + require('@/assets/devs_bg.png') + ')'}"></div>
+    <!-- <div class="background-overlay_color"></div> -->
+    <div class="home-banner">
+      <div class="col-1">
+        <h1>Build A Team And</h1>
+        <h1>Make Your Tech Idea A Reality</h1>
+        <h4>Community of developers looking to join a team</h4>
+        <h4>and build the next best thing since Jarvis.</h4>
+        <button class="btn">
+          <router-link to="/devs" class="link">Get Started</router-link>
+        </button>
+      </div>
+      <div class="col-2">
+        <img src="images/3593965.jpg" />
+      </div>
+    </div>
 
     <filter-search class="filter" @applyFilters="updateUsersShown" @reset="showRefresh()" @search-input="searchInputChange" />
     <div class="dev-profiles"  v-loading.fullscreen.lock="isLoading" >

@@ -11,6 +11,52 @@
   flex-direction: column;
   justify-content: center;
 
+  .home-banner {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 3fr auto;
+    column-gap: 12rem;
+    align-items: center;
+    margin-bottom: 0rem;
+    padding-left: 9rem;
+    padding-right: 7rem;
+    background-color: white;
+    z-index: 10;
+    .col-1 {
+      margin-left: 2.5rem;
+      h1 {
+        font: 700 2.125rem "Montserrat";
+        color: $primary;
+        line-height: 1.5rem;
+      }
+      h4 {
+        font: 1.125rem "Montserrat";
+        line-height: 0.5rem;
+      }
+      button {
+        background-color: $button-primary;
+        padding: 1rem 4rem 0.75rem 4rem;
+        font-size: 1.25rem;
+        border: none;
+        float: left;
+        margin-top: 0rem;
+        .link {
+          color: white;
+        }
+
+        &:hover {
+          background-color: darken($button-primary, 10%);
+        }
+      }
+    }
+    .col-2 {
+      margin-right: 2rem;
+      img {
+        width: 40rem;
+      }
+    }
+  }
+
   .background-overlay  {
     &_pic {
       position: fixed;
