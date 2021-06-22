@@ -4,13 +4,12 @@
   <div class="project-stats">
     <h2>Project Stats</h2>
     <div class="project-stats__information">
-      <div class="extra_information">
-        <div v-if="extraInformation" class="info created">
+      <div class="extra_information" v-if="extraInformation">
+        <div class="info created">
           <h4>Created</h4>
           <h2 class="info-total">{{ getDateFormat(project.date_created) }}</h2>
         </div>
         <div
-          v-if="extraInformation"
           class="info status"
           :class="project.is_active ? 'positive_info' : 'negative_info'"
         >
@@ -22,7 +21,6 @@
           <button v-if="editable" class="status-btn" @click="project.is_active = !project.is_active">{{ project.is_active ? 'make inactive' : 'make active' }}</button>
         </div>
         <div
-          v-if="extraInformation"
           class="info viewable"
           :class="project.is_public ? 'positive_info' : 'negative_info'"
         >
