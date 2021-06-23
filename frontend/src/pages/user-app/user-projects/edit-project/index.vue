@@ -26,7 +26,52 @@
               @item-selection="handleRegionsSelection"
             >
             </dropdown>
+          </div>
+          <div class="field add-position">
+            <h3>Positions to fill</h3>
+            <div class="add-position_adding">
+              <div class="add-position_adding-grid">
+                <div class="add-position_adding_role">
+                  <label for="Role">Role</label>
+                  <dropdown
+                    class="field_dropdown add-position_adding-dropdown"
+                    :items="allRoles"
+                    :isMultiSelect="false"
+                    :selectedItems="currentPositionRole"
+                    @item-selection="handlePositionSelection"
+                  >
+                  </dropdown>
+                </div>
+                <div class="add-position_adding_skills">
+                  <label for="skills">Skills</label>
+                  <div class="add-position_adding_skills_input">
+                    <input type="text" name="skills" v-model="currentPositionSkill" @keydown.enter.prevent="addSkill">
+                    <font-awesome-icon class="add-position_adding_skills_input-icon" :class="{'disabled': !currentPositionSkill}" :icon="['fas', 'plus-circle']" @click="addSkill"></font-awesome-icon>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="add-position_adding_skills-added">
+                <div v-for="skill in currentPositionSkills" :key="skill" class="add-position_adding_skills-added_input" @dblclick="removeSkill(skill)">
+                  <input type="text" name="skills" readonly :value="skill">
+                  <font-awesome-icon class="add-position_adding_skills-added_input-icon" :icon="['fas', 'minus-circle']" @click="removeSkill(skill)"></font-awesome-icon>
+                </div>
+              </div>
+              <button class="add-position-button" :class="{'disabled': !currentPositionRole}" @click="handleAddPosition">Add Position</button>
             </div>
+
+            <div v-if="project_positions && project_positions.length > 0" class="add-position_added">
+              <h3>Positions added</h3>
+              <div class="add-position_added_positions">
+                <div v-for="position in project_positions" :key="position.position" class="add-position_added_position" @dblclick="handleDeletePosition(position)">
+                  <p class="add-position_added_position-role">{{position.position}}</p>
+                  <h6 v-if="position.skills.length > 0"> | </h6>
+                  <p v-if="position.skills.length > 0" class="add-position_added_position-skills">{{position.skills.join(', ')}}</p>
+                  <font-awesome-icon class="add-position_added_position-delete-icon" :icon="['fas', 'minus-circle']" @click="handleDeletePosition(position)"></font-awesome-icon>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="fields fields_right">

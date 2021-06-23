@@ -220,7 +220,7 @@ router.get('/:id', (req, res) => {
 router.post('/', authChecker, (req, res, next) => {
   if (validProject(req.body.project)) {
     queries.createProject(req.body.project).then(project => {
-      res.status(201).json({ project });
+      res.status(200).json({ project });
     })
   } else {
     next(new Error('Invalid Project Data'));

@@ -35,6 +35,7 @@ export default {
     },
     tasksShown() {
       return (project) => {
+        if (!project.tasks || project.tasks.length == 0) return []
         if (this.showCompletedTasks) {
           if (this.all_tasks_override) return project.tasks
           return project.tasks.filter((n, i) => i < 2)

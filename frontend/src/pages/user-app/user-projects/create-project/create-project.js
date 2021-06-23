@@ -1,7 +1,7 @@
 import ConnectionCard from '@/components/connection-card'
 import Dropdown from '@/components/dropdown'
 import FilterSearch from '@/components/filter-search'
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 
 export default {
   name: 'create-project',
@@ -18,6 +18,7 @@ export default {
       project_category: '',
       project_options: [],
       project_funding: [],
+      project_positions: [],
       project_is_public: true,
       project_is_active: true,
       project_is_seeking: true,
@@ -26,6 +27,10 @@ export default {
       allHiringOptions: [],
       allFundingTypes: [],
       allRegions: [],
+      allRoles: [],
+      currentPositionRole: '',
+      currentPositionSkill: '',
+      currentPositionSkills: [],
       connections: [],
       startIdx: 0,
       endIdx: 4,
@@ -68,7 +73,7 @@ export default {
     }
   },
   async created() {
-    let { categories, hiring_options } = await this.getDevOptions()
+    let { roles, categories, hiring_options } = await this.getDevOptions()
     let { regions } = await this.getRegions()
     let { funding_types } = await this.getFundingTypes()
 
@@ -76,6 +81,7 @@ export default {
     this.allHiringOptions = hiring_options.filter(option => option !== 'Flat Rate') // disable Flat Rate option
     this.allRegions = regions
     this.allFundingTypes = funding_types
+    this.allRoles = roles
     
     this.connections = await Promise.all(this.getLoggedInUser.connections.map(async id => {
       let user = await this.fetchUserById(id)
@@ -86,7 +92,8 @@ export default {
     window.addEventListener('resize', this.updatePageSize)
   },
   methods: {
-    ...mapActions(['getDevOptions', 'getRegions', 'getFundingTypes', 'createProject', 'fetchToast', 'fetchUserById', 'sendNotificationToUser']),
+    ...mapActions(['getDevOptions', 'getRegions', 'getFundingTypes', 'createProject', 'fetchToast', 'fetchUserById', 'sendNotificationToUser', 'updateUser']),
+    ...mapMutations(['updateLoggedInUser']),
     handleCategoriesSelection(e) {
       this.project_category = e
     },
@@ -99,15 +106,37 @@ export default {
     handleFundingTypesSelection(e) {
       this.project_funding = e
     },
+    handlePositionSelection(e) {
+      this.currentPositionRole = e
+    },
+    handleAddPosition() {
+      this.project_positions.push({ position: this.currentPositionRole, skills: this.currentPositionSkills })
+      this.currentPositionSkills = []
+      this.currentPositionSkill = ''
+      this.currentPositionRole = ''
+    },
+    handleDeletePosition(position) {
+      this.project_positions = this.project_positions.filter(p => !(p.position == position.position && p.skills == position.skills))
+    },
+    addSkill() {
+      if (!this.currentPositionSkills.includes(this.currentPositionSkill)) {
+        this.currentPositionSkills.push(this.currentPositionSkill)
+        this.currentPositionSkill = ''
+      }
+    },
+    removeSkill(skill) {
+      this.currentPositionSkills = this.currentPositionSkills.filter(s => s !== skill)
+    },
     async handleCreateProject() {
       let toast, message
       if (!this.isAllProjectFieldsFilled) {
         message = [{ text: 'Please fill out', emphasis: false }, { text: 'all', emphasis: true }, { text: 'the necessary fields', emphasis: false }]
         toast = await this.fetchToast({ type: 'error', message })
       } else {
-        const project = {
+        const newProject = {
           creator_id: this.getLoggedInUser.id,
-          team_member_ids: JSON.stringify([]), // 
+          team_member_ids: JSON.stringify([]),
+          members_needed: JSON.stringify([...this.project_positions]),
           name: this.project_name,
           category: this.project_category,
           description: this.project_description,
@@ -120,14 +149,16 @@ export default {
           is_featured: this.isFeaturePossible ? this.project_is_featured : false
         }
   
-        let { project: res } = await this.createProject(project)
-        if (res) {
+        let { project } = await this.createProject(newProject)
+        if (project) {
           message = [{ text: 'Your project has been', emphasis: false }, { text: 'successfully', emphasis: true }, { text: 'created', emphasis: false }]
           toast = await this.fetchToast({ type: 'success', message, hasAction: true, actionRedirect: `/profile/${this.getLoggedInUser.id}/projects` })
           this.resetFields()
+          const user = await this.updateUser({ id: this.getLoggedInUser.id, updates: { project_ids: JSON.stringify([...this.getLoggedInUser.project_ids, project.id ]) } })
+          this.updateLoggedInUser(user)
         }
 
-        if (this.checkedConnectionsIds.length > 0 && res) await this.notifyConnections(res.id)
+        if (this.checkedConnectionsIds.length > 0 && project) await this.notifyConnections(project.id)
       }
 
       this.$emit('toast-update', toast)

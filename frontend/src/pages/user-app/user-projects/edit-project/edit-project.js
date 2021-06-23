@@ -20,6 +20,7 @@ export default {
       project_category: '',
       project_options: [],
       project_funding: [],
+      project_positions: [],
       project_is_public: true,
       project_is_active: true,
       project_is_seeking: true,
@@ -28,6 +29,10 @@ export default {
       allHiringOptions: [],
       allFundingTypes: [],
       allRegions: [],
+      allRoles: [],
+      currentPositionRole: '',
+      currentPositionSkill: '',
+      currentPositionSkills: [],
       connections: [],
       startIdx: 0,
       endIdx: 4,
@@ -73,7 +78,7 @@ export default {
     }
   },
   async created() {
-    let { categories, hiring_options } = await this.getDevOptions()
+    let { roles, categories, hiring_options } = await this.getDevOptions()
     let { regions } = await this.getRegions()
     let { funding_types } = await this.getFundingTypes()
 
@@ -81,6 +86,7 @@ export default {
     this.allHiringOptions = hiring_options.filter(option => option !== 'Flat Rate') // disable Flat Rate option
     this.allRegions = regions
     this.allFundingTypes = funding_types
+    this.allRoles = roles
 
     this.project = await this.fetchProjectById(this.projectId)
     if (this.project.creator_id != this.getLoggedInUser.id) this.$router.push(`/profile/${this.getLoggedInUser.id}/projects`)
@@ -110,6 +116,27 @@ export default {
     handleFundingTypesSelection(e) {
       this.project_funding = e
     },
+    handlePositionSelection(e) {
+      this.currentPositionRole = e
+    },
+    handleAddPosition() {
+      this.project_positions.push({ position: this.currentPositionRole, skills: this.currentPositionSkills })
+      this.currentPositionSkills = []
+      this.currentPositionSkill = ''
+      this.currentPositionRole = ''
+    },
+    handleDeletePosition(position) {
+      this.project_positions = this.project_positions.filter(p => !(p.position == position.position && p.skills == position.skills))
+    },
+    addSkill() {
+      if (!this.currentPositionSkills.includes(this.currentPositionSkill)) {
+        this.currentPositionSkills.push(this.currentPositionSkill)
+        this.currentPositionSkill = ''
+      }
+    },
+    removeSkill(skill) {
+      this.currentPositionSkills = this.currentPositionSkills.filter(s => s !== skill)
+    },
     async handleEditProject() {
       let toast, message
       if (!this.isAllProjectFieldsFilled) {
@@ -123,6 +150,7 @@ export default {
           hiring_options: JSON.stringify([...this.project_options]),
           viewable_regions: JSON.stringify([...this.project_regions]),
           funding_types: JSON.stringify([...this.project_funding]),
+          members_needed: JSON.stringify([...this.project_positions]),
           is_public: this.project_is_public,
           is_seeking_allys: this.project_is_seeking,
           is_active: this.project_is_active,
@@ -163,6 +191,7 @@ export default {
       this.project_is_seeking = this.project.is_seeking_allys
       this.project_is_active = this.project.is_active
       this.project_is_featured = this.isFeaturePossible ? this.project.is_featured : false
+      this.project_positions = this.project.members_needed
     },
     updateConnections(pageNumber) {
       this.endIdx = this.pageSize * pageNumber

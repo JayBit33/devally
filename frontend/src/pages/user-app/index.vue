@@ -84,7 +84,7 @@
       <div v-if="$route.params.view == 'projects'" class="views">
         <font-awesome-icon :icon="['fas','clipboard']" class="icon"></font-awesome-icon>
         <h1 class="title">User Projects</h1>
-        <user-projects @create-project="updateView('create-project')" @edit-project="updateView(`edit-project/${$event.id}`)" @toast-update="toast = $event" />
+        <user-projects @create-project="updateProjects(); updateView('create-project');" @edit-project="updateView(`edit-project/${$event.id}`)" @toast-update="toast = $event" />
       </div>
       <div v-if="$route.params.view == 'create-project'" class="views">
         <font-awesome-icon :icon="['fas','folder-open']" class="icon"></font-awesome-icon>

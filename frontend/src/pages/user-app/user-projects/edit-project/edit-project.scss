@@ -111,6 +111,132 @@
             }
           }
         }
+
+        .add-position {
+          &_adding {
+            background-color: white;
+            padding: 1rem;
+            border-radius: .25rem;
+            margin: .5rem 0;
+            &-grid {
+              width: 100%;
+              display: grid;
+              grid-template-columns: repeat(2, 1fr);
+              justify-content: flex-start;
+              align-items: center;
+              grid-gap: 1rem;
+            }
+            &_role {
+              .add-position-dropdown {
+                margin-top: 0;
+              }
+            }
+            &_skills, &_skills-added {
+              &_input {
+                position: relative;
+                border: 1px solid $element-dropdown-border;
+                border-radius: .25rem;
+                margin: .5rem 0;
+                padding: .5rem;
+                transition: .3s;
+                input {
+                  border: none;
+                  width: calc(100% - 1rem);
+                  display: block;
+                  outline:none;
+                  transition: .3s;
+                }
+                &-icon {
+                  position: absolute;
+                  top: 50%;
+                  right: 0rem;
+                  transform: translate(-50%, -50%);
+                  cursor: pointer;
+                  transition: .3s;
+                  &.disabled {
+                    color: $element-dropdown-border;
+                    pointer-events: none;
+                  }
+                }
+              }
+            }
+            &_skills-added {
+              display: flex;
+              justify-content: flex-start;
+              align-items: center;
+              flex-wrap: wrap;
+              &_input {
+                margin: 0 .5rem;
+                margin-left: 0;
+                margin-bottom: .5rem;
+                width: 5.5rem;
+                input {
+                  width: auto;
+                  max-width: 4rem;
+                  text-overflow: ellipsis;
+                  white-space: nowrap;
+                }
+              }
+            }
+            .add-position-button {
+              font-family: 'Montserrat';
+              font-size: .8rem;
+              font-weight: 500;
+              background-color: $button-tri;
+              color: white;
+              border-radius: .25rem;
+              border: none;
+              outline: none;
+              padding: .5rem 1rem;
+              width: 100%;
+              margin: .5rem auto;
+              margin-bottom: 0;
+              cursor: pointer;
+              &.disabled {
+                pointer-events: none;
+                background-color: $btn-grey;
+              }
+            }
+          }
+          &_added {
+            background-color: white;
+            padding: 1rem;
+            border-radius: .25rem;
+            margin: .5rem 0;
+            &_positions {
+              margin-bottom: 0;
+              display: flex;
+              justify-content: flex-start;
+              align-items: center;
+              flex-wrap: wrap;
+            }
+            &_position {
+              margin: .75rem 0 0 0;
+              margin-right: 1rem;
+              display: flex;
+              justify-content: flex-start;
+              align-items: center;
+              border: 1px solid $element-dropdown-border;
+              border-radius: .25rem;
+              padding: .5rem;
+              width: max-content;
+              transition: .3s;
+              p {
+                width: auto;
+                margin: 0;
+                font-size: .9rem;
+              }
+              h6 {
+                font-size: 1rem;
+                margin: 0 .5rem;
+              }
+              &-delete-icon {
+                margin-left: .5rem;
+                cursor: pointer;
+              }
+            }
+          }
+        }
       }
     }
 
