@@ -1,5 +1,6 @@
 // (c) Waveybits Inc. <2021>
 // ALL RIGHTS RESERVED
+import { mapGetters } from 'vuex'
 
 export default {
     name: "Home",
@@ -12,6 +13,9 @@ export default {
       }
     },
     created() {},
+    computed: {
+      ...mapGetters(['getLoggedInUser', 'isLoggedIn']),
+    },
     methods: {
       getImage(imageName) {
         return require(`@/assets/${imageName}`);

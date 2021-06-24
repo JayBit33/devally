@@ -35,7 +35,10 @@
               the people you need to bring it to life. Don't let someone beat you
               to the finish line. Get started on your project today!
             </p>
-            <router-link to="/devs" class="link"
+            <router-link v-if="isLoggedIn" :to="{ name: 'Profile', params: { id: getLoggedInUser.id, view: 'projects' }}" class="link"
+              ><button>Create Project</button></router-link
+            >
+            <router-link v-else to="/signin" class="link"
               ><button>Create Project</button></router-link
             >
           </div>
@@ -61,7 +64,7 @@
               accomplish and you will have questions along the way. We have
               articles that help to guide you on your journey.
             </p>
-            <router-link to="/devs" class="link"
+            <router-link to="/resources" class="link"
               ><button>View Articles</button></router-link
             >
           </div>
@@ -89,7 +92,7 @@
             We got you covered. Read up on software development methodologies, how
             to start a business and much more.
           </p>
-          <router-link to="/signin" class="link"
+          <router-link to="/resources" class="link"
             ><button>Start Learning</button></router-link
           >
         </div>
