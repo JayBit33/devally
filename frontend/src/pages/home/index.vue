@@ -103,12 +103,12 @@
     </div>
     <div v-else >
       <div class="experienced-devs">
-        <div class="join-devs_col2">
+        <div class="join-devs_col1">
           <h2>Are You An Experienced Developer?</h2>
           <p>
             Are you a web, mobile or software developer, graphic designer or
             project manager? Work for part ownership in tech startups.
-            Join DevAlly and find projects your passionate about and even start your own. 
+            Join DevAlly and find projects your passionate about or start your own. 
           </p>
           <router-link to="/signin" class="link"
             ><button>Join Now</button></router-link
@@ -123,24 +123,20 @@
           <img src="images/programmer-man.png" style="width: 500px" />
         </div>
         <div class="join-devs_col2">
-          <h2>Want To Build Something From the Ground Up?</h2>
+          <h2>Do You Have What It Takes To Be A Technical Co-Founder?</h2>
           <p>
-            Are you a web, mobile or software developer, graphic designer or
-            project manager? Join DevAlly and find paid jobs or work for part
-            ownership in tech startups.
+            As a technical co-founder you will be responsible for not only writing code. You will also be deciding what technology stack to use, which software development lifecycle methodology is best and many other big technical decisions.
           </p>
         </div>
       </div>
       <div class="last-section">
-        <div class="join-devs_col2">
-          <h2>Want To Build Something From the Ground Up?</h2>
+        <div class="join-devs_col3">
+          <h2>Are You One Piece of The Puzzle?</h2>
           <p>
-            Are you a web, mobile or software developer, graphic designer or
-            project manager? Join DevAlly and find paid jobs or work for part
-            ownership in tech startups.
+            If you are a Frontend/Backend developer or graphic designer with a big idea then DevAlly is a great place to meet professionals with the skills that complement your own. Build a full team and build the next big thing!
           </p>
-          <router-link to="/signin" class="link"
-            ><button>Join Now</button></router-link
+          <router-link to="/devs" class="link"
+            ><button>Search Devs</button></router-link
           >
         </div>
         <div>
