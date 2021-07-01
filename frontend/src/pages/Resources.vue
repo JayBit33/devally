@@ -14,13 +14,32 @@
     <div class="about-body">
       <h1>Resources</h1>
       <p>show articles, have categories listed, search capability.</p>
+      <ul>
+        <li v-for="article in articles" :key="article.id" >
+          <h3>{{ article.title }}</h3>
+          <p>{{ article.body }}</p>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   name: 'Resources',
+  data() {
+    return {
+      articles: []
+    }
+  },
+  methods: {
+    ...mapActions(['fetchArticles'])
+  },
+  async created() {
+    this.articles = await this.fetchArticles()
+  }
 
 }
 </script>

@@ -44,7 +44,7 @@
       </div>
       <div class="footer_mission">
         <h3>Mission</h3>
-        <p>Help those with software, website and app ideas find technical co-founders so they can bring their ideas to life while supporting our users in their journey as a startup.</p>
+        <p>We help those with software, website and app ideas find technical co-founders, therefore, minimizing the number of ideas that are lost and forgoten because thier creators didn't have the resources to bring them to life. We also support our users in their journey as a tech startup by making pertinent knowledge easily available.</p>
       </div>
       <div class="footer_nav">
         <h3>Navigation</h3>
