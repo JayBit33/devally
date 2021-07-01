@@ -171,12 +171,9 @@ export default {
       if (link.includes('http')) window.open(link, "_blank");
       else window.open("http://" + link, "_blank");
     },
-    openMessageBox() {
-      this.toggleMessageBox();
-      if (this.messageBoxOpen) {
-        setTimeout(() => {
-          document.querySelector('.message-box_textarea').focus();
-        }, 1000);
+    messageClick() {
+      if (this.getLoggedInUser) {
+        this.$router.push(`/profile/${this.getLoggedInUser.id}/messages`)
       }
     },
     rateUser() {

@@ -15,7 +15,7 @@
       <li v-for="(role,i) in roles" :key="i">{{role}}</li>
     </ul> -->
     <div v-if="!isMinimized" class="actions">
-      <div class="msg-container btn">
+      <div class="msg-container btn" @click="handleCardBtnClick">
         <h4 v-if="!isPositionToFill">Message</h4>
         <h4 v-else>Search</h4>
         <font-awesome-icon v-if="!isPositionToFill" :icon="['far','envelope']" class="msg-icon"></font-awesome-icon>
