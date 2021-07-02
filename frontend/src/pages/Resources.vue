@@ -10,6 +10,11 @@
          <button class="btn"><router-link to="/create-account" class="link">GET STARTED</router-link></button> 
        </div>
     </div> --> 
+    <h1 class="heading">Learning Paths</h1>
+    <div class="article-section">
+      <article-card v-for="article in articles" :article="article" :key="article.id" />
+    </div>
+    <h1 class="heading">Trending</h1>
     <div class="article-section">
       <article-card v-for="article in articles" :article="article" :key="article.id" />
     </div>
@@ -43,11 +48,18 @@ export default {
 <style lang="scss" scoped>
 .resources {
   display: block;
-  padding: 4rem;
+  padding: 3rem 4rem;
+
+  .heading {
+    font-size: 1.75rem;
+
+    &:nth-of-type(2) {
+      margin-top: 4rem;
+    }
+  }
   .article-section {
     display: flex;
     flex-wrap: wrap;
-
   }
 }
 @media (min-width: 1700px)  {
