@@ -38,6 +38,15 @@ export default {
   methods: {
     getImage(filePath) {
       return `http://localhost:3000/${filePath}`;
+    },
+    handleCardBtnClick() {
+      if (this.isPositionToFill) {
+        this.$router.push('/devs')
+      } else {
+        if (this.getLoggedInUser) {
+          this.$router.push(`/profile/${this.getLoggedInUser.id}/messages`)
+        }
+      }
     }
   }
 }

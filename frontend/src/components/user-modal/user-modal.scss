@@ -41,6 +41,7 @@
     justify-content: center;
     align-items: center;
     color: $message_bg;
+    transition: .3s;
 
     .icon {
       margin: 0 .25rem;
@@ -57,7 +58,8 @@
 
     &:hover {
       cursor: pointer;
-      background-color: $button-primary_hover;
+      // background-color: darken(inherit, 20) !important;
+      filter: brightness(.75);
     }
   }
 

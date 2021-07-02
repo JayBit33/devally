@@ -59,7 +59,7 @@
       </div>
 
       <div class="user_profile_buttons" :class="{'disabled-buttons': !isLoggedIn}">
-        <div class="user_profile_buttons-button message-button" @click="openMessageBox">
+        <div class="user_profile_buttons-button message-button" @click="messageClick">
           <h4>Message</h4>
         </div>
         <div class="user_profile_buttons-button connection-button" @click="addConnection">
