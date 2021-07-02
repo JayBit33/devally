@@ -11,9 +11,9 @@ export default {
   props: ['projects'],
   data() {
     return {
-      addingTask: false,
+      addingTaskProjectIds: [],
       addingTaskMessage: '',
-      collapsed: false,
+      collapsedProjectIds: [],
       dragging: false,
       editId: null,
       isChecked: true,
@@ -40,15 +40,28 @@ export default {
   computed: {
     ...mapGetters(['getLoggedInUser']),
     projectsShown() {
-      return this.projects.filter(p => p.creator_id === this.getLoggedInUser.id.toString())
+      return this.projects.filter(p => p.creator_id === this.getLoggedInUser.id.toString()).map(p => {
+        return {
+          ...p,
+          collapsed: this.collapsedProjectIds.includes(p.id),
+          addingTask: this.addingTaskProjectIds.includes(p.id),
+          addingTaskMessage: ''
+        }
+      })
     }
   },
   methods: {
     ...mapActions(['fetchProjects', 'fetchProjectById', 'fetchUserById', 'updateUser', 'fetchToast', 'updateTask', 'createTask']),
     ...mapMutations(['updateLoggedInUser']),
-    addTask() {
+    addTask(project) {
       this.editId = 0
-      this.addingTask = true
+      if (!this.addingTaskProjectIds.includes(project.id)) this.addingTaskProjectIds.push(project.id)
+      // this.projectsShown = this.projectsShown.map(p => {
+      //   return {
+      //     ...p,
+      //     addingTask: p.id == project.id
+      //   }
+      // })
     },
     async completeTask(project, task) {
       await this.updateTask({ projectId: project.id, taskId: task.id, updates: { status: 'complete' } })
@@ -80,15 +93,17 @@ export default {
     },
     async saveNewTask(project) {
       this.editId = null
-      this.addingTask = false
-      if (this.addingTaskMessage) {
-        await this.createTask({ projectId: project.id, message: this.addingTaskMessage})
+      if (this.addingTaskProjectIds.includes(project.id)) this.addingTaskProjectIds = this.addingTaskProjectIds.filter(p => p != project.id)
+      
+      if (project.addingTaskMessage) {
+        await this.createTask({ projectId: project.id, message: project.addingTaskMessage})
       }
-      this.addingTaskMessage = ''
+      project.addingTaskMessage = ''
       this.$emit('project-change')
     },
-    toggleCollapsed() {
-      this.collapsed = !this.collapsed
+    toggleCollapsed(project) {
+      if (this.collapsedProjectIds.includes(project.id)) this.collapsedProjectIds = this.collapsedProjectIds.filter(p => p !== project.id)
+      else this.collapsedProjectIds = [...this.collapsedProjectIds, project.id]
     }
   },
   directives: {

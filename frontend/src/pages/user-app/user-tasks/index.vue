@@ -25,24 +25,25 @@
     <div v-for="project in projectsShown" :key="project.id" class="project-tasks">
       <div class="tasks-collapsible_header" >
         <div class="tasks-collapsible_header_left">
-          <font-awesome-icon :icon="collapsed ? ['fas','chevron-circle-down'] : ['fas','chevron-circle-up']" class="icon" @click="toggleCollapsed"></font-awesome-icon>
+          <font-awesome-icon :icon="project.collapsed ? ['fas','chevron-circle-down'] : ['fas','chevron-circle-up']" class="icon" @click="toggleCollapsed(project)"></font-awesome-icon>
           <h2>{{ project.name }}</h2>
         </div>
         <div class="tasks-collapsible_header_right">
-          <font-awesome-icon :icon="['fas','plus']" class="header-icon" @click="addTask"></font-awesome-icon>
+          <font-awesome-icon :icon="['fas','plus']" class="header-icon" @click="addTask(project)"></font-awesome-icon>
         </div>
       </div>
-      <div v-if="!collapsed" class="project-tasks_body">
-        <div v-if="addingTask" class="task_new" style="margin-top: 2rem;">
+      <div v-if="!project.collapsed" class="project-tasks_body">
+        <div v-if="project.addingTask" class="task_new" style="margin-top: 2rem;">
           <font-awesome-icon :icon="['fas','check']" class="check"></font-awesome-icon>
           <input
             v-if="editId === 0"
-            v-model="addingTaskMessage"
+            v-model="project.addingTaskMessage"
             placeholder="New Task"
             class="edit-message"
-            @blur="saveNewTask(project)"
-            @keyup.enter="saveNewTask(project)"
             v-focus
+            @keyup.enter="saveNewTask(project)"
+            @keyup.escape="saveNewTask(project)"
+            @blur="saveNewTask(project)"
           >
         </div>
 
@@ -67,13 +68,16 @@
                 <p v-else class="task-description">{{ task.message }}</p>
               </div>
               <div class="actions">
-                <button v-if="task.status === 'active'" @click="completeTask(project, task)">completed</button>
+                <button v-if="task.status === 'active'" @click="completeTask(project, task)">Mark complete</button>
                 <font-awesome-icon :icon="['fas','pencil-alt']" class="icon" @click="makeEditable(task)"></font-awesome-icon>
                 <font-awesome-icon :icon="['fas','trash']" class="icon" @click="removeTask(project, task)"></font-awesome-icon>
               </div>
             </div>
           </transition-group>
         </draggable>
+        <div v-if="!project.tasks && !project.addingTask" class="no-tasks">
+          <p>This project has no tasks</p>
+        </div>
       </div>
     </div>
   </div>
