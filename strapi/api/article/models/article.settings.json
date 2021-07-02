@@ -27,6 +27,20 @@
     "categories": {
       "via": "articles",
       "collection": "category"
+    },
+    "article_preview": {
+      "type": "text",
+      "required": true
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": true,
+      "pluginOptions": {}
     }
   }
 }
