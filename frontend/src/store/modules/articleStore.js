@@ -28,6 +28,15 @@ Vue.use(Vuex)
                 }).catch(error => reject(error));
             })
         },
+        fetchLearningPaths() {
+            return new Promise((resolve, reject) => {
+                articleAPI.get('/learning-paths')
+                .then(res => {
+                    console.log('res', res.data);
+                    resolve(res.data);
+                }).catch(error => reject(error));
+            })
+        },
     };
 
 export default {

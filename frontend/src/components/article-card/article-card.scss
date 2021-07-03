@@ -5,6 +5,12 @@
   width: 25rem;
   margin: 0 1rem;
   box-shadow: -2px 1px 14px -1px rgba(0,0,0,0.32);
+  transition: .3s;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+  }
   
   img {
     width: 100%;
