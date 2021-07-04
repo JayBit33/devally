@@ -28,6 +28,15 @@ Vue.use(Vuex)
                 }).catch(error => reject(error));
             })
         },
+        fetchArticle({ commit }, id) {
+            return new Promise((resolve, reject) => {
+                console.log(commit)
+                articleAPI.get(`/articles/${id}`)
+                .then(res => {
+                    resolve(res.data)
+                }).catch(error => reject(error))
+            })
+        },
         fetchLearningPaths() {
             return new Promise((resolve, reject) => {
                 articleAPI.get('/learning-paths')

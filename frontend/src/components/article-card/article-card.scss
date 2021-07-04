@@ -8,7 +8,6 @@
   transition: .3s;
 
   &:hover {
-    cursor: pointer;
     transform: scale(1.05);
   }
   
@@ -35,6 +34,10 @@
     font-weight: bold;
     padding: 0 1rem;
     margin: 0;
+
+    &:hover {
+      cursor: pointer;
+    }
     
   }
   

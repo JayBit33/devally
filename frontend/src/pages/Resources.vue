@@ -83,7 +83,7 @@ export default {
 
 <style lang="scss" scoped>
 .resources {
-  width: 90%;
+  width: 85%;
   display: block;
   margin: 0 auto 8rem auto;
   position: relative;
