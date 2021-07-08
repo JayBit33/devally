@@ -1,9 +1,8 @@
 {
   "kind": "collectionType",
-  "collectionName": "learning_paths",
+  "collectionName": "paths",
   "info": {
-    "name": "learningpath",
-    "description": ""
+    "name": "Path"
   },
   "options": {
     "increments": true,
@@ -12,6 +11,9 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "title": {
+      "type": "string"
+    },
     "image": {
       "model": "file",
       "via": "related",
@@ -24,10 +26,23 @@
       "required": false,
       "pluginOptions": {}
     },
-    "title": {
-      "type": "string",
-      "required": true,
-      "unique": true
+    "icon": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "body": {
+      "type": "richtext"
+    },
+    "sections": {
+      "type": "json"
     }
   }
 }

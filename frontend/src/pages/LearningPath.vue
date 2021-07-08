@@ -1,13 +1,21 @@
 <!-- (c) Waveybits Inc. <2021> -->
 <!-- ALL RIGHTS RESERVED -->
 <template>
-  <div class="article">
-    <div class="article-image">
+  <div class="learning-path">
+    <div class="path-image">
       <img :src="imageUrl()" />
     </div>
-    <div class="article-body">
-      <h1>{{ article.title }}</h1>
-      <p>{{ article.body }}</p>
+    <div class="path-body">
+      <div class="path-body_header">
+        <img :src="imageIcon()" />
+        <h1>{{ path.title }}</h1>
+      </div>
+      <div>
+       {{ path.body }}
+      </div>
+      <div>
+        {{ path.sections }}
+      </div>
     </div>
   </div>
 </template>
@@ -16,25 +24,28 @@
 import { mapActions } from 'vuex'
 
 export default {
-  name: 'Article',
+  name: 'LearningPath',
   data() {
     return {
-      article: {}
+      path: {}
     }
   },
   components: {
   },
   async created() {
     const id = this.$route.params.id
-    this.article = await this.fetchArticle(id)
+    this.path = await this.fetchLearningPath(id)
   },
   computed: {
     
   },
   methods: {
-    ...mapActions(['fetchArticle']),
+    ...mapActions(['fetchLearningPath']),
+    imageIcon() {
+      return 'http://localhost:1337' + this.path.icon.url
+    },
     imageUrl() {
-      return 'http://localhost:1337' + this.article.image.url
+      return 'http://localhost:1337' + this.path.image.url
     }
   },
 
@@ -42,7 +53,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.article {
+.path {
   width: 75%;
   display: block;
   margin: 0 auto 8rem auto;
@@ -61,7 +72,6 @@ export default {
     padding-bottom: 4rem;
     h1 {
       text-align: center;
-      padding-bottom: 2rem;
     }
     p {
       font-family: 'Arial';
@@ -70,6 +80,17 @@ export default {
       line-height: 2.25rem;
       text-align: left;
       // padding: 0 18rem;
+    }
+    &_header {
+      display: flex;
+      align-items: center;
+      margin: 2rem 0;
+      img {
+        width: 5%;
+        height: 5%;
+        object-fit: contain;
+        margin-right: 1rem;
+      }
     }
   }
 }

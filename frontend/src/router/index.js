@@ -11,6 +11,7 @@ import Project from '../pages/project'
 import Works from '../pages/Works'
 import Resources from '../pages/Resources'
 import Article from '../pages/Article'
+import LearningPath from '../pages/LearningPath'
 import About from '../pages/About'
 import Support from '../pages/Support'
 import Careers from '../pages/Careers'
@@ -35,6 +36,7 @@ const router = new VueRouter({
     { path: '/works',  name: 'Works', component: Works, meta: { breadcrumb: []} },
     { path: '/resources',  name: 'Resources', component: Resources, meta: { breadcrumb: []} },
     { path: '/article/:id?', name: 'Article', component: Article, meta: { breadcrumb: []} },
+    { path: '/path/:id?', name: 'LearningPath', component: LearningPath, meta: { breadcrumb: []} },
     { path: '/about',  name: 'About', component: About, meta: { breadcrumb: []} },
     { path: '/support',  name: 'Support', component: Support, meta: { breadcrumb: []} },
     { path: '/careers',  name: 'Careers', component: Careers, meta: { breadcrumb: []} },
