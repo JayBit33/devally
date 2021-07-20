@@ -163,9 +163,6 @@ export default {
         })
         return notAlreadyInProject
       })
-
-
-      console.log(this.inviteProjects)
     },
     openLink(link) {
       if (link.includes('http')) window.open(link, "_blank");

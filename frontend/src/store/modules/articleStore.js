@@ -23,7 +23,32 @@ Vue.use(Vuex)
             return new Promise((resolve, reject) => {
                 articleAPI.get('/articles')
                 .then(res => {
-                    console.log('res', res.data);
+                    resolve(res.data);
+                }).catch(error => reject(error));
+            })
+        },
+        fetchArticle({ commit }, id) {
+            return new Promise((resolve, reject) => {
+                console.log(commit)
+                articleAPI.get(`/articles/${id}`)
+                .then(res => {
+                    resolve(res.data)
+                }).catch(error => reject(error))
+            })
+        },
+        fetchLearningPaths() {
+            return new Promise((resolve, reject) => {
+                articleAPI.get('/paths')
+                .then(res => {
+                    resolve(res.data);
+                }).catch(error => reject(error));
+            })
+        },
+        fetchLearningPath({ commit }, id) {
+            return new Promise((resolve, reject) => {
+                console.log(commit)
+                articleAPI.get(`/paths/${id}`)
+                .then(res => {
                     resolve(res.data);
                 }).catch(error => reject(error));
             })

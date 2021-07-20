@@ -65,17 +65,19 @@
       margin-top: 6rem;
       padding: .75rem;
       padding-bottom: 1rem;
-      background-color: rgb(225, 243, 255);
+      background-color: rgb(240, 234, 216);
       // border: 1px solid lightgrey;
       h2 {
         font-family: 'Open Sans';
-        font-size: 1.125rem;
+        font-size: 1.25rem;
         font-weight: 700;
+        text-align: center;
+        text-transform: uppercase;
         color: black;
         padding-left: .5rem;
       }
       h3 {
-        font-size: 1rem;
+        font-size: 1.25rem;
         font-weight: 600;
       }
 
@@ -96,6 +98,11 @@
           border-radius: .25rem;
           padding: .5rem;
           margin-top: 1rem;
+          font-size: 1rem;
+
+          &:focus {
+            outline: none;
+          }
         }
         button {
           font-family: 'Open Sans';
@@ -129,6 +136,7 @@
         }
         label {
           padding-left: .5rem;
+          font-size: 1rem;
         }
       }
       .categories {
@@ -142,6 +150,7 @@
         }
         label {
           padding-left: .5rem;
+          font-size: 1rem;
         }
       }
       .dropdowns {
@@ -167,7 +176,7 @@
         padding-left: .5rem;
         label {
           font-family: 'Open Sans';
-          font-size: .875rem;
+          font-size: 1rem;
           font-weight: 300;
           padding-left: .25rem;
         }
