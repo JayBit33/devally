@@ -14,7 +14,6 @@
           <font-awesome-icon v-else :icon="['far', 'star']" />
         </div>
       </div>
-
     </div>
 
     <div class="user-info">

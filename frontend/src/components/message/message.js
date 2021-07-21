@@ -16,7 +16,8 @@ export default {
   },
   data() {
     return {
-      messageText: ''
+      messageText: '',
+      isSelected: false
     }
   },
   components: {

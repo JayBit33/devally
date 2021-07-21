@@ -55,6 +55,13 @@ export default {
     },
     closeApplyModal() {
       this.showingApplyModal = false
+    },
+    getImage(imageName, fromBE = false) {
+      if (fromBE) {
+        return `http://localhost:3000/${imageName}`;
+      } else {
+        return require(`@/assets/${imageName}`)
+      }
     }
   }
 }

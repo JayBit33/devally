@@ -1,7 +1,7 @@
 <!-- (c) Waveybits Inc. <2021> -->
 <!-- ALL RIGHTS RESERVED -->
 <template>
-  <div class="message" :class="{active: isOnline}">
+  <div class="message" :class="{active: isSelected}" @click="isSelected = true">
     <div class="message-header">
       <img src="http://localhost:3000/uploads/profile3.jpg" class="profile-img" />
       <span v-if="isOnline" class="is-online">online</span>
