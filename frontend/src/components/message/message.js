@@ -5,9 +5,9 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 export default {
   name: 'Message',
   props: {
-    'isActive': {
-      type: Boolean,
-      default: false
+    'message': {
+      type: Object,
+      default: () => {}
     },
     'isOnline': {
       type: Boolean,

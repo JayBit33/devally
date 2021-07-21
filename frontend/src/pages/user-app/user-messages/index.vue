@@ -16,13 +16,7 @@
       <div class="messages-area">
         <div class="user-messages_area-header"><h2>Chats</h2></div>
         <div class="messages">
-          <message :isOnline="true" />
-          <message  />
-          <message  />
-          <message :isActive="true" :isOnline="true" />
-          <message :isOnline="true" />
-          <message  :isOnline="true"/>
-          <message  />
+          <message v-for="message in messages" :key="message.id" :message="message" :isOnline="message.sender.status === 'online'" />
         </div>
         <div class="user-messages_area-footer"></div>
       </div>

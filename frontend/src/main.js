@@ -2,7 +2,6 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import { CometChat } from "@cometchat-pro/chat";
-import { COMETCHAT_CONSTANTS } from "./chat/constants";
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import ElementUI from 'element-ui';
@@ -24,10 +23,10 @@ Vue.config.productionTip = false
 
 var appSetting = new CometChat.AppSettingsBuilder()
   .subscribePresenceForAllUsers()
-  .setRegion(COMETCHAT_CONSTANTS.REGION)
+  .setRegion(process.env.VUE_APP_REGION)
   .build();
 
-CometChat.init(COMETCHAT_CONSTANTS.APP_ID, appSetting).then(() => {
+CometChat.init(process.env.VUE_APP_APP_ID, appSetting).then(() => {
   new Vue({
     router,
     store,

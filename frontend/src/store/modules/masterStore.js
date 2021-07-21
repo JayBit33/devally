@@ -217,7 +217,7 @@ Vue.use(Vuex)
                             commit('updateIsLoggedIn', res.data.result);
                             commit('updateLoggedInUser', res.data.user);
                             commit('updateAccessToken', res.data.accessToken);
-                            CometChat.login(res.data.user.username, '7550adcf70e27f56b88bf5e46295aabf32f49403').then(
+                            CometChat.login(res.data.user.id, process.env.VUE_APP_AUTH_KEY).then(
                                 user => {
                                   console.log("Login Successful:", { user });
                                 },

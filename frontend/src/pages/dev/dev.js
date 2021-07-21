@@ -124,7 +124,7 @@ export default {
     },
     messageUser(messageText) {
       this.messageBoxOpen = true;
-      var receiverID = this.user.username;
+      var receiverID = String(this.user.id);
       var receiverType = CometChat.RECEIVER_TYPE.USER;
 
       var textMessage = new CometChat.TextMessage(receiverID, messageText, receiverType);
@@ -172,9 +172,10 @@ export default {
       else window.open("http://" + link, "_blank");
     },
     messageClick() {
-      if (this.getLoggedInUser) {
-        this.$router.push(`/profile/${this.getLoggedInUser.id}/messages`)
-      }
+      // if (this.getLoggedInUser) {
+      //   this.$router.push(`/profile/${this.getLoggedInUser.id}/messages`)
+      // }
+      this.messageBoxOpen = true
     },
     rateUser() {
       this.toggleActions()
