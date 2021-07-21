@@ -69,15 +69,15 @@
       align-items: baseline;
 
       h3 {
-        font-family: 'Arial';
+        font-family: 'Open Sans';
         font-size: 1.25rem;
         font-weight: 700;
         color: white;
       }
 
       p {
-        font-family: 'Arial';
-        font-size: 1.125rem;
+        font-family: 'Open Sans';
+        font-size: 1.25rem;
         padding: 0 1rem;
         padding-right: 2rem;
         color: white;
@@ -86,7 +86,7 @@
 
     #needed {
       text-decoration: underline;
-      text-underline-offset: .125rem;
+      text-underline-offset: .25rem;
       margin-bottom: 0;
     }
   }
