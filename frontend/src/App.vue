@@ -94,7 +94,13 @@ export default {
   created() {
     this.retrieveRefreshToken().then(res => {
       console.log('token refreshed', res);
-      if (res.ok) this.updateIsLoggedIn(true);
+      if (res.ok) {
+        this.updateIsLoggedIn(true);
+        this.initializeCometChat().then(() => {
+          this.fetchConversations()
+          this.fetchConversationWithUserId('2')
+        })
+      }
     })
   },
   computed: {
@@ -110,7 +116,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['logout','retrieveRefreshToken']),
+    ...mapActions(['logout','retrieveRefreshToken', 'initializeCometChat', 'fetchConversations', 'fetchConversationWithUserId']),
     ...mapMutations(['updateIsLoggedIn']),
     backgroundOn(isOn) {
       this.background = isOn;
