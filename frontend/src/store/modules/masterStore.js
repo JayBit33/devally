@@ -4,7 +4,6 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import { v4 as uuidv4 } from 'uuid';
 import { authAPI, baseAPI, usersAPI, projectsAPI, chatAPI } from '@/api/apis';
-import { CometChat } from "@cometchat-pro/chat";
 
 Vue.use(Vuex)
 
@@ -117,7 +116,6 @@ Vue.use(Vuex)
             return new Promise((resolve, reject) => {
                 chatAPI.get('/newest-messages')
                     .then(res => {
-                        console.log('res', res.data);
                         resolve(res.data);
                     }).catch(error => reject(error));
             })
@@ -207,7 +205,7 @@ Vue.use(Vuex)
                     }).catch(error => reject(error));
             })
         },
-        login({commit}, userLoginInfo) {
+        login({commit, dispatch}, userLoginInfo) {
             return new Promise((resolve, reject) => {
                 authAPI.post(`/login`, userLoginInfo)
                     .then(res => {
@@ -217,14 +215,7 @@ Vue.use(Vuex)
                             commit('updateIsLoggedIn', res.data.result);
                             commit('updateLoggedInUser', res.data.user);
                             commit('updateAccessToken', res.data.accessToken);
-                            CometChat.login(res.data.user.id, process.env.VUE_APP_AUTH_KEY).then(
-                                user => {
-                                  console.log("Login Successful:", { user });
-                                },
-                                error => {
-                                    console.log("Login failed with exception:", { error });
-                                }
-                            );
+                            dispatch('initializeCometChat')
                             resolve(res.data);
                         } else {
                             throw 'Invalid Login'
