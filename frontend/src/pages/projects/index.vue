@@ -19,7 +19,7 @@
     </div>
     <div class="projects-list">
       <div class="filters">
-        <h2>Filter Projects</h2>
+        <!-- <h2>Filter Projects</h2> -->
         <div class="search filters_filter">
           <input type="text" v-model="filters.searchTerm" class="search-box" placeholder="Search by name" @keydown.enter.prevent="applyFilters" />
           <button class="search" @click="applyFilters">Search</button>
@@ -69,7 +69,7 @@
 
       <div class="right-side">
         <div v-if="projectsShown.length > 0" class="pagination">
-          <h4>Results per page</h4>
+          <!-- <h4>Results per page</h4>
           <el-select class="dropdown" size="small" :value="itemsPerPage" @change="handleSizeChange">
             <el-option label="5" :value="5"></el-option>
             <el-option label="25" :value="25"></el-option>
@@ -84,8 +84,8 @@
             @current-change="updateItemsDisplayed"
             @size-change="handleSizeChange"
           >
-          </el-pagination>
-          <h4>{{ startIdx + 1 }} - {{ endIdx > projects.length ? projects.length : endIdx }} out of {{ projects.length }}</h4>
+          </el-pagination> -->
+          <!-- <h4>{{ startIdx + 1 }} - {{ endIdx > projects.length ? projects.length : endIdx }} out of {{ projects.length }}</h4> -->
         </div>
         <div v-for="project in projectsShown" :key="project.id" >
           <project-card class="card" :project="project" ></project-card>

@@ -7,7 +7,10 @@
       <apply-modal :user="getLoggedInUser" :project="project" :position="selectedPosition" :isSendingApplication="true" @apply-modal-close="closeApplyModal" />
     </div>
     <div class="project-card_background-overlay" :style="{'background-image': `url(${getImage('bg1.jpg')})`}"></div>
-      <h2>{{ project.name }}</h2>
+      <div class="project-card_header">
+        <div class="project-card_background-overlay" :style="{'background-image': `url(${getImage('bg1.jpg')})`}"></div>
+        <h2>{{ project.name }}</h2>
+      </div>
       <div class="project-card_info">
         <div>
           <h3>Description:</h3>
