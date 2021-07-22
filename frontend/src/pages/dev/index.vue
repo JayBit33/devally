@@ -97,8 +97,6 @@
       </div>
 
     </div>
-    
-    <message-box v-if="messageBoxOpen" @messageSent="messageUser" @close="toggleMessageBox"></message-box>
   </div>
 </template>
 

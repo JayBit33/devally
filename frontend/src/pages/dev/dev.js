@@ -1,15 +1,11 @@
 // (c) Waveybits Inc. <2021>
 // ALL RIGHTS RESERVED
-
-import MessageBox from '../../components/message-box';
 import RateUserModal from '@/components/rate-user-modal'
 import ReportUserModal from '@/components/report-user-modal'
 import InviteToProjectModal from '@/components/invite-to-project-modal'
 import Toast from '@/components/toast'
-// import COMETCHAT_CONSTANTS from '@/chat/constants.js';
-import { CometChat } from "@cometchat-pro/chat";
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { mapActions, mapGetters } from 'vuex';
+import { mapActions, mapGetters, mapMutations } from 'vuex';
 export default {
   name: "Dev",
   data() {
@@ -46,7 +42,6 @@ export default {
   },
   components: {
     FontAwesomeIcon,
-    MessageBox,
     RateUserModal,
     ReportUserModal,
     InviteToProjectModal,
@@ -68,6 +63,7 @@ export default {
   async created() {
     await this.fetchDevUsers()
     this.user = await this.getDevUser(this.$route.params.id)
+    this.setActiveReceiverId(this.$route.params.id)
 
     if (!this.isLoggedIn) {
       let message = [
@@ -83,6 +79,7 @@ export default {
   },
   methods: {
     ...mapActions(['fetchDevUsers', 'updateUser', 'fetchToast', 'sendNotificationToUser', 'computeRating', 'fetchProjectById']),
+    ...mapMutations(['setActiveReceiverId']),
     async addConnection() {
       let message
       
@@ -121,27 +118,6 @@ export default {
     },
     getImage(filePath) {
       return `http://localhost:3000/${filePath}`;
-    },
-    messageUser(messageText) {
-      this.messageBoxOpen = true;
-      var receiverID = String(this.user.id);
-      var receiverType = CometChat.RECEIVER_TYPE.USER;
-
-      var textMessage = new CometChat.TextMessage(receiverID, messageText, receiverType);
-
-      CometChat.sendMessage(textMessage).then(
-        message => {
-          console.log("Message sent successfully:", message);
-          // TODO Do something with message
-          // Should create a toast component that is on main page and recieves events when it needs triggered
-          this.messageSentSuccessful = true;
-        },
-        error => {
-          console.log("Message sending failed with error:", error);
-          // Handle any error
-        }
-      );
-        this.toggleMessageBox();
     },
     async inviteToProject() {
       this.toggleInviteUser()

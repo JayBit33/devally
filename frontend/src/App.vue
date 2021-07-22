@@ -28,6 +28,10 @@
       <router-view />
     </div>
 
+    <div v-if="isLoggedIn" class="messaging-container">
+      <message-box />
+    </div>
+
     <div v-if="showHeaderFooter" class="footer">
       <div class="footer_stay-connected">
         <h3>Stay Connected</h3>
@@ -75,6 +79,7 @@
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import UserOptionsDropdown from './components/user-options-dropdown/';
 import Breadcrumbs from './components/breadcrumbs/';
+import MessageBox from './components/message-box/';
 import { mapActions, mapGetters, mapMutations } from 'vuex';
 
 export default {
@@ -89,6 +94,7 @@ export default {
   components: {
     Breadcrumbs,
     FontAwesomeIcon,
+    MessageBox,
     UserOptionsDropdown
   },
   created() {
@@ -98,7 +104,6 @@ export default {
         this.updateIsLoggedIn(true);
         this.initializeCometChat().then(() => {
           this.fetchConversations()
-          this.fetchConversationWithUserId('2')
         })
       }
     })
@@ -116,7 +121,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['logout','retrieveRefreshToken', 'initializeCometChat', 'fetchConversations', 'fetchConversationWithUserId']),
+    ...mapActions(['logout','retrieveRefreshToken', 'initializeCometChat', 'fetchConversations']),
     ...mapMutations(['updateIsLoggedIn']),
     backgroundOn(isOn) {
       this.background = isOn;
