@@ -63,7 +63,6 @@ export default {
   async created() {
     await this.fetchDevUsers()
     this.user = await this.getDevUser(this.$route.params.id)
-    this.setActiveReceiverId(this.$route.params.id)
 
     if (!this.isLoggedIn) {
       let message = [
@@ -76,6 +75,10 @@ export default {
     }
 
     this.rating = await this.computeRating(this.user.ratings)
+  },
+  destroyed() {
+    document.removeEventListener('click', this.clickOutsideCheck)
+    this.setActiveReceiverId(null)
   },
   methods: {
     ...mapActions(['fetchDevUsers', 'updateUser', 'fetchToast', 'sendNotificationToUser', 'computeRating', 'fetchProjectById']),
@@ -145,10 +148,7 @@ export default {
       else window.open("http://" + link, "_blank");
     },
     messageClick() {
-      // if (this.getLoggedInUser) {
-      //   this.$router.push(`/profile/${this.getLoggedInUser.id}/messages`)
-      // }
-      this.messageBoxOpen = true
+      this.setActiveReceiverId(this.$route.params.id)
     },
     rateUser() {
       this.toggleActions()
@@ -190,8 +190,5 @@ export default {
     toggleMessageBox() {
       this.messageBoxOpen = !this.messageBoxOpen;
     }
-  },
-  destroyed() {
-    document.removeEventListener('click', this.clickOutsideCheck)
   }
 };

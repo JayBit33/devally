@@ -16,9 +16,31 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: $btn-grey;
+    border: 1px solid $btn-grey;
     border-radius: 50%;
     font-size: 1.75rem;
+    color: $btn-grey;
+    cursor: pointer;
+    transition: .3s;
+    &:hover {
+      color: $button-secondary;
+      border-color: $button-secondary;
+    }
+
+    &.animating {
+      box-shadow: 0px 0px 10px 10px $toast-info;
+      animation: 3s pulse infinite;
+
+      @keyframes pulse {
+        from {
+          box-shadow: 0 0 0 0 $toast-info;
+        }
+
+        to {
+          box-shadow: 0 0 2rem 2rem rgba($toast-info, 0);
+        }
+      }
+    }
   }
 
   &_messages {
@@ -29,6 +51,9 @@
     overflow-y: overlay;
     padding: 2rem;
     background-color: white;
+    h6 {
+      margin: 0;
+    }
     &.is-replying {
       padding-right: 3rem;
     }
@@ -57,30 +82,47 @@
   &_text {
     border-radius: 1rem;
     padding: 2rem;
-    background-color: $btn-grey;
-    &.is-replying {
-      transform: translate(-1rem, 0%);
-    }
+    background-color: white;
+    border: 1px solid $btn-grey;
+    &.has-messages {
+      padding: 1rem 2rem;
+      background-color: $btn-grey;
+      .reply-message {
+        margin-top: 1rem;
+        font-size: 1.5rem;
+        h6 {
+          margin: 0;
+          &:last-child {
+            margin: .25rem 0;
+            font-weight: 400;
+          }
+        }
 
+      }
+    }
+    
+    &.is-replying {
+      transform: translate(-1.25rem, 0%);
+    }
     &_textarea {
-      margin-top: .5rem;
+      margin-top: 1rem;
       min-height: 11.5rem;
       resize: none;
       font-size: 1.25rem;
       border: none;
+      border-radius: .25rem;
       padding: .5rem;
       &:focus {
         outline: none;
       }
     }
-  
     &_sendMsgBtn {
       background-color: rgb(95, 161, 111);
       color: white;
       border: none;
       border-radius: .5rem;
-      font-size: 1.5rem;
-      padding: .5rem;
+      font-size: 1rem;
+      padding: .5rem 1rem;
       display: block;
       margin: 1rem auto 0 auto;
       transition: .3s;
@@ -96,15 +138,28 @@
         outline: none;
       }
     }
-  
     &_closeBtn {
       font-size: 1rem;
       color: white;
       position: absolute;
-      right: 0;
-      top: 0;
-      margin: 1rem 1.25rem 0 0;
+      right: 1rem;
+      top: .75rem;
       cursor: pointer;
     }
+
+    &_no-messages {
+      width: 70%;
+      margin: 0 auto;
+      h6 {
+        text-align: center;
+        font-size: 1rem;
+        margin: 0;
+      }
+      .message-box_text_closeBtn {
+        color: $btn-grey;
+      }
+    }
+    
+
   }
 }

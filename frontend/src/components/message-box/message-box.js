@@ -16,13 +16,17 @@ export default {
   },
   computed: {
     ...mapGetters(['getIncomingMessages']),
-    isReplyMessagesOpen() {
-      return this.getIncomingMessages && this.getIncomingMessages.length > 0 && this.isTextBoxOpen
+    hasIncomingMessages() {
+      return this.getIncomingMessages && this.getIncomingMessages.length > 0
     }
+  },
+  destroyed() {
+    this.replyMessage = null
   },
   methods: {
     ...mapActions(['sendMessageToUserById']),
     closeTextBox() {
+      this.replyMessage = null
       this.isTextBoxOpen = false
     },
     openTextBox() {
