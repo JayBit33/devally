@@ -2,12 +2,12 @@
 // ALL RIGHTS RESERVED
 .user-messages {
   padding-bottom: 9rem;
+  
+  margin: 0 auto;
   &_area {
     display: flex;
     margin-top: 2rem;
-    margin-left: 6rem; // remove just styled for testing
     width: 83.5%;
-    background-color: #f5f4f4;
     padding:  3rem 0 3rem 7rem;
 
     &-header {
@@ -37,9 +37,10 @@
     .conversation {
       margin-left: 3rem;
       width: 68%;
-
+      
       &_area {
         width: 92%;
+        height: 36vh;
         margin-bottom: 0rem;
       }
     }

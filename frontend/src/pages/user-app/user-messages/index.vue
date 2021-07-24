@@ -16,12 +16,12 @@
       <div class="messages-area">
         <div class="user-messages_area-header"><h2>Chats</h2></div>
         <div class="messages">
-          <message v-for="message in messages" :key="message.id" :message="message" :isOnline="message.sender.status === 'online'"  />
+          <message v-for="convo in conversations" :key="convo.lastMessage.id" :message="convo" :isOnline="convo.conversationWith.status === 'online'"  />
         </div>
         <div class="user-messages_area-footer"></div>
       </div>
       <div class="conversation">
-        <conversation class="conversation_area"/>
+        <conversation :conversation="activeConversation" class="conversation_area"/>
       </div>
     </div>
   </div>
