@@ -1,16 +1,17 @@
 // (c) Waveybits Inc. <2021>
 // ALL RIGHTS RESERVED
-import { CometChat } from "@cometchat-pro/chat";
 import Conversation from '@/components/conversation'
 import Message from '@/components/message'
 import UserModal from '@/components/user-modal'
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: 'UserMessages',
   data() {
     return {
       isUserModalOpen: true,
-      messages: []
+      activeConversation: {},
+      conversations: []
     }
   },
   components: {
@@ -18,67 +19,20 @@ export default {
     Message,
     UserModal,
   },
-  created() {
-    var listenerID = this.$route.params.id;
-    const vm = this
+  async created() {
+    this.conversations = this.getConversations
 
-    // Listener for Real Time Messages
-    CometChat.addMessageListener(
-      listenerID,
-      new CometChat.MessageListener({
-        onTextMessageReceived: textMessage => {
-          console.log("Text message received successfully", textMessage);
-          // Handle text message
-          vm.messages.push(textMessage)
-        },
-        onMediaMessageReceived: mediaMessage => {
-          console.log("Media message received successfully", mediaMessage);
-          // Handle media message
-        },
-        onCustomMessageReceived: customMessage => {
-          console.log("Custom message received successfully", customMessage);
-          // Handle custom message
-        }
-      })
-    );
-    
-    // Retrieve all messages with another user
-    var UID = "2";
-    var limit = 50;
-
-    var messagesRequest = new CometChat.MessagesRequestBuilder()
-      .setLimit(limit)
-      .setUID(UID)
-      .build();
-
-    messagesRequest.fetchPrevious().then(
-      messages => {
-        console.log("Message list fetched:", messages);
-        messages.forEach(msg => this.messages.push(msg));
-
-        // Handle the list of messages
-      },
-      error => {
-        console.log("Message fetching failed with error:", error);
-      }
-    );
-
-    // Retrieve User Conversations
-    // var conversationsRequest = new CometChat.ConversationsRequestBuilder()
-    // .setLimit(50)
-    // .build();
-
-    // conversationsRequest.fetchNext().then(
-    //   conversationList => {
-    //     console.log("Conversations list received:", conversationList);
-    //     this.messages.push(conversationList)
-    //   },
-    //   error => {
-    //     console.log("Conversations list fetching failed with error:", error);
-    //   }
-    // );
+    this.fetchConversationHistoryWithUser('2').then(res => {
+      console.log('res', res)
+      // filter out messages that have been deleted
+      this.activeConversation = res.filter(convo => !convo.deletedAt)
+    })
+  },
+  computed: {
+    ...mapGetters(['getConversations'])
   },
   methods: {
+    ...mapActions(['fetchConversationWithUserId', 'fetchConversationHistoryWithUser']),
     closeModal() {
       this.isUserModalOpen = false
     },

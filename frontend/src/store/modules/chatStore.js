@@ -75,6 +75,28 @@ const actions = {
       );
     })
   },
+  fetchConversationHistoryWithUser(_, UID) {
+    return new Promise((resolve, reject) => {
+      var limit = 50;
+
+      var messagesRequest = new CometChat.MessagesRequestBuilder()
+        .setLimit(limit)
+        .setUID(UID)
+        .build();
+
+      messagesRequest.fetchPrevious().then(
+        messages => {
+          console.log("Message list fetched:", messages);
+          // Handle the list of messages
+          resolve(messages)
+        },
+        error => {
+          console.log("Message fetching failed with error:", error);
+          reject(error)
+        }
+      );
+    })
+  },
   initializeCometChat({ dispatch, getters }) {
     return new Promise((resolve, reject) => {
       CometChat.login(getters.getLoggedInUser.id, process.env.VUE_APP_AUTH_KEY).then(
