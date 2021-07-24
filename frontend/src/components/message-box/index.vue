@@ -8,19 +8,27 @@
     </div>
 
     <div v-if="isTextBoxOpen && hasIncomingMessages" class="message-box_messages" :class="{'is-replying': replyMessage !== null}">
+      <font-awesome-icon :icon="['fas','times']" class="message-box_text_closeBtn" @click="closeTextBox"/>
       <h6>Incoming Messages: </h6>
       <div v-for="message in getIncomingMessages" :key="message.id" class="message-box_messages_message">
         <div class="message-box_messages_message_text">
           <h2>{{message.sender.name}}</h2>
           <p>{{message.text}}</p>
         </div>
-        <font-awesome-icon :icon="['fas', 'reply']" @click="replyToMessage(message)"></font-awesome-icon>
+        <div class="message-box_messages_message_actions">
+          <font-awesome-icon class="delete-icon" :icon="['fas', 'trash']" @click="deleteMessage(message)"></font-awesome-icon>
+          <font-awesome-icon class="reply-icon" :icon="['fas', 'reply']" @click="replyToMessage(message)"></font-awesome-icon>
+        </div>
       </div>
     </div>
+    <div v-else-if="isTextBoxOpen && (!hasIncomingMessages || hasIncomingMessages.length === 0)" class="message-box_no-messages">
+      <font-awesome-icon :icon="['fas','times']" class="message-box_text_closeBtn" @click="closeTextBox"/>
+      <h6>No incoming messages</h6>
+    </div>
 
-    <div v-if="isTextBoxOpen && replyMessage" class="message-box_text" :class="{'is-replying': replyMessage !== null, 'has-messages': hasIncomingMessages}">
-      <div v-if="hasIncomingMessages" class="message-box_text_has-messages">
-        <div v-if="replyMessage" class="reply-message">
+    <div v-if="isTextBoxOpen && hasIncomingMessages && replyMessage" class="message-box_text" :class="{'is-replying': replyMessage !== null, 'has-messages': hasIncomingMessages}">
+      <div class="message-box_text_has-messages">
+        <div class="reply-message">
           <h6>{{replyMessage.sender.name}}: </h6>
           <h6>{{replyMessage.text}}</h6>
         </div>
@@ -28,10 +36,6 @@
         <font-awesome-icon :icon="['fas','times']" class="message-box_text_closeBtn" @click="closeTextBox"/>
         <textarea type="text" v-model="messageText" class="message-box_text_textarea" />
         <button class="message-box_text_sendMsgBtn" @click="sendMessage">Send</button>
-      </div>
-      <div v-else class="message-box_text_no-messages">
-        <font-awesome-icon :icon="['fas','times']" class="message-box_text_closeBtn" @click="closeTextBox"/>
-        <h6>No incoming messages</h6>
       </div>
     </div>
   </div>

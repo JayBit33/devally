@@ -41,6 +41,13 @@
     <div v-if="isInviteAction" class="user_invite">
       <invite-to-project-modal :user="user" :projects="inviteProjects" @modal-close="toggleInviteUser" @toast-update="toast = $event" />
     </div>
+    <div v-if="isMessageTextBox" class="user_message">
+      <div class="user_message-container" ref="user_messages_content">
+        <p>Send {{user.firstname}} a message</p>
+        <textarea cols="30" rows="10" v-model="message"></textarea>
+        <button @click="sendMessage">Send</button>
+      </div>
+    </div>
 
     <div class="user_profile">
 

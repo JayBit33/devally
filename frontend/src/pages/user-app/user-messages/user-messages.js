@@ -19,7 +19,7 @@ export default {
     Message,
     UserModal,
   },
-  async created() {
+  created() {
     this.conversations = this.getConversations
 
     this.fetchConversationHistoryWithUser('2').then(res => {

@@ -9,6 +9,7 @@
   display: flex;
   flex-direction: center;
   justify-content: center;
+  min-width: 4rem;
   
   &_icon {
     height: 4rem;
@@ -17,6 +18,7 @@
     justify-content: center;
     align-items: center;
     border: 1px solid $btn-grey;
+    background-color: white;
     border-radius: 50%;
     font-size: 1.75rem;
     color: $btn-grey;
@@ -28,12 +30,12 @@
     }
 
     &.animating {
-      box-shadow: 0px 0px 10px 10px $toast-info;
+      box-shadow: 0px 0px 10px 10px rgba($toast-info, .5);
       animation: 3s pulse infinite;
 
       @keyframes pulse {
         from {
-          box-shadow: 0 0 0 0 $toast-info;
+          box-shadow: 0 0 0 0 rgba($toast-info, .5);
         }
 
         to {
@@ -76,9 +78,36 @@
           font-size: .85rem;
         }
       }
+      &_actions {
+
+        .delete-icon, .reply-icon {
+          cursor: pointer;
+          margin-left: 1rem;
+        }
+      }
+    }
+  }
+  &_no-messages {
+    width: 70%;
+    margin: 0 auto;
+    border: 1px solid $btn-grey;
+    border-radius: .5rem;
+    margin-left: 1rem;
+    max-height: 25rem;
+    overflow-y: overlay;
+    padding: 2rem;
+    background-color: white;
+    h6 {
+      text-align: center;
+      font-size: 1rem;
+      margin: 0;
     }
   }
   
+  .message-box_text_closeBtn {
+    color: $btn-grey;
+  }
+
   &_text {
     border-radius: 1rem;
     padding: 2rem;
@@ -147,19 +176,10 @@
       cursor: pointer;
     }
 
-    &_no-messages {
-      width: 70%;
-      margin: 0 auto;
-      h6 {
-        text-align: center;
-        font-size: 1rem;
-        margin: 0;
-      }
+    &_has-messages {
       .message-box_text_closeBtn {
-        color: $btn-grey;
+        color: white;
       }
     }
-    
-
   }
 }
