@@ -3,55 +3,108 @@
 .message-box {
   position: fixed;
   z-index: 10;
-  left: 4rem;
-  bottom: 2rem;
-  width: 18rem;
-  height: 18rem;
-  background: $primary;
-  padding: 1rem;
+  left: 2.5rem;
+  bottom: 2.5rem;
   border: none;
-  border-radius: 2rem;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-
-  &_textarea {
-    height: 11.5rem;
-    resize: none;
-    font-size: 1.25rem;
-    border: none;
-    padding: .5rem;
-    &:focus {
-      outline: none;
-    }
+  flex-direction: center;
+  justify-content: center;
+  
+  &_icon {
+    height: 4rem;
+    width: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $btn-grey;
+    border-radius: 50%;
+    font-size: 1.75rem;
   }
 
-  &_sendMsgBtn {
-    background-color: rgb(95, 161, 111);
-    color: white;
-    border: none;
+  &_messages {
+    border: 1px solid $btn-grey;
+    border-radius: .5rem;
+    margin-left: 1rem;
+    max-height: 25rem;
+    overflow-y: overlay;
+    padding: 2rem;
+    background-color: white;
+    &.is-replying {
+      padding-right: 3rem;
+    }
+    &_message {
+      margin: .5rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: $devs-page-section-bg;
+      padding: .5rem 1rem;
+      border-radius: .5rem;
+      &_text {
+        min-width: 15rem;
+        font-size: 1rem;
+        margin-right: 1rem;
+        h2, p {
+          margin: 0;
+        }
+        h2 {
+          font-size: .85rem;
+        }
+      }
+    }
+  }
+  
+  &_text {
     border-radius: 1rem;
-    font-size: 1.5rem;
-    padding: .5rem;
-    margin-top: 1rem;
-
-    &:hover {
-      border: none;
-      background-color:$button-primary_hover;
+    padding: 2rem;
+    background-color: $btn-grey;
+    &.is-replying {
+      transform: translate(-1rem, 0%);
     }
 
-    &:focus {
+    &_textarea {
+      margin-top: .5rem;
+      min-height: 11.5rem;
+      resize: none;
+      font-size: 1.25rem;
       border: none;
-      outline: none;
+      padding: .5rem;
+      &:focus {
+        outline: none;
+      }
     }
-  }
-
-  &_closeBtn {
-    font-size: 1rem;
-    color: white;
-    position: absolute;
-    right: 0;
-    top: 0;
-    margin: 1rem 1.25rem 0 0;
+  
+    &_sendMsgBtn {
+      background-color: rgb(95, 161, 111);
+      color: white;
+      border: none;
+      border-radius: .5rem;
+      font-size: 1.5rem;
+      padding: .5rem;
+      display: block;
+      margin: 1rem auto 0 auto;
+      transition: .3s;
+      cursor: pointer;
+  
+      &:hover {
+        border: none;
+        background-color:$button-primary_hover;
+      }
+  
+      &:focus {
+        border: none;
+        outline: none;
+      }
+    }
+  
+    &_closeBtn {
+      font-size: 1rem;
+      color: white;
+      position: absolute;
+      right: 0;
+      top: 0;
+      margin: 1rem 1.25rem 0 0;
+      cursor: pointer;
+    }
   }
 }

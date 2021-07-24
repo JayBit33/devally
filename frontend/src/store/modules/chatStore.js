@@ -6,18 +6,28 @@ import { CometChat } from "@cometchat-pro/chat";
 Vue.use(Vuex)
 
 const state = {
+  activeReceiverId: null,
   conversations: [],
-  incomingMessages: []
+  incomingMessages: [
+    // { "receiverId": "5", "type": "text", "receiverType": "user", "category": "message", "data": { "text": "hi", "resource": "WEB-2_1_7-f4400c9a-4048-4a15-9130-ec95bd58d488-1626915709000", "entities": { "sender": { "entity": { "uid": "2", "name": "Jen Smith", "status": "available", "role": "default", "lastActiveAt": 1626838062 }, "entityType": "user" }, "receiver": { "entity": { "uid": "5", "name": "Wavey", "status": "available", "role": "default", "lastActiveAt": 1626913500, "conversationId": "2_user_5" }, "entityType": "user" } } }, "text": "hi", "id": "124", "conversationId": "2_user_5", "sender": { "hasBlockedMe": false, "blockedByMe": false, "uid": "2", "name": "Jen Smith", "lastActiveAt": 1626838062, "role": "default", "status": "online" }, "receiver": { "hasBlockedMe": false, "blockedByMe": false, "uid": "5", "name": "Wavey", "lastActiveAt": 1626913500, "role": "default", "status": "online" }, "sentAt": 1626915711, "updatedAt": 1626915711 }
+  ]
 };
 
 const getters = {
   getConversations: state => state.conversations,
-  getIncomingMessages: state => state.incomingMessages
+  getIncomingMessages: state => state.incomingMessages,
+  getActiveReceiverId: state => state.activeReceiverId,
 };
 
 const mutations = {
   addIncomingMessage(state, message) {
     state.incomingMessages.push(message)
+  },
+  clearIncomingMessage(state) {
+    state.incomingMessages = []
+  },
+  setActiveReceiverId(state, id) {
+    state.activeReceiverId = id
   },
   updateConversations(state, conversations) {
     state.conversations = conversations
@@ -66,7 +76,7 @@ const actions = {
   },
   fetchConversationWithUserId(_, conversationWithId) {
     return new Promise((resolve, reject) => {
-      CometChat.getConversation(conversationWithId, 'user').then(
+      CometChat.getConversation(conversationWithId, CometChat.RECEIVER_TYPE.USER).then(
         conversation => {
           resolve(conversation)
         }, error => {
@@ -105,6 +115,24 @@ const actions = {
           resolve({ user })
         },
         error => {
+          reject(error)
+        }
+      );
+    })
+  },
+  sendMessageToUserById({getters}, { messageText, receiverId }) {
+    if (!receiverId) receiverId = getters.getActiveReceiverId
+    return new Promise((resolve, reject) => {
+      const textMessage = new CometChat.TextMessage(receiverId, messageText, CometChat.RECEIVER_TYPE.USER);
+      CometChat.sendMessage(textMessage).then(
+        message => {
+          console.log("Message sent successfully:", message);
+          // TODO Do something with message
+          resolve(message)
+        },
+        error => {
+          console.log("Message sending failed with error:", error);
+          // Handle any error
           reject(error)
         }
       );
