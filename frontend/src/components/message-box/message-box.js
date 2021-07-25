@@ -15,7 +15,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['getIncomingMessages']),
+    ...mapGetters(['getIncomingMessages', 'getLoggedInUser']),
     hasIncomingMessages() {
       return this.getIncomingMessages && this.getIncomingMessages.length > 0
     }
@@ -41,6 +41,9 @@ export default {
     },
     deleteMessage(message) {
       this.deleteIncomingMessage(message)
+    },
+    openConversation(message) {
+      this.$router.push(`/profile/${this.getLoggedInUser.id}/messages?activeConversationId=${message.sender.uid}`)
     },
     openTextBox() {
       this.isTextBoxOpen = true

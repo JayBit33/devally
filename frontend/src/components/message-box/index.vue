@@ -18,6 +18,7 @@
         <div class="message-box_messages_message_actions">
           <font-awesome-icon class="delete-icon" :icon="['fas', 'trash']" @click="deleteMessage(message)"></font-awesome-icon>
           <font-awesome-icon class="reply-icon" :icon="['fas', 'reply']" @click="replyToMessage(message)"></font-awesome-icon>
+          <font-awesome-icon class="reply-icon" :icon="['fas', 'comments']" @click="openConversation(message)"></font-awesome-icon>
         </div>
       </div>
     </div>

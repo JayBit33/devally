@@ -21,8 +21,8 @@ export default {
   },
   created() {
     this.conversations = this.getConversations
-
-    this.fetchConversationHistoryWithUser('2').then(res => {
+    const initialConversationHistoryId = this.$route.query.activeConversationId ? this.$route.query.activeConversationId : this.conversations[0].conversationWith.uid
+    this.fetchConversationHistoryWithUser(initialConversationHistoryId).then(res => {
       // filter out messages that have been deleted
       this.activeConversation = res.filter(convo => !convo.deletedAt)
     })
@@ -44,6 +44,11 @@ export default {
         // filter out messages that have been deleted
         this.activeConversation = conversation.filter(convo => !convo.deletedAt)
       })
+    }
+  },
+  watch: {
+    getConversations() {
+      this.conversations = this.getConversations
     }
   }
 }
