@@ -126,7 +126,19 @@
     }
 
     .signout-btn {
-      margin-bottom: 4rem;
+      margin-bottom: 0rem;
+    }
+    .back-to-site {
+      margin: 0;
+      font-size: .85rem;
+      text-align: center;
+      cursor: pointer;
+      color: $btn-grey;
+      margin-top: -1.5rem;
+      transition: .3s;
+      &:hover {
+        color: $sidebar_icon;
+      }
     }
   }
 
@@ -270,7 +282,7 @@
         margin-top: 5rem;
       }
       &-nav {
-        margin: 7vh 0;
+        margin: 5vh 0;
       }
       .signout-btn {
         position: relative;

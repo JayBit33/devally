@@ -49,6 +49,7 @@
         class="signout-btn"
         @clicked="signout"
       ></sidebar-button>
+      <p class="back-to-site" @click="$router.push('/')">Back to site</p>
     </div>
 
     <div class="user-app_content">
