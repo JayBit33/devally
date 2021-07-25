@@ -10,7 +10,7 @@ export default {
   data() {
     return {
       isUserModalOpen: true,
-      activeConversation: {},
+      activeConversation: [],
       conversations: []
     }
   },
@@ -23,7 +23,6 @@ export default {
     this.conversations = this.getConversations
 
     this.fetchConversationHistoryWithUser('2').then(res => {
-      console.log('res', res)
       // filter out messages that have been deleted
       this.activeConversation = res.filter(convo => !convo.deletedAt)
     })

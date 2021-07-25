@@ -3,7 +3,7 @@
 <template>
   <div class="message" :class="{active: isSelected}" @click="isSelected = true">
     <div class="message-header">
-      <img :src="recipientAvatar()" class="profile-img" />
+      <img :src="avatar" class="profile-img" />
       <span v-if="isOnline" class="is-online">online</span>
       <span v-if="!isOnline" class="is-offline">offline</span>
     </div>
