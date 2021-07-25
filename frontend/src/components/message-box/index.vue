@@ -1,14 +1,14 @@
 <!-- (c) Waveybits Inc. <2021> -->
 <!-- ALL RIGHTS RESERVED -->
 <template>
-  <div class="message-box">
+  <div class="message-box" ref="message_box_content">
 
     <div v-if="!isTextBoxOpen" class="message-box_icon" :class="{'animating': hasIncomingMessages}" @click="toggleTextBoxOpen">
       <font-awesome-icon :icon="['fas', 'comment']"></font-awesome-icon>
     </div>
 
     <div v-if="isTextBoxOpen && hasIncomingMessages" class="message-box_messages" :class="{'is-replying': replyMessage !== null}">
-      <font-awesome-icon :icon="['fas','times']" class="message-box_text_closeBtn" @click="closeTextBox"/>
+      <font-awesome-icon v-if="replyMessage === null" :icon="['fas','times']" class="message-box_text_closeBtn" @click="closeTextBox"/>
       <h6>Incoming Messages: </h6>
       <div v-for="message in getIncomingMessages" :key="message.id" class="message-box_messages_message">
         <div class="message-box_messages_message_text">
