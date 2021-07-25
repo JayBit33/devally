@@ -9,7 +9,7 @@ const state = {
   activeReceiverId: null,
   conversations: [],
   incomingMessages: [
-    { "receiverId": "5", "type": "text", "receiverType": "user", "category": "message", "data": { "text": "hi", "resource": "WEB-2_1_7-f4400c9a-4048-4a15-9130-ec95bd58d488-1626915709000", "entities": { "sender": { "entity": { "uid": "2", "name": "Jen Smith", "status": "available", "role": "default", "lastActiveAt": 1626838062 }, "entityType": "user" }, "receiver": { "entity": { "uid": "5", "name": "Wavey", "status": "available", "role": "default", "lastActiveAt": 1626913500, "conversationId": "2_user_5" }, "entityType": "user" } } }, "text": "hi", "id": "124", "conversationId": "2_user_5", "sender": { "hasBlockedMe": false, "blockedByMe": false, "uid": "2", "name": "Jen Smith", "lastActiveAt": 1626838062, "role": "default", "status": "online" }, "receiver": { "hasBlockedMe": false, "blockedByMe": false, "uid": "5", "name": "Wavey", "lastActiveAt": 1626913500, "role": "default", "status": "online" }, "sentAt": 1626915711, "updatedAt": 1626915711 }
+    // { "receiverId": "5", "type": "text", "receiverType": "user", "category": "message", "data": { "text": "hi", "resource": "WEB-2_1_7-f4400c9a-4048-4a15-9130-ec95bd58d488-1626915709000", "entities": { "sender": { "entity": { "uid": "2", "name": "Jen Smith", "status": "available", "role": "default", "lastActiveAt": 1626838062 }, "entityType": "user" }, "receiver": { "entity": { "uid": "5", "name": "Wavey", "status": "available", "role": "default", "lastActiveAt": 1626913500, "conversationId": "2_user_5" }, "entityType": "user" } } }, "text": "hi", "id": "124", "conversationId": "2_user_5", "sender": { "hasBlockedMe": false, "blockedByMe": false, "uid": "2", "name": "Jen Smith", "lastActiveAt": 1626838062, "role": "default", "status": "online" }, "receiver": { "hasBlockedMe": false, "blockedByMe": false, "uid": "5", "name": "Wavey", "lastActiveAt": 1626913500, "role": "default", "status": "online" }, "sentAt": 1626915711, "updatedAt": 1626915711 }
   ]
 };
 
@@ -59,6 +59,21 @@ const actions = {
         }
       })
     );
+  },
+  convertMessageToConversation({dispatch}, message) {
+    return new Promise((resolve, reject) => {
+      CometChat.CometChatHelper.getConversationFromMessage(message).then(
+        conversation => {
+          console.log(conversation)
+          dispatch('fetchConversations')
+          resolve(conversation)
+        },
+        error => {
+          console.log("Error while converting message object", error);
+          reject(error)
+        }
+      );
+    })
   },
   fetchConversations({commit}) {
     return new Promise((resolve, reject) => {

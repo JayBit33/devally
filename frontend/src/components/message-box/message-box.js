@@ -30,7 +30,7 @@ export default {
     window.removeEventListener('click', this.clickOutsideCheck)
   },
   methods: {
-    ...mapActions(['sendMessageToUserById']),
+    ...mapActions(['sendMessageToUserById', 'convertMessageToConversation']),
     ...mapMutations(['deleteIncomingMessage']),
     clickOutsideCheck(e) {
       if (!(e.path.includes(this.$refs.message_box_content))) this.closeTextBox()
@@ -43,6 +43,7 @@ export default {
       this.deleteIncomingMessage(message)
     },
     openConversation(message) {
+      this.convertMessageToConversation(message)
       this.$router.push(`/profile/${this.getLoggedInUser.id}/messages?activeConversationId=${message.sender.uid}`)
     },
     openTextBox() {
