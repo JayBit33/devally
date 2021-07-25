@@ -16,6 +16,7 @@ export default {
       avatar: '',
       recipient: {},
       reversedConversation: []
+      
     }
   },
   components: {
@@ -36,8 +37,6 @@ export default {
     recipientAvatar() {
       const id = this.recipient.uid
 
-      console.log('id', id)
-
       this.fetchUserById(id).then(res => {
         console.log(`http://localhost:3000/${res.profile_image}`)
         this.avatar = `http://localhost:3000/${res.profile_image}`
@@ -47,7 +46,7 @@ export default {
       if (!this.conversation || this.conversation.length === 0) this.recipient = { name: null, status: null}
       else {
         this.reversedConversation = [ ...this.conversation ].reverse()
-        this.recipient =  this.conversation && this.conversation[0].receiver.uid === this.getCurrentUserId 
+        this.recipient =  this.conversation && this.conversation[0].receiverId === this.getCurrentUserId 
         ? this.conversation[0].sender
         : this.conversation[0].receiver
         this.recipientAvatar()

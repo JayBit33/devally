@@ -17,20 +17,27 @@ export default {
   },
   data() {
     return {
-      avatar: ''
+      avatar: '',
+      isSelected: false
     }
   },
   components: {
     FontAwesomeIcon,
   },
+  created() {
+    this.recipientAvatar()
+  },
   computed: {
     ...mapGetters(['getCurrentUserId']),
     recipientName() {
       return this.message && this.message.conversationWith.name
-    },
-    
+    }  
   },
   methods: {
+    messageSelected() {
+      this.isSelected = true
+      this.$emit('messageSelected', this.message)
+    },
     recipientAvatar() {
       const avatarURL = this.message && this.message.conversationWith.avatar
       
@@ -38,7 +45,6 @@ export default {
       else {
        const id = this.message && this.message.conversationWith.uid
        this.fetchUserById(id).then(user => {
-         console.log(`http://localhost:3000/${user.profile_image}`)
          this.avatar = `http://localhost:3000/${user.profile_image}`
        })
       }

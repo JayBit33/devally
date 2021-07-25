@@ -16,7 +16,13 @@
       <div class="messages-area">
         <div class="user-messages_area-header"><h2>Chats</h2></div>
         <div class="messages">
-          <message v-for="convo in conversations" :key="convo.lastMessage.id" :message="convo" :isOnline="convo.conversationWith.status === 'online'"  />
+          <message 
+            v-for="convo in conversations" 
+            :key="convo.lastMessage.id" 
+            :message="convo" 
+            :isOnline="convo.conversationWith.status === 'online'"
+            @messageSelected="setRecipientId($event)"  
+          />
         </div>
         <div class="user-messages_area-footer"></div>
       </div>

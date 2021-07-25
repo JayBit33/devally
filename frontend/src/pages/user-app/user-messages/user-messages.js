@@ -11,7 +11,7 @@ export default {
     return {
       isUserModalOpen: true,
       activeConversation: [],
-      conversations: []
+      conversations: [],
     }
   },
   components: {
@@ -37,6 +37,13 @@ export default {
     },
     handleUserModalButton() {
       this.$router.push({ name: 'Projects' })
+    },
+    setRecipientId(conversation) {
+      const recipientId = conversation.conversationWith.uid
+      this.fetchConversationHistoryWithUser(recipientId).then(conversation => {
+        // filter out messages that have been deleted
+        this.activeConversation = conversation.filter(convo => !convo.deletedAt)
+      })
     }
   }
 }
