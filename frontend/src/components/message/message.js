@@ -17,8 +17,7 @@ export default {
   },
   data() {
     return {
-      messageText: '',
-      isSelected: false
+      avatar: ''
     }
   },
   components: {
@@ -32,15 +31,16 @@ export default {
     
   },
   methods: {
-    async recipientAvatar() {
+    recipientAvatar() {
       const avatarURL = this.message && this.message.conversationWith.avatar
       
-      if (avatarURL) return avatarURL
+      if (avatarURL) this.avatar = avatarURL
       else {
        const id = this.message && this.message.conversationWith.uid
-       const user = await this.fetchUserById(id)
-       console.log(`http://localhost:3000/${user.profile_image}`)
-       return `http://localhost:3000/${user.profile_image}`
+       this.fetchUserById(id).then(user => {
+         console.log(`http://localhost:3000/${user.profile_image}`)
+         this.avatar = `http://localhost:3000/${user.profile_image}`
+       })
       }
     }
   }
