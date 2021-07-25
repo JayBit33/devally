@@ -9,7 +9,7 @@
         <img src="@/assets/programmer-man.png" alt="programmer-man">
       </div>
       <div class="greeting__quote">
-        <h3 class="fade-in"> "{{quote.text}}" -{{quote.author}}</h3>
+        <h3 class="fade-in"> "{{quote.content}}" -{{quote.author}}</h3>
       </div>
     </div>
 
