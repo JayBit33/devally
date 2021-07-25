@@ -24,11 +24,11 @@
     </div>
 
     <div class="page-content">
-      <breadcrumbs v-if="showHeaderFooter && this.$route.name !== 'Projects'" />
+      <breadcrumbs v-if="showHeaderFooter && $route.name !== 'Projects'" />
       <router-view />
     </div>
 
-    <div v-if="isLoggedIn" class="messaging-container">
+    <div v-if="isLoggedIn && $route.name !== 'Profile'" class="messaging-container">
       <message-box />
     </div>
 

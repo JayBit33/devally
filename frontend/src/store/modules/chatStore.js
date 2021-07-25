@@ -26,6 +26,9 @@ const mutations = {
   clearIncomingMessage(state) {
     state.incomingMessages = []
   },
+  deleteIncomingMessage(state, message) {
+    state.incomingMessages = state.incomingMessages.filter(m => m.id !== message.id)
+  },
   setActiveReceiverId(state, id) {
     state.activeReceiverId = id
   },

@@ -30,6 +30,8 @@ export default {
       isRateAction: false,
       isInviteAction: false,
       inviteProjects: [],
+      isMessageTextBox: false,
+      message: '',
       toast: {
         type: '',
         message: [{ text: '', emphasis: false }],
@@ -63,7 +65,6 @@ export default {
   async created() {
     await this.fetchDevUsers()
     this.user = await this.getDevUser(this.$route.params.id)
-    this.setActiveReceiverId(this.$route.params.id)
 
     if (!this.isLoggedIn) {
       let message = [
@@ -76,9 +77,17 @@ export default {
     }
 
     this.rating = await this.computeRating(this.user.ratings)
+
+    setTimeout(() => {
+      document.addEventListener('click', this.clickOutsideCheck)
+    }, 1)
+  },
+  destroyed() {
+    document.removeEventListener('click', this.clickOutsideCheck)
+    this.setActiveReceiverId(null)
   },
   methods: {
-    ...mapActions(['fetchDevUsers', 'updateUser', 'fetchToast', 'sendNotificationToUser', 'computeRating', 'fetchProjectById']),
+    ...mapActions(['fetchDevUsers', 'updateUser', 'fetchToast', 'sendNotificationToUser', 'computeRating', 'fetchProjectById', 'sendMessageToUserById']),
     ...mapMutations(['setActiveReceiverId']),
     async addConnection() {
       let message
@@ -106,8 +115,16 @@ export default {
         this.toast = await this.fetchToast({type: 'warning', message});
       }
     },
+    closeMessageTextBox() {
+      this.isMessageTextBox = false
+    },
     clickOutsideCheck(e) {
-      if (!(e.path.includes(this.$refs.user_actions_content))) this.isActionsOpen = false
+      if (this.isActionsOpen) {
+        if (!(e.path.includes(this.$refs.user_actions_content))) this.isActionsOpen = false
+      }
+      if (this.isMessageTextBox) {
+        if (!(e.path.includes(this.$refs.user_messages_content))) this.isMessageTextBox = false
+      }
     },
     closeToast() {
       this.toast.isShown = false
@@ -145,10 +162,8 @@ export default {
       else window.open("http://" + link, "_blank");
     },
     messageClick() {
-      // if (this.getLoggedInUser) {
-      //   this.$router.push(`/profile/${this.getLoggedInUser.id}/messages`)
-      // }
-      this.messageBoxOpen = true
+      this.setActiveReceiverId(this.$route.params.id)
+      this.toggleMessageTextBox()
     },
     rateUser() {
       this.toggleActions()
@@ -160,9 +175,18 @@ export default {
       this.toggleReportUser()
       document.querySelector('html').style.overflowY = 'hidden'
     },
+    sendMessage() {
+      this.sendMessageToUserById({ messageText: this.message })
+      this.closeMessageTextBox()
+    },
     toggleInviteUser() {
       this.isInviteAction = !this.isInviteAction
       if (!(this.isInviteAction)) document.querySelector('html').style.overflowY = 'scroll'
+    },
+    toggleMessageTextBox() {
+      setTimeout(() => {
+        this.isMessageTextBox = !this.isMessageTextBox
+      }, 1)
     },
     async toggleRateUser() {
       this.isRateAction = !this.isRateAction
@@ -180,18 +204,10 @@ export default {
     toggleActions() {
       setTimeout(() => {
         this.isActionsOpen = !this.isActionsOpen
-        if (this.isActionsOpen) {
-          document.addEventListener('click', this.clickOutsideCheck)
-        } else {
-          document.removeEventListener('click', this.clickOutsideCheck)
-        }
       }, 1)
     },
     toggleMessageBox() {
       this.messageBoxOpen = !this.messageBoxOpen;
     }
-  },
-  destroyed() {
-    document.removeEventListener('click', this.clickOutsideCheck)
   }
 };
