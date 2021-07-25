@@ -53,7 +53,7 @@
           <h2 class="section_title">Recent Messages</h2>
           <div class="message" v-for="message in messages" :key="message.message">
             <img class="image-icon" :src="message.image_source" alt="image">
-            <h2>{{message.message}}</h2>
+            <h2>{{message.data.text}}</h2>
           </div>
           <div v-if="messages && messages.length == 0" class="no-messages">
             <h2>You have no new messages.</h2>

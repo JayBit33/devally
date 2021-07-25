@@ -12,7 +12,6 @@ import UserProjects from '@/pages/user-app/user-projects';
 import UserSettings from '@/pages/user-app/user-settings';
 import UserTasks from '@/pages/user-app/user-tasks';
 import SidebarButton from '@/pages/user-app/controls/sidebar-btn';
-import { CometChat } from "@cometchat-pro/chat";
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import dayjs from 'dayjs';
 import { mapActions, mapGetters, mapMutations } from 'vuex';
@@ -60,7 +59,7 @@ export default {
     UserTasks
   },
   computed: {
-    ...mapGetters(['getDevUser', 'getDevUserByUsername', 'isLoggedIn', 'getCurrentUserId', 'getLoggedInUser']),
+    ...mapGetters(['getDevUser', 'getDevUserByUsername', 'isLoggedIn', 'getCurrentUserId', 'getLoggedInUser', 'getIncomingMessages']),
     accountType() {
       return this.user.user_type_id === 1
       ? 'developer'
@@ -90,32 +89,17 @@ export default {
     //   this.isLoading = false;
     // });
 
-    this.messages = await this.fetchMessages();
+    this.messages = [...this.getIncomingMessages]
     this.messages = await Promise.all(this.messages.map(async (n) => {
       let imgSrc = null
-      if (n.senderId) {
-        imgSrc = await this.getImageFromId(n.senderId)
+      if (n.sender.uid) {
+        imgSrc = await this.getImageFromId(n.sender.uid)
       }
       return {
         ...n,
         image_source: imgSrc
       }
     }))
-    var listenerID = this.user.username;
-    CometChat.addMessageListener(
-      listenerID,
-      new CometChat.MessageListener({
-        onTextMessageReceived: message => {
-          console.log("Message received successfully:", {message});
-          // Handle text message
-          const alreadyExists = this.messages.filter(msg => msg.resource === message.data.resource);
-          console.log(alreadyExists)
-          // if (!alreadyExists.length) {
-            this.messages.push({...message.data, sentAt: message.sentAt, receiverType: message.receiverType});
-          //}
-        }
-      })
-    );
 
     this.user.notifications = await Promise.all(this.user.notifications.map(async (n) => {
       let imgSrc = null
@@ -209,6 +193,19 @@ export default {
   watch: {
     getLoggedInUser() {
       this.user = this.getLoggedInUser
+    },
+    async getIncomingMessages() {
+      this.messages = [...this.getIncomingMessages]
+      this.messages = await Promise.all(this.messages.map(async (n) => {
+        let imgSrc = null
+        if (n.sender.uid) {
+          imgSrc = await this.getImageFromId(n.sender.uid)
+        }
+        return {
+          ...n,
+          image_source: imgSrc
+        }
+      }))
     }
   }
 };
