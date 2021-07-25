@@ -29,19 +29,24 @@ export default {
   computed: {
     ...mapGetters(['getLoggedInUser']),
     hiringOptions() {
+      if (!this.project || !this.project.hiring_options) return ''
       return this.project.hiring_options.length > 1 ? this.project.hiring_options.join(', ') : this.project.hiring_options[0]
     },
     fundingTypes() {
+      if (!this.project || !this.project.funding_types) return ''
       return this.project.funding_types.length > 1 ? this.project.funding_types.join(', ') : this.project.funding_types[0]
     },
     viewableRegions() {
+      if (!this.project || !this.project.viewable_regions) return ''
       return this.project.viewable_regions.length > 1 ? this.project.viewable_regions.join(', ') : this.project.viewable_regions[0]
     },
   },
   async created() {
-    this.teamMembers = await Promise.all(this.project.team_member_ids.map(async id => await this.fetchUserById(id)))
-    const creator = await this.fetchUserById(this.project.creator_id)
-    this.visionary = creator
+    if (this.project) {
+      this.teamMembers = await Promise.all(this.project.team_member_ids.map(async id => await this.fetchUserById(id)))
+      const creator = await this.fetchUserById(this.project.creator_id)
+      this.visionary = creator
+    }
   },
   methods: {
     ...mapActions(['fetchUserById', 'fetchToast', 'updateProjectById', 'updateUser']),
@@ -108,9 +113,11 @@ export default {
   },
   watch: {
     async project() {
-      this.teamMembers = await Promise.all(this.project.team_member_ids.map(async id => await this.fetchUserById(id)))
-      const creator = await this.fetchUserById(this.project.creator_id)
-      this.teamMembers = [creator, ...this.teamMembers]
+      if (this.project) {
+        this.teamMembers = await Promise.all(this.project.team_member_ids.map(async id => await this.fetchUserById(id)))
+        const creator = await this.fetchUserById(this.project.creator_id)
+        this.teamMembers = [creator, ...this.teamMembers]
+      }
     }
   }
 }

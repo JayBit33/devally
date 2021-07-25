@@ -8,11 +8,11 @@
     </div>
     <div class="connections">
       <connection-card
-        v-for="connection in connectionsShown"
+        v-for="(connection, index) in connectionsShown"
         :class="{'movingRight': movingRight, 'movingLeft': movingLeft}"
         :connection="connection"
         :isPositionToFill="isPositionToFill"
-        :key="connection.id"
+        :key="`${connection.id} ${index}`"
         :hasDeleteIcon="hasDeleteIcon"
         @delete-click="$emit('delete-click', connection)"
       />

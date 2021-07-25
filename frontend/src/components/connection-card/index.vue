@@ -5,7 +5,7 @@
     <font-awesome-icon v-if="!isMinimized && hasDeleteIcon && getLoggedInUser.id != connection.id" @click="$emit('delete-click')" :icon="['fas','trash']" class="delete-icon"></font-awesome-icon>
     <font-awesome-icon v-if="isMinimized" @click.stop="$emit('check-click')" :icon="isChecked ? ['fas','check-square'] : ['far','square']" class="check-icon"></font-awesome-icon>
     <div v-if="isMinimized" class="connection-card-overlay" :class="{'hidden': isChecked}"></div>
-    <img  v-if="!isPositionToFill" class="connection-card-avatar" :src="getImage(connection.profile_image)" />
+    <img  v-if="!isPositionToFill" class="connection-card-avatar" :src="getImage(connection)" />
     <div  v-if="isPositionToFill" class="connection-card-position-to-fill"  >
       <font-awesome-icon :icon="['fas', 'user-alt']" class="user-avatar"></font-awesome-icon>
     </div>

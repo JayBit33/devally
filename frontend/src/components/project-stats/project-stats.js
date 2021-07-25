@@ -9,6 +9,7 @@ export default {
   },
   computed: {
     completedTasks() {
+      if (!this.project || !this.project.tasks) return []
       return this.project.tasks.filter(t => (t.status == 'complete'))
     }
   },

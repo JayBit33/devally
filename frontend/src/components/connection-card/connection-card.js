@@ -17,14 +17,17 @@ export default {
   computed: {
     ...mapGetters(['getLoggedInUser']),
     accountType() {
+      if (!this.connection) return ''
       return this.connection.user_type_id === "1"
       ? 'developer | visionary'
       : 'visionary'
     },
     fullName() {
+      if (!this.connection) return ''
       return `${this.connection.firstname} ${this.connection.lastname}`;
     },
     roles() {
+      if (!this.connection) return ''
       return this.connection.dev_roles.map(role => {
         if (role === "Graphic Designer") return "GD";
         if (role === "UX/UI") return "UI";
@@ -36,8 +39,9 @@ export default {
     }
   },
   methods: {
-    getImage(filePath) {
-      return `http://localhost:3000/${filePath}`;
+    getImage(connection) {
+      if (!connection) return ''
+      return `http://localhost:3000/${connection.profile_image}`;
     },
     handleCardBtnClick() {
       if (this.isPositionToFill) {

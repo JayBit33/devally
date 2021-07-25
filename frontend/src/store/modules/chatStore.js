@@ -64,7 +64,6 @@ const actions = {
     return new Promise((resolve, reject) => {
       CometChat.CometChatHelper.getConversationFromMessage(message).then(
         conversation => {
-          console.log(conversation)
           dispatch('fetchConversations')
           resolve(conversation)
         },

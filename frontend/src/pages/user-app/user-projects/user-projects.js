@@ -18,7 +18,9 @@ export default {
     }
   },
   async created() {
-    this.projects = await Promise.all(this.getLoggedInUser.project_ids.map(async id => await this.fetchProjectById(id)))
+    if (this.getLoggedInUser) {
+      this.projects = await Promise.all(this.getLoggedInUser.project_ids.map(async id => await this.fetchProjectById(id)))
+    }
   },
   computed: {
     ...mapGetters(['getLoggedInUser'])
