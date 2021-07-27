@@ -9,6 +9,7 @@ export default {
   name: 'UserMessages',
   data() {
     return {
+      activeConversationId: '',
       isUserModalOpen: true,
       activeConversation: [],
       conversations: [],
@@ -43,7 +44,10 @@ export default {
       this.fetchConversationHistoryWithUser(recipientId).then(conversation => {
         // filter out messages that have been deleted
         this.activeConversation = conversation.filter(convo => !convo.deletedAt)
+        this.activeConversationId = conversation[0].conversationId
       })
+
+
     }
   },
   watch: {

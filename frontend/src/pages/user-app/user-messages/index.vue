@@ -20,6 +20,7 @@
             v-for="convo in conversations" 
             :key="convo.lastMessage.id" 
             :message="convo" 
+            :activeConversationId="activeConversationId"
             :isOnline="convo.conversationWith.status === 'online'"
             @messageSelected="setRecipientId($event)"  
           />

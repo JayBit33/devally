@@ -53,7 +53,7 @@
 
   .conversation-text {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     max-height: 96%;
     margin-top: 0rem;
     overflow-y: scroll;

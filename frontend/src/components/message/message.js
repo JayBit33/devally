@@ -13,12 +13,14 @@ export default {
     'isOnline': {
       type: Boolean,
       default: false
+    },
+    'activeConversationId': {
+      type: String
     }
   },
   data() {
     return {
       avatar: '',
-      isSelected: false
     }
   },
   components: {
@@ -29,13 +31,15 @@ export default {
   },
   computed: {
     ...mapGetters(['getCurrentUserId']),
+    isSelected() {
+      return this.activeConversationId === this.message.conversationId 
+    },
     recipientName() {
       return this.message && this.message.conversationWith.name
     }  
   },
   methods: {
     messageSelected() {
-      this.isSelected = true
       this.$emit('messageSelected', this.message)
     },
     recipientAvatar() {
