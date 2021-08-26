@@ -4,6 +4,8 @@ const express = require('express');
 const authChecker = require('./middelware/auth-checker');
 const queries = require('../db/queries/user-queries');
 const router = express.Router();
+const bcrypt = require('bcrypt');
+
 
 // Fake route to test accessToken
 router.get('/test', authChecker, (req, res) => {
@@ -165,7 +167,11 @@ function validUser(user) {
 */
 router.post('/create-account', (req, res, next) => {
   if (validUser(req.body)) {
-    queries.createUser(req.body).then(user => {
+    const userData = {
+      ...req.body,
+      password: bcrypt.hashSync(req.body.password, 10)
+    }
+    queries.createUser(userData).then(user => {
       res.status(201).json(user);
     }).catch(err => console.log(err))
   } else {
