@@ -67,6 +67,17 @@ Vue.use(Vuex)
             ratings.forEach(r => sum += r.rating)
             return Math.round(sum / ratings.length)
         },
+        
+        createUser(_, userInfo) {
+            return new Promise((resolve, reject) => {
+                usersAPI.post('/create-account', userInfo)
+                .then(res => {
+                    console.log('new user created', res.data)
+                    resolve(res.data)
+                }).catch(error => reject(error))
+            })
+        },
+
         createProject({ getters }, project) {
             projectsAPI.defaults.headers.common['Authorization'] = `Bearer ${getters.getAccessToken}`;
             return new Promise((resolve, reject) => {

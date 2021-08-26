@@ -3,15 +3,22 @@
 import Toast from '@/components/toast'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { mapActions } from 'vuex';
+import { accountTypes } from '../../constants/types';
 
 export default {
   name: 'SigninSignup',
   props: [],
   data() {
     return {
+      createForm: {
+        firstName: 'jay',
+        lastName: 'boseman',
+        email: 'email@gmail.com',
+        password: 'password123',
+        confirmPassword: 'password123',
+        accountType: accountTypes.DEVELOPER
+      },
       loggingIn: true,
-      visionaryAccount: false,
-      developerAccount: false,
       loginErrorMsg: '',
       signInForm: {
           password: '',
@@ -27,7 +34,7 @@ export default {
     FontAwesomeIcon
   },
   methods: {
-    ...mapActions(['login' ,'fetchToast']),
+    ...mapActions(['createUser', 'login' ,'fetchToast']),
     alertClosed() {
       console.log('closed alert')
       this.loginErrorMsg = '';
@@ -40,16 +47,15 @@ export default {
       this.toast.isShown = false
     },
     selectDevAccountType() {
-      if (this.visionaryAccount) {
-        this.visionaryAccount = false
+      if (this.createForm.accountType === 'visionary') {
+        this.createForm.accountType = accountTypes.DEVELOPER
       }
-      this.developerAccount = true
     },
     selectVisAccountType() {
-      if (this.developerAccount) {
-        this.developerAccount = false
+      if (this.createForm.accountType === 'developer') {
+        this.createForm.accountType = accountTypes.VISIONARY
       }
-      this.visionaryAccount = true
+
     },
     async submitForm() {
       this.toast.isShown = false
@@ -94,5 +100,22 @@ export default {
           return true
       }
     },
+    validateNewAccount() {
+      console.log('validate function')
+      let valid = true;
+      if (this.createForm.email === null) valid = false 
+
+      if(!valid) console.log('can NOT sign up');
+      else {
+        const user = {
+          email: this.createForm.email,
+          password: this.createForm.password,
+          firstname:this.createForm.firstName,
+          lastname: this.createForm.lastName,
+          user_type_id: this.createForm.accountType === accountTypes.DEVELOPER ? 1 : 2
+        }
+        this.createUser(user)
+      }
+    }
   }
 }

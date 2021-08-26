@@ -32,7 +32,7 @@
           <h3 id="needed">Positions Needed</h3>
         </div>
         <div v-for="(position,i) in project.members_needed" :key="i" class="position">
-          <p>{{ position.position }} <span style="font-weight: 600; padding: 0 1rem;">Skills Needed:</span>{{ openPositions(position) }}  <button @click="applyToPosition(position)">Apply</button></p>
+          <p>{{ position.position }} <span style="font-weight: 600; padding: 0 1rem;">Skills Needed:</span>{{ openPositions(position) }}  <button class="apply-btn" @click="applyToPosition(position)">Apply</button></p>
         </div>
       </div>
       

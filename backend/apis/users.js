@@ -106,14 +106,14 @@ router.get('/query', (req, res) => {
 })
 
 function validUser(user) {
-  const hasUsername = typeof user.username == 'string' && user.username.trim() != '';
+  const hasEmail = typeof user.email == 'string' && user.email.trim() != '';
   const hasPassword = typeof user.password == 'string' && user.password.trim() != '';
   const hasFirstname = typeof user.firstname == 'string' && user.firstname.trim() != '';
   const hasLastname = typeof user.lastname == 'string' && user.lastname.trim() != '';
   // const hasAccountTypes = user.account_types.length > 0;
   // const hasSkills = user.skills.length > 0;
   // const hasHiringOptions = user.hiring_options.length > 0;
-  return hasUsername && hasPassword && hasFirstname && hasLastname;
+  return hasEmail && hasPassword && hasFirstname && hasLastname;
 }
 
 /**
@@ -163,15 +163,25 @@ function validUser(user) {
  *                     type: object
  *                     example: { featured_projects: true, weekly_news: true, updates: true }
 */
-router.post('/create-dev-account', (req, res, next) => {
-  if (validUser(req.body.newUserInfo)) {
-    queries.createDevUser(req.body).then(user => {
+router.post('/create-account', (req, res, next) => {
+  if (validUser(req.body)) {
+    queries.createUser(req.body).then(user => {
       res.status(201).json(user);
     }).catch(err => console.log(err))
   } else {
     next(new Error('Invalid User Data'));
   }
 })
+
+// router.post('/create-dev-account', (req, res, next) => {
+//   if (validUser(req.body.newUserInfo)) {
+//     queries.createDevUser(req.body).then(user => {
+//       res.status(201).json(user);
+//     }).catch(err => console.log(err))
+//   } else {
+//     next(new Error('Invalid User Data'));
+//   }
+// })
 
 /**
  * @swagger

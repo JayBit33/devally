@@ -44,6 +44,12 @@ module.exports = {
             .where('user_type_id', 2)
             .select(['users.id','users.username','users.email','users.password','users.firstname','users.lastname', 'users.bio', 'users.visionary_categories','users.ratings','users.profile_image', 'users.user_type_id', 'users.connections', 'users.notifications',  'users.notification_settings','users.subscription_settings', 'users.project_ids','users.token_version'])
   },
+  createUser(userInfo) {
+    return knex("users")
+    .insert(userInfo)
+    .returning('*')
+    .then(user => user[0])
+  },
   createDevUser({newUserInfo, newDevUserInfo}) {
     return knex("users")
     .insert(newUserInfo)

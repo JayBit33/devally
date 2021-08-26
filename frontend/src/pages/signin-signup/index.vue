@@ -42,7 +42,7 @@
       <div class="create-account_heading">
         <div>
           <h1>Create Account</h1>
-          <h4>Find and|or become technical co-founders</h4>
+          <h4>Find and|or become a technical co-founder</h4>
         </div>
         <div class="image_container">
           <img src="../../assets/createaccount.svg" />
@@ -50,11 +50,11 @@
       </div>
       <div class="create-account_body">
         <div class="account-options">
-          <div class="account-options_visionary" :class="{'active': visionaryAccount}" @click="selectVisAccountType">
+          <div class="account-options_visionary" :class="{'active': createForm.accountType === 'visionary'}" @click="selectVisAccountType">
             <h3>visionary account</h3>
             <p> You have an idea and want to find technical co-founders or developers for hire.</p>
           </div>
-          <div class="account-options_developer" :class="{'active': developerAccount}" @click="selectDevAccountType">
+          <div class="account-options_developer" :class="{'active': createForm.accountType === 'developer'}" @click="selectDevAccountType">
             <h3>developer account</h3>
             <p>you are a creative professional looking for a project to join as a technical co-founder. developer accounts come with visionary accounts by default.</p>
           </div>
@@ -62,24 +62,24 @@
         <form @submit.prevent>
           <div class="firstname">
             <label>First Name</label>
-            <input type="text" class="input" />
+            <input v-model="createForm.firstName" type="text" class="input" />
           </div>
           <div class="lastname">
             <label>Last Name</label>
-            <input type="text" class="input" />
+            <input v-model="createForm.lastName" type="text" class="input" />
           </div>
           <div class="email">
             <label>Email Address</label>
-            <input type="text" class="input" />
+            <input v-model="createForm.email" type="text" class="input" />
           </div>
           <div class="password">
             <label>Password</label>
-            <input type="password" class="input" />
+            <input v-model="createForm.password" type="password" class="input" />
           </div>
           <div class="confirm">
             <label>Confirm Password</label>
-            <input type="password" class="input" />
-            <button type="text" class="signup">sign up</button>
+            <input v-model="createForm.confirmPassword" type="password" class="input" />
+            <button type="submit" class="signup" @click="validateNewAccount">sign up</button>
           </div>
           <div class="already_member">
             <label>Already a member?</label>
