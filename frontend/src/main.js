@@ -2,12 +2,13 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import { CometChat } from "@cometchat-pro/chat";
+import GoogleSignInButton from 'vue-google-signin-button-directive'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import ElementUI from 'element-ui';
 // import 'element-ui/lib/theme-chalk/index.css';
 import './scss/element-variables.scss'
-import store from './store/index'
+import store from './store/index' 
 
 Vue.use(ElementUI)
 
@@ -30,6 +31,7 @@ CometChat.init(process.env.VUE_APP_APP_ID, appSetting).then(() => {
   new Vue({
     router,
     store,
+    GoogleSignInButton,
     render: h => h(App)
   }).$mount('#app')
 });

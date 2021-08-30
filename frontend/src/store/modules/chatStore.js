@@ -74,6 +74,22 @@ const actions = {
       );
     })
   },
+
+  createNewCometChatUserAccount(_, user) {
+    var uid = user.id;
+    var name = user.firstname + ' ' + user.lastname;
+    var newUser = new CometChat.User(uid.toString());
+    newUser.setName(name);
+
+    CometChat.createUser(newUser, process.env.VUE_APP_API_KEY).then(
+        user => {
+            console.log("chat user created", user);
+        },error => {
+            console.log("error creating chat user", error);
+        }
+    )
+  },
+
   fetchConversations({commit}) {
     return new Promise((resolve, reject) => {
       const conversationsRequest = new CometChat.ConversationsRequestBuilder()

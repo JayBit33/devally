@@ -11,6 +11,7 @@
       @toast-action-click="handleToastAction"
       @toast-close="closeToast"
     />
+    
     <div v-if="loggingIn" class="signin">
       <div class="signin_image">
         <img src="../../assets/signin.svg" />
@@ -20,9 +21,9 @@
         <h4>Don't have an account yet?<span id="signup" @click="loggingIn = false">Sign Up</span></h4>
         <form @submit.prevent>
           <label>Email Address</label>
-          <input type="email" ref="email_input" v-model="signInForm.email" class="input" :class="{'error': emailError}" @input="removeEmailError"/>
+          <input type="email" ref="email_input" v-model="signInForm.email" class="input" required :class="{'error': emailError}" @input="removeEmailError"/>
           <label>Password<span id="forgot_pw">Forgot Password</span></label>
-          <input type="password" v-model="signInForm.password" class="input" :class="{'error': passwordError}" @input="removePasswordError"/>
+          <input type="password" v-model="signInForm.password" required class="input" :class="{'error': passwordError}" @input="removePasswordError"/>
           <div id="remember">
             <input type="checkbox" id="checkbox" />
             <p>Remember me</p>
@@ -32,7 +33,7 @@
         <div class="signin-options">
           <span id="login-option_text">or login with</span>
           <div class="options">
-            <button id="google" ><img src="../../assets/google_logo.png" />Google</button>
+            <button id="google" v-google-signin-button="clientId" class="google-signin-button" ><img src="../../assets/google_logo.png" />Google</button>
             <button id="github" ><img src="../../assets/github_logo.png" />Github</button>
           </div>
         </div>
@@ -70,7 +71,7 @@
           </div>
           <div class="email">
             <label>Email Address</label>
-            <input v-model="createForm.email" type="text" class="input" />
+            <input v-model="createForm.email" type="email" placeholder="youremail@domain.com" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="input" />
           </div>
           <div class="password">
             <label>Password</label>
@@ -84,9 +85,9 @@
           <div class="already_member">
             <label>Already a member?</label>
             <button type="text" class="login" @click="loggingIn = true">login</button>
-            <span id="login-option_text">or login with</span>
+            <span id="login-option_text">or signup with</span>
             <div class="options">
-              <button id="google" ><img src="../../assets/google_logo.png" />Google</button>
+              <button id="google" v-google-signin-button="clientId" class="google-signin-button" ><img src="../../assets/google_logo.png" />Google</button>
               <button id="github" ><img src="../../assets/github_logo.png" />Github</button>
           </div>
           </div>

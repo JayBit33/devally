@@ -17,3 +17,10 @@ Cookies are HTTPOnly
 Cookies are Secure
 Cookies are encrypted
 Encryption keys are set in environment variables
+
+Google Signon
+uses jaybit33@gmail.com account
+
+OAuth Client ID: 55247857302-jrqts16basgii5epipb2o31sef389b59.apps.googleusercontent.com
+Client Secret: F2GAUJtorVSDW0BCod81fo8X 
+Returns a JWT. When decoded the sub property is the unique identifier used by google.

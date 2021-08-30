@@ -10,6 +10,7 @@ export default {
   props: [],
   data() {
     return {
+      clientId: "55247857302-jrqts16basgii5epipb2o31sef389b59.apps.googleusercontent.com",
       createForm: {
         firstName: 'jay',
         lastName: 'boseman',
@@ -34,7 +35,7 @@ export default {
     FontAwesomeIcon
   },
   methods: {
-    ...mapActions(['createUser', 'login' ,'fetchToast']),
+    ...mapActions(['createUser', 'googleSignupSignin', 'login' ,'fetchToast']),
     alertClosed() {
       console.log('closed alert')
       this.loginErrorMsg = '';
@@ -116,6 +117,14 @@ export default {
         }
         this.createUser(user)
       }
+    },
+    OnGoogleAuthSuccess (idToken) {
+      console.log(idToken)
+      this.googleSignupSignin({ token: idToken })
+      // Receive the idToken and make your magic with the backend
+    },
+    OnGoogleAuthFail (error) {
+      console.log(error)
     }
   }
 }

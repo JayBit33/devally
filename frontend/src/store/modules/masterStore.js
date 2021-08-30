@@ -68,11 +68,23 @@ Vue.use(Vuex)
             return Math.round(sum / ratings.length)
         },
         
-        createUser(_, userInfo) {
+        createUser({ dispatch }, userInfo) {
             return new Promise((resolve, reject) => {
                 usersAPI.post('/create-account', userInfo)
                 .then(res => {
                     console.log('new user created', res.data)
+                    dispatch('createNewCometChatUserAccount', res.data)
+                    resolve(res.data)
+                }).catch(error => reject(error))
+            })
+        },
+        googleSignupSignin({ dispatch }, token) {
+            return new Promise((resolve, reject) => {
+                console.log('create google user action')
+                usersAPI.post('/google-sso', token)
+                .then(res => {
+                    console.log('new user created', res.data)
+                    dispatch('createNewCometChatUserAccount', res.data)
                     resolve(res.data)
                 }).catch(error => reject(error))
             })

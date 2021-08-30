@@ -5,6 +5,7 @@ const authChecker = require('./middelware/auth-checker');
 const queries = require('../db/queries/user-queries');
 const router = express.Router();
 const bcrypt = require('bcrypt');
+import jwt_decode from "jwt-decode";
 
 
 // Fake route to test accessToken
@@ -171,6 +172,29 @@ router.post('/create-account', (req, res, next) => {
       ...req.body,
       password: bcrypt.hashSync(req.body.password, 10)
     }
+    queries.createUser(userData).then(user => {
+      res.status(201).json(user);
+    }).catch(err => console.log(err))
+  } else {
+    next(new Error('Invalid User Data'));
+  }
+})
+
+router.post('/google-sso', (req, res, next) => {
+  try {
+    var decoded = jwt_decode(req.body.token);
+  } catch(error) {
+    next(new Error('Decoding Failed'))
+  } 
+  const userData = {
+    firstname: decoded.given_name,
+    lastname: decoded.family_name,
+    email: decoded.email,
+    profile_image: decoded.picture,
+    password: decoded.sub
+  }
+
+  if (validUser(userData)) {
     queries.createUser(userData).then(user => {
       res.status(201).json(user);
     }).catch(err => console.log(err))
