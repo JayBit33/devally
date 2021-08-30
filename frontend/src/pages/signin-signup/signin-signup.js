@@ -10,7 +10,7 @@ export default {
   props: [],
   data() {
     return {
-      clientId: "55247857302-jrqts16basgii5epipb2o31sef389b59.apps.googleusercontent.com",
+      clientId: process.env.VUE_GOOGLE_API_KEY,
       createForm: {
         firstName: 'jay',
         lastName: 'boseman',
@@ -121,7 +121,6 @@ export default {
     OnGoogleAuthSuccess (idToken) {
       console.log(idToken)
       this.googleSignupSignin({ token: idToken })
-      // Receive the idToken and make your magic with the backend
     },
     OnGoogleAuthFail (error) {
       console.log(error)
