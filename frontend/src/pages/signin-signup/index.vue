@@ -80,16 +80,20 @@
           <div class="confirm">
             <label>Confirm Password</label>
             <input v-model="createForm.confirmPassword" type="password" class="input" />
-            <button type="submit" class="signup" @click="validateNewAccount">sign up</button>
           </div>
-          <div class="already_member">
-            <label>Already a member?</label>
-            <button type="text" class="login" @click="loggingIn = true">login</button>
-            <span id="login-option_text">or signup with</span>
+          <div class="alt-signup">
+            <button type="submit" class="signup" @click="validateNewAccount">sign up</button>
+            <div id="login-option">
+              <span id="login-option_text">or signup with</span>
+            </div>
             <div class="options">
               <button id="google" v-google-signin-button="clientId" class="google-signin-button" ><img src="../../assets/google_logo.png" />Google</button>
               <button id="github" ><img src="../../assets/github_logo.png" />Github</button>
+            </div>
           </div>
+          <div class="already_member">
+            <label>Already a member?</label>
+            <button type="text" class="login" @click="loggingIn = true">login</button> 
           </div>
         </form>
       </div>

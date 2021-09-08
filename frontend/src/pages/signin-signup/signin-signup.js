@@ -120,6 +120,7 @@ export default {
     },
     OnGoogleAuthSuccess (idToken) {
       console.log(idToken)
+      
       this.googleSignupSignin({ token: idToken })
     },
     OnGoogleAuthFail (error) {
