@@ -91,8 +91,12 @@
           <h4>{{user.dev_categories.join(' | ')}}</h4>
         </div>
         <div v-if="user.dev_roles" class="user_profile_info-field skills-field">
-          <h2>Skills</h2>
+          <h2>Roles</h2>
           <h4>{{user.dev_roles.join(' | ')}}</h4>
+        </div>
+        <div v-if="user.dev_roles" class="user_profile_info-field skills-field">
+          <h2>Skills</h2>
+          <h4>{{user.dev_skills.join(' | ')}}</h4>
         </div>
       </div>
 
